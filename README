@@ -1,6 +1,6 @@
 Bobcat is an acronym of `Brokken's Own Base Classes And Templates'. It is a
 shared library implementing C++ classes that are frequently used in software
-developed by Frank Brokken. All of Frank's C++ programs hosted at GitHub
+developed by Frank Brokken. All of Frank's C++ programs hosted at GitLab
 depend on `bobcat'.
 
 The Bobcat library contains a variety of C++ classes and templates, some of
