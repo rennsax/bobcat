@@ -1,4 +1,10 @@
-bobcat (4.08.03)        WIP
+bobcat (4.08.04)
+
+  * Migrated from Github to Gitlab.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 17 Jun 2018 14:16:16 +0530
+
+bobcat (4.08.03)
 
   * Compilation requires c++17
 
