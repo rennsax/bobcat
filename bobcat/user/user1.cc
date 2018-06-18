@@ -2,7 +2,7 @@
 
 User::User()
 {
-    register size_t uid = getuid();
+    size_t uid = getuid();
     struct passwd *pwd;
     
     while ((pwd = getpwent()))
