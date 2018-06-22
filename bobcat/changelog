@@ -1,3 +1,10 @@
+bobcat (4.08.05)
+
+  * [[fallthrough]] requires a final semicolon (cf. C++ std 20, 10.6.5).
+    Bisonc++'s code is fixed accordingly.
+
+
+
 bobcat (4.08.04)
 
   * Migrated from Github to Gitlab.

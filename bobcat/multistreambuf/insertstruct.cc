@@ -6,7 +6,7 @@ void MultiStreambuf::insertStruct(stream &os, Insert &insert)
     {
         case ONCE:
             os.d_mode = RESET;
-        [[fallthrough]]
+        [[fallthrough]];
 
         case ON:
             os.d_os->write(insert.buffer.data(), 
