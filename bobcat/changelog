@@ -1,7 +1,7 @@
-bobcat (4.08.05)
+bobcat (4.08.05) (ISN)
 
   * [[fallthrough]] requires a final semicolon (cf. C++ std 20, 10.6.5).
-    Bisonc++'s code is fixed accordingly.
+    Bobcat's code is fixed accordingly.
 
 
 
