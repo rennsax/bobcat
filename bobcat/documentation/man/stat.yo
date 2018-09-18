@@ -81,7 +81,8 @@ manpagesection(CONSTRUCTORS)
         object is found. This object is then used. If tt(fname) is an absolute
         path, tt(searchPath) is ignored.
     )
-    The copy constructor is available.
+
+    The copy and move constructors are available.
 
 manpagesection(OVERLOADED OPERATORS)
     itemization(
@@ -90,7 +91,7 @@ manpagesection(OVERLOADED OPERATORS)
         about an existing object. Otherwise tt(false) is returned.
     )
 
-    The default assignment operator is available.
+    The copy and move assignment operators are available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

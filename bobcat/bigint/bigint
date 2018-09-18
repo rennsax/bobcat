@@ -163,12 +163,6 @@ class BigInt
         int compare(BigInt const &other) const;                 // .f
         int uCompare(BigInt const &other) const;                // .f
 
-        long long diophantus(long long *factor1, long long *factor2, 
-                             long long const &value1, 
-                             long long const &value2);
-        BigInt diophantus(BigInt *factor1, BigInt *factor2, 
-                          BigInt const &value1, BigInt const &value2);
-
         BigInt &exp(BigInt const &exponent);
         BigInt expc(BigInt const &exponent) const;
         BigInt &expMod(BigInt const &exponent, BigInt const &mod);
@@ -182,6 +176,12 @@ class BigInt
 
         BigInt &isqrt();
         BigInt isqrtc() const;
+
+        static long long diophantus(long long *factor1, long long *factor2, 
+                                    long long const &value1, 
+                                    long long const &value2);
+        static BigInt diophantus(BigInt *factor1, BigInt *factor2, 
+                                 BigInt const &value1, BigInt const &value2);
 
         static BigInt rand(size_t bitsSize, 
                            Msb msb = MSB_IS_ONE, Lsb lsb = ODD);

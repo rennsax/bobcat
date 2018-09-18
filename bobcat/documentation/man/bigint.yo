@@ -156,27 +156,6 @@ manpagesection(MEMBER FUNCTIONS)
        A copy of the current object having its bit at index position
         tt(index) cleared.
 
-    itb(long long diophantus(long long *factor1, long long *factor2, 
-                             long long value1, long long value2))
-       The integral solution of tt(factor1 * value1 + factor2 * value2 = gcd)
-        is computed. The function returns the greatest common divisor
-        (tt(gcd)) of tt(value1) and tt(value2), and returns their
-        multiplication factors in, respectively, tt(*factor1) and
-        tt(*factor2). The solution is not unique: another solution is obtained
-        by adding tt(k * value2) to tt(factor1) and subtracting tt(k * value1)
-        from tt(factor2). For values exceeding tt(std::numeric_limits<long,
-        long>::max()) the next member can be used.
-
-    itb(BigInt diophantus(BigInt *factor1, BigInt *factor2, 
-                            BigInt const &value1, BigInt const &value2))
-       The integral solution of tt(factor1 * value1 + factor2 * value2 = gcd)
-        is computed. The function returns the greatest common divisor
-        (tt(gcd)) of tt(value1) and tt(value2), and returns their
-        multiplication factors in, respectively, tt(*factor1) and
-        tt(*factor2). The solution is not unique: another solution is obtained
-        by adding tt(k * value2) to tt(factor1) and subtracting tt(k * value1)
-        from tt(factor2).
-
     itb(BigInt &div(BigInt *remainder, BigInt const &rhs))
        The current object is divided by tt(rhs). The division's remainder
         is returned in tt(*remainder).
@@ -576,8 +555,32 @@ manpagesection(STATIC MEMBERS)
 
     All members returning a tt(BigInt) computed from a set of arguments and
 not requiring an existing tt(BigInt) object are defined as static members.
+The first tt(diophantus) member, returning a tt(long long) value, also is a 
+static member.
 
     itemization(
+    itb(long long diophantus(long long *factor1, long long *factor2, 
+                             long long value1, long long value2))
+       The integral solution of tt(factor1 * value1 + factor2 * value2 = gcd)
+        is computed. The function returns the greatest common divisor
+        (tt(gcd)) of tt(value1) and tt(value2), and returns their
+        multiplication factors in, respectively, tt(*factor1) and
+        tt(*factor2). The solution is not unique: another solution is obtained
+        by adding tt(k * value2) to tt(factor1) and subtracting tt(k * value1)
+        from tt(factor2). For values exceeding tt(std::numeric_limits<long,
+        long>::max()) the next member can be used.
+
+    itb(BigInt diophantus(BigInt *factor1, BigInt *factor2, 
+                            BigInt const &value1, BigInt const &value2))
+       The integral solution of tt(factor1 * value1 + factor2 * value2 = gcd)
+        is computed. The function returns the greatest common divisor
+        (tt(gcd)) of tt(value1) and tt(value2), and returns their
+        multiplication factors in, respectively, tt(*factor1) and
+        tt(*factor2). The solution is not unique: another solution is obtained
+        by adding tt(k * value2) to tt(factor1) and subtracting tt(k * value1)
+        from tt(factor2).
+
+
     itb(BigInt fromText(std::string text, int mode = 0))
        This member converts a textual representation of a number to a
         tt(BigInt) value. Conversion continues until the end of tt(text) or

@@ -60,6 +60,8 @@ class Stat: public GS__
         Stat();                                                         // 1
         explicit Stat(std::string const &name);                         // 2
         Stat(std::string const &name, std::string const &pathlist);     // 1.f
+
+        Stat(Stat const &other) = default;
         Stat(Stat &&tmp);                                               // 3
 
         Stat &operator=(Stat const &other) = default;

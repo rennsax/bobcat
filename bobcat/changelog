@@ -3,6 +3,11 @@ bobcat (4.08.05) (ISN)
   * [[fallthrough]] requires a final semicolon (cf. C++ std 20, 10.6.5).
     Bobcat's code is fixed accordingly.
 
+  * The BigInt::diophantus members do not require a BigInt object, and are now
+    defined as static members.
+
+  * Stat declares a default copy constructor, as it defines a move
+    constructor. 
 
 
 bobcat (4.08.04)
