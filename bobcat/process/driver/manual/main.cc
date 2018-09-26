@@ -77,9 +77,6 @@ try
     
         finalization();
     }
-
-
-    return 0;
 }
 catch (...)
 {

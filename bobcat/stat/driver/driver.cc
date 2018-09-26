@@ -37,7 +37,5 @@ int main(int argc, char **argv)
             "Mode: " << oct << st.mode() <<  " (" << st.modeStr() << ")\n" 
             "Type: " << st.type() << " (" << st.typeStr() << ")\n"
             "Full path:  " << st.path()  << endl;
-
-    return 0;
 }
 

@@ -8,6 +8,4 @@
     int main()
     {
         #include "erabody.cc"
-
-        return 0;
     }

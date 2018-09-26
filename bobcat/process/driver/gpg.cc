@@ -18,7 +18,6 @@ try
 catch (exception const &err)
 {
     cerr << err.what() << endl;
-    return 0;
 }
 catch (int x)
 {

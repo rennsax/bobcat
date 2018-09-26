@@ -28,9 +28,9 @@ try
 catch (exception const &err)
 {
     cerr << err.what() << endl;
-    return 0;
+    return 1;
 }
 catch (int x)
 {
-    return 0;
+    return 1;
 }

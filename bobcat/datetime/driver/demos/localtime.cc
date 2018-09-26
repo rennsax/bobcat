@@ -9,5 +9,4 @@
         time_t local = mktime(ts = gmtime(&utc));
         
         cout << ts->tm_hour << ' ' << utc - local << endl;
-        return 0;
     }

@@ -128,8 +128,6 @@ manpagesection(EXAMPLES)
     
         for (size_t idx = 0; idx < pattern.size(); idx++)
             cout << idx << ": " << pattern[idx] << endl;
-    
-        return 0;
     }
         )
 

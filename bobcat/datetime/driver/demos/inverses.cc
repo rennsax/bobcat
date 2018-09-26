@@ -28,7 +28,6 @@
         cout << asctime(&ts);
 
         cout << utcSeconds - mktime(localtime_r(&utcSeconds, &ts)) << endl;
-        return 0;
     }
 
 /*

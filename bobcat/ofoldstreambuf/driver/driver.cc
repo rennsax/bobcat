@@ -33,6 +33,4 @@ int main()
     string line;
     while (getline(cin, line))
         out << line << '\n';
-
-    return 0;
 }

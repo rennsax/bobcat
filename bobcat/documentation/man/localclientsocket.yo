@@ -108,7 +108,6 @@ manpagesection(EXAMPLE)
             getline(in, line);
             cout << "Answer: " << line << endl;
         }
-        return 0;
     }
     catch (Exception const &err)
     {

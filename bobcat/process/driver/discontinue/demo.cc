@@ -100,6 +100,5 @@ int main(int argc, char **argv)
     cout << "Ending. All child processes should have disappeared\n"
             "(Press enter to end this program) ";
     getline(cin, cmd);
-    return 0;
 }
 

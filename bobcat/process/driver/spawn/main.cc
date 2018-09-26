@@ -14,7 +14,6 @@ try
     spawn << in.rdbuf();
 
     spawn.end();
-
 }
 catch (int x)
 {

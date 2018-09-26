@@ -182,14 +182,12 @@ int main()
 
     msb.insert(out, MultiStreambuf::ONCE);
 
-    os << "This is on cout and out" << endl;
-    os << "This is on cout only" << endl;
+    os << "This is on cout and out\n"
+          "This is on cout only\n";
 
     msb.setOnce();
-    os << "This is on cout and out" << endl;
-    os << "This is on cout only" << endl;
-
-    return 0;
+    os << "This is on cout and out\n"
+          "This is on cout only\n";
 }
     )
 

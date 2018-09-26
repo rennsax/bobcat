@@ -31,12 +31,10 @@ inline bool Comparator::operator()(string const &left,
     return left < right;
 }
 
-
 bool compFun(string const &left, string const &right)
 {
     return left < right;
 }
-
 
 int main()
 {
@@ -56,7 +54,5 @@ int main()
                                                    // or use: Comparator()
     if (ret == words + 10)
         cout << "grandpa is not the name of a number\n";
-
-    return 0;
 }
 

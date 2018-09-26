@@ -71,13 +71,11 @@ try
     if (!xpointer.get(&x, &y))
         throw string("Get pointer failed");
 
-    cout << "Pointer now at " << x << ", " << y << endl;
-
-    return 0;
+    cout << "Pointer now at " << x << ", " << y << '\n';
 }
 catch (string msg)
 {
-    cout << msg << endl;
+    cout << msg << '\n';
     return 1;
 }
     )

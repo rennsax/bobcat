@@ -53,9 +53,9 @@ available, as bf(FBB::ClientSocket) inherits from these classes.
     itemization(
     itb(int connect())
         This member returns a socket that can be used to communicate with the
-server process. An bf(FBB::Exception) exception is thrown if the connection could
-not be established or if the bf(SocketBase) base class could not properly be
-constructed.
+server process. An bf(FBB::Exception) exception is thrown if the connection
+could not be established or if the bf(SocketBase) base class could not
+properly be constructed.
     )
 
 manpagesection(EXAMPLE)
@@ -107,7 +107,6 @@ manpagesection(EXAMPLE)
             getline(in, line);      // Wait for a reply from the server
             cout << "Answer: " << line << endl;
         }
-        return 0;
     }
     catch (Exception const &err)
     {

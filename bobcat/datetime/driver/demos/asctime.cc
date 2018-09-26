@@ -6,5 +6,4 @@
     {
         time_t utc = time(0);
         cout << asctime(gmtime(&utc));
-        return 0;
     }

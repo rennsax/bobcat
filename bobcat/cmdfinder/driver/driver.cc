@@ -91,7 +91,6 @@ int main()
     run (cmd, "abbreviated case-insensitive command lines", 
                                    Command::USE_FIRST | Command::UNIQUE |
                                                         Command::INSENSITIVE);
-    return 0;
 }
 
 

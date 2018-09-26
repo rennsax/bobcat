@@ -82,7 +82,6 @@ try
             break;
         }
             
-            
         case 'k':
         {
             SharedMemory(stoul(argv[2])).kill();
@@ -94,4 +93,5 @@ try
 catch (exception const &exc)
 {
     cout << "Exc.: " << exc.what() << '\n';
+    return 1;
 }

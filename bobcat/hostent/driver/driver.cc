@@ -31,7 +31,6 @@ int main(int argc, char **argv)
 
         cout << "he2 destroyed\n";
     }
-    return 0;
 }
 
 

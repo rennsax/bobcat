@@ -153,7 +153,6 @@ try
             smPtr->unlock();
             break;
         }
-            
     }
 }
 catch (exception const &exc)

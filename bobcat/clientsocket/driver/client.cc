@@ -55,7 +55,6 @@ try
         getline(in, line);
         cout << "Answer: " << line << endl;
     }
-    return 0;
 }
 catch (exception const &err)
 {

@@ -62,7 +62,6 @@ manpagesection(EXAMPLE)
                "this uses a 4 character wide left margin\n" << 
                 mlm(-10) << flush <<
                 "left margin -6 changed to 0, active on this line\n";
-        return 0;
     }
         )
 

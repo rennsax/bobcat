@@ -30,9 +30,9 @@ try
     
     cf.open(argv[1]);
 
-    cout << "opened again: " << argv[1] << '\n';
-    cout << "Got " << cf.size() << " lines\n";
-    cout << cf[0] << " from line " << cf.index(0) << "\n";
+    cout << "opened again: " << argv[1] << "\n"
+    cout << "Got " << cf.size() << " lines\n" <<
+    cout << cf[0] << " from line " << cf.index(0) << "\n"
     cout << "================\n";
 
     copy(cf.begin(), cf.end(), ostream_iterator<string>(cout, "\n"));

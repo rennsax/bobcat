@@ -81,6 +81,7 @@ manpagesection(EXAMPLE)
     using namespace FBB;
     
     int main(int argc, char **argv)
+    try
     {
         if (argc == 1)
         {
@@ -88,25 +89,21 @@ manpagesection(EXAMPLE)
             return 1;
         }
     
-        try
-        {
-            Hostent he(GetHostent::gethostent(argv[1], argv[1]));
-            cout << "Hostname: " << he.hostname() << endl;
-    
-            cout << "Aliases:\n";
-            copy(he.beginAlias(), he.endAlias(), 
-                    ostream_iterator<char const *>(cout, "\n"));
-    
-            cout << "Addresses:\n";
-            for (size_t idx = 0; idx < he.nAddresses(); idx++)
-                cout << he.dottedDecimalAddress(idx) << endl;
-        }
-        catch (Exception const &err)
-        {
-            cout << err.what() << endl;
-            return 1;
-        }
-        return 0;
+        Hostent he(GetHostent::gethostent(argv[1], argv[1]));
+        cout << "Hostname: " << he.hostname() << endl;
+
+        cout << "Aliases:\n";
+        copy(he.beginAlias(), he.endAlias(), 
+                ostream_iterator<char const *>(cout, "\n"));
+
+        cout << "Addresses:\n";
+        for (size_t idx = 0; idx < he.nAddresses(); idx++)
+            cout << he.dottedDecimalAddress(idx) << endl;
+    }
+    catch (Exception const &err)
+    {
+        cout << err.what() << endl;
+        return 1;
     }
         )
 

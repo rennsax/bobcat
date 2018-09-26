@@ -1,4 +1,4 @@
-bobcat (4.08.05) (ISN)
+bobcat (4.08.05)
 
   * [[fallthrough]] requires a final semicolon (cf. C++ std 20, 10.6.5).
     Bobcat's code is fixed accordingly.
@@ -9,6 +9,8 @@ bobcat (4.08.05) (ISN)
   * Stat declares a default copy constructor, as it defines a move
     constructor. 
 
+  * Superfluous 'return 0;' statements removed from source files and
+    man-pages. 
 
 bobcat (4.08.04)
 

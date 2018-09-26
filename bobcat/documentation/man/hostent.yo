@@ -111,8 +111,6 @@ manpagesection(EXAMPLE)
         cout << "Addresses:\n";
         for (size_t idx = 0; idx < he.nAddresses(); idx++)
             cout << he.dottedDecimalAddress(idx) << endl;
-
-        return 0;
     }
         )
 

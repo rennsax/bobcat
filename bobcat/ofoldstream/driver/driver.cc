@@ -22,6 +22,4 @@ int main()
         out << line << '\n';
 
     margins(out);
-
-    return 0;
 }

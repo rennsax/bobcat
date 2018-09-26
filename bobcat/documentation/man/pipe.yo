@@ -173,8 +173,6 @@ manpagesection(EXAMPLE)
         cout << "second line" << endl;
     
         waitpid(pid, 0, 0);
-    
-        return 0;
     }
         )
 

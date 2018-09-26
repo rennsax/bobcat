@@ -52,7 +52,6 @@ try
             close(fd);              // the connection is terminated
         }
     }  
-
 }
 catch(exception const &error)
 {

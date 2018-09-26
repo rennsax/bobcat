@@ -241,8 +241,6 @@ try
 
     X x;
     x.function();
-
-    return 0;
 }
 catch (Exception const &err)
 {

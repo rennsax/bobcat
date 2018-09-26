@@ -58,7 +58,6 @@ manpagesection(EXAMPLE)
         out << "hello world (left margin is 0)" << lm(4) << "\n"
                "this uses a 4 character wide left margin\n" <<
                lm(0) << flush << "at column 0 again\n";
-        return 0;
     }
         )
 

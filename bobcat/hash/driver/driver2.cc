@@ -35,8 +35,6 @@ int main(int argc, char *const *const argv)
     unordered_map<char const *, int, hash<char const *>> hcp(d, d + 3);
 
     cout << hcp["noot"] << endl;
-
-    return 0;
 }
 
 

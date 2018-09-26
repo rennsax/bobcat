@@ -25,9 +25,8 @@ void Background::childProcess()
 
 void Background::parentProcess()
 {
-    cout << "Waiting for the child process to end...\n";
-
-    cout << "The child returns value " << waitForChild() << endl;
+    cout << "Waiting for the child process to end...\n"
+            "The child returns value " << waitForChild() << endl;
 }    
 
 int main()
@@ -37,8 +36,6 @@ try
 
     bg.fork();
     cout << "This is from the parent\n";
-
-    return 0;
 }
 catch(int x)
 {
