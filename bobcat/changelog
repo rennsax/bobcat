@@ -12,6 +12,8 @@ bobcat (4.08.05)
   * Superfluous 'return 0;' statements removed from source files and
     man-pages. 
 
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 26 Sep 2018 13:33:52 +0200
+
 bobcat (4.08.04)
 
   * Migrated from Github to Gitlab.
