@@ -44,7 +44,8 @@ manpagesection(CONSTRUCTOR)
     itb(CerrExtractor(size_t bufSize = 100))
         A tt(bufSize) argument may be specified: it defines the internal
         buffer size used by the tt(CerrExtractor's) streambuf. By default the
-        stdandard input and standard output streams are not handled.
+        standard input and standard output streams are not handled.
+
     itb(CerrExtractor(Mode mode, size_t bufSize = 100))
        The tt(mode) argument must be tt(CerrExtractor::CLOSE_STD). It
         indicates that the standard input and standard error streams are
@@ -60,10 +61,10 @@ manpagesection(MEMBERS)
     itemization(
     itb(bool execute(std::string const &cmd))
        The argument specifies the command to execute: the command itself must
-        be specified as a path (the tt(PATH) environment variable isn't used).
-        This member immediately returns, after which information written by
-        the child process to its standard error stream may be extracted from
-        the tt(CerrExtractor) object.
+        be specified using an absolute path (the tt(PATH) environment variable
+        isn't used).  This member immediately returns, after which information
+        written by the child process to its standard error stream may be
+        extracted from the tt(CerrExtractor) object.
 
         Once tt(execute) has returned it can be called again, either using the
         same or another command. 
@@ -73,9 +74,9 @@ manpagesection(MEMBERS)
         this man-page's DESCRIPTION section.
 
     itb(int ret() const)
-        Once tt(execute) has returned this member provides the actual exit
-code of the child process. Its value equals -1 before the first tt(exectue)
-call.
+       Once tt(execute) has returned this member provides the actual exit code
+        of the child process. Its value equals -1 before the first tt(exectue)
+        call.
     )
 
 manpagesection(PROTECTED MEMBER)

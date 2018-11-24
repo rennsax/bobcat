@@ -73,14 +73,15 @@ manpagesection(MEMBERS)
     itemization(
     itb(void execute(std::string const &cmd))
         The argument specifies the command to execute: the command itself must
-be specified as a path (the tt(PATH) environment variable isn't used). 
-This member immediately returns, after which
-information can be inserted into the tt(CinInserter) object which is then
-forwarded to the childprocess's standard input stream. 
+be specified as a path (the tt(PATH) environment variable isn't used).  This
+member immediately returns, after which information can be inserted into the
+tt(CinInserter) object which is then forwarded to the childprocess's standard
+input stream. See also the description of the next (overloaded tt(execute))
+member function.
 
 Once all information has been inserted, the child process's standard input
-stream must be closed. This is realized by either calling tt(stop) or by
-calling tt(execute) once again, or by ending the tt(CinInserter) object's
+stream must be closed. This is realized by either calling tt(stop); by
+calling tt(execute) once again; or by ending the tt(CinInserter) object's
 lifetime.
 
 Arguments specified in the tt(cmd) string are passed to the child process, and

@@ -13,9 +13,10 @@ manpagesynopsis()
 manpagedescription()
     The bf(FBB::Exec) class offers a basic interface for calling external
 programs (so-called em(child processes)). The standard streams of the child
-processes are not handled by ttExec) objects. The tt(PATH) environment
-variable is not used when calling child processes: child process programs must
-be specified using paths.
+processes are not handled by ttExec) objects: the parent's standard streams
+are used by the child process. The tt(PATH) environment variable is not used
+when calling child processes: child process programs must be specified using
+paths.
 
 tt(Exec) objects may repeatedly be used to execute the same or different
 child processes. Before starting the next child process, the current child

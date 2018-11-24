@@ -318,8 +318,14 @@ currently running child process.
 a tt(Process) object.  
 
     Before starting the child process a possibly active child process is first
-stopped by calling tt(stop). It returns tt(stop)'s return value.
+stopped by calling tt(stop). It returns tt(stop)'s return value. Immediately
+after calling tt(stop) the new command (tt(cmd)) is started. If stopping and
+restarting another command should be separate actions then use tt(stop),
+followed by tt(setCommand), followed by calling an appropriate overloaded
+version of the member tt(start) (tt(start()) uses the object's current
+tt(IOMode, ProcessType,) and time limit).
 
+    
     itb(Process &operator()(IOMode mode))
         This operator changes the the tt(Process) object's tt(IOMode)
 parameter. A reference to the tt(Process) object is returned, allowing
