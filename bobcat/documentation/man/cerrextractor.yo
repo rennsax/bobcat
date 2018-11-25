@@ -59,7 +59,7 @@ manpagesection(CONSTRUCTOR)
 manpagesection(MEMBERS)
 
     itemization(
-    itb(bool execute(std::string const &cmd))
+    itb(void execute(std::string const &cmd))
        The argument specifies the command to execute: the command itself must
         be specified using an absolute path (the tt(PATH) environment variable
         isn't used).  This member immediately returns, after which information
