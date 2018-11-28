@@ -1,3 +1,12 @@
+bobcat (4.08.06)    WIP
+
+  * Added Exception::factory members returning stream objects, added
+    Exception::open members accepting two ios::openmode arguments.
+
+  * Repaired several flaws in man-pages.
+
+
+ 
 bobcat (4.08.05)
 
   * [[fallthrough]] requires a final semicolon (cf. C++ std 20, 10.6.5).

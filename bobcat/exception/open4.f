@@ -7,5 +7,5 @@ void Exception::open(int errnoValue, StreamType &stream,
 
     stream.open(name, mode);
     if (!stream)
-        throw Exception(errnoValue) << "Can't open `" << name << '\'';
+        throw Exception{ errnoValue } << "Can't open `" << name << '\'';
 }

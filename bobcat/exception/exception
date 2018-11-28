@@ -40,6 +40,33 @@ class Exception: public std::exception
                           Protection type = EQUAL);
 
         template <typename StreamType>
+        static StreamType factory(std::string const &name);     // factory1.f
+
+        template <typename StreamType>
+        static StreamType factory(int errnoValue,               // factory2.f
+                                  std::string const &name);     
+
+        template <typename StreamType>
+        static StreamType factory(std::string const &name,      // factory3.f
+                                std::ios::openmode mode);
+
+        template <typename StreamType>
+        static StreamType factory(int errnoValue,               // factory4.f
+                                std::string const &name,
+                                std::ios::openmode mode);
+
+        template <typename StreamType>
+        static StreamType factory(std::string const &name,      // factory5.f
+                                std::ios::openmode mode1,
+                                std::ios::openmode mode2);
+
+        template <typename StreamType>
+        static StreamType factory(int errnoValue,               // factory6.f
+                                std::string const &name,      
+                                std::ios::openmode mode1,
+                                std::ios::openmode mode2);
+
+        template <typename StreamType>
         static void open(StreamType &stream,                    // open1.f
                          std::string const &name);
 
@@ -54,6 +81,17 @@ class Exception: public std::exception
         template <typename StreamType>
         static void open(int errnoValue, StreamType &stream,    // open4.f
                             std::string const &name, std::ios::openmode mode);
+
+        template <typename StreamType>
+        static void open(StreamType &stream,                    // open5.f
+                         std::string const &name,
+                         std::ios::openmode mode1, std::ios::openmode mode2);
+
+        template <typename StreamType>
+        static void open(int errnoValue, StreamType &stream,    // open6.f
+                         std::string const &name,
+                         std::ios::openmode mode1, std::ios::openmode mode2);
+
     private:
         char const *what() const noexcept(true) override;
 };

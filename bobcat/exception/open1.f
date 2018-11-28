@@ -6,5 +6,16 @@ void Exception::open(StreamType &stream, std::string const &name)
 
     stream.open(name);
     if (!stream)
-        throw Exception() << "Can't open `" << name << '\'';
+        throw Exception{} << "Can't open `" << name << '\'';
 }
+
+
+
+
+
+
+
+
+
+
+
