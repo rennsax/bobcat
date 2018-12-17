@@ -7,7 +7,8 @@
 
 #define CXX                 "g++"
 
-#define CXXFLAGS            "--std=c++17 " ${THREAD} " -Wall -O2" \
+    // Check INSTALL.im for 'build' compiler options
+#define CXXFLAGS            "--std=c++2a " ${THREAD} " -Wall -O2" \
                             " -fdiagnostics-color=never "
 // see pf_iterator/icmconf for an example using -system
 

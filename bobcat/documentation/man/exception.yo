@@ -133,29 +133,29 @@ short message stating that the named stream could not be opened.
 
     itemization(
     itb(static StreamType factory<StreamType>(std::string const &name))
-       Returns an open tt(StreamType> stream object which can be used to
+       Returns an open tt(StreamType>) stream object which can be used to
         move-construct a tt(StreamType) object. E.g.,
             verb(
-    ofstream out{ Exception::factory<ofstream>("/tmp/out") };
+    auto out{ Exception::factory<ofstream>("/tmp/out") };
             )
 
     itb(static StreamType factory<StreamType>(int errnoValue, 
                                               std::string const &name))
-        Returns an open tt(StreamType> stream object which can be used to
+        Returns an open tt(StreamType>) stream object which can be used to
         move-construct a tt(StreamType) object. If constructing
         the stream object fails, then the thrown bf(FBB::Exception) assigns
         tt(errnoValue) to tt(FBB::g_errno).
 
     itb(static StreamType factory<StreamType>(std::string const &name,
                                               std::ios::openmode mode))
-       Returns an open tt(StreamType> stream object, created using
+       Returns an open tt(StreamType>) stream object, created using
         the tt(openmode mode) flags,  which can be used to
         move-construct a tt(StreamType) object.
 
     itb(static StreamType factory<StreamType>(int errnoValue,
                                               std::string const &name,
                                               std::ios::openmode mode))
-       Returns an open tt(StreamType> stream object, created using
+       Returns an open tt(StreamType>) stream object, created using
         the tt(openmode mode) flags,  which can be used to
         move-construct a tt(StreamType) object.  If constructing
         the stream object fails, then the thrown bf(FBB::Exception) assigns
@@ -163,15 +163,15 @@ short message stating that the named stream could not be opened.
 
     itb(static StreamType factory<StreamType>(std::string const &name,
                                               std::ios::openmode mode1,
-                                              std::ios::openmode mode2)
-       Returns an open tt(StreamType> stream object. the stream is initially
+                                              std::ios::openmode mode2))
+       Returns an open tt(StreamType>) stream object. the stream is initially
         opened using tt(mode1). If that fails, tt(mode2) is used. If both ways
         to open the stream fail, then an tt(Exception) is thrown.  The
         returned stream can be used to move-construct a tt(StreamType) object.
         This member can be used to open an tt(std::fstream) which may or may
         not yet exist for both reading and writing. E.g., 
             verb(
-    fstream out{ Exception::factory<fstream>("/tmp/out", 
+    auto out{ Exception::factory<fstream>("/tmp/out", 
                 ios::in | ios::out,
                 ios::in | ios::out | ios::trunc) };
             )
@@ -182,8 +182,8 @@ short message stating that the named stream could not be opened.
     itb(static StreamType factory<StreamType>(int errnoValue,
                                               std::string const &name,
                                               std::ios::openmode mode1,
-                                              std::ios::openmode mode2)
-       Returns an open tt(StreamType> stream object. the stream is initially
+                                              std::ios::openmode mode2))
+       Returns an open tt(StreamType>) stream object. the stream is initially
         opened using tt(mode1). If that fails, tt(mode2) is used. If both ways
         to open the stream fail, then an tt(Exception) is thrown, assigning
         tt(errnoValue) to tt(FBB::g_errno).

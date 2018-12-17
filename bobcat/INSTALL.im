@@ -17,13 +17,13 @@
 //===========================================================================
 
     // The name of the C++ compiler
-#define CXX         "g++-8"
+#define CXX         "g++"
 
     // Specify compiler options that should be used.
     // This is overruled by the environment variable CXXFLAGS
     // The options "-isystem tmp" must always be used, are set in
     // icmake/library and should not be altered.
-#define CXXFLAGS    "--std=c++17 -O2 -Wall -fdiagnostics-color=never"
+#define CXXFLAGS    "--std=c++2a -O2 -Wall -fdiagnostics-color=never"
 
     // Classes requiring the -pthread compiler option
 #define PTHREAD     "sharedmutex sharedblock sharedmemory sharedsegment " \

@@ -101,6 +101,15 @@ class Exception: public std::exception
 #include "open2.f"
 #include "open3.f"
 #include "open4.f"
+#include "open5.f"
+#include "open6.f"
+
+#include "factory1.f"
+#include "factory2.f"
+#include "factory3.f"
+#include "factory4.f"
+#include "factory5.f"
+#include "factory6.f"
 
     // Free functions
 
