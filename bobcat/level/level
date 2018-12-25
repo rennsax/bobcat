@@ -5,11 +5,6 @@
 
 namespace FBB
 {
-    class level;
-}
-
-namespace FBB
-{
 
 class level
 {
@@ -20,7 +15,7 @@ class level
         explicit level(size_t lvel);
 
     private:
-        std::ostream &insertInto(std::ostream &str, Log &lp) const;
+        std::ostream &insertInto(Log &lp) const;
 };
 
 #include "level.f"

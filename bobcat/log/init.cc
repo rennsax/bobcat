@@ -2,6 +2,6 @@
 
 void Log::init()
 {
-    d_activeLevel = numeric_limits<size_t>::max();
+    d_activeLevel = 0;
     setLevel(0);
 }

@@ -10,7 +10,7 @@ std::ostream &operator<<(std::ostream &str, level const &lv)
     return !lp ?                                // if not, ignore the manip.
                 str
             :
-                lv.insertInto(str, *lp);
+                lv.insertInto(*lp);
 }
         
 }   // FBB

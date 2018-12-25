@@ -12,11 +12,23 @@ manpagesynopsis()
     Linking option: tt(-lbobcat) 
 
 manpagedescription()
-    An bf(FBB::level) object is used to change the log-level of bf(FBB::Log)
-objects. It may be inserted into an empty bf(FBB::Log) object (i.e.,
-immediately before a time stamp might be inserted by the bf(FBB::Log) object
-itself). This is the case after terminating a log message using a
-tt(std::endl) or tt(\n) character.
+    An bf(FBB::level) object is used to specify insertion `forces' of
+information that is inserted into bf(FBB::Log) objects. When inserted into
+tt(Log) objects it defines the `force' of subsequent insertions (or tt(write)
+calls) into those tt(Log) objects. 
+
+Conversely, tt(Log) objects may specify insertion `resistances' through their
+tt(setLevel) members. If the tt(level's) `force' is equal to or exceeds the
+tt(Log) object's `resistance' then the insertion is performed, otherwise the
+insertion is ignored. A single insertion statement may contain multiple
+tt(level) calls. If so, then each tt(level) call updates the `force' of
+insertions following the tt(level) call.
+
+By default all insertions into tt(Log) objects are performed as 
+tt(level) uses `force' 0, and tt(Log) uses `resistance' 0.
+
+When a tt(level) object is inserted into another kind of tt(std::ostream)
+object the tt(level) object performs no actions.
 
 includefile(include/namespace)
 
@@ -25,26 +37,30 @@ manpagesection(INHERITS FROM)
 
 manpagesection(CONSTRUCTORS)
     itemization(
-    itb(level(size_t nextLevel))
-        The constructor is normally used in a insertion statement where it is
-inserted into an bf(FBB::Log) object.
+    itb(level(size_t force))
+        This constructor is used in insertion statements, usually inserting it
+as anonymous object into an tt(FBB::Log) object. 
     )
-    The copy constructor is available, but normally not used.
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(OVERLOADED OPERATOR)
     itemization(
-    itb(std::ostream &::operator<<(std::ostream &str, FBB::level const &)) 
-        The bf(std::ostream &str) object should be an empty bf(FBB::Log)
-object. In that case the value stored in the bf(FBB::level) object is used to
-set the bf(FBB::Log) object's next message level. If the bf(std::ostream)
-object is not an bf(FBB::Log) object or if the object is not empty, the
-function returns bf(str) without further action. 
+    itb(std::ostream &::operator<<(std::ostream &ostr, 
+            FBB::level const &force))  
+        If the tt(ostr) can be downcasted to an tt(FBB::Log) object then
+subsequent insertions are performed if tt(force) exceeds the tt(Log) object's
+`resistance' as specified by its tt(setLevel) member.  If tt(ostr) does not
+actually refer to a tt(Log) object then tt(ostr) is returned without any
+further action, and tt(ostr) handles subsequent insertions in its default way.
     )
 
 manpagesection(EXAMPLE)
         verb(
     FBB::Log log;
     
+    log << "this is logged\n";
+    log.setLevel(2);
+
     log << FBB::level(3) << "Message at level 3\n";
         )
 

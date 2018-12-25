@@ -1,3 +1,12 @@
+bobcat (4.08.07-pre)
+
+  * The class Log unconditionally inserts level-free messages. The level(...)
+    manipulators may be inserted and altered within insertion statements.
+
+  * The Log and level man pages were updated accordingly.
+
+
+
 bobcat (4.08.06)
 
   * Added Exception::factory members returning stream objects, added

@@ -12,10 +12,25 @@ manpagesynopsis()
 
 manpagedescription()
 
-The class bf(FBB::Log) is an tt(std::ostream) initialized with a
-tt(FBB::LogBuffer). It is used to send log-messages to the (r)syslog
-stream. Refer to the bf(logbuffer)(3bobcat) man-page for details about this
-process.
+The class bf(FBB::Log) defines an tt(std::ostream) using an tt(FBB::LogBuffer
+std::streambuf). It is used to send log-messages to the (r)syslog stream or to
+a (configurable) file. Refer to the bf(logbuffer)(3bobcat) man-page for
+details about tt(LogBuffer).
+
+Which (part of) messages are actually logged can be configured using
+bf(FBB::level) in combination with the tt(Log) member tt(setLevel). By default
+all information that is inserted into a tt(Log) object is logged, but
+tt(level) objects can be used to specify insertion `forces' of information
+that is inserted into tt(Log) objects. When inserted into tt(Log) objects
+tt(level) objects define the `forces' of subsequent insertions (or tt(write)
+calls) into tt(Log) objects.
+
+tt(Log) objects may specify insertion `resistances' through their tt(setLevel)
+members. If the tt(level's) `force' is equal to or exceeds the tt(Log)
+object's `resistance' then the insertion is performed, otherwise the insertion
+is ignored. A single insertion statement may contain multiple tt(level)
+calls. If so, then each tt(level) call updates the `force' of insertions
+following the tt(level) call.
 
 includefile(include/namespace)
 
@@ -26,7 +41,7 @@ manpagesection(ENUMERATIONS)
 
     The enumeration tt(TimeStamps) is defined in the namespace tt(FBB),
 primarily for initializing tt(FBB::LogBuffer) objects. It is used with
-bf(FBB::Log) members as well. It has the following values:
+tt(Log) members as well. It has the following values:
     itemization(
     itb(NOTIMESTAMPS)
         Log-messages will not have timestamps prepended to them.
@@ -42,34 +57,34 @@ exceptional situations through manipulators. It is defined in the namespace
 tt(FBB) and has the following two values:
     itemization(
     itb(FATAL)
-        This value may be inserted into an bf(FBB::Log) object to throw an
+        This value may be inserted into a tt(Log) object to throw an
 tt(FBB::Exception) exception (see tt(operator<<) below);
     itb(nl)
-        This value may be inserted into an bf(FBB::Log) object to terminate
+        This value may be inserted into a tt(Log) object to terminate
 the current line. It will em(not) cause the next line to begin with a
 time stamp (if applicable) and the current em(message level) cannot be
 modified using a bf(level)(3bobcat) manipulator. It is used to allow a single 
 log message to occupy multiple textual lines.
     itb(endl)
         This is the standard tt(ostream) manipulator. When inserted into an
-bf(FBB::Log) object the current buffer is flushed. Note that flushing does not
+tt(Log) object the current buffer is flushed. Note that flushing does not
 happen immediately when a newline (tt(\n)) is inserted into the log
-stream. Alternatively, tt(std::flush) may be inserted into the bf(FBB::Log)
+stream. Alternatively, tt(std::flush) may be inserted into the tt(Log)
 object to flush its buffer.
     )
 
 manpagesection(CONSTRUCTORS)
     itemization(
     itb(Log())
-        The default constructor creates a bf(FBB::Log) object which isn't yet
+        The default constructor creates a tt(Log) object which isn't yet
 associated with a stream to log messages on. The member tt(open) (see below)
 may be used to define such a stream.  By default, all messages will have a
 time stamp prepended to them (see the description of the member
-tt(setTimestamp) below), and a blank space is inserted as delimiter 
-immediately
-beyond the time stamp. The member tt(open) can be used to modify the default delimiter.
+tt(setTimestamp) below), and a blank space is inserted as delimiter
+immediately beyond the time stamp. The member tt(open) can be used to modify
+the default delimiter.
     itb(Log(std::ostream &out, char const *delim = " "))
-        This constructor creates a bf(FBB::Log) object logging its messages
+        This constructor creates a tt(Log) object logging its messages
 to the provided tt(std::ostream) object. By default, all messages will have a
 time stamp prepended to them (see the description of the member
 tt(setTimestamp) below).  The parameter tt(delim) is inserted immediately
@@ -78,7 +93,7 @@ beyond the time stamp. If a delimiter is inappropriate, an empty string or a
     itb(FBB::Log(std::string const &filename,
             std::ios::openmode mode = std::ios::out | std::ios::app, 
             char const *delim = " "))
-        This constructor creates a bf(FBB::Log) object logging its messages to
+        This constructor creates a tt(Log) object logging its messages to
 the named file. If tt(filename == "&1") the logmessages will be written to the
 standard output stream. If tt(filename == "&2") the logmessages will be
 written to the standard error stream.  By default the file is created if not
@@ -88,16 +103,17 @@ member tt(setTimestamp) below).  The parameter tt(delim) is inserted
 immediately beyond the time stamp. If a delimiter is inappropriate, an empty
 string or a 0-pointer may be specified.
     )
-    The copy constructor is not available.
+    Copy and move constructors are not available.
 
 manpagesection(MEMBER FUNCTIONS)
-     All members of tt(std::ostream) are available, as bf(FBB::Log) inherits
+     All members of tt(std::ostream) are available, as tt(Log) inherits
 from this class.
     itemization(
     itb(size_t level())
         This member returns the currently set log level (i.e., the value set
 at the latest tt(setLevel()) call). By default, the level is set to zero,
 meaning that all information is inserted into the log stream.
+
     itb(std::ostream &level(size_t useLevel))
         This member defines a log-level. Messages will be inserted into
 the stream when tt(useLevel) is equal to or exceeds the level set by
@@ -106,14 +122,16 @@ tt(std::numeric_limits<size_t>::max()). If not even such messages should be
 inserted into the tt(ostream), then the stream should be deactivated, using
 tt(off()), see below. The selected level remains active until
 redefined. Alternatively, the tt(FBB::level) manipulator may be inserted into
-an (empty) bf(FBB::Log) object (see bf(level)(3bobcat)).
+an (empty) tt(Log) object (see bf(level)(3bobcat)).
+
     itb(void off())
         Prevents any log messages from being generated. It may be cancelled by
 tt(setLevel) (see below).
+
     itb(void open(std::string const &filename,
             std::ios::openmode mode = std::ios::out | std::ios::app, 
             char const *delim = " "))
-        This member (re)associates an bf(FBB::Log) object with the named
+        This member (re)associates a tt(Log) object with the named
 file. If tt(filename == "&1") the logmessages will be written to the standard
 output stream. If tt(filename == "&2") the logmessages will be written to the
 standard error stream.  By default the file is created if not existing, and
@@ -122,10 +140,14 @@ time stamp prepended to them (see the description of the member
 tt(setTimestamp) below).  The parameter tt(delim) is inserted immediately
 beyond the time stamp. If a delimiter is inappropriate, an empty string or a
 0-pointer may be specified.
-    itb(void setLevel(size_t newLevel))
-        Redefines the internal message level. Messages having at least
-level tt(newLevel) will be written. If the member is used without explicit
-argument, logging is suspended.
+
+    itb(void setLevel(size_t resistance))
+        Redefines the `resistance' agains message insertions. Insertions
+performed with a force equal to or exceeding `resistance' are performed. The
+`force' of  insertions is specified using tt(FBB::level). If tt(setLevel)
+is called without an explicit argument, logging is suspended (comparable to
+using the member tt(off)).
+
     itb(void setTimestamp(FBB::TimeStamps stamp, char const *delim = " "))
         The member function (de)activates time stamp prepending. Use the value
 tt(FBB::TIMESTAMPS) to prepend time stamps, tt(FBB::NOTIMESTAMPS) suppresses
@@ -143,9 +165,9 @@ manpagesection(STATIC MEMBERS)
             std::ios::openmode mode = std::ios::out | std::ios::app, 
             char const *delim = " "))
         
-        Returns a reference to a static bf(FBB::Log) object. It may only be
+        Returns a reference to a static tt(Log) object. It may only be
 called once, or an tt(FBB::Exception) exception is thrown. It associates a
-static bf(FBB::Log) object with the named file. If tt(filename == "&1") the
+static tt(Log) object with the named file. If tt(filename == "&1") the
 logmessages will be written to the standard output stream. If tt(filename ==
 "&2") the logmessages will be written to the standard error stream.  By
 default the file is created if not existing, and all messages are appended to
@@ -153,8 +175,9 @@ the stream.  By default, all messages will have a time stamp prepended to them
 (see the description of the member tt(setTimestamp) below).  The parameter
 tt(delim) is inserted immediately beyond the time stamp. If a delimiter is
 inappropriate, an empty string or a 0-pointer may be specified.
+
     itb(FBB::Log &instance())
-        Returns a reference to a static bf(FBB::Log) object, available after
+        Returns a reference to a static tt(Log) object, available after
 calling tt(Log::initialize). If called before tt(Log::initialize())
 an tt(FBB::Exception) exception is thrown. 
     )
@@ -162,7 +185,7 @@ an tt(FBB::Exception) exception is thrown.
 manpagesection(OVERLOADED OPERATOR)
     The following overloaded operator is defined outside of the tt(FBB)
 namespace. It may be used to insert an tt(FBB::LogManipulator) into an
-bf(FBB::Log) object. If the overloaded operator is used in combination with
+tt(Log) object. If the overloaded operator is used in combination with
 another type of object it performs no actions.
     itemization(
     itb(std::ostream &::operator<<(std::ostream &str, FBB::LogManipulator)) 

@@ -24,6 +24,8 @@ class LogBuffer: public std::streambuf
     std::string d_delim;    // delimiter following time stamps
 
     public:
+        LogBuffer(LogBuffer const &other) = delete;
+
         explicit LogBuffer(         // output to cerr
                 TimeStamps timestamps = TIMESTAMPS,  
                 bool active = true,
@@ -32,6 +34,8 @@ class LogBuffer: public std::streambuf
                 TimeStamps timestamps = TIMESTAMPS,
                 bool active = true,
                 char const *delim = " ");
+
+        LogBuffer &operator=(LogBuffer const &other) = delete;
 
         void setStream(std::ostream &stream);               // .f
         bool empty() const;                                 // .f
@@ -42,15 +46,13 @@ class LogBuffer: public std::streambuf
         void setEmpty(bool empty);                          // .f
 
     protected:
-        virtual int pSync();
+        int pSync() override;
 
     private:
-        virtual int sync();
-        virtual int overflow(int c);
+        int sync() override;
+        int overflow(int c) override;
 
         void insertTimestamp();
-        LogBuffer(LogBuffer const &other) = delete;
-        LogBuffer &operator=(LogBuffer const &other) = delete;
 };
 
 #include "empty.f"
