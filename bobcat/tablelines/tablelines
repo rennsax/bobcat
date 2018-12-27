@@ -16,7 +16,7 @@ class TableLines: public TableSupport
         TableLines &operator=(TableLines &&tmp);    // opassign.f
 
     private:
-        virtual void v_hline(size_t row) const;
+        void v_hline(size_t row) const override;
 
         static void outLine(Field const &field,  std::ostream &out);
 };

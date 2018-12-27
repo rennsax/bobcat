@@ -23,13 +23,8 @@ struct ISharedStream: private SharedStreambuf, public std::istream,
             std::ios::openmode openMode = std::ios::in);
 
     using SharedStreambuf::attachSharedCondition;
-
-//    using SharedStreambuf::createSharedCondition;
-
     using std::istream::clear;
-
     using SharedStreambuf::id;
-
     using SharedStreambuf::kill;
 
     void memInfo(std::ostream &out, char const *end = "\n") const;

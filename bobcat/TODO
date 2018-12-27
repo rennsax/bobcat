@@ -1,3 +1,6 @@
+At the next major version upgrade:
+    remove pSync from LogBuffer
+
 Provide examples in the following man-pages:
 
 ifdstreambuf.yo

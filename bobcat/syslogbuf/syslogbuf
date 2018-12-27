@@ -164,12 +164,11 @@ class Syslogbuf: public std::streambuf
         Priority setDefaultPriority(Priority priority);
         Priority setPriority(Priority priority);
 
-    protected:
-        int pSync();
-
     private:
-        virtual int sync();
-        virtual int overflow(int c);
+        int pSync();                    // see the 4.08.07 changelog
+
+        int sync() override;
+        int overflow(int c) override;
 
         void reset(std::string const &ident, Facility facility, int option);
 };

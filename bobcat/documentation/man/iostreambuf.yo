@@ -44,7 +44,8 @@ on to the bf(std::ostream), all input operations to the bf(std::istream). The
 streams passed to bf(IOStreambuf()) should outlive the bf(IOStreambuf)
 object. 
     )
-    Copy and move constructors is not available.
+
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::streambuf) are
@@ -61,7 +62,6 @@ bf(std::ostream) object is flushed before setting up the new association.
     )
 
 manpagesection(VIRTUAL PROTECTED MEMBER FUNCTIONS)
-
 
     The following bf(std::streambuf) member functions should only be called
 when the bf(FBB::Streambuf) object is associated with bf(std::istream) and
@@ -83,13 +83,12 @@ deriving from bf(IOStreamBuf). These facilities are listed here.
         With seekable streams, repositions the associated bf(std::istream)
         or bf(std::ostream) is repositioned to offset tt(offset), relative to
         tt(way).
+
     itb(pos_type pSeekpos(off_type offset, std::ios::openmode mode = 
                                                 std::ios::in | std::ios::out))
         With seekable streams, repositions the associated bf(std::istream)
         or bf(std::ostream) is repositioned to offset tt(offset), relative to
-        the beginning of the stream.
-    itb(int pSync())
-        This member flushes the associated bf(std::ostream) object.
+
     itb(std::streamsize pXsputn(char const *buffer, std::streamsize n))
         This member inserts tt(n) characters from tt(buffer) into the
         associated bf(std::ostream) stream.

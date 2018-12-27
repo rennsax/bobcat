@@ -45,13 +45,16 @@ class LogBuffer: public std::streambuf
 
         void setEmpty(bool empty);                          // .f
 
-    protected:
-        int pSync() override;
-
     private:
+        virtual void pSync();       // see the 4.08.07 changelog
+
         int sync() override;
         int overflow(int c) override;
+        std::streamsize xsputn(char const *buffer, std::streamsize n) 
+                                                                override;
 
+        size_t newLine(char const *buffer, size_t begin, size_t n) const;
+        void checkTimestamp();
         void insertTimestamp();
 };
 

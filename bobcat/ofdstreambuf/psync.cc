@@ -1,6 +1,6 @@
-#include "tablebuf.ih"
+#include "ofdstreambuf.ih"
 
-int TableBuf::pSync()
+int OFdStreambuf::pSync()
 {
     throw Exception{ 1 } << __FILE__ << ": obsolete, use sync()";
 }

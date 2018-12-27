@@ -48,7 +48,7 @@ class ReadLineBuf: public HistoryExpansion, public std::streambuf
         static ReadLineBuf &instance();
         
 
-        virtual ~ReadLineBuf();
+        ~ReadLineBuf() override;
 
         void setPrompt(std::string const &prompt = "");             // .f
         bool setExpansion(Type type);
@@ -65,7 +65,7 @@ class ReadLineBuf: public HistoryExpansion, public std::streambuf
                              size_t historySize, 
                              Type type = DONT_EXPAND_HISTORY);
 
-        virtual int underflow();
+        int underflow() override;
         char *readLine();           // reads a line, adds it to the history
         char *expandLine();         // reads a line, expands it if necessary,
                                     // then adds it to the history

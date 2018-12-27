@@ -30,13 +30,13 @@ class IFdStreambuf: public std::streambuf
 
     public:
         IFdStreambuf();
+        IFdStreambuf(IFdStreambuf const &other) = delete;
+
         explicit IFdStreambuf(Mode mode);
         explicit IFdStreambuf(int fd, size_t n = 1);
         IFdStreambuf(int fd, Mode mode, size_t n = 1);
 
-        IFdStreambuf(IFdStreambuf const &other) = delete;
-
-        ~IFdStreambuf();
+        ~IFdStreambuf() override;
 
         IFdStreambuf &operator=(IFdStreambuf const &other) = delete;
 
@@ -48,8 +48,8 @@ class IFdStreambuf: public std::streambuf
         int fd() const;                                         // .f
 
     private:
-        virtual int underflow();
-        virtual std::streamsize xsgetn(char *dest, std::streamsize n);
+        int underflow() override;
+        std::streamsize xsgetn(char *dest, std::streamsize n) override;
 
         void cleanup(Mode mode);
 };

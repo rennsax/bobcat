@@ -30,13 +30,13 @@ class OFdStreambuf: public std::streambuf
 
     public:
         OFdStreambuf();
+        OFdStreambuf(OFdStreambuf const &other) = delete;
+
         explicit OFdStreambuf(Mode mode);
         explicit OFdStreambuf(int fd, size_t n = 1);
         OFdStreambuf(int fd, Mode mode, size_t n = 1);
 
-        OFdStreambuf(OFdStreambuf const &other) = delete;
-
-        virtual ~OFdStreambuf();
+        ~OFdStreambuf() override;
 
         OFdStreambuf &operator=(OFdStreambuf const &other) = delete;
 
@@ -47,10 +47,9 @@ class OFdStreambuf: public std::streambuf
         int fd() const;                                     // .f
         void close();                                       // .f
 
-    protected:
-        int pSync();                                        // .f
-
     private:
+        int pSync();    // see the 4.08.07 changelog
+
         int sync() override;
         int overflow(int c) override;
 
@@ -60,7 +59,6 @@ class OFdStreambuf: public std::streambuf
 #include "close.f"
 #include "fd.f"
 #include "open.f"
-#include "psync.f"
 
 } // FBB
 

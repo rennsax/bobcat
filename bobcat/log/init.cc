@@ -2,6 +2,6 @@
 
 void Log::init()
 {
-    d_activeLevel = 0;
+    d_activeLevel = ~0U;
     setLevel(0);
 }

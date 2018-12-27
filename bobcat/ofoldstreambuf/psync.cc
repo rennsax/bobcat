@@ -2,11 +2,7 @@
 
 int OFoldStreambuf::pSync()
 {
-    if (d_mode == NON_WS)
-        flush();
-
-    out().rdbuf()->pubsync();
-    return 0;
+    throw Exception{ 1 } << __FILE__ << ": obsolete, use sync()";
 }
 
 

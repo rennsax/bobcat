@@ -2,5 +2,6 @@
 
 int LogBuffer::sync()
 {
-    return pSync();
+    d_stream->flush();
+    return 0;
 }

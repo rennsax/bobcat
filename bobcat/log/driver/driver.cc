@@ -8,17 +8,22 @@ using namespace FBB;
 
 int main()
 {
-//    Log &log = Log::initialize("&1");
-    Log log;
-    log.open("/tmp/out");
+//    Log &log = Log::initialize("&1"); // uses the static Log object
+    Log log;                        // explicitly defining a Log object
+    log.open("/tmp/out");           // or at once: Log log{ "/tmp/out" }
 
     log << "This message is written to cout" << nl <<
            setw(16) << ' ' << "occupying multiple lines\n";
 
     log.off();
     log << "This message is not shown\n";
-    log.setLevel(0);
-    log << "This message is shown again\n";
+
+    log.setLevel(2);
+    log << "This message is shown\n";
+
+    log << level(0) << "not shown" << level(2) << "shown at level 2\n";
+    log << level(3) << "at level(3)" << level(1) << "not shown" << fnl;
+    log << "separate new line\n";
 }
 
 

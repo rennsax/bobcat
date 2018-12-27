@@ -24,8 +24,8 @@ insertion is ignored. A single insertion statement may contain multiple
 tt(level) calls. If so, then each tt(level) call updates the `force' of
 insertions following the tt(level) call.
 
-By default all insertions into tt(Log) objects are performed as 
-tt(level) uses `force' 0, and tt(Log) uses `resistance' 0.
+By default insertions into tt(Log) objects not preceded by tt(level)
+insertions are completed.
 
 When a tt(level) object is inserted into another kind of tt(std::ostream)
 object the tt(level) object performs no actions.
@@ -55,15 +55,7 @@ further action, and tt(ostr) handles subsequent insertions in its default way.
     )
 
 manpagesection(EXAMPLE)
-        verb(
-    FBB::Log log;
-    
-    log << "this is logged\n";
-    log.setLevel(2);
-
-    log << FBB::level(3) << "Message at level 3\n";
-        )
-
+    verbinclude(../../log/driver/driver.cc)
 
 manpagefiles()
     em(bobcat/level) - defines the class interface.

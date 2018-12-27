@@ -1,7 +1,7 @@
 #include "logbuffer.ih"
 
-int LogBuffer::pSync()
+void LogBuffer::pSync()     // not used, see logbuffer's header file
 {
-    d_stream->flush();
-    return 0;
+    throw Exception{ 1 } << __FILE__ << ": obsolete, use sync()";
 }
+

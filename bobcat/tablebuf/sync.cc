@@ -2,5 +2,8 @@
 
 int TableBuf::sync()
 {
-    return pSync();
+    if (d_buffered)
+        nextField();
+
+    return 0;
 }

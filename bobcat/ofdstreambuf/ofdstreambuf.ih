@@ -1,8 +1,9 @@
 #include "ofdstreambuf"
 
 #include <unistd.h>
-// #include <cstdio>
 #include <iostream>
+
+#include <bobcat/exceeption>
 
 using namespace FBB;
 

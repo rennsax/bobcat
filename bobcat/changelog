@@ -1,9 +1,18 @@
 bobcat (4.08.07-pre)
 
-  * The class Log unconditionally inserts level-free messages. The level(...)
-    manipulators may be inserted and altered within insertion statements.
+  * The class Log unconditionally inserts level-free messages; level
+    objects may be inserted anywhere in insertion statements.
 
   * The Log and level man pages were updated accordingly.
+
+  * The members 'virtual int pSync()', defined in IOStreambuf, LogBuffer,
+    MultiStreambuf, OFdStreambuf, OFoldStreambuf, OHexStreambuf, Syslogbuf,
+    and TableBuf are superfluous. They still exists (as private members), but
+    throw an FBB::Exception{ 1 } when called, and are removed at the next
+    major bobcat release.
+
+  * Overridden virtual members declared as 'virtual' are now merely declared 
+    as 'override'.
 
 
 

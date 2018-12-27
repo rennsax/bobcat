@@ -1,13 +1,13 @@
 #include "ofdstreambuf.ih"
 
-int OFdStreambuf::overflow(int c)
+int OFdStreambuf::overflow(int ch)
 {
     sync();                                     
-    if (c != EOF)
+    if (ch != EOF)
     {
-        *pptr() = static_cast<char>(c);         
+        *pptr() = ch;
         pbump(1);
     }
-    return c;
+    return ch;
 }
     

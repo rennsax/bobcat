@@ -21,7 +21,7 @@ class EncryptBuf: public std::streambuf
                             std::string key, std::string iv,
                             size_t bufsize = 1024);
 
-        virtual ~EncryptBuf();
+        ~EncryptBuf() override;
 
         void setKey(std::string key, size_t numberOfBytes = 0);
         void setIv(std::string iv);
@@ -39,10 +39,11 @@ class EncryptBuf: public std::streambuf
         EVP_CIPHER_CTX *cipherCtx();
 
     private:
+        int overflow(int ch) override;
+
         void update();
         void open();
         void installKey(std::string const &key, size_t length);
-        virtual int overflow(int c);
 };
 
 }   // FBB

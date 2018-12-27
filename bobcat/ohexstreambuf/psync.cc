@@ -2,6 +2,5 @@
 
 int OHexStreambuf::pSync()
 {
-    out() << flush;
-    return 0;
+    throw Exception{ 1 } << __FILE__ << ": obsolete, use sync()";
 }

@@ -1,23 +1,23 @@
 #include "ofoldstreambuf.ih"
 
-int OFoldStreambuf::overflow(int c)
+int OFoldStreambuf::overflow(int ch)
 {
-    //cerr << c << ' ' << static_cast<char>(c) << endl;
+    //cerr << c << ' ' << static_cast<char>(ch) << endl;
 
     switch (d_mode)
     {
         case INDENT: 
-            indent(c);
+            indent(ch);
         break;
 
         case WS:
-            ws(c);
+            ws(ch);
         break;
 
         case NON_WS:
-            nonWs(c);
+            nonWs(ch);
         break;
     }
 
-    return c;
+    return ch;
 }

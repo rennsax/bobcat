@@ -93,7 +93,7 @@ class OFoldStreambuf: virtual public OFoldStreambufEnums,
                     TabsOrBlanks tob = BLANKS,
                    TrailingBlanks tb = IGNORE_TRAILING_BLANKS);
 
-        virtual ~OFoldStreambuf();
+        ~OFoldStreambuf() override;
 
         void setMargins(size_t leftMargin, size_t rightMargin);
         void setTrailingBlanks(TrailingBlanks tb);                  // .f
@@ -103,12 +103,11 @@ class OFoldStreambuf: virtual public OFoldStreambufEnums,
         static size_t leftMargin(std::streambuf const *buffer);
         static size_t rightMargin(std::streambuf const *buffer);
 
-    protected:
-        int pSync();
-
     private:
-        virtual int sync();
-        virtual int overflow(int c);
+        int pSync();                    // see the 4.08.07 changelog
+
+        int sync() override;
+        int overflow(int c) override;
 
         void indent(int c);
         void ws(int c);

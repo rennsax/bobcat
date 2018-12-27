@@ -1,14 +1,14 @@
 #include "decryptbuf.ih"
 
-int DecryptBuf::overflow(int c)
+int DecryptBuf::overflow(int ch)
 {
     update();
     open();
 
-    if (c != EOF)
+    if (ch != EOF)
     {
-        *pptr() = static_cast<char>(c);         
+        *pptr() = ch;         
         pbump(1);
     }
-    return c;
+    return ch;
 }

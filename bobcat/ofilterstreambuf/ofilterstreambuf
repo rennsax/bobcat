@@ -21,7 +21,7 @@ class OFilterStreambuf: public std::streambuf
         OFilterStreambuf(std::ostream &out);                // 3.f
         OFilterStreambuf(std::string const &fname, 
                          openmode mode = std::ios::out);
-        virtual ~OFilterStreambuf();
+        ~OFilterStreambuf() override;
 
         void open(char const *fname, openmode mode = std::ios::out);
         void open(std::string const &fname, openmode mode = std::ios::out);

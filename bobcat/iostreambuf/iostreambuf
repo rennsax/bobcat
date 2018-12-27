@@ -17,7 +17,7 @@ class IOStreambuf: public std::streambuf
         IOStreambuf();                                          // 1.f
         IOStreambuf(std::istream &in, std::ostream &out);       // 2.f
 
-        virtual ~IOStreambuf();
+        ~IOStreambuf() override;
 
         void open(std::istream &in, std::ostream &out);
 
@@ -26,24 +26,22 @@ class IOStreambuf: public std::streambuf
                                 std::streamsize n);
         int pSync();
         pos_type pSeekoff(off_type offset, std::ios::seekdir way,
-                                 std::ios::openmode mode = 
-                                                std::ios::in | std::ios::out);
+                      std::ios::openmode mode = std::ios::in | std::ios::out);
 
         pos_type pSeekpos(pos_type offset,                      // .f
-                                 std::ios::openmode mode = 
-                                                std::ios::in | std::ios::out);
-
+                      std::ios::openmode mode = std::ios::in | std::ios::out);
     private:
-        virtual int underflow();
-        virtual pos_type seekoff(off_type offset, std::ios::seekdir way,
-                                 std::ios::openmode mode = 
-                                                std::ios::in | std::ios::out);
-        virtual pos_type seekpos(pos_type offset, 
-                                 std::ios::openmode mode = 
-                                                std::ios::in | std::ios::out);
-        virtual int sync();
-        virtual int overflow(int c);
-        virtual std::streamsize xsputn(char const *buffer, std::streamsize n);
+        int underflow() override;
+        pos_type seekoff(off_type offset, std::ios::seekdir way,
+                       std::ios::openmode mode = std::ios::in | std::ios::out)
+                                                                    override;
+        pos_type seekpos(pos_type offset, 
+                       std::ios::openmode mode = std::ios::in | std::ios::out)
+                                                                    override;
+        int sync() override;
+        int overflow(int c) override;
+        std::streamsize xsputn(char const *buffer, std::streamsize n) 
+                                                                    override;
 };
 
 #include "iostreambuf1.f"

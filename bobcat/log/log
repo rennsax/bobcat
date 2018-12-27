@@ -12,7 +12,8 @@ namespace FBB
 enum LogManipulator
 {
     FATAL,
-    nl,
+    nl,                 // new line without new time stamp
+    fnl,                // forced new line, even at low level specs.
 };
 
 class Log: private LogBuffer, public std::ostream

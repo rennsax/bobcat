@@ -17,7 +17,7 @@ class Randbuffer: public std::streambuf
         Randbuffer(int min, int max, long seed);
 
     private:
-        virtual int underflow();
+        int underflow() override;
 };
 
 }

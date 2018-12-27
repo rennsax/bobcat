@@ -2,6 +2,5 @@
 
 int IOStreambuf::pSync()
 {
-    d_out->flush();
-    return !d_out->good();
+    throw Exception{ 1 } << __FILE__ << ": obsolete, use sync()";
 }

@@ -2,6 +2,7 @@
 
 int OHexStreambuf::sync()
 {
-    return pSync();
+    out() << flush;
+    return 0;
 }
 

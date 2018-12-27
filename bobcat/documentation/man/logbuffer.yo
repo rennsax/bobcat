@@ -77,13 +77,16 @@ inherits from this class.
 called by tt(std::ostream) objects using bf(OFdStreambuf). It calls
 tt(sync()), an then it puts the next available character into the buffer. It
 returns the inserted character.
+
     itb(void setActive(bool active))
         The member function (de)activates logging. The argument bf(true)
 activates logging, the argument bf(false) deactivates it.
+
     itb(void setStream(std::ostream &stream))
         This member may be used to switch the stream to log to. It is the
 responsibility of the programmer to ensure that the external stream remains
 available for as long as log-messages are inserted into it.
+
     itb(void settimestamp(FBB::TimeStamps timestamps,
                 char const *delim = " "))
         The member function (de)activates time stamp prepending. Use the value
@@ -94,29 +97,17 @@ in tt(/var/log) files. E.g., tt(Aug 5 13:52:23). The parameter bf(delim) is
 inserted immediately beyond the time stamp. If a delimiter is inappropriate,
 an empty string or a 0-pointer may be specified. When bf(stamps ==
 FBB::NOTIMESTAMPS delim) is ignored.
+
     itb(void setEmpty(bool empty))
         This member may be called to ensure that a timestamp is inserted
 before the next insertion. It is called as bf(setEmpty(true)) when a newline
 character (tt(\n)) is inserted, ensuring that another timestamp is prepended
 before the next insertion.
+
     itb(int sync())
         This member em(overrides) the bf(std::streambuf) member. It writes
 the buffer to the device associated with the file descriptor, and returns 0.
     )
-
-manpagesection(PROTECTED MEMBER FUNCTION)
-
-    The member listed in this section implements the tasks of the comparably
-named virtual function in the class's private interface. This separates the
-redefinable interface from the user-interface. The class bf(LogBuffer)
-can, in accordance with Liskov's Substitution Principle, be used as a
-tt(std:streambuf); but it also offers a facility for classes deriving from
-bf(LogBuffer). This facility is listed here.
-    itemization(
-    itb(int pSync())
-        The contents of the bf(LogBuffer)'s internal buffer is flushed.
-    )
-
 
 manpagesection(EXAMPLE)
     verbinclude(../../logbuffer/driver/driver.cc)

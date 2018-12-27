@@ -21,7 +21,7 @@ class DecryptBuf: public std::streambuf
         DecryptBuf(std::ostream &outStream, char const *type, 
                             std::string key, std::string iv,
                             size_t bufsize = 1024);
-        virtual ~DecryptBuf();
+        ~DecryptBuf() override;
 
         void setIv(std::string iv);
         bool setRounds(size_t nRounds);             // RC5 8, 12 or 16
@@ -35,7 +35,7 @@ class DecryptBuf: public std::streambuf
     private:
         void update();
         void open();
-        virtual int overflow(int c);
+        int overflow(int c) override;
 };
 
 #include "lastok.f"

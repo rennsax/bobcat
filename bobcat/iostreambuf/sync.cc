@@ -2,5 +2,6 @@
 
 int IOStreambuf::sync()
 {        
-    return pSync();
+    d_out->flush();
+    return not d_out->good();
 }

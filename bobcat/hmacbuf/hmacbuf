@@ -20,7 +20,7 @@ class HMacBuf: public std::streambuf
         HMacBuf(std::string const &key, 
                 char const *type, size_t bufsize = 1024);
 
-        virtual ~HMacBuf();
+        ~HMacBuf() override;
 
         void open();
         void close();
@@ -28,7 +28,7 @@ class HMacBuf: public std::streambuf
         std::string const &hash() const;
 
     private:
-        virtual int overflow(int c);
+        int overflow(int c) override;
 };
 
 std::ostream &operator<<(std::ostream &out, HMacBuf const &hmacbuf);

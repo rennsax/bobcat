@@ -29,7 +29,7 @@ class SharedStreambuf: public std::streambuf, public virtual SharedEnum__
                 int id,
                 std::ios::openmode openMode = std::ios::in | std::ios::out);
 
-        virtual ~SharedStreambuf();
+        ~SharedStreambuf() override;
 
         void clear();                   // clear all existing data and reduce
                                         // until only the segment at 

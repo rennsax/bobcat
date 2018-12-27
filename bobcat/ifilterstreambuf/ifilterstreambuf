@@ -24,7 +24,7 @@ class IFilterStreambuf: public std::streambuf
 
     
     public:
-        virtual ~IFilterStreambuf();
+        ~IFilterStreambuf() override;
 
     protected:
         IFilterStreambuf(size_t bufSize = 1000);

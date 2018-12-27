@@ -1,12 +1,12 @@
 #include "syslogbuf.ih"
 
-int Syslogbuf::overflow(int c)
+int Syslogbuf::overflow(int ch)
 {
-    if (c != EOF)
-        d_data->buffer += static_cast<char>(c);
+    if (ch != EOF)
+        d_data->buffer += ch;
     else
         sync();
 
-    return c;
+    return ch;
 }
     

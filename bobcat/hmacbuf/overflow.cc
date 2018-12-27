@@ -1,6 +1,6 @@
 #include "hmacbuf.ih"
 
-int HMacBuf::overflow(int c)
+int HMacBuf::overflow(int ch)
 {
     HMAC_Update(d_pimpl->ctx, 
                 reinterpret_cast<unsigned char *>(d_pimpl->buffer), 
@@ -8,10 +8,10 @@ int HMacBuf::overflow(int c)
 
     setp(d_pimpl->buffer, d_pimpl->buffer + d_pimpl->bufsize);
 
-    if (c != EOF)
+    if (ch != EOF)
     {
-        *pptr() = static_cast<char>(c);         
+        *pptr() = ch;
         pbump(1);
     }
-    return c;
+    return ch;
 }

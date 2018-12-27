@@ -61,13 +61,13 @@ struct MultiStreambuf: public std::streambuf
         size_t size() const;                                            //  .f
         void setOnce();             // reset all `RESET' modes to `ONCE'
         
-    protected:
-        int pSync();
-
     private:
-        virtual int overflow(int c);
-        virtual std::streamsize xsputn(char const *buffer, std::streamsize n);
-        virtual int sync();
+        int pSync();                // see the 4.08.07 changelog
+
+        int overflow(int c) override;
+        std::streamsize xsputn(char const *buffer, std::streamsize n) 
+                                                                override;
+        int sync() override;
 
         struct Insert;
 
