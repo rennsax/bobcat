@@ -8,8 +8,8 @@
 #include <iostream>
 #include <string>
 
-#include <bobcat/exception>
-#include <bobcat/pattern>
+#include "../exception/exception"
+#include "../pattern/pattern"
 
 using namespace std;
 using namespace FBB;

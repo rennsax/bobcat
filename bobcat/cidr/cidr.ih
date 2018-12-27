@@ -5,12 +5,12 @@
 #include <algorithm>
 #include <iterator>
 
-#include <bobcat/stringline>
-#include <bobcat/pattern>
-#include <bobcat/fswap>
-// #include <bobcat/a2x>
-#include <bobcat/ranger>
-#include <bobcat/exception>
+#include "../stringline/stringline"
+#include "../pattern/pattern"
+#include "../fswap/fswap"
+// #include "../a2x/a2x"
+#include "../ranger/ranger"
+#include "../exception/exception"
 
 
 using namespace std;

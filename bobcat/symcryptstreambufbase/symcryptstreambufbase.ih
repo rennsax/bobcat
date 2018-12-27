@@ -1,7 +1,7 @@
 #include "symcryptstreambufbase"
 
 #include <istream>
-#include <bobcat/exception>
+#include "../exception/exception"
 
 #if  OPENSSL_VERSION_NUMBER < 0x10100000L
 

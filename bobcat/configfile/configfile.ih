@@ -4,9 +4,9 @@
 #include <fstream>
 #include <cstring>
 
-#include <bobcat/pattern>
-#include <bobcat/exception>
-#include <bobcat/iuo>
+#include "../pattern/pattern"
+#include "../exception/exception"
+#include "../iuo/iuo"
 
 using namespace std;
 using namespace FBB;

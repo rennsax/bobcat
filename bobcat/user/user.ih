@@ -6,8 +6,8 @@
 
 #include <algorithm>
 
-#include <bobcat/fswap>
-#include <bobcat/exception>
+#include "../fswap/fswap"
+#include "../exception/exception"
 
 using namespace FBB;
 using namespace std;

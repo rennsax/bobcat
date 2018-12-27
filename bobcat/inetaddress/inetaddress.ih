@@ -1,7 +1,7 @@
 #include "inetaddress"
 
 #include <netdb.h>
-#include <bobcat/gethostent>
+#include "../gethostent/gethostent"
 
 using namespace std;
 using namespace FBB;

@@ -1,7 +1,7 @@
 #include "table"
 
 #include <iomanip>
-#include <bobcat/string>
+#include "../string/string"
 
 using namespace std;
 using namespace FBB;

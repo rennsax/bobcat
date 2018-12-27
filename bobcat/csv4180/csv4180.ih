@@ -5,7 +5,7 @@
 #include <istream>
 #include <sstream>
 
-#include <bobcat/exception>
+#include "../exception/exception"
 
 using namespace std;
 using namespace FBB;

@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include <bobcat/fswap>
+#include "../fswap/fswap"
 
 using namespace std;
 using namespace FBB;

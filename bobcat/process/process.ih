@@ -11,8 +11,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-#include <bobcat/redirector>
-#include <bobcat/exception>
+#include "../redirector/redirector"
+#include "../exception/exception"
 
 #include "../processdata/processdata.decl"
 

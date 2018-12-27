@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#include <bobcat/exception>
+#include "../exception/exception"
 
 using namespace std;
 using namespace FBB;

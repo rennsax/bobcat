@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <iostream>
 
-#include <bobcat/exceeption>
+#include "../exception/exception"
 
 using namespace FBB;
 

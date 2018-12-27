@@ -7,8 +7,8 @@
 #include <limits>
 #include <algorithm>
 
-#include <bobcat/exception>
-#include <bobcat/string>
+#include "../exception/exception"
+#include "../string/string"
 
 using namespace std;
 using namespace FBB;

@@ -3,9 +3,9 @@
 #include <cstdlib>
 #include <algorithm>
 
-#include <bobcat/fswap>
-#include <bobcat/stat>
-#include <bobcat/exception>
+#include "../fswap/fswap"
+#include "../stat/stat"
+#include "../exception/exception"
 
 using namespace std;
 using namespace FBB;

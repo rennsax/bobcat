@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <iomanip>
-#include <bobcat/ranger>
+#include "../ranger/ranger"
 
 using namespace std;
 using namespace FBB;

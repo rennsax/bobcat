@@ -1,8 +1,8 @@
 #include "pipe"
 
 #include <unistd.h>
-#include <bobcat/redirector>
-#include <bobcat/exception>
+#include "../redirector/redirector"
+#include "../exception/exception"
 
 
 using namespace FBB;

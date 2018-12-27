@@ -9,12 +9,13 @@ bobcat (4.08.07-pre)
     MultiStreambuf, OFdStreambuf, OFoldStreambuf, OHexStreambuf, Syslogbuf,
     and TableBuf are superfluous. They still exists (as private members), but
     throw an FBB::Exception{ 1 } when called, and are removed at the next
-    major bobcat release.
+    major bobcat release. Man-pages were updated accordingly.
 
   * Overridden virtual members declared as 'virtual' are now merely declared 
     as 'override'.
 
-
+  * Internal headers include bobcat headers using "../classname/classname"
+    instead of <bobcat/classname>.
 
 bobcat (4.08.06)
 

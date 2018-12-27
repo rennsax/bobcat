@@ -4,9 +4,9 @@
 #include <functional>
 #include <algorithm>
 
-#include <bobcat/string>
-#include <bobcat/exception>
-#include <bobcat/iuo>
+#include "../string/string"
+#include "../exception/exception"
+#include "../iuo/iuo"
 
 namespace FBB
 {

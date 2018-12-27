@@ -6,8 +6,8 @@
 #include <algorithm>
 #include <openssl/evp.h>
 
-#include <bobcat/exception>
-#include <bobcat/irandstream>
+#include "../exception/exception"
+#include "../irandstream/irandstream"
 
 #if  OPENSSL_VERSION_NUMBER < 0x10100000L
 

@@ -3,7 +3,7 @@
 #include <string.h>             // strerror
 
 #include <unordered_map>
-#include <bobcat/string>
+#include "../string/string"
 
 using namespace std;
 using namespace FBB;

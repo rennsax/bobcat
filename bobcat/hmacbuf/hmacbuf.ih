@@ -4,7 +4,7 @@
 #include <openssl/hmac.h>
 #include <ostream>
 
-#include <bobcat/exception>
+#include "../exception/exception"
 #include "../ohexstreambuf/ohexstreambuf"
 
 #if  OPENSSL_VERSION_NUMBER < 0x10100000L

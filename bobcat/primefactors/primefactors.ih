@@ -3,7 +3,7 @@
 #include <iterator>
 
 #include "../exception/exception"
-#include <bobcat/user>
+#include "../user/user"
 
 using namespace std;
 using namespace FBB;

@@ -22,9 +22,9 @@ already part of the standard regex implementation.
 #include <vector>
 #include <memory>
 
-#include <bobcat/fswap>
-#include <bobcat/ranger>
-#include <bobcat/exception>
+#include "../fswap/fswap"
+#include "../ranger/ranger"
+#include "../exception/exception"
 
 using namespace std;
 

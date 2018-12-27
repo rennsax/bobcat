@@ -3,8 +3,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#include <bobcat/exception>
-#include <bobcat/string>
+#include "../exception/exception"
+#include "../string/string"
 
 using namespace std;
 using namespace FBB;

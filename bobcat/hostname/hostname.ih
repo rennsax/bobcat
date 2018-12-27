@@ -1,10 +1,10 @@
 #include "hostname"
 
-#include <bobcat/inetaddress>
-#include <bobcat/gethostent>
+#include "../inetaddress/inetaddress"
+#include "../gethostent/gethostent"
 #include <netdb.h>
 
-#include <bobcat/exception>
+#include "../exception/exception"
 
 using namespace std;
 using namespace FBB;
