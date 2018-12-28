@@ -163,7 +163,7 @@ stamp.  If a delimiter should not be used an empty string or a 0-pointer may
 be specified.
 
     itb(void setLevel(size_t resistance))
-        Redefines the `resistance' agains message insertions. Insertions are
+        Redefines the `resistance' against message insertions. Insertions are
 performed if their `force' are equal to or exceed the tt(Log) object's
 `resistance'. The `force' of insertions is specified using tt(FBB::level). If
 tt(setLevel) is called without an explicit argument, logging is suspended
