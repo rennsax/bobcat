@@ -1,4 +1,4 @@
-bobcat (4.08.07-pre)
+bobcat (4.08.07)
 
   * The class Log unconditionally inserts level-free messages; level
     objects may be inserted anywhere in insertion statements.
@@ -16,6 +16,8 @@ bobcat (4.08.07-pre)
 
   * Internal headers include bobcat headers using "../classname/classname"
     instead of <bobcat/classname>.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 28 Dec 2018 12:27:13 +0100
 
 bobcat (4.08.06)
 
