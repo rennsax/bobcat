@@ -65,24 +65,32 @@ tt(FBB::Exception) exception is thrown (see tt(operator<<) below);
 
     itb(nl)
         When inserting tt(nl) into a tt(Log) object a tt(\n) character is
-inserted into the current line. If time stamps are requested it will em(not)
-cause the next line to begin with a time stamp. It is used to allow a single
-log message to occupy multiple textual lines. The next logged line is not
-indented over the width of the omitted time stamp. If that's preferred: the
-time stamp occupies 15 character positions (not counting the width of the
-delimiter, see the bf(CONSTRUCTORS) section below).
+inserted into the current line. If time stamps are requested the the next line
+will not begin with a time stamp. It is used to allow a single log message to
+occupy multiple textual lines. The next logged line is not indented over the
+width of the omitted time stamp. If that's preferred: the time stamp occupies
+15 character positions (not counting the width of the delimiter, see the
+bf(CONSTRUCTORS) section below). If a tt(level) specification is active, it
+remains active at insertions following tt(nl).
 
     itb(fnl)
         When inserting tt(fnl) (forced new line) into a tt(Log) object the
 current line ends even if the currently active insertion `force' (set by
-tt(level)) is lower than the tt(Log) object's `resistance' level.
+tt(level)) is lower than the tt(Log) object's `resistance' level. If a tt(level)
+specification is active, it remains active at insertions following tt(fnl).
 
-    itb(endl)
-        This is the standard tt(ostream) manipulator. When inserted into an
-tt(Log) object the current buffer is flushed. Note that flushing does not
-happen immediately when a newline (tt(\n)) is inserted into the log
-stream. Alternatively, tt(std::flush) may be inserted into the tt(Log)
-object to flush its buffer.
+    it() bf(endl) or bf(\n):nl()
+        When inserting tt(endl) or tt(\n) the current line is ended and the
+next logged line starts with a timestamp (unless timestamps are
+suppressed). The tt(endl) manipulator is the standard tt(ostream) manipulator:
+when inserted into a tt(Log) object its buffer is flushed. The scope of a
+tt(level) specification ends at tt(\n) or tt(endl). E.g.,
+        verb(
+log.setLevel(2);
+log << level(1) << "first line\n"
+       "second line\n";
+    )
+    results in tt(second line) (preceded by a timestamp) being logged.
     )
 
 manpagesection(CONSTRUCTORS)
@@ -220,6 +228,9 @@ manpageseealso()
     bf(logbuffer)(3bobcat)
 
 manpagebugs()
-    None reported
+    The tt(nl) and tt(fnl) manipulators are received by the tt(Log) objects'
+tt(LogBuffers) as, respectively, characters 0 and 1. Since log files in
+practice only received printable characters this should not cause any
+problems.
 
 includefile(include/trailer)

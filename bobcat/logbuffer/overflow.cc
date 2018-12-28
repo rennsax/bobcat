@@ -12,20 +12,16 @@ int LogBuffer::overflow(int c)
         return c;
     }
 
-    if (c == 0)             // newline without timestamp request
-        d_empty = false;
-    else
-        checkTimestamp();
-
     switch (c)
     {
         case 0:             // write newline, without considering d_empty true
+            d_empty = false;
             c = '\n';       // also see logbuffer/operatorinsert.cc
         break;
 
-        case 1:             // at fnl (forced new line) or ...
+        case 1:             // at fnl (forced new line) (re)activate and
+            d_active = true;    // fallthrough (continue) as \n
             c = '\n';
-            d_active = true;
         [[fallthrough]];
 
         case '\n':          // at '\n', set d_empty to true. This generates 

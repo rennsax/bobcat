@@ -2,22 +2,23 @@
 
 streamsize LogBuffer::xsputn(char const *buffer, streamsize n) 
 {
-    if (d_active)
-        checkTimestamp();
-
     streamsize begin = 0;
     while (true)
-    {                                       // find the 1st newline pos.
+    {
+                                            // find the 1st newline pos.
         streamsize end = newLine(buffer, begin, n);    
 
-        if (d_active)                       // insert the prefix
+        if (d_active and begin < end)       // only a timestamp if there's
+        {                                   // something to show.
+            checkTimestamp();           
             d_stream->write(buffer + begin, end - begin);
+        }
 
-        if (end == n)                       // at end of buffer
-            break;                          // then done
+        if (end == n)                       // nothing more to do
+            break;        
 
-        overflow(buffer[end]);              // handle time stamps etc.
-        begin = end + 1;                    // go beyond the nl separator
+        overflow(buffer[end]);              // handle \n, nl, fnl 
+        begin = end + 1;                    // continue beyond end
     }
 
     return n;
