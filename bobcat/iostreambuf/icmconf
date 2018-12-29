@@ -1,0 +1,4 @@
+#define LIBRARY             "iostreambuf"
+
+#include "../icmconf"
+
