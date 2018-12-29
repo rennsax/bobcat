@@ -2,5 +2,5 @@
 
 std::streamsize IOStreambuf::xsputn(char const *buffer, streamsize n)
 {
-    return pXsputn(buffer, n);
+    return d_out->write(buffer, n) ? n : 0;
 }

@@ -71,16 +71,14 @@ only a non thread-safe way to determine whether the decryption was
 successfully completed is available through the static member function
 tt(lastOK()) (see below).
     )
-    There is no copy constructor, nor move constructor (as tt(std::streambuf)
-doesn't support either).
+
+    The copy and move constructors (and assignment operators) are not
+available. 
 
 manpagesection(MEMBER FUNCTIONS)
 
      All members of bf(std::streambuf) are available, as bf(FBB::DecryptBuf)
-inherits from this class. Some of the bf(std::streambuf)'s member are
-overridden or are hidden by tt(DecryptBuf). In normal situations these
-inherited members will not be used by programs using tt(DecryptBuf) objects.
-
+inherits from this class. 
     itemization(
     itb(void done())
         This member can be called to indicate that all information to be
@@ -89,6 +87,7 @@ decryption fails (resulting from providing the tt(DecryptBuf) object with
 incorrect (usually improperly padded) input). If not explicitly called it is
 called by tt(DecryptBuf)'s destructor, preventing its exception from leaving
 the destructor. 
+
     itb(void setIv(std::string const &iv))
         This member can be used to specify the initialization vector to use
 after construction time but before any data has been decrypted. When called
@@ -96,6 +95,7 @@ after decryption has started or when specifying an empty initialization vector
 an tt(FBB::Exception) exception will be thrown.  When using ECB modes no
 initialization vector is used. In those cases any non-empty initialization
 vector may be provided.
+
     itb(bool setRounds(size_t nRounds))
         This member can only be used with the RC5 decryption method to set the
 number of rounds of the algorithm to 8, 12 or 16. When the number of rounds

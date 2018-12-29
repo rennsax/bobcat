@@ -1,9 +1,7 @@
 At the next major version upgrade:
-    remove pSync from LogBuffer
+    remove SF members listed in the 4.09.00 changelog
 
 Provide examples in the following man-pages:
-
-ifdstreambuf.yo
-milter.yo
-ofdstreambuf.yo
+    ifdstreambuf.yo
+    milter.yo
 

@@ -22,15 +22,18 @@ class IOStreambuf: public std::streambuf
         void open(std::istream &in, std::ostream &out);
 
     protected:
-        std::streamsize pXsputn(char const *buffer,             // .f
-                                std::streamsize n);
-        int pSync();
         pos_type pSeekoff(off_type offset, std::ios::seekdir way,
                       std::ios::openmode mode = std::ios::in | std::ios::out);
 
         pos_type pSeekpos(pos_type offset,                      // .f
                       std::ios::openmode mode = std::ios::in | std::ios::out);
+
     private:
+        int pSync();                            // see the 4.09.00 changelog
+                                                // see the 4.09.00 changelog
+        std::streamsize pXsputn(char const *buffer,  
+                                std::streamsize n);
+
         int underflow() override;
         pos_type seekoff(off_type offset, std::ios::seekdir way,
                        std::ios::openmode mode = std::ios::in | std::ios::out)

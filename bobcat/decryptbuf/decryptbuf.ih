@@ -23,9 +23,9 @@ inline void EVP_CIPHER_CTX_free(EVP_CIPHER_CTX *ctx)
     delete ctx;
 }
 
-#endif
+#endif      // ifndef
     
-#endif
+#endif      // OPENSSL_VERSION
 
 namespace FBB
 {

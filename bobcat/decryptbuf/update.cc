@@ -10,13 +10,6 @@ void DecryptBuf::update()
 
     int outLen;
 
-//    {
-//        OHexStreambuf ohex(cerr, 16);
-//        ostream out(&ohex);
-//        out.write(d_pimpl->buffer, pptr() - pbase());
-//        cerr << '\n';
-//    }
-
     if (EVP_DecryptUpdate(d_pimpl->ctx, 
             reinterpret_cast<unsigned char *>(d_pimpl->out), 
             &outLen, 
@@ -29,6 +22,13 @@ void DecryptBuf::update()
 
     d_pimpl->outStream.write(d_pimpl->out, outLen);
 }
+
+//    {
+//        OHexStreambuf ohex(cerr, 16);
+//        ostream out(&ohex);
+//        out.write(d_pimpl->buffer, pptr() - pbase());
+//        cerr << '\n';
+//    }
 
 
 

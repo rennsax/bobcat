@@ -1,23 +1,27 @@
-bobcat (4.08.07)
+bobcat (4.09.00)
 
   * The class Log unconditionally inserts level-free messages; level
     objects may be inserted anywhere in insertion statements.
 
   * The Log and level man pages were updated accordingly.
 
-  * The members 'virtual int pSync()', defined in IOStreambuf, LogBuffer,
+  * The members 'int pSync()', defined in IOStreambuf, LogBuffer,
     MultiStreambuf, OFdStreambuf, OFoldStreambuf, OHexStreambuf, Syslogbuf,
     and TableBuf are superfluous. They still exists (as private members), but
     throw an FBB::Exception{ 1 } when called, and are removed at the next
     major bobcat release. Man-pages were updated accordingly.
 
-  * Overridden virtual members declared as 'virtual' are now merely declared 
-    as 'override'.
+  * The member `std::streamsize pXsputn(...)' defined in IOStreambuf is
+    superfluous. 
+
+  * Overridding members declared as 'virtual' are now declared as 'override'.
+
+  * Added the overriding members `xsputn' to OfdStreambuf and Syslogbuf
 
   * Internal headers include bobcat headers using "../classname/classname"
     instead of <bobcat/classname>.
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 28 Dec 2018 12:27:13 +0100
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 29 Dec 2018 13:48:04 +0100
 
 bobcat (4.08.06)
 

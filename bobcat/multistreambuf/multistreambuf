@@ -62,7 +62,7 @@ struct MultiStreambuf: public std::streambuf
         void setOnce();             // reset all `RESET' modes to `ONCE'
         
     private:
-        int pSync();                // see the 4.08.07 changelog
+        int pSync();                // see the 4.09.00 changelog
 
         int overflow(int c) override;
         std::streamsize xsputn(char const *buffer, std::streamsize n) 

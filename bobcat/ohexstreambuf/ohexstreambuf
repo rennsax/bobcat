@@ -24,7 +24,7 @@ class OHexStreambuf: public OFilterStreambuf
                                                             // contents not
                                                             // checked
     private:
-        int pSync();                // see the 4.08.07 changelog
+        int pSync();                // see the 4.09.00 changelog
 
         int overflow(int ch) override;
         int sync() override;

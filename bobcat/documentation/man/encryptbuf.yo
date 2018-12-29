@@ -80,38 +80,43 @@ information most likely contains non-displayable characters.
 buffer used by tt(EncryptBuf) to store incoming characters temporarily. The
 provided default argument should be OK in all normal cases.
     )
-    There is no copy constructor, nor move constructor (as tt(std::streambuf)
-doesn't support either).
+
+    The copy and move constructors (and assignment operators) are not
+available. 
 
 manpagesection(MEMBER FUNCTIONS)
 
      All members of bf(std::streambuf) are available, as bf(FBB::EncryptBuf)
-inherits from this class. Some of the bf(std::streambuf)'s member are
-overridden or are hidden by tt(EncryptBuf). In normal situations these
-inherited members will not be used by programs using tt(EncryptBuf) objects.
+inherits from this class. 
 
     itemization(
     itb(size_t blockLength() const)
         This member returns the block size (in bytes) that are used by
 the specified method.
+
     itb(size_t ivLength() const)
         This member returns the size (in bytes) of the initialization vector
 that is used by the specified method.
+
     itb(std::string iv() const)
         This member returns a reference to the initialization vector
 that is used by the specified method. Be advised that the initialization
 vector may contain non-displayable characters. 
+
     itb(size_t keyLength() const)
         This member returns the size of the key (in bytes) that are used by
 the specified method.
+
     itb(size_t rounds() const)
         This member can only be used with the RC5 encryption method to query
 the number of rounds of the algorithm. It returns the currently used number of
 rounds or 0 if the member is called for another encryption method than RC5.
+
     itb(void setIv(std::string const &iv))
         This member can be used to specify the initialization vector to use
 after construction time but before any data has been encrypted. When called
 after encryption has started an tt(FBB::Exception) exception will be thrown.
+
     itb(void setKey(std::string const &key, size_t numberOfBytes = 0))
         This member can be used to specify the key and its length after
 construction time but before any data has been encrypted. When called after
@@ -119,6 +124,7 @@ encryption has started an tt(FBB::Exception) exception will be thrown. The size 
 the key is assumed to be the number of bytes in the key's data. If another key
 length is required the member function's second parameter can be used to
 specify the length of the key em(in bytes).
+
     itb(bool setRounds(size_t nRounds))
         This member can only be used with the RC5 encryption method to set the
 number of rounds of the algorithm to 8, 12 or 16. When the number of rounds
