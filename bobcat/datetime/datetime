@@ -104,6 +104,9 @@ class DateTime
 
         void swap(DateTime &other);
 
+        std::string rfc2822() const;
+        std::string rfc3339() const;
+
 TriVal dst() const;                                         // .f
 
         static int zoneShift(std::string const &zoneName);  // minutes, throws
@@ -137,9 +140,11 @@ TriVal dst() const;                                         // .f
 int dstFromIsdst();                     // .f (.ih)
         int setDst(time_t time);
 
-        TM const *displayTM() const;            // return &d_tm set at the
+        TM const *setTM() const;                // return &d_tm set at the
                                                 // current time
 
+                                                // inserts d_tm's time values
+        std::ostream &timeStr(std::ostream &out) const;
 
         bool setTmMonth(std::string const &month);  // .f (.ih)
 

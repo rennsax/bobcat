@@ -1,6 +1,6 @@
 #include "datetime.ih"
 
-DateTime::TM const *DateTime::displayTM() const
+DateTime::TM const *DateTime::setTM() const
 {
     time_t seconds = d_time;
 

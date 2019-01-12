@@ -7,7 +7,7 @@ namespace FBB
 
 std::ostream &operator<<(std::ostream &out, DateTime const &dt)
 {
-    return out << put_time(dt.displayTM(), "%c");
+    return out << put_time(dt.setTM(), "%c");
 }
 
 }   // FBB
