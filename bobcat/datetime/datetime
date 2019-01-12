@@ -73,7 +73,7 @@ class DateTime
                                                 //    either UTC or LOCALTIME
                                                 //    using the default 
                                                 //    tzShift
-        DateTime(TM const &tm, TimeType type = UTC);
+        explicit DateTime(TM const &tm, TimeType type = UTC);
 
                                                 // 8. specify UTC tm fields
                                                 // display + tzShift
@@ -106,8 +106,8 @@ class DateTime
 
 TriVal dst() const;                                         // .f
 
-        static int zoneShift(std::string const &zoneName);  // minutes
-
+        static int zoneShift(std::string const &zoneName);  // minutes, throws
+                                                            // if not found
 #include "publics"
 
     private:
