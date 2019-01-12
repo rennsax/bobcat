@@ -1,4 +1,4 @@
-inline DateTime DateTime::timeZoneShift(int displayZoneShift) const
+inline DateTime DateTime::timeZone(int displayZone) const
 {
-    return DateTime(d_utcSec, displayZoneShift);
+    return DateTime(d_time, displayZone);
 }

@@ -1,4 +1,4 @@
 inline DateTime DateTime::utc() const
 {
-    return to(UTC);
+    return DateTime{ d_time, UTC };
 }   

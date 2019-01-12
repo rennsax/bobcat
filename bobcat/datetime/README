@@ -1,23 +1,134 @@
-setDisplayZone  -   sets the seconds d_displayZoneShift wrt UTC.
-                    Argument must allow for TZ and DST shifts.
+DateTime: 3 data fields:
 
-utcSec2timeStruct - receives a *TimeStruct and a time in UTC
-                    sets the TimeStruct's tm_isdst flag if the current
-                    object's d_dstShift is unequal to zero.
+    d_time  - time since the epoch
+    d_zone  - current time zone
+    d_dst   - DST TriVal
 
-dstCorrection   - returns 3600 if the current time has DST, based on the
-                    computer's locattime computation given UTC sec.
-                    returns 0 otherwise.
+    d_tm may be filled with a time specification.
 
-updateTime      - called when a time field (day, seconds, year, fields, etc)
-                    is updated. Sanitizes the fields (day 32 -> next month,
-                    etc) 
+    If d_tm holds a UTC time, then:
 
-d_tm2d_tm       - receives (TZ + DST) shift in minutes,
+        mktime() produces the time since the epoch, but as t_tm already 
+        specifies a UTC time  the returned time is too low by the default zone
+        shift. To obtain the true time since the epoch use
 
-d_tm2utcsec     - assigns UTC seconds matching d_tm to d_utcSec
+            d_time = mktime() + defaultZone 
 
-zoneShiftSeconds    - receives zone shift in minutes, returns shift in
-                      seconds, based on TZ shifts being multiples of 
-                      30 minutes.
+        mktime() also sets the time's tm_isdst field
 
+        (
+            localtime_r(d_time, d_tm) then sets the local time tm_isdst flag.
+            (getDst() performs this action)
+        )
+
+        DST shift is then obtained as:
+
+            d_dst = d_tm.tm_isdst > 0 ? 3600 : 0
+
+        d_zone is either
+
+                defaultZone
+
+        which is the computer's current time zone shift (not compensating for 
+        DST) or, if tzShift is explicitly provided tzShift already compensates
+        for any DST shift, and so:
+
+                d_zone = tzShift - d_dst
+
+    If d_tm holds a LOCALTIME, then:
+        mktime() produces the time since the epoch, but it does not
+            compensate for DST.
+
+                d_time = mktime()
+                d_dst = d_tm.tm_isdst > 0 ? 3600 : 0
+                d_time -= d_dst;     // DST compensation
+                d_zone: current zone shift.
+
+    To display: gmtime(d_time + d_zone + d_dst)
+
+-----------------------------------------------------------------------------
+
+
+
+seconds:    seconds since the epoch.
+
+zone()      returns the locally active time zone shift.
+dst()       returns the current local DST shift
+
+mktime(ts) returns seconds for a *local* time specification ts. It also 
+            sets ts.tm_isdst to 1 if DST is currently active.
+
+    If ts specifies UTC time then, as mktime corrects for the default time
+    zone and dst, zone() + 3600 (if dst) must be added to mktime's return
+    value to obtain the seconds matching ts's UTC specification.
+        utcSpec(ts) performs this correction.
+
+    time specifications 'time +hhmm' specify local time. Converted to ts,
+        and corrected for -hhmm produces the UTC time -> utcSpec provides 
+        seconds. hhmm - dst (if ts.tm_isdst) the zone shift. 
+        parse(text) initializes the values. 
+
+    time specifications 'time' specify UTC or local time. 
+        parse() uses utcSpec() with UTC and mktime() otherwise
+
+gmtime(secs, ts) fills ts 1:1 according to secs (no corrections for zone and
+                 dst). 
+
+
+DateTime has data members utcSec, zone and dst. 
+
+A local time is displayed using ts fields set by 
+    gmtime(utcSec + zone + dst, ts)
+
+                            utcSec          zone        dst
+                            ---------------------------------
+1.  DateTime{ UTC }         time(0)         0           0
+    DateTime{ LOCAL }       time(0)         zone()      dst()
+        via: 3, using 
+        seconds = time(0)
+            
+                            utcSec          zone        dst 
+                            --------------------------------
+2.  DateTime{ tzShift }     time(0)         tzShift     0       LOCAL
+        via: 4, using 
+        seconds = time(0)
+            
+                            utcSec          zone        dst 
+                            --------------------------------
+3.  DateTime{ seconds,      
+        UTC                 seconds         0           0   
+        LOCAL               seconds         zone()      dst()
+                                                        
+
+                            utcSec          zone        dst 
+                            --------------------------------
+4.  DateTime{ seconds,      
+        tzShift             seconds         tzShift     dst()   LOCAL
+                                                - dst()
+
+                            utcSec          zone        dst 
+                            --------------------------------
+5.  DateTime{ ts,
+        UTC                 utcSpec()       0           0
+        LOCAL               mktime()        zone()      via ts->tm_isdst
+           
+
+                            utcSec          zone        dst 
+                            --------------------------------
+6.  DateTime{ ts, tzShift } 
+        UTC                 utcSpec()       0           0
+        LOCAL               mktime()        tzShift     via ts->tm_isdst
+                                                - dst
+
+                            utcSec          zone        dst 
+                            --------------------------------
+7.  DateTime{ "time +hhmm" }
+        UTC                 parse(text)     0           0
+        LOCAL               parse(text)     hhmm-dst    dst   
+           
+                            utcSec          zone        dst 
+                            --------------------------------
+8.  DateTime{ "time +hhmm", tzShift}
+        UTC                 parse(text)     0           0     
+        LOCAL               parse(text)     tzShift     dst   
+                                                - dst

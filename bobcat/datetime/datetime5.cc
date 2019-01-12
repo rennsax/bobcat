@@ -1,14 +1,13 @@
 #include "datetime.ih"
 
-//     struct tm ts = {0, 0, 10, 5, 6, 109, 0, 0, 1};
-//      dst and day-of-year fields ignored. With UTC ts represents UTC time
-//      with LOCALTIME ts represents local time
+//  time: time in seconds since the epoch
+//      UTC: merely time
+//      LOCALTIME: sets  d_zone (zone()), and d_dst
 
-DateTime::DateTime(TimeStruct const &ts, TimeType type)
+DateTime::DateTime(time_t time, TimeType type)
 :
-    d_type(type)
+    d_type(type),
+    d_time(time)
 {
-    d_tm = ts;
-
-    d_tm2timeType();
+    iniZoneDst();                               // 1.cc
 }

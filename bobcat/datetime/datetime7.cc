@@ -1,15 +1,21 @@
 #include "datetime.ih"
 
-DateTime::DateTime(string const &timeStr,  TimeType type)
+// See README
+
+// tm is UTC when type == UTC, and localtime if type == LOCALTIME
+
+DateTime::DateTime(TM const &tm, TimeType type)
 :
     d_type(type),
-    d_displayZoneShift(0),
-    d_dstShift(0)
+    d_tm(tm)
 {
-    istringstream in(timeStr);
-    parse(in);              // determine timestruct representing hour in UTC
+    d_tm.tm_year -= 1900;
 
+    if (d_type == UTC)
+        utc2utc();
+    else
+        local2local();
 
-    d_tm2timeType();
+    setZoneData(ZoneData{ static_cast<int>(d_zone), d_dst });
 }
 

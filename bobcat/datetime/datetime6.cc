@@ -1,13 +1,11 @@
 #include "datetime.ih"
 
-//     struct tm ts = {0, 0, 10, 5, 6, 109, 0, 0, 1};
-//      dst and day-of-year fields ignored.
-//      ts represents UTC, displayZoneShift is added to obtain local time
+// time provodes UTC time, tzShift (in minutes) sets d_zone
 
-DateTime::DateTime(TimeStruct const &ts, int displayZoneShift)
+DateTime::DateTime(time_t time, int tzShift)    // tzShift in minutes
 :
-    d_type(LOCALTIME)
+    d_time(time)
 {
-    d_tm = ts;
-    d_tm2d_tm(displayZoneShift);
+    iniZoneDst(tzShift);                        // 2.cc
 }
+

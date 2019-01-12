@@ -1,11 +1,11 @@
 #include "datetime.ih"
 
-DateTime::DateTime(time_t time, int displayZoneShift)
+// UTC time is ::time(0), zone shift is tzShift (in minutes) as seconds
+
+DateTime::DateTime(int tzShift) // minutes
 :
-    d_type(LOCALTIME),
-    d_utcSec(time),
-    d_dstShift(0)
-{
-    setDisplayZone(zoneShiftSeconds(displayZoneShift));
-    utcSec2timeStruct(&d_tm, d_utcSec);
-}
+    DateTime( ::time(0), tzShift )          // #6
+{}
+
+
+

@@ -1,12 +1,17 @@
 #include "datetime.ih"
 
-DateTime::DateTime(string const &timeStr,  int displayZoneShift)
-:
-    d_type(LOCALTIME)
-{
-    istringstream in(timeStr);
-    parse(in);              // determine timestruct representing hour in UTC
+//     struct tm ts = {0, 0, 10, 5, 6, 109, 0, 0, 1};
+//      dst and day-of-year fields ignored.
+//      ts defines a UTC time point, tzShift is added to obtain local time
 
-    d_tm2d_tm(displayZoneShift);
+DateTime::DateTime(TM const &utcTm, int tzShift)
+:
+    d_type(LOCALTIME),
+    d_tm(utcTm)
+{
+    d_tm.tm_year -= 1900;
+    utc2zone(tzShift);
+
+    setZoneData(ZoneData{ static_cast<int>(d_zone), d_dst });
 }
 
