@@ -4,8 +4,7 @@
     // warning in parsetime.cc
 
 // static
-DateTime::Parse DateTime::timeException(string const &timeStr) 
+DateTime::Parse DateTime::timeException() 
 {
-    throw Exception{ 1 } << "error in time specification `" << timeStr << 
-                                                                '\'';
+    throw Exception{ 1 } << "error in time specification";
 }

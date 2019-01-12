@@ -89,23 +89,33 @@ class DateTime
         DateTime(std::string const &timeStr, int tzShift);
 
 
+        DateTime(TimeType type, std::istream &in);  // 11.
+        DateTime(TimeType type, std::istream &&in); // 12.f
+
+
                                                 // Do not use:
         DateTime(std::string const &timeStr, TimeType type, int);   // dep9
         DateTime(std::string const &timeStr, int displayZone, int); // dep10
 
         ~DateTime();
 
-        TriVal dst() const;                                         // .f
+        DateTime &operator=(DateTime const &other);         // 1
+        DateTime &operator=(DateTime &&tmp);                // 2
+
+        void swap(DateTime &other);
+
+TriVal dst() const;                                         // .f
 
         static int zoneShift(std::string const &zoneName);  // minutes
 
 #include "publics"
 
     private:
-        void iniZoneDst();
-        void iniZoneDst(int tzShift);
+        void iniZoneDst();                                  // 1
+        void iniZoneDst(int tzShift);                       // 2
 
         Parse parseTime(std::string const &timeStr);
+        Parse parseStream(std::istream &in);
         Parse parseFromYear(std::istream &in);  // "2018-12-03 13:29:11+01:00"
         Parse parseFromDayName(std::istream &in);
         Parse parseDateR(std::istream &in);
@@ -124,7 +134,7 @@ class DateTime
         void zone2local(int tzShift);           // d_tm zone -> local 
         void zone2zone(int tzIn, int tzOut);    // d_tm zone1 -> zone2 shift
 
-        int dstFromIsdst();                     // .f (.ih)
+int dstFromIsdst();                     // .f (.ih)
         int setDst(time_t time);
 
         TM const *displayTM() const;            // return &d_tm set at the
@@ -142,20 +152,16 @@ class DateTime
         static std::string zone(int tzShift);   // "hh:mm" for tzShift  2.cc
                                                 // in minutes
 
-
+                                                // for debug purposes only
         static void tm2cout(char const *label, TM const &ts);
 
 
-        static time_t utcTimeFromLocal(TM *tm);     // isdst: local's DST
-
-//        static time_t mktime(TM *tm);           // tm used as is, tm_isdst
-//                                                // not used on input
+//static time_t utcTimeFromLocal(TM *tm);     // isdst: local's DST
 
         static int asSeconds(int minutes);      // .f (.ih)
                                                 // shifts multiples of 30'
                                                 // at most +/-12 hours away
-        static Parse timeException(std::string const &timeStr);
-
+        static Parse timeException();
 };
 
 struct DateTime::Parse

@@ -8,24 +8,8 @@
     //    4: 2018-12-03 13:29:11+01:00
 
 DateTime::Parse DateTime::parseTime(string const &timeStr)
-try
 {
     istringstream in(timeStr);
 
-    Parse parse{ 
-            in >> d_tm.tm_year ?
-                    parseFromYear(in)   // for 4: 2018-12-03 13:29:11+01:00
-                :
-                    parseFromDayName(in)    // for 1..3
-          };
-
-    d_tm.tm_year -= 1900;
-    d_tm.tm_isdst = 0;
-
-    return parse;
+    return parseStream(in);
 }
-catch (...)
-{
-    return timeException(timeStr);      // doesn't return, but throws.
-}
-
