@@ -2,7 +2,5 @@
 
 DateTime::~DateTime()
 {
-    s_mutex.lock();
-    s_pimpl.erase(this);
-    s_mutex.unlock();
+    DSTInfo::erase(this);
 }

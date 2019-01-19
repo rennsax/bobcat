@@ -1,8 +1,9 @@
 #include "datetime.ih"
 
-void DateTime::utc2zone(int tzShift)     // in minutes
+void DateTime::utc2zone(int tzMinutes)     // in minutes
 {
-    d_dst = utc2utc();
-    zoneOut(tzShift);
+    utc2utc();
+    d_zone = asSeconds(tzMinutes);
+//    zoneOut(zoneMinutes);
 }
 

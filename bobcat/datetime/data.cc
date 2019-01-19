@@ -1,13 +1,14 @@
 #include "datetime.ih"
 
-unordered_map<string, int>   DateTime::s_zone = 
+unordered_map<string, int>   DateTime::ZoneNames::s_zone = 
 {
     {"CET",      60},
     {"CEST",    120},
 };
     
-mutex DateTime::s_mutex;
-unordered_map<DateTime const *, DateTime::ZoneData> DateTime::s_pimpl;
+unordered_map<DateTime const *, unique_ptr<DateTime::DSTInfo>> 
+                                                  DateTime::DSTInfo::s_pimpl;
+mutex DateTime::DSTInfo::s_mutex;
 
 char const *DateTime::s_month[] =
 {

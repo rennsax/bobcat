@@ -1,29 +1,17 @@
 #include "datetime.ih"
 
-DateTime::DateTime(TimeType type, istream &in)
+//     struct tm ts = {0, 0, 10, 5, 6, 109, 0, 0, 1};
+//      dst and day-of-year fields ignored.
+//      ts defines a UTC time point, zoneMinutes is added to obtain local time
+
+DateTime::DateTime(TM const &utcTm, int zoneMinutes, DSTSpec const &spec)
 :
-    d_type(type)
+    d_type(LOCALTIME),
+    d_tm(utcTm)
 {
-    Parse parse{ parseStream(in) };
+    d_tm.tm_year -= 1900;
+    utc2zone(zoneMinutes);
 
-    if (not parse.zone)
-    {
-        if (type == UTC)
-            utc2utc();
-        else
-            local2local();
-    }
-    else
-    {
-        if (type == UTC)
-            zone2utc(parse.tzShift);
-        else
-            zone2local(parse.tzShift);
-    }        
-
-    setZoneData(ZoneData{ static_cast<int>(d_zone), d_dst });
+    iniDSTInfoTM(spec);
 }
-
-
-
 

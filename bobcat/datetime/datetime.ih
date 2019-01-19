@@ -4,22 +4,68 @@
 #include <cstdlib>
 #include <iostream>
 #include <ostream>
-#include <sstream>
 #include <iomanip>
 #include <algorithm>
 #include <fstream>
+#include <memory>
+#include <mutex>
+#include <unordered_map>
 
 #include "../exception/exception"
-// #include "../csv4180/csv4180"
+#include "../csv4180/csv4180"
 #include "../bobcat/fswap"
 
 using namespace std;
 using namespace FBB;
 
-#include "asseconds.f"
-#include "settmmonth.f"
-//#include "dstfromisdst.f"
-#include "zonedata1.f"
+struct DateTime::Parse
+{
+    bool zone = false;    // true with all timespecs specifying a zone shift
+    int  zoneMinutes;         // if zone, then the zoneMinutes in minutes
+    
+    Parse() = default;
+    Parse(int minutes);                     // parse1.cc
+    Parse(char sign, int minutes);          //      2.cc
+};
 
-// #include "trival.f"
-// #include "utcspec.f"
+class DateTime::DSTInfo
+{
+    DSTDates d_dates;
+    bool d_DSTactive = false;                   // for the current time
+                                                // DST is active
+    static std::mutex s_mutex;
+    static std::unordered_map<DateTime const *, std::unique_ptr<DSTInfo>> 
+                                                                s_pimpl;
+    public:
+        DSTInfo() = default;
+        DSTInfo(DSTSpec const &spec);           // dstinfo1.f  (.ih)
+
+        void setDSTactive(tm *ts);
+        void updateDST(time_t utcSecs);
+
+        bool activeDST() const;
+        bool supportsDST() const;
+        
+        static void copy(DateTime *ptr, DateTime const &other);
+        static void move(DateTime *ptr, DateTime &&other);
+        static DSTInfo &get(DateTime const *ptr);
+        static void refreshDST(DateTime const *ptr);    // uses ptr->d_time
+        static int set(DateTime const *ptr, DSTSpec const &spec);
+        static void erase(DateTime const *ptr);
+        static void swap(DateTime &lhs, DateTime &rhs);
+};
+
+class DateTime::ZoneNames
+{
+                                                // zone names and their
+                                                // zone shifts in minutes
+        static std::unordered_map<std::string, int>   s_zone;
+
+    public:
+        static void addZone(string const &name, int minutes);   // 2.cc
+        static int minutes(string const &zoneName); // zonenamesminutes.cc
+};
+
+#include "dstinfo1.f"
+#include "activedst.f"
+#include "supportsdst.f"

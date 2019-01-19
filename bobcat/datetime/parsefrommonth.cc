@@ -33,8 +33,8 @@ DateTime::Parse DateTime::parseFromMonth(istream &in)
 
     if (not (in >> d_tm.tm_year))
         throw 1;
-
-    return Parse{ zoneShift(zoneOrYear) };   // "Mon Dec 3 13:29:11 CET 2018"
+                                            // "Mon Dec 3 13:29:11 CET 2018"
+    return Parse{ ZoneNames::minutes(zoneOrYear) };   
 }
 
 

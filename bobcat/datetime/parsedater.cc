@@ -5,7 +5,7 @@
 DateTime::Parse DateTime::parseDateR(istream &in)
 {
     char sign;
-    int tzShift;
+    int zoneMinutes;
     string month;
     char sep;
 
@@ -14,14 +14,14 @@ DateTime::Parse DateTime::parseDateR(istream &in)
                 in >> d_tm.tm_mday >> month >> d_tm.tm_year >> 
                     d_tm.tm_hour >> sep >> d_tm.tm_min >> sep >> 
                                                                 d_tm.tm_sec >>
-                    sign >> tzShift
+                    sign >> zoneMinutes
             )
         or 
             not setTmMonth(month)
     )
         throw 1;                                // format error, handled by
 
-    return Parse{ sign, tzShift / 100 * 60 + tzShift % 100 };
+    return Parse{ sign, zoneMinutes / 100 * 60 + zoneMinutes % 100 };
 }
 
 

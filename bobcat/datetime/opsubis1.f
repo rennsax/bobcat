@@ -1,4 +1,5 @@
-inline DateTime &DateTime::operator-=(time_t seconds)
+inline DateTime &DateTime::operator-=(int seconds)
 {
-    return operator+=(-seconds);
+    return *this += -seconds;
 }
+

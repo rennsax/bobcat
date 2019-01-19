@@ -1,25 +1,19 @@
 #include "datetime.ih"
 
-DateTime::DateTime(string const &timeStr,  TimeType type)
+// tm is UTC when type == UTC, and localtime if type == LOCALTIME
+
+DateTime::DateTime(TM const &tm, TimeType type)
 :
-    d_type(type)
+    d_type(type),
+    d_tm(tm)
 {
-    Parse parse{ parseTime(timeStr) };
+    d_tm.tm_year -= 1900;
 
-    if (not parse.zone)
-    {
-        if (type == UTC)
-            utc2utc();
-        else
-            local2local();
-    }
+    if (d_type == UTC)
+        utc2utc();
     else
-    {
-        if (type == UTC)
-            zone2utc(parse.tzShift);
-        else
-            zone2local(parse.tzShift);
-    }        
+        local2local();
 
-    setZoneData(ZoneData{ static_cast<int>(d_zone), d_dst });
+    iniZoneDstDSTInfo();
 }
+

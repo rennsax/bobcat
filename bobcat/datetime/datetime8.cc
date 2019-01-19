@@ -1,17 +1,13 @@
 #include "datetime.ih"
 
-//     struct tm ts = {0, 0, 10, 5, 6, 109, 0, 0, 1};
-//      dst and day-of-year fields ignored.
-//      ts defines a UTC time point, tzShift is added to obtain local time
+// time provides UTC time in seconds, zoneMinutes (in minutes) sets d_zone
 
-DateTime::DateTime(TM const &utcTm, int tzShift)
+                                                // zoneMinutes in minutes
+DateTime::DateTime(time_t time, int zoneMinutes, DSTSpec const &spec)
 :
-    d_type(LOCALTIME),
-    d_tm(utcTm)
+    d_time(time),
+    d_zone(asSeconds(zoneMinutes))
 {
-    d_tm.tm_year -= 1900;
-    utc2zone(tzShift);
-
-    setZoneData(ZoneData{ static_cast<int>(d_zone), d_dst });
+    iniLocal(spec);
 }
 

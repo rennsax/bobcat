@@ -87,7 +87,7 @@ The following classes and functions are available:
     bf(FBB::CSV4180): Objects of this class allow for easy handling of
     comma-separated values (implements RFC 4180, replaces the class bf(CSV),
     which is now deprecated).nl()  
-    Manpage(csv)
+    Manpage(csv4180)
 
     bf(FBB::DateTime): Manipulations with date and time values.nl()
     Manpage(datetime)
