@@ -256,10 +256,11 @@ class DateTime: private DTAux
         bool setTime(time_t utcSeconds);
         void setValid();
 
-        static void readZones(std::string const &fname, bool header = true, 
-                                                        char sep = ',');
-        static void addZone(std::string const &name, int minutes);
+        static void readZones(std::string const &fname);
+        static void addZone(std::string const &name, DSTSpec const &spec);
+
         static std::string zoneTxt(int zoneMinutes);
+
         static int minutes(std::string const &zoneName);
         static int defaultZoneMinutes();        // shift-minutes of
                                                 // the computer's time zone
@@ -271,7 +272,6 @@ class DateTime: private DTAux
         static void tm2cout(char const *label, TM const &ts);
 
     private:
-        //void iniDstInfo();
         void iniZoneDstDSTInfo();
 
         void iniLocal(DSTSpec const &spec);
@@ -338,14 +338,14 @@ class DateTime::DSTSpec: private DTAux
     int d_dstSeconds;                       // explicit DST shift
 
     public:
+        DSTSpec() = default;
         explicit DSTSpec(bool supportsDST, 
                          int dstMinutes = 60);              // 1.f
         DSTSpec(int dstMinutes);                            // 2.f
         DSTSpec(std::string const &begin, 
                 std::string const &end, int dstMinutes = 60); // 3.cc
-
+        int minutes() const;                        // DST time shift   2.f
     private:
-        DSTSpec() = default;
         static void split(uint8_t *mon, uint8_t *day, std::string const & in);
 };
 
@@ -381,6 +381,7 @@ class DateTime::DSTSpec: private DTAux
 #include "hours.f"
 #include "localtime.f"
 #include "minutes.f"
+#include "minutes2.f"
 #include "monthdaynr.f"
 #include "month.f"
 #include "seconds.f"

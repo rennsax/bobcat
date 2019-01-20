@@ -18,6 +18,8 @@ bobcat (4.09.00)
 
   * Added the overriding members `xsputn' to OfdStreambuf and Syslogbuf
 
+  * Updated the Pattern man-page
+
   * Internal headers include bobcat headers using "../classname/classname"
     instead of <bobcat/classname>.
 

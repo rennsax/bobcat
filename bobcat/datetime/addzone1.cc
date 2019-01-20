@@ -1,7 +1,7 @@
 #include "datetime.ih"
 
 // static
-void DateTime::addZone(string const &name, int minutes)
+void DateTime::addZone(string const &name, DSTSpec const &spec)
 {
-    ZoneNames::addZone(name, asSeconds(minutes) / 60);
+    ZoneNames::addZone(name, spec);
 }

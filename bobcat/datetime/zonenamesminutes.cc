@@ -8,5 +8,5 @@ int DateTime::ZoneNames::minutes(string const &zone)
         throw Exception{ 1 } << "Time zone `" << zone << 
                     "' not registered (maybe use addZone or readZone?)";
 
-    return iter->second;
+    return iter->second.minutes();
 }

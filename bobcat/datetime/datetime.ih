@@ -12,8 +12,9 @@
 #include <unordered_map>
 
 #include "../exception/exception"
-#include "../csv4180/csv4180"
-#include "../bobcat/fswap"
+#include "../fswap/fswap"
+#include "../string/string"
+#include "../pattern/pattern"
 
 using namespace std;
 using namespace FBB;
@@ -58,12 +59,15 @@ class DateTime::DSTInfo
 class DateTime::ZoneNames
 {
                                                 // zone names and their
-                                                // zone shifts in minutes
-        static std::unordered_map<std::string, int>   s_zone;
+                                                // specifications
+        static std::unordered_map<string, DSTSpec>   s_zone;
+        static Pattern s_spec;
 
     public:
-        static void addZone(string const &name, int minutes);   // 2.cc
+        static void addZone(string const &name, DSTSpec const &spec); // 2.cc
         static int minutes(string const &zoneName); // zonenamesminutes.cc
+        static void match(string const &fname, size_t lineNr, 
+                                               string const &line);
 };
 
 #include "dstinfo1.f"

@@ -33,9 +33,9 @@ tt([\W]) represents a set of two characters: tt(\) and tt(W).
     As the backslash (tt(\)) is treated as a special character it should be
 handled carefully. bf(Pattern) converts the escape sequences tt(\d \s \w) (and
 outside of explicit character classes the sequences tt(\D \S \W)) to their
-respective character classes. All other escape sequences are kept as is, and
+respective character classes. All other escape sequences are kept as-is, and
 the resulting regular expression is offered to the pattern matching
-compilation function bf(regcomp)(3). This function will again interpret
+compilation function bf(regcomp)(3). This function interprets
 escape sequences. Consequently some care should be exercised when defining
 patterns containing escape sequences. Here are the rules:
     itemization(
@@ -56,13 +56,12 @@ classes. E.g.,
     \x          \x              x                  x
     ---------------------------------------------------------
         )
-    it() To specify a literal escape sequence, it must be written twice. E.g.,
+    it() To specify literal escape sequences, Raw String Literals are advised,
+    as they don't require doubling escape sequences. E.g., the following
+    regular expression matches an (alpha-numeric) word, followed by optional
+    blanks, a colon, more optional blanks and a (decimal) number:
         verb(
-    ---------------------------------------------------------
-    Specify:    Converts to:    regcomp uses:      Matches:
-    ---------------------------------------------------------
-    \\x         \\x             \x                 \x
-    ---------------------------------------------------------
+    R"((\w+)\s*:\s*\d+)" 
         )
     )
 
@@ -85,11 +84,11 @@ manpagesection(CONSTRUCTORS)
     itb(Pattern())
         The default constructor defines no pattern, but is available as a
 placeholder for, e.g., containers requiring default constructors. A
-bf(Pattern) object thus constructed cannot be used to match patterns, but
-can be the em(lvalue) in assignments where another bf(Pattern) object is
-the em(rvalue). However, it can receive a pattern using the member
-bf(setPattern()) (see below). An bf(FBB::Exception) object is thrown if the object
-could not be constructed.
+bf(Pattern) object thus constructed cannot be used to match patterns, but can
+be the em(lvalue) in assignments where another bf(Pattern) object is the
+em(rvalue). However, it can receive a pattern using the member
+bf(setPattern()) (see below). An bf(FBB::Exception) object is thrown if the
+object could not be constructed.
     itb(Pattern(std::string const &pattern, 
                             bool caseSensitive = true, 
                             size_t nSub = 10,
@@ -148,7 +147,8 @@ returns two tt(std::string::npos) values (see the bf(position()) member
 function, below).
     itb(void match(std::string const &text, int options = 0))
        Match a string with a pattern.  If the text could not be matched, an
-bf(Exception) exception is thrown , using bf(Pattern::match()) as its prefix-text.
+bf(Exception) exception is thrown , using bf(Pattern::match()) as its
+prefix-text.
 
 Options may be:
 
@@ -178,11 +178,11 @@ is at least bf(end()) (which may happen at index value 0).
                             bool caseSensitive = true, 
                             size_t nSub = 10,
                         int options = REG_EXTENDED | REG_NEWLINE))
-        This member function installs a new  compiled tt(pattern) in its
+        This member function installs a new compiled tt(pattern) in its
 bf(Pattern) object. This member's parameters are identical to the second
 constructor's parameters. Refer to that constructor for details about the
-parameters. Like the constructor, an bf(FBB::Exception) exception is thrown if the
-new pattern could not be compiled.
+parameters. Like the constructor, an bf(FBB::Exception) exception is thrown if
+the new pattern could not be compiled.
     itb(void swap(Pattern &other))
         The contents of the current object and the tt(other) object are
 swapped. 
