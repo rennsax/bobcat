@@ -6,7 +6,7 @@ bool DateTime::setYear(int year)
     return setTMfields(TM{ 0, 0, 0, 0, 0, year },
         [](TM &dest, TM const &src)
         {
-            dest.tm_year = src.tm_year;
+            dest.tm_year = src.tm_year - 1900;
         }
     );
 }

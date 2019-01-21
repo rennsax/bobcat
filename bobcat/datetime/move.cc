@@ -1,7 +1,7 @@
 #include "datetime.ih"
 
 // static
-void DateTime::DSTInfo::move(DateTime *ptr, DateTime &&tmp)
+void DateTime::ZoneInfo::move(DateTime *ptr, DateTime &&tmp)
 {
     s_mutex.lock();
 

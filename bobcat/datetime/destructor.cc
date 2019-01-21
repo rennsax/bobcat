@@ -2,5 +2,5 @@
 
 DateTime::~DateTime()
 {
-    DSTInfo::erase(this);
+    ZoneInfo::erase(this);
 }

@@ -2,7 +2,9 @@
 
 bool DateTime::setFields(TM const &ts, TimeFields fields)
 {
-    TM src = d_tm;
+    TM src;
+
+    gmtime_r(&d_time, &src);
 
     if (fields & SECONDS)
         src.tm_sec = ts.tm_sec;
@@ -20,7 +22,7 @@ bool DateTime::setFields(TM const &ts, TimeFields fields)
         src.tm_mon = ts.tm_mon;
 
     if (fields & YEAR)
-        src.tm_year = ts.tm_year;
+        src.tm_year = ts.tm_year - 1900;
 
     return setTMfields(src, 
         [](TM &dest, TM const &src)
@@ -29,4 +31,11 @@ bool DateTime::setFields(TM const &ts, TimeFields fields)
         }
     );
 }
+
+
+
+
+
+
+
 

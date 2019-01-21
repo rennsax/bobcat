@@ -1,6 +1,6 @@
 #include "datetime.ih"
 
-void DateTime::DSTInfo::setDSTactive(tm *ts)
+void DateTime::ZoneInfo::setDSTactive(tm *ts)
 {
     if (not ts)
         throw Exception{ 1 } << "Cannot obtain local time information";

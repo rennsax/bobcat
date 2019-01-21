@@ -2,5 +2,5 @@
 
 DateTime::TriVal DateTime::dst() const
 {
-    return DSTInfo::get(this).activeDST() ? YES : NO;
+    return ZoneInfo::get(this).activeDST() ? YES : NO;
 }

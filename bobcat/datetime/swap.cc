@@ -2,5 +2,5 @@
 
 void DateTime::swap(DateTime &other)
 {
-    DSTInfo::swap(*this, other);
+    ZoneInfo::swap(*this, other);
 }

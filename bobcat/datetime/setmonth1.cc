@@ -1,8 +1,8 @@
 #include "datetime.ih"
 
-bool DateTime::setMonth(Month month)
+bool DateTime::setMonth(int month)
 {
-                //    s  m  h  md
+                     //    s  m  h  md
     return setTMfields(TM{ 0, 0, 0, 0, month },
         [](TM &dest, TM const &src)
         {

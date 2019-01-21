@@ -2,5 +2,5 @@
 
 DateTime::DateTime(DateTime const &other)
 {
-    DSTInfo::copy(this, other);
+    ZoneInfo::copy(this, other);
 }

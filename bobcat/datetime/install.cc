@@ -2,7 +2,7 @@
 
 DateTime &DateTime::install(DateTime &tmp)
 {
-    DSTInfo::refreshDST(&tmp);
+    ZoneInfo::refreshDST(&tmp);
     tmp.refreshTM();
     swap(tmp);
     return *this;

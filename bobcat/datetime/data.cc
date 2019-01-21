@@ -5,9 +5,9 @@ unordered_map<string, DateTime::DSTSpec>   DateTime::ZoneNames::s_zone =
     {"CET", DSTSpec{ 60 } }
 };
     
-unordered_map<DateTime const *, unique_ptr<DateTime::DSTInfo>> 
-                                                  DateTime::DSTInfo::s_pimpl;
-mutex DateTime::DSTInfo::s_mutex;
+unordered_map<DateTime const *, unique_ptr<DateTime::ZoneInfo>> 
+                                                  DateTime::ZoneInfo::s_pimpl;
+mutex DateTime::ZoneInfo::s_mutex;
 
 char const *DateTime::s_month[] =
 {
@@ -38,19 +38,19 @@ char const *DateTime::s_day[] =
 
 Pattern DateTime::ZoneNames::s_spec           // string to match assumed
     {                                       // trimmed, used by match.cc 
-        //   1
-        R"_(^(\w+)\s*:\s*)_"                // ID :
+        //   1           2
+        R"_(^(\w+)\s*:\s*(-?\d{3,4}))_"     // ID : zoneshift: hhmm
         // 2
         "("
-        //  3           4   5
+        //  4           5   6
         R"_((true|false)(\s+(\d+))?|)_"     // true/false [nMinutes shift]
-        //  6   
+        //  7   
         R"_((\d+)|)_"                       // nMinutes shift
 
-                                            // hh:mm hh:mm [nMinutes shift]
-        //  7           8        9   10
-        R"_((\d{3,4})\s+(\d{3,4})(\s+(\d+))?)_"
+                                            // hhmm hhmm [nMinutes shift]
+        //  8           9        10  11
+        R"_((\d{3,4})\s+(\d{3,4})(\s+(-?\d+))?)_"
         ")$",
-        true, 11
+        true, 12
     };
 

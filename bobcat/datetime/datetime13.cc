@@ -21,7 +21,7 @@ DateTime::DateTime(istream &in, TimeType type)
             zone2local(parse.zoneMinutes);
     }        
 
-    iniZoneDstDSTInfo();
+    iniZoneDstZoneInfo();
 }
 
 

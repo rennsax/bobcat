@@ -1,8 +1,8 @@
 #include "datetime.ih"
 
-void DateTime::iniZoneDstDSTInfo()
+void DateTime::iniZoneDstZoneInfo()
 {
     d_zone = d_type == UTC ? 0 : defaultZoneSecs();
 
-    iniDSTInfoTM(DSTSpec{ d_type == LOCALTIME } );
+    iniZoneInfoTM(DSTSpec{ d_type == LOCALTIME } );
 }

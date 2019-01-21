@@ -2,5 +2,5 @@
 
 int DateTime::checkDST() const
 {
-    return DSTInfo::get(this).activeDST() ? d_dst : 0;
+    return ZoneInfo::get(this).activeDST() ? d_dst : 0;
 }

@@ -25,7 +25,7 @@ class DateTime: private DTAux
 {
     typedef struct tm TM;
 
-    class DSTInfo;
+    class ZoneInfo;
     class ZoneNames;
 
     struct Parse;
@@ -54,17 +54,29 @@ class DateTime: private DTAux
         enum Month
         {
             JANUARY,
+            Jan = JANUARY,
             FEBRUARY,
+            Feb = FEBRUARY,
             MARCH,
+            Mar = MARCH,
             APRIL,
+            Apr = APRIL,
             MAY,
+            May = MAY,
             JUNE,
+            Jun = JUNE,
             JULY,
+            Jul = JULY,
             AUGUST,
+            Aug = AUGUST,
             SEPTEMBER,
+            Sep = SEPTEMBER,
             OCTOBER,
+            Oct = OCTOBER,
             NOVEMBER,
+            Nov = NOVEMBER,
             DECEMBER,
+            Dec = DECEMBER,
         };
         enum Relative
         {
@@ -76,12 +88,19 @@ class DateTime: private DTAux
         enum Weekday
         {
             SUNDAY,
+            Sun = SUNDAY,
             MONDAY,
+            Mon = MONDAY,
             TUESDAY,
+            Tue = TUESDAY,
             WEDNESDAY,
+            Wed = WEDNESDAY,
             THURSDAY,
+            Thu = THURSDAY,
             FRIDAY,
+            Fri = FRIDAY,
             SATURDAY,
+            Sat = SATURDAY,
         };
         enum TriVal: int
         {
@@ -197,8 +216,6 @@ class DateTime: private DTAux
 
         ~DateTime();
 
-        void swap(DateTime &other);
-
         DateTime &operator=(DateTime const &other);     // 1
         DateTime &operator=(DateTime &&tmp);            // 2
 
@@ -215,6 +232,9 @@ class DateTime: private DTAux
         DateTime &operator-=(Type const &time);         // 3.f
 
         operator bool() const;                          // .f
+
+        void swap(DateTime &other);
+
 
         DateTime localTime() const;
         DateTime to(TimeType type) const;
@@ -235,6 +255,7 @@ class DateTime: private DTAux
         size_t monthDayNr() const;
         size_t seconds() const;
         size_t weekNr() const;
+        size_t year() const;
         size_t yearDay() const;
         size_t yearDayNr() const;
 
@@ -247,7 +268,9 @@ class DateTime: private DTAux
         bool setMinutes(int minutes);
         bool setHours(int hours);
         bool setDay(int day);
+        bool setMonth(int month);
         bool setMonth(Month month);
+        bool setMonth(Month month, Relative where);
 
         bool setYear(int year);
 
@@ -272,10 +295,10 @@ class DateTime: private DTAux
         static void tm2cout(char const *label, TM const &ts);
 
     private:
-        void iniZoneDstDSTInfo();
+        void iniZoneDstZoneInfo();
 
         void iniLocal(DSTSpec const &spec);
-        void iniDSTInfoTM(DSTSpec const &spec);
+        void iniZoneInfoTM(DSTSpec const &spec);
 
         void refreshTM();                       // refresh d_tm given d_type,
                                                 // d_time, d_zone and d_dst
@@ -386,11 +409,13 @@ class DateTime::DSTSpec: private DTAux
 #include "month.f"
 #include "seconds.f"
 
+#include "setmonth2.f"
 #include "setfields.f"
 #include "setvalid.f"
 
 #include "timestruct.f"
 #include "weekday.f"
+#include "year.f"
 #include "yearday.f"
 #include "yeardaynr.f"
 

@@ -14,6 +14,6 @@ DateTime::DateTime(TM const &tm, TimeType type)
     else
         local2local();
 
-    iniZoneDstDSTInfo();
+    iniZoneDstZoneInfo();
 }
 

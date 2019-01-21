@@ -10,23 +10,23 @@ try
     
     switch (s_spec.end())       // see demo.cc for s_spec definition
     {
-        case 4:                 // only true or false
-            spec = DSTSpec{ s_spec[3] == "true" };
+        case 5:                 // only true or false
+            spec = DSTSpec{ s_spec[4] == "true" };
         break;
 
-        case 6:                 // true or false, minutes
-            spec = DSTSpec{ s_spec[3] == "true", 
-                            static_cast<int>(stoul(s_spec[5])) };
+        case 7:                 // true or false, minutes
+            spec = DSTSpec{ s_spec[4] == "true", 
+                            static_cast<int>(stoul(s_spec[6])) };
         break;
 
-        case 7:                 // minutes
-            spec = DSTSpec{ static_cast<int>(stoul(s_spec[6])) };
+        case 8:                 // minutes
+            spec = DSTSpec{ static_cast<int>(stoul(s_spec[7])) };
         break;
 
-        case 9:                 // hh:mm hh:mm
+        case 10:                // hhmm hhmm
             try
             {
-                spec = DSTSpec{ s_spec[7], s_spec[8] };
+                spec = DSTSpec{ s_spec[8], s_spec[9] };
             }
             catch (exception const &exc)
             {
@@ -35,9 +35,9 @@ try
             }
         break;
 
-        case 11:                 // hh:mm hh:mm minutes
-            spec = DSTSpec{ s_spec[7], s_spec[8], 
-                            static_cast<int>(stoul(s_spec[10])) };
+        case 12:                 // hh:mm hhmm minutes
+            spec = DSTSpec{ s_spec[8], s_spec[9], 
+                            static_cast<int>(stol(s_spec[11])) };
         break;
 
         default:
@@ -48,7 +48,7 @@ try
         cerr << "Warning: in `" << fname << "' line " << lineNr << 
             ": redefining zone " << s_spec[1] << '\n';
 
-    s_zone[s_spec[1]] = spec;
+    s_zone[s_spec[1]] = { spec, stol(s_spec[2]) };
 
 }
 catch (...)

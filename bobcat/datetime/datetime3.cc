@@ -2,5 +2,5 @@
 
 DateTime::DateTime(DateTime &&tmp)
 {
-    DSTInfo::move(this, move(tmp));
+    ZoneInfo::move(this, move(tmp));
 }

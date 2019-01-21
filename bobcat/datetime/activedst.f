@@ -1,4 +1,4 @@
-inline bool DateTime::DSTInfo::activeDST() const
+inline bool DateTime::ZoneInfo::activeDST() const
 {
     return d_DSTactive;
 }

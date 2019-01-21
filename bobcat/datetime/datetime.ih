@@ -29,17 +29,19 @@ struct DateTime::Parse
     Parse(char sign, int minutes);          //      2.cc
 };
 
-class DateTime::DSTInfo
+class DateTime::ZoneInfo: private DTAux
 {
     DSTDates d_dates;
+    int d_zoneShiftSeconds;
     bool d_DSTactive = false;                   // for the current time
                                                 // DST is active
     static std::mutex s_mutex;
-    static std::unordered_map<DateTime const *, std::unique_ptr<DSTInfo>> 
+    static std::unordered_map<DateTime const *, std::unique_ptr<ZoneInfo>> 
                                                                 s_pimpl;
     public:
-        DSTInfo() = default;
-        DSTInfo(DSTSpec const &spec);           // dstinfo1.f  (.ih)
+        ZoneInfo() = default;
+                                                // dstinfo1 
+        ZoneInfo(int minutes, DSTSpec const &spec);
 
         void setDSTactive(tm *ts);
         void updateDST(time_t utcSecs);
@@ -49,7 +51,7 @@ class DateTime::DSTInfo
         
         static void copy(DateTime *ptr, DateTime const &other);
         static void move(DateTime *ptr, DateTime &&other);
-        static DSTInfo &get(DateTime const *ptr);
+        static ZoneInfo &get(DateTime const *ptr);
         static void refreshDST(DateTime const *ptr);    // uses ptr->d_time
         static int set(DateTime const *ptr, DSTSpec const &spec);
         static void erase(DateTime const *ptr);
@@ -60,7 +62,7 @@ class DateTime::ZoneNames
 {
                                                 // zone names and their
                                                 // specifications
-        static std::unordered_map<string, DSTSpec>   s_zone;
+        static std::unordered_map<string, DSTSInfo>   s_zone;
         static Pattern s_spec;
 
     public:
@@ -70,6 +72,5 @@ class DateTime::ZoneNames
                                                string const &line);
 };
 
-#include "dstinfo1.f"
 #include "activedst.f"
 #include "supportsdst.f"
