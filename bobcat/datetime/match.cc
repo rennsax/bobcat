@@ -48,7 +48,7 @@ try
         cerr << "Warning: in `" << fname << "' line " << lineNr << 
             ": redefining zone " << s_spec[1] << '\n';
 
-    s_zone[s_spec[1]] = { spec, stol(s_spec[2]) };
+    s_zone[s_spec[1]] = { static_cast<int>(stol(s_spec[2])), spec };
 
 }
 catch (...)

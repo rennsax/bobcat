@@ -2,5 +2,5 @@
 
 DateTime::DateTime(DateTime const &other)
 {
-    ZoneInfo::copy(this, other);
+    Pimpl::copy(this, other);
 }

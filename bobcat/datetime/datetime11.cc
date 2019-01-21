@@ -12,6 +12,6 @@ DateTime::DateTime(TM const &utcTm, int zoneMinutes, DSTSpec const &spec)
     d_tm.tm_year -= 1900;
     utc2zone(zoneMinutes);
 
-    iniZoneInfoTM(spec);
+    iniPimplTM(spec);
 }
 

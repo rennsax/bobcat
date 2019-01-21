@@ -2,5 +2,5 @@
 
 void DateTime::swap(DateTime &other)
 {
-    ZoneInfo::swap(*this, other);
+    Pimpl::swap(*this, other);
 }

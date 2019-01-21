@@ -1,13 +1,13 @@
 #include "datetime.ih"
 
-unordered_map<string, DateTime::DSTSpec>   DateTime::ZoneNames::s_zone = 
+unordered_map<string, DateTime::ZoneData>   DateTime::ZoneNames::s_zone = 
 {
-    {"CET", DSTSpec{ 60 } }
+    {"CET", ZoneData{ 60, DSTSpec{ 60 } } }
 };
     
-unordered_map<DateTime const *, unique_ptr<DateTime::ZoneInfo>> 
-                                                  DateTime::ZoneInfo::s_pimpl;
-mutex DateTime::ZoneInfo::s_mutex;
+unordered_map<DateTime const *, unique_ptr<DateTime::Pimpl>> 
+                                                  DateTime::Pimpl::s_pimpl;
+mutex DateTime::Pimpl::s_mutex;
 
 char const *DateTime::s_month[] =
 {
@@ -39,8 +39,8 @@ char const *DateTime::s_day[] =
 Pattern DateTime::ZoneNames::s_spec           // string to match assumed
     {                                       // trimmed, used by match.cc 
         //   1           2
-        R"_(^(\w+)\s*:\s*(-?\d{3,4}))_"     // ID : zoneshift: hhmm
-        // 2
+        R"_(^(\w+)\s*:\s*(-?\d+)\s+)_"      // ID : zoneshift: minutes
+        // 3
         "("
         //  4           5   6
         R"_((true|false)(\s+(\d+))?|)_"     // true/false [nMinutes shift]

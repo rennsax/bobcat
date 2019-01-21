@@ -2,5 +2,5 @@
 
 DateTime::DateTime(DateTime &&tmp)
 {
-    ZoneInfo::move(this, move(tmp));
+    Pimpl::move(this, move(tmp));
 }

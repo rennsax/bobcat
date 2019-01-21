@@ -25,11 +25,11 @@ class DateTime: private DTAux
 {
     typedef struct tm TM;
 
-    class ZoneInfo;
+    class Pimpl;
+    class ZoneData;
     class ZoneNames;
 
     struct Parse;
-    struct DSTDates;
 
     friend  std::ostream &operator<<(std::ostream &str, DateTime const &dt);
     friend  std::istream &operator>>(std::istream &str, DateTime &dt);
@@ -46,10 +46,6 @@ class DateTime: private DTAux
         {
             LOCALTIME,
             UTC,
-        };
-        enum class SizeOf
-        {
-            TimeType = 2
         };
         enum Month
         {
@@ -280,7 +276,8 @@ class DateTime: private DTAux
         void setValid();
 
         static void readZones(std::string const &fname);
-        static void addZone(std::string const &name, DSTSpec const &spec);
+        static void addZone(std::string const &name, int zoneMinutes,
+                            DSTSpec const &spec);
 
         static std::string zoneTxt(int zoneMinutes);
 
@@ -295,10 +292,10 @@ class DateTime: private DTAux
         static void tm2cout(char const *label, TM const &ts);
 
     private:
-        void iniZoneDstZoneInfo();
+        void iniZoneDstPimpl();
 
         void iniLocal(DSTSpec const &spec);
-        void iniZoneInfoTM(DSTSpec const &spec);
+        void iniPimplTM(DSTSpec const &spec);
 
         void refreshTM();                       // refresh d_tm given d_type,
                                                 // d_time, d_zone and d_dst
@@ -342,22 +339,16 @@ class DateTime: private DTAux
         [[noreturn]] static void timeException();
 };
 
-struct DateTime::DSTDates
+class DateTime::DSTSpec: private DTAux
 {
-    bool d_supportsDST;                      // this time spec. supports DST
+    friend class DateTime;
 
     uint8_t d_startMon;
     uint8_t d_startDay = 0;                 // 0: tm_isdst is used
     uint8_t d_endMon;
     uint8_t d_endDay;
-};
 
-class DateTime::DSTSpec: private DTAux
-{
-    friend class DateTime;
-
-    DSTDates d_dates;
-
+    bool d_supportsDST;                      // this time spec. supports DST
     int d_dstSeconds;                       // explicit DST shift
 
     public:
@@ -367,7 +358,14 @@ class DateTime::DSTSpec: private DTAux
         DSTSpec(int dstMinutes);                            // 2.f
         DSTSpec(std::string const &begin, 
                 std::string const &end, int dstMinutes = 60); // 3.cc
+
         int minutes() const;                        // DST time shift   2.f
+        bool supportsDST() const;                           // 1.f
+        int startMon() const;
+        int startDay() const;
+        int endMon() const;
+        int endDay() const;
+
     private:
         static void split(uint8_t *mon, uint8_t *day, std::string const & in);
 };
@@ -382,45 +380,44 @@ class DateTime::DSTSpec: private DTAux
 #include "datetime17.f"
 #include "datetime20.f"
 
+#include "asseconds.f"
+#include "defaultzoneminutes.f"
+#include "displayzoneshift.f"
+
 #include "dstspec1.f"
 #include "dstspec2.f"
-#include "utc.f"
+
+#include "hours.f"
+#include "localtime.f"
+#include "minutes.f"
+#include "minutes2.f"
+#include "month.f"
+#include "monthdaynr.f"
+#include "opadd.f"
 #include "opaddis3.f"
-#include "asseconds.f"
-#include "zoneminutes.f"
-#include "displayzoneshift.f"
-#include "defaultzoneminutes.f"
-#include "opsubis1.f"
-#include "opsubis3.f"
+
+#include "opbool.f"                         // obsoleted. returns true
 #include "opeq.f"                           // DateTime == DateTime
 #include "opgeq.f"                          // DateTime >= DateTime
 #include "opgreater.f"                      // DateTime > DateTime
 #include "opleq.f"                          // DateTime <= DateTime
 #include "opless.f"                         // DateTime < DateTime
 #include "opneq.f"                          // DateTime != DateTime
-#include "opadd.f"
 #include "opsub.f"
-#include "opbool.f"                         // obsoleted. returns true
-#include "hours.f"
-#include "localtime.f"
-#include "minutes.f"
-#include "minutes2.f"
-#include "monthdaynr.f"
-#include "month.f"
+#include "opsubis1.f"
+#include "opsubis3.f"
+
 #include "seconds.f"
-
-#include "setmonth2.f"
 #include "setfields.f"
+#include "setmonth2.f"
 #include "setvalid.f"
-
 #include "timestruct.f"
+#include "utc.f"
 #include "weekday.f"
 #include "year.f"
 #include "yearday.f"
 #include "yeardaynr.f"
-
-//#include "timefieldsbitor.f"
-//#include "timefieldsbitand.f"
+#include "zoneminutes.f"
 
 }   // FBB
 

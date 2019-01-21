@@ -1,7 +1,7 @@
 #include "datetime.ih"
 
-void DateTime::iniZoneInfoTM(DSTSpec const &spec)
+void DateTime::iniPimplTM(DSTSpec const &spec)
 {
-    d_dst = ZoneInfo::set(this, spec);           // set.cc
+    d_dst = Pimpl::set(this, spec);           // set.cc
     refreshTM();
 }

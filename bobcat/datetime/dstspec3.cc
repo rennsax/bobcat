@@ -6,10 +6,10 @@ try
 :
     d_dstSeconds(asSeconds(dstMinutes))
 {
-    d_dates.d_supportsDST = true;
+    d_supportsDST = true;
 
-    split(&d_dates.d_startMon, &d_dates.d_startDay, begin);
-    split(&d_dates.d_endMon, &d_dates.d_endDay, end);
+    split(&d_startMon, &d_startDay, begin);
+    split(&d_endMon, &d_endDay, end);
 
     if (begin > end)
         throw 1;

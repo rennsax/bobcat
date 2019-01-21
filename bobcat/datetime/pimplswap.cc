@@ -1,6 +1,6 @@
 #include "datetime.ih"
 
-void DateTime::ZoneInfo::swap(DateTime &lhs, DateTime &rhs)
+void DateTime::Pimpl::swap(DateTime &lhs, DateTime &rhs)
 {
     s_mutex.lock();
 

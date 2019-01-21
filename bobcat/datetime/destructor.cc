@@ -2,5 +2,5 @@
 
 DateTime::~DateTime()
 {
-    ZoneInfo::erase(this);
+    Pimpl::erase(this);
 }

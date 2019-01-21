@@ -7,18 +7,20 @@ using namespace FBB;
 
     Pattern nosep
     {
-        //  1
-        R"_((\w+)\s*:\s*)_"
-        // 2
+        //   1           2
+        R"_(^(\w+)\s*:\s*(-?\d+)\s+)_"      // ID : zoneshift: minutes
+        // 3
         "("
-        //  3           4   5
-        R"_((true|false)(\s+(\d+))?|)_"
-        //  6   
-        R"_((\d+)|)_"
-        //  7           8        9   10
-        R"_((\d{3,4})\s+(\d{3,4})(\s+(\d+))?)_"
-        ")",
-        true, 11
+        //  4           5   6
+        R"_((true|false)(\s+(\d+))?|)_"     // true/false [nMinutes shift]
+        //  7   
+        R"_((\d+)|)_"                       // nMinutes shift
+
+                                            // hhmm hhmm [nMinutes shift]
+        //  8           9        10  11
+        R"_((\d{3,4})\s+(\d{3,4})(\s+(-?\d+))?)_"
+        ")$",
+        true, 12
     };
 
 
@@ -30,7 +32,7 @@ void show(size_t idx)
     
 int main()
 {
-    size_t indices[] = {1, 3, 5, 6, 7, 8, 10};
+    size_t indices[] = {1, 2, 4, 6, 7, 8, 9, 11};
 
     while (true)
     {

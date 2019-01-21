@@ -1,14 +1,15 @@
 #include "datetime"
 
-#include <cstring>
-#include <cstdlib>
-#include <iostream>
-#include <ostream>
-#include <iomanip>
+//#include <cstring>
+//#include <cstdlib>
+
 #include <algorithm>
 #include <fstream>
+#include <iomanip>
+#include <iostream>
 #include <memory>
 #include <mutex>
+#include <ostream>
 #include <unordered_map>
 
 #include "../exception/exception"
@@ -29,48 +30,65 @@ struct DateTime::Parse
     Parse(char sign, int minutes);          //      2.cc
 };
 
-class DateTime::ZoneInfo: private DTAux
+class DateTime::Pimpl: private DTAux
 {
-    DSTDates d_dates;
-    int d_zoneShiftSeconds;
     bool d_DSTactive = false;                   // for the current time
+    DSTSpec d_spec;
                                                 // DST is active
     static std::mutex s_mutex;
-    static std::unordered_map<DateTime const *, std::unique_ptr<ZoneInfo>> 
+    static std::unordered_map<DateTime const *, std::unique_ptr<Pimpl>> 
                                                                 s_pimpl;
     public:
-        ZoneInfo() = default;
-                                                // dstinfo1 
-        ZoneInfo(int minutes, DSTSpec const &spec);
+        Pimpl() = default;
+                                                // 1 
+        Pimpl(DSTSpec const &spec);
 
         void setDSTactive(tm *ts);
         void updateDST(time_t utcSecs);
 
         bool activeDST() const;
-        bool supportsDST() const;
+        bool supportsDST() const;               // 2.f
+        int  dstMinutes() const;
         
         static void copy(DateTime *ptr, DateTime const &other);
         static void move(DateTime *ptr, DateTime &&other);
-        static ZoneInfo &get(DateTime const *ptr);
+        static Pimpl &get(DateTime const *ptr);
         static void refreshDST(DateTime const *ptr);    // uses ptr->d_time
         static int set(DateTime const *ptr, DSTSpec const &spec);
         static void erase(DateTime const *ptr);
         static void swap(DateTime &lhs, DateTime &rhs);
 };
 
+class DateTime::ZoneData
+{
+    int d_zoneMinutes;
+    DSTSpec d_spec;
+
+    public:
+        ZoneData() = default;
+        ZoneData(int zoneMinutes, DSTSpec const &spec); // 1
+        int minutes() const;
+};
+    
 class DateTime::ZoneNames
 {
                                                 // zone names and their
                                                 // specifications
-        static std::unordered_map<string, DSTSInfo>   s_zone;
+        static std::unordered_map<string, ZoneData>   s_zone;
         static Pattern s_spec;
 
     public:
-        static void addZone(string const &name, DSTSpec const &spec); // 2.cc
+        static void addZone(string const &name, ZoneData const &info); // 2.cc
         static int minutes(string const &zoneName); // zonenamesminutes.cc
         static void match(string const &fname, size_t lineNr, 
                                                string const &line);
 };
 
 #include "activedst.f"
-#include "supportsdst.f"
+#include "supportsdst1.f"
+#include "supportsdst2.f"
+#include "startday.f"
+#include "startmon.f"
+#include "endday.f"
+#include "endmon.f"
+#include "minutes3.f"

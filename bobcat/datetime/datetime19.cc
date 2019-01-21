@@ -11,5 +11,5 @@ DateTime::DateTime(istream &in, int zoneMinutes, DSTSpec const &spec)
     else
         zone2zone(parse.zoneMinutes, zoneMinutes);
 
-    iniZoneInfoTM(spec);
+    iniPimplTM(spec);
 }

@@ -2,7 +2,7 @@
 
 DateTime &DateTime::install(DateTime &tmp)
 {
-    ZoneInfo::refreshDST(&tmp);
+    Pimpl::refreshDST(&tmp);
     tmp.refreshTM();
     swap(tmp);
     return *this;

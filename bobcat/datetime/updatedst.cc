@@ -1,6 +1,6 @@
 #include "datetime.ih"
 
-void DateTime::ZoneInfo::updateDST(time_t utcSecs)
+void DateTime::Pimpl::updateDST(time_t utcSecs)
 {
     TM ts;
     setDSTactive(localtime_r(&utcSecs, &ts));
