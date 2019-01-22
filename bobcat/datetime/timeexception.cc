@@ -4,7 +4,7 @@
     // warning in parsetime.cc
 
 // static
-void DateTime::timeException() 
+void DateTime::timeException()
 {
     throw Exception{ 1 } << "error in time specification";
 }

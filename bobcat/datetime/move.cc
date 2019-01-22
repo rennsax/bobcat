@@ -10,4 +10,3 @@ void DateTime::Pimpl::move(DateTime *ptr, DateTime &&tmp)
 
     s_mutex.unlock();
 }
-

@@ -10,18 +10,11 @@ namespace FBB
 {
 
     // DateTime objects define d_time as the time since the epoch
-    // in seconds, and d_zone as the time zone shift in seconds. 
+    // in seconds, and d_zone as the time zone shift in seconds.
     //
     // The time to display equals d_time + d_zone.
 
-struct DTAux
-{
-    static int asSeconds(int minutes);      // .f (.ih)
-                                            // shifts multiples of 30'
-                                            // at most +/-12 hours away
-};
-
-class DateTime: private DTAux
+class DateTime
 {
     friend  std::ostream &operator<<(std::ostream &str, DateTime const &dt);
     friend  std::istream &operator>>(std::istream &str, DateTime &dt);
@@ -38,8 +31,7 @@ class DateTime: private DTAux
     class Pimpl;
     class ZoneData;
     class ZoneNames;
-
-    struct Parse;
+    class Parse;
 
     public:
         enum TimeType
@@ -97,7 +89,7 @@ class DateTime: private DTAux
 
     private:
         TimeType    d_type;     // current type of info in d_tm member
-                                // (LOCALTIME (implied when using displayZone) 
+                                // (LOCALTIME (implied when using displayZone)
                                 // or UTC)
         time_t      d_time;     // UTC time in seconds
 
@@ -105,8 +97,8 @@ class DateTime: private DTAux
         int         d_dst;      // DST shift (seconds)
 
         mutable TM  d_tm;       // holds the latest broken down time
-                                // given d_type, d_time, d_zone, 
-                                // and d_dst. d_type UTC only 
+                                // given d_type, d_time, d_zone,
+                                // and d_dst. d_type UTC only
                                 // considers d_time -> updateTM()
 
         bool        d_1 = true; // previous d_ok and d_error data
@@ -124,19 +116,19 @@ class DateTime: private DTAux
                                                 // LOCAL: UTC + zoneMinutes
         explicit DateTime(int zoneMinutes);                     // 4.f
                                                 // LOCAL: UTC + zoneMinutes
-        DateTime(time_t zoneMinutes, DSTSpec const &spec);      // 5.f  
-                                                // specify UTC/LOCAL time in 
+        DateTime(time_t zoneMinutes, DSTSpec const &spec);      // 5.f
+                                                // specify UTC/LOCAL time in
         DateTime(time_t time, TimeType type);   // seconds         6.cc
                                                 // LOCALTIME: time (UTC) +
                                                 //   zoneMinutes (= TZ + DST)
-        DateTime(time_t time, int zoneMinutes);                 // 7.f 
+        DateTime(time_t time, int zoneMinutes);                 // 7.f
                                                 // LOCALTIME: time (UTC) +
-                                                // zoneMinutes (= TZ + DST) 
+                                                // zoneMinutes (= TZ + DST)
         DateTime(time_t time, int zoneMinutes,                  // 8
                               DSTSpec const &spec);
                                                 // specify tm fields as
                                                 // either UTC or LOCALTIME
-                                                // using the default 
+                                                // using the default
                                                 // zoneMinutes
         explicit DateTime(TM const &tm, TimeType type = UTC);   // 9
                                                 // specify UTC tm fields
@@ -146,7 +138,7 @@ class DateTime: private DTAux
                                                 // display + zoneMinutes
         DateTime(TM const &tm, int zoneMinutes,                 // 11
                                 DSTSpec const &spec);
-                                                // specify UTC/LOCAL text 
+                                                // specify UTC/LOCAL text
                                                 // time
         explicit DateTime(std::string const &timeStr,           // 12
                           TimeType type = UTC);
@@ -174,13 +166,13 @@ class DateTime: private DTAux
         DateTime &operator=(DateTime &&tmp);            // 2
 
         DateTime &operator+=(int  seconds);             // 1.
-        DateTime &operator+=(TM const &tm);             // 2. 
+        DateTime &operator+=(TM const &tm);             // 2.
 
             template <typename Type>
         DateTime &operator+=(Type const &time);         // 3.f
 
         DateTime &operator-=(int  seconds);             // 1.f
-        DateTime &operator-=(TM const &tm);             // 2. 
+        DateTime &operator-=(TM const &tm);             // 2.
 
             template <typename Type>
         DateTime &operator-=(Type const &time);         // 3.f
@@ -205,7 +197,7 @@ class DateTime: private DTAux
         size_t      year() const;
         size_t      yearDay() const;
         size_t      yearDayNr() const;
-        int         zoneMinutes() const;      // current zone in minutes .f
+        int         zoneMinutes() const;      // current zone in minutes 1.f
 
         bool setDay(int day);
         bool setFields(TM const &ts, TimeFields fields);
@@ -231,7 +223,7 @@ class DateTime: private DTAux
         static void        tm2cout(char const *label, TM const &ts);
         static std::string zoneTxt(int zoneMinutes);
 
-        
+
         int displayZoneShift() const;               // OBS  .f
         bool setFields(TM const &ts, int fields);   // OBS  .f
 
@@ -259,18 +251,10 @@ class DateTime: private DTAux
         void local2local();                     // d_tm local -> local
 
         void zone2utc(int zoneMinutes);             // d_tm zone -> utc
-        void zone2local(int zoneMinutes);           // d_tm zone -> local 
+        void zone2local(int zoneMinutes);           // d_tm zone -> local
         void zone2zone(int tzIn, int tzOut);    // d_tm zone1 -> zone2 shift
 
-        Parse parseStream(std::istream &in);
-        Parse parseFromYear(std::istream &in);  // "2018-12-03 13:29:11+01:00"
-        Parse parseFromDayName(std::istream &in);
-        Parse parseDateR(std::istream &in);
-        Parse parseFromMonth(std::istream &in);
-
-        bool setTmMonth(std::string const &month);  // .f (.ih)
-
-        DateTime &setTMfields(TM const &fields, 
+        DateTime &setTMfields(TM const &fields,
                          void (*modifier)(TM &dest, TM const &src));
 
         DateTime &install(DateTime &tmp);
@@ -278,15 +262,18 @@ class DateTime: private DTAux
         std::ostream &timeStr(std::ostream &out) const;
 
         static void addFields(TM &dest, TM const &src);
+        static int asSeconds(int minutes);  // .f (.ih)
+                                            // shifts multiples of 30'
+                                            // at most +/-12 hours away
+
         static void subFields(TM &dest, TM const &src);
         static void chgDay(TM &dest, TM const &src);
-
         static int defaultZoneSecs();               // shift-seconds for
                                                 // the computer's time zone
         [[noreturn]] static void timeException();
 };
 
-class DateTime::DSTSpec: private DTAux
+class DateTime::DSTSpec
 {
     friend class DateTime;
 
@@ -300,10 +287,10 @@ class DateTime::DSTSpec: private DTAux
 
     public:
         DSTSpec() = default;
-        explicit DSTSpec(bool supportsDST, 
+        explicit DSTSpec(bool supportsDST,
                          int dstMinutes = 60);              // 1.f
         DSTSpec(int dstMinutes);                            // 2.f
-        DSTSpec(std::string const &begin, 
+        DSTSpec(std::string const &begin,
                 std::string const &end, int dstMinutes = 60); // 3.cc
 
         int minutes() const;                        // DST time shift   2.f
@@ -364,7 +351,7 @@ class DateTime::DSTSpec: private DTAux
 #include "year.f"
 #include "yearday.f"
 #include "yeardaynr.f"
-#include "zoneminutes.f"
+#include "zoneminutes1.f"
 
 }   // FBB
 

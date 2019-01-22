@@ -24,18 +24,10 @@ bool DateTime::setFields(TM const &ts, TimeFields fields)
     if (fields & YEAR)
         src.tm_year = ts.tm_year - 1900;
 
-    return setTMfields(src, 
+    return setTMfields(src,
         [](TM &dest, TM const &src)
         {
             dest = src;
         }
     );
 }
-
-
-
-
-
-
-
-

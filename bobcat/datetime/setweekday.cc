@@ -18,9 +18,8 @@ bool DateTime::setWeekday(Weekday weekday, Relative where)
         break;
 
         default:
-        throw Exception{ 1 } << 
+        throw Exception{ 1 } <<
                             "DateTime::setWeekday(): invalid Relative spec.";
     }
     return setDay(d_tm.tm_mday + difference);
 }
-

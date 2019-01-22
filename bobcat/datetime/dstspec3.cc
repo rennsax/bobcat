@@ -1,6 +1,6 @@
 #include "datetime.ih"
 
-DateTime::DSTSpec::DSTSpec(string const &begin, string const &end, 
+DateTime::DSTSpec::DSTSpec(string const &begin, string const &end,
                            int dstMinutes)
 try
 :

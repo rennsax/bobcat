@@ -14,4 +14,3 @@ DateTime::DateTime(TM const &utcTm, int zoneMinutes, DSTSpec const &spec)
 
     iniPimplTM(spec);
 }
-

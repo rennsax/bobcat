@@ -4,12 +4,12 @@ DateTime::DateTime(istream &in, int zoneMinutes, DSTSpec const &spec)
 :
     d_type(LOCALTIME)
 {
-    Parse parse{ parseStream(in) };
+    Parse parse{ in, this };
 
-    if (not parse.zone)
-        utc2zone(zoneMinutes);
+    if (parse.usesZone())
+        zone2zone(parse.zoneMinutes(), zoneMinutes);
     else
-        zone2zone(parse.zoneMinutes, zoneMinutes);
+        utc2zone(zoneMinutes);
 
     iniPimplTM(spec);
 }

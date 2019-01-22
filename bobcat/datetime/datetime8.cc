@@ -10,4 +10,3 @@ DateTime::DateTime(time_t time, int zoneMinutes, DSTSpec const &spec)
 {
     iniLocal(spec);
 }
-

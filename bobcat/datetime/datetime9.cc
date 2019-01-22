@@ -16,4 +16,3 @@ DateTime::DateTime(TM const &tm, TimeType type)
 
     iniZoneDstPimpl();
 }
-

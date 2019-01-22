@@ -1,11 +1,11 @@
 #include "datetime.ih"
 
-DateTime &DateTime::setTMfields(TM const &fields, 
+DateTime &DateTime::setTMfields(TM const &fields,
                            void (*modifier)(TM &dest, TM const &src))
 try
 {
     DateTime tmp{ *this };                  // local copy
-    
+
     gmtime_r(&d_time, &tmp.d_tm);           // UTC now in tmp.d_tm
 
     (*modifier)(tmp.d_tm, fields);
@@ -21,9 +21,5 @@ try
 }
 catch (...)
 {
-    timeException();    
+    timeException();
 }
-
-
-
-

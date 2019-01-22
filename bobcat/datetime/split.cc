@@ -1,7 +1,7 @@
 #include "datetime.ih"
 
 // static
-void DateTime::DSTSpec::split(uint8_t *mon, uint8_t *day, 
+void DateTime::DSTSpec::split(uint8_t *mon, uint8_t *day,
                               std::string const &in)
 {
     int mmdd = stoul(in);
@@ -16,5 +16,3 @@ void DateTime::DSTSpec::split(uint8_t *mon, uint8_t *day,
     if (mktime(&ts) == -1 or ts.tm_mon != *mon or ts.tm_mday != *day)
         throw 1;
 }
-
-

@@ -10,4 +10,3 @@ void DateTime::refreshTM()
     if (gmtime_r(&seconds, &d_tm) == 0)
         timeException();
 }
-

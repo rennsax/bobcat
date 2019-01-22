@@ -5,4 +5,3 @@ inline DateTime::DateTime(TM const &utcTM, int zoneMinutes)
 :
     DateTime(utcTM, zoneMinutes, DSTSpec{ false })      // -> 11.cc
 {}
-

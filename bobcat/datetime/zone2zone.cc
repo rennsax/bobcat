@@ -6,4 +6,3 @@ void DateTime::zone2zone(int tzIn, int tzOut)
     d_zone = asSeconds(tzOut);
 //    zoneOut(tzOut);
 }
-

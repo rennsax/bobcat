@@ -1,11 +1,11 @@
 #include "datetime.ih"
 
-unordered_map<string, DateTime::ZoneData>   DateTime::ZoneNames::s_zone = 
+unordered_map<string, DateTime::ZoneData>   DateTime::ZoneNames::s_zone =
 {
     {"CET", ZoneData{ 60, DSTSpec{ 60 } } }
 };
-    
-unordered_map<DateTime const *, unique_ptr<DateTime::Pimpl>> 
+
+unordered_map<DateTime const *, unique_ptr<DateTime::Pimpl>>
                                                   DateTime::Pimpl::s_pimpl;
 mutex DateTime::Pimpl::s_mutex;
 
@@ -37,14 +37,14 @@ char const *DateTime::s_day[] =
 };
 
 Pattern DateTime::ZoneNames::s_spec           // string to match assumed
-    {                                       // trimmed, used by match.cc 
+    {                                       // trimmed, used by match.cc
         //   1           2
         R"_(^(\w+)\s*:\s*(-?\d+)\s+)_"      // ID : zoneshift: minutes
         // 3
         "("
         //  4           5   6
         R"_((true|false)(\s+(\d+))?|)_"     // true/false [nMinutes shift]
-        //  7   
+        //  7
         R"_((\d+)|)_"                       // nMinutes shift
 
                                             // hhmm hhmm [nMinutes shift]
@@ -53,4 +53,3 @@ Pattern DateTime::ZoneNames::s_spec           // string to match assumed
         ")$",
         true, 12
     };
-

@@ -1,6 +1,9 @@
 #include "datetime.ih"
 
-bool DateTime::setTmMonth(string const &mon)
+bool DateTime::Parse::setTmMonth(string const &mon) const
 {
-    return (d_tm.tm_mon = find(s_month, s_month + 12, mon) - s_month) != 12;
+    return (d_dt.d_tm.tm_mon =
+                find(DateTime::s_month, DateTime::s_month + 12, mon)
+                - DateTime::s_month
+            ) != 12;
 }

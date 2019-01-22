@@ -15,7 +15,7 @@ void DateTime::readZones(std::string const &fname)
         line = String::trim(line);
         if (line.empty() || line[0] == '#')
             continue;
-        
+
             // name: zoneminutes true|false [dstminutes]
             // name: zoneminutes dstminutes
             // name: zoneminutes begin end [dstminutes]

@@ -7,4 +7,3 @@ DateTime &DateTime::operator+=(int seconds)
 
     return install(tmp);
 }
-

@@ -20,27 +20,41 @@
 using namespace std;
 using namespace FBB;
 
-struct DateTime::Parse
+class DateTime::Parse
 {
-    bool zone = false;    // true with all timespecs specifying a zone shift
-    int  zoneMinutes;         // if zone, then the zoneMinutes in minutes
-    
-    Parse() = default;
-    Parse(int minutes);                     // parse1.cc
-    Parse(char sign, int minutes);          //      2.cc
+    istream &d_in;
+    DateTime &d_dt;
+
+    bool d_usesZone = false;  // true for timespecs specifying zone shifts
+    int  d_zoneMinutes;       // if zone, then the zoneMinutes in minutes
+
+    public:
+        Parse(istream &in, DateTime *ptr);
+
+        bool usesZone() const;
+        int zoneMinutes() const;                        // 2
+
+    private:
+        void fromYear();
+        void fromDayName();
+        void dateR();
+        void fromMonth();
+
+        void set(int minutes, int sign = 0);            // 2
+        bool setTmMonth(std::string const &month) const;
 };
 
-class DateTime::Pimpl: private DTAux
+class DateTime::Pimpl
 {
     bool d_DSTactive = false;                   // for the current time
     DSTSpec d_spec;
                                                 // DST is active
     static std::mutex s_mutex;
-    static std::unordered_map<DateTime const *, std::unique_ptr<Pimpl>> 
+    static std::unordered_map<DateTime const *, std::unique_ptr<Pimpl>>
                                                                 s_pimpl;
     public:
         Pimpl() = default;
-                                                // 1 
+                                                // 1
         Pimpl(DSTSpec const &spec);
 
         void setDSTactive(tm *ts);
@@ -49,7 +63,7 @@ class DateTime::Pimpl: private DTAux
         bool activeDST() const;
         bool supportsDST() const;               // 2.f
         int  dstMinutes() const;
-        
+
         static void copy(DateTime *ptr, DateTime const &other);
         static void move(DateTime *ptr, DateTime &&other);
         static Pimpl &get(DateTime const *ptr);
@@ -69,7 +83,7 @@ class DateTime::ZoneData
         ZoneData(int zoneMinutes, DSTSpec const &spec); // 1
         int minutes() const;
 };
-    
+
 class DateTime::ZoneNames
 {
                                                 // zone names and their
@@ -80,7 +94,7 @@ class DateTime::ZoneNames
     public:
         static void addZone(string const &name, ZoneData const &info); // 2.cc
         static int minutes(string const &zoneName); // zonenamesminutes.cc
-        static void match(string const &fname, size_t lineNr, 
+        static void match(string const &fname, size_t lineNr,
                                                string const &line);
 };
 
@@ -92,3 +106,5 @@ class DateTime::ZoneNames
 #include "endday.f"
 #include "endmon.f"
 #include "minutes3.f"
+#include "useszone.f"
+#include "zoneminutes2.f"

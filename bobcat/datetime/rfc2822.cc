@@ -9,12 +9,11 @@ string DateTime::rfc2822() const
             1900 + d_tm.tm_year << ' ';
 
     timeStr(out) << ' ' <<
-            showpos << 
-                setw(3) << internal << 
-                            d_zone / 3600 << 
-            noshowpos << 
+            showpos <<
+                setw(3) << internal <<
+                            d_zone / 3600 <<
+            noshowpos <<
                 setw(2) << abs(d_zone) % 3600 / 60;
 
     return out.str();
 }
-

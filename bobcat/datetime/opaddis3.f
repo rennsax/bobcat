@@ -6,4 +6,3 @@ DateTime &DateTime::operator+=(Type const &time)
 
     return install(tmp);
 }
-

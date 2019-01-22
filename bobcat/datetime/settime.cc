@@ -8,4 +8,3 @@ bool DateTime::setTime(time_t utcSeconds)
 
     return install(tmp);
 }
-

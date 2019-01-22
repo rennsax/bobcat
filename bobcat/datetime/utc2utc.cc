@@ -2,7 +2,7 @@
 
     // d_tm utc, initialize utc
 
-void DateTime::utc2utc()            // tm = time 
+void DateTime::utc2utc()            // tm = time
 {
     d_tm.tm_sec += defaultZoneSecs();  // add default zone
 

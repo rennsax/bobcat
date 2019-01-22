@@ -6,4 +6,3 @@ void DateTime::utc2zone(int tzMinutes)     // in minutes
     d_zone = asSeconds(tzMinutes);
 //    zoneOut(zoneMinutes);
 }
-
