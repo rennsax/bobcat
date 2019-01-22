@@ -5,6 +5,9 @@ bobcat (4.09.00)
 
   * The Log and level man pages were updated accordingly.
 
+  * The class DateTime was completely rewritten, using a Pimpl approach using
+    the this-pointer instead of a separate data member.
+
   * The members 'int pSync()', defined in IOStreambuf, LogBuffer,
     MultiStreambuf, OFdStreambuf, OFoldStreambuf, OHexStreambuf, Syslogbuf,
     and TableBuf are superfluous. They still exists (as private members), but
@@ -23,7 +26,7 @@ bobcat (4.09.00)
   * Internal headers include bobcat headers using "../classname/classname"
     instead of <bobcat/classname>.
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 29 Dec 2018 13:48:04 +0100
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue, 22 Jan 2019 15:29:00 +0100
 
 bobcat (4.08.06)
 

@@ -769,7 +769,7 @@ manpagesection(EXAMPLES)
     Many examples illustrating the use of tt(DateTime) objects are provided in
 the source archive's tt(bobcat/datetime/driver/demos) directory. Here is an
 example:
-        verbinclude(../datetime/driver/demos/add.cc)
+        verbinclude(../../datetime/driver/demos/add.cc)
 
 manpagefiles()
     em(bobcat/datetime) defines the class interface.
