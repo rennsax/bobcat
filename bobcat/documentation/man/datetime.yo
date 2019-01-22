@@ -201,10 +201,10 @@ tt(istreams).
 
 When using standard textual time representations and requesting
 tt(DateTime::LOCALTIME) timezone shift specifications (+0100, +01:00) are used
-to determine UTC time, followed by a correction for the actual local time
-using the computer's current timezone setting. E.g., if the computer's local
-time zone equals +1 hour, then specifying tt(2018-12-03 13:29:11+04:00)
-and requesting tt(LOCALTIME) results in 13 - 4 + 1 = 10 hr local time.
+to determine UTC time, followed by a correction for the local time using the
+computer's current timezone setting. E.g., if the computer's local time zone
+equals +1 hour, then specifying tt(2018-12-03 13:29:11+04:00) and requesting
+tt(LOCALTIME) results in 13 - 4 + 1 = 10 hr local time.
 
 manpagesection(TIME ZONES AND DAYLIGHT SAVING TIMES)    
 
@@ -419,7 +419,7 @@ without modifying the destination object.
         tt(tm_year) fields of tt(ts).
 
     itb(DateTime const operator+(DateTime const &obj, 
-                                 DurationType const &duration)}
+                                 DurationType const &duration))
        Returns a copy of tt(obj) representing a date/time equal to tt(obj's)
         time plus the number of seconds implied by the tt(duration) object
         have been added. This function was implemented as a function
@@ -450,7 +450,7 @@ without modifying the destination object.
         tt(tm_year) fields of tt(ts).
 
     itb(DateTime const operator-(DateTime const &obj, 
-                                 DurationType const &duration)}
+                                 DurationType const &duration))
        Returns a copy of tt(obj) representing a date/time equal to tt(obj's)
         time minus the number of seconds implied by the tt(duration) object
         have been added. This function was implemented as a function
@@ -497,6 +497,7 @@ without modifying the destination object.
     itb(bool operator>=(DateTime const &left, DateTime const &right))
        Returns tt(true) if tt(left) represents a later or equal UTC time as
         tt(right).
+
     )
 
 Copy and move assignment operators are available.
@@ -633,7 +634,7 @@ at 1.
        For backward compatibility reasons tt(true) is returned;
 
     itb(void swap(DateTime &other))
-       Swaps the current and other tt(DateTime objects;
+       Swaps the current and other tt(DateTime) objects;
 
     itb(tm const *timeStruct() const)
        Returns a pointer to the object's current tt(tm) representing its
@@ -703,7 +704,7 @@ manpagesection(STATIC MEMBERS)
     itb(void readZones(std::string const &fname))
        The file tt(fname) contains time zone names and their
         specifications. Empty lines and lines beginning with tt(#) are
-        ignored. Time zone specifications can use the following formats:
+        ignored. The following time zone specification formats are recognized:
             verb(
     # zone NAME: zone shift 60 min. wrt UTC and does not use DST
     NAME: 60 false
@@ -722,13 +723,19 @@ manpagesection(STATIC MEMBERS)
             )
 
     itb(void tm2cout(char const *label, TM const &ts))
+       This static member is used for debugging purposes. It displays the
+        values of tt(ts's) fields, preceded by tt(label) and tt(": ");
+
     itb(std::string zoneTxt(int zoneMinutes))
+       The zone minutes are converted to a tt(hh:mm) string representation/
     )
-    )
+
+
 manpagesection(OBSOLETED)
 
-The following members are available, but do not inspect or modify their
-tt(DateTime) objects. They are removed in a future Bobcat release.
+The following members are kept for backward compatibility reasons, but do not
+inspect or modify their tt(DateTime) objects anymore. They are removed in a
+future Bobcat release.
     itemization(
     itb(operator bool() const)
        Returns bf(true);
@@ -757,17 +764,18 @@ tt(DateTime) objects. They are removed in a future Bobcat release.
         Use tt(displayZoneMinutes()).
     )
 
-manpagesection(EXAMPLE)
+manpagesection(EXAMPLES)
     
-    An extensive example illustrating the use of all of tt(DateTime)'s members
-is provided in the file tt(bobcat/datetime/driver/driver.cc) found in the
-source archive.
+    Many examples illustrating the use of tt(DateTime) objects are provided in
+the source archive's tt(bobcat/datetime/driver/demos) directory. Here is an
+example:
+        verbinclude(../datetime/driver/demos/add.cc)
 
 manpagefiles()
     em(bobcat/datetime) defines the class interface.
 
 manpageseealso()
-        bf(bobcat)(7), bf(Exception)(3bobcat), bf(asctime_r)(3), 
+        bf(bobcat)(7), bf(Exception)(3bobcat), 
         bf(gmtime_r)(3), bf(localtime_r)(3), bf(time)(2),
         bf(mktime)(3),
         bf(https://www.timeanddate.com/time/dst/events.html)
@@ -775,6 +783,6 @@ manpageseealso()
 manpagebugs()
     The class tt(DateTime) assumes that bf(time)(2) returns the time in
     UTC.nl()
-    English is used / expected when specifying named date components.
+    English is used/expected when specifying named date components.
 
 includefile(include/trailer)

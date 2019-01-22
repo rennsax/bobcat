@@ -7,6 +7,7 @@ void DateTime::readZones(std::string const &fname)
 
     size_t count = 0;
     string line;
+
     while (getline(in, line))
     {
         ++count;
@@ -15,9 +16,9 @@ void DateTime::readZones(std::string const &fname)
         if (line.empty() || line[0] == '#')
             continue;
         
-            // true|false [minutes]
-            // minutes
-            // begin end [minutes]
+            // name: zoneminutes true|false [dstminutes]
+            // name: zoneminutes dstminutes
+            // name: zoneminutes begin end [dstminutes]
         ZoneNames::match(fname, count, line);
     }
 }

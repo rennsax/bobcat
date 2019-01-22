@@ -26,17 +26,7 @@ int main()
     local = copy;
     cout << "Back to the initial time time: " << local << "\n\n";
 
-    local += tm
-//                {
-//                    0,    // sec
-//                    0,    // min
-//                    0,    // hr
-//                    1,    // mday
-//                    5,    // month
-//                    0  // year
-//                };
-
-                {
+    local += tm {
                     +10,    // sec
                     +10,    // min
                      -5,    // hr
