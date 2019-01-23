@@ -110,7 +110,7 @@ class DateTime
     public:
         struct DSTSpec;
                                                 // time displayed as TimeType
-        explicit DateTime(TimeType type = UTC);                 // 1.f
+        explicit DateTime(TimeType type = UTC);                 // 1
         DateTime(DateTime const &other);                        // 2
         DateTime(DateTime &&tmp);                               // 3
                                                 // LOCAL: UTC + zoneMinutes
@@ -304,7 +304,6 @@ class DateTime::DSTSpec
         static void split(uint8_t *mon, uint8_t *day, std::string const & in);
 };
 
-#include "datetime1.f"
 #include "datetime4.f"
 #include "datetime5.f"
 #include "datetime7.f"
