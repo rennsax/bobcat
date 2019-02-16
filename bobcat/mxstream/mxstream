@@ -1,0 +1,54 @@
+#ifndef INCLUDED_BOBCAT_MXSTREAM_
+#define INCLUDED_BOBCAT_MXSTREAM_
+
+#include <ostream>
+#include <mutex>
+
+namespace FBB
+{
+
+class MxStream
+{
+    std::ostream &d_out;
+
+    public:
+        class Out;
+
+        explicit MxStream(std::ostream &out);
+
+        Out ostream() const;
+};
+
+class MxStream::Out: public std::ostream
+{
+    friend Out MxStream::ostream() const;
+
+    template <typename Tp>
+    friend Out operator<<(MxStream const &mstr, Tp &&tp);               // 1.f
+
+    template <typename Ret>
+    friend Out operator<<(MxStream const &mstr,                         // 2.f
+                          Ret &(*manip)(Ret &os));
+
+    static std::recursive_mutex s_mutex;
+
+    public:
+        ~Out();
+
+    private:
+        Out(MxStream const &mstr);              // 1.cc
+        Out(Out &&tmp);                         // 2.f
+};
+
+#include "mxstream1.f"
+#include "ostream.f"
+#include "out2.f"
+#include "operatorinsert1.f"
+#include "operatorinsert2.f"
+
+}   // FBB
+
+#endif
+
+
+

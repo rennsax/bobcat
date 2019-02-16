@@ -268,6 +268,9 @@ The following classes and functions are available:
     insertions to multiple tt(std::ostream) objects.nl()
     Manpage(multistreambuf)
 
+    bf(FBB::MxStream): Mutex protected tt(std::ostream).nl()
+    Manpage(mxstream)
+
     bf(FBB::OFdStream): stream inserting information into a device whose
         file descriptor is available. nl()
     Manpage(ofdstream)
@@ -484,7 +487,6 @@ COMMENT(    it() bf(DEPRECATED CLASSES))
 
     itemization(
     it() bf(COMMAND LINE INTERFACE AND CONFIGURATION FILES)
-
 
     bf(FBB::Arg): Interfaces the command line arguments, allowing for
     short- and long options. The class is implemented as a tt(Singleton).nl()
@@ -776,6 +778,9 @@ END)
     bf(FBB::MultiStreambuf): tt(std::streambuf) specializations performing
     insertions to multiple tt(std::ostream) objects.nl()
     Manpage(multistreambuf)
+
+    bf(FBB::MxStream): Mutex protected tt(std::ostream).nl()
+    Manpage(mxstream)
 
     bf(FBB::OFdStream): stream inserting information into a device whose
         file descriptor is available. nl()

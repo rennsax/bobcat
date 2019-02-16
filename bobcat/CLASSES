@@ -57,6 +57,7 @@ mailheaders
 mbuf
 mstream
 multistreambuf
+mxstream
 ofdstream
 ofdstreambuf
 ofilterstreambuf

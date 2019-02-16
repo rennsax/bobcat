@@ -1,0 +1,111 @@
+includefile(include/header)
+
+COMMENT(replace 'classname' by the name of the new class)
+
+COMMENT(manpage, section, releasedate, archive, short name)
+manpage(FBB::MxStream)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+                    (Mutex protected std::ostream)
+
+manpagename(FBB::MxStream)(Offers mutex protected std::ostream facilities)
+
+manpagesynopsis()
+    bf(#include <bobcat/mxstream>)nl()
+    Linking option: tt(-lbobcat) 
+
+manpagedescription()
+
+In multi-threaded programs output written by different threads to the same
+output stream may be intermixed due to context switches. This is prevented by
+using mutexes: before writing to the output stream a mutex lock is acquired,
+releasing the lock once the output is completed. 
+
+tt(MxStream) supports writing to output streams while handling the mutex
+locks. The tt(MxStream) object itself is initialized with the tt(std::ostream)
+object to receive the information written to the tt(MxStream) object. This
+object, like tt(std::cout) and tt(std::err) usually is defined as a globally
+accessible object. When inserting information into the tt(MxStream) object
+tt(MxStream) first returns an tt(MxStream::Out) object, whose constructor
+locks the tt(MxStream::Out) mutex. The tt(MxStream::Out) object's lifetime
+ends at the end of the insertion statement, and at that time its destructor
+releases the lock.
+
+In many cases this is appropriate. Especially when statements end in newlines
+(tt('\n') or tt(endl) this results in clean output. In some cases this
+approach doesn't work. Consider the situation where the output is produced by
+a series of iterations in a tt(for)-statement. For these cases tt(MxStream)
+offers the member tt(ostream) which returns an tt(MxStream::Out) object. As
+that object also locks the mutex, the lock also remains active during its
+lifetime. During its lifetime separate tt(MxStream) insertions expressions may
+be executed. E.g., the following code fragment will complete all output
+forcing competing threads to wait:
+        verb(
+    void fun()
+    {
+        MxStream mout{ std::cout }; // create an MxStream object
+        {
+            auto out{ mout.ostream() }  // locks the mutex (1)
+            mout << "Hello ";           // also locks (2)
+            out << "world\n";           // done (-> (1))
+        }                               // 'out' releases the lock
+    }
+        )
+    Be careful to restrict the lifetime of the object returned by
+tt(MsStream::ostream()).
+
+includefile(include/namespace)
+
+manpagesection(INHERITS FROM)
+    (via tt(MxStream::Out)) tt(std::ostream)
+
+manpagesection(CONSTRUCTORS)
+    itemization(
+    itb(MxStream(std::ostream &out))
+       The tt(MxStream) object is initialized with an tt(std::ostream)
+        object. 
+    )
+
+    Copy and move constructors are available.
+
+manpagesection(OVERLOADED OPERATORS)
+    itemization(
+    itb(MxStream::Out operator<<(MxStream const &mstr, Tp &&tp))
+       This member is a function template. Its forwarding reference
+        is passed on to the tt(MxStream::Out) object constructed by
+        tt(mstr). Since tt(MxStream::Out) constructors lock the class's mutex,
+        and since tt(MxStream::Out) was derived from tt(std::ostream) all
+        insertion and other operations that are allowed for tt(std::ostream)
+        can also be used for tt(MxStream::Out) objects.
+
+    itb(MxStream::Out operator<<(MxStream const &mstr, 
+                                                    Ret &(*manip)(Ret &os)))
+       This member also is a function template. It is used for inserting
+        manipulators without arguments into tt(MxStream::Out) objects.
+    )
+
+    Copy and move assignment operators are not available.
+
+manpagesection(MEMBER FUNCTIONS)
+    itemization(
+    itb(MxStream::Out ostream() const)
+       A tt(MxStream::Out) object is returned that has locked its mutex, and
+        will keep the lock during its lifetime. All functionality of the
+        tt(std::ostream) class can also be used for the tt(MxStream::Out)
+        object returned by tt(ostream).
+        Be careful to restrict the lifetime of
+        the object returned by tt(MsStream::ostream()) to avoid needlessly
+        long mutex locks.
+    )
+
+manpagesection(EXAMPLE)
+    verbinclude(../../mxstream/driver/driver.cc)
+
+manpagefiles()
+    em(bobcat/mxstream) - defines the class interface
+
+manpageseealso()
+    bf(bobcat)(7)
+
+manpagebugs()
+    None Reported.
+
+includefile(include/trailer)
