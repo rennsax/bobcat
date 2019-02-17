@@ -268,7 +268,7 @@ The following classes and functions are available:
     insertions to multiple tt(std::ostream) objects.nl()
     Manpage(multistreambuf)
 
-    bf(FBB::MxStream): Mutex protected tt(std::ostream).nl()
+    bf(FBB::OMutexStream): Mutex protected tt(std::ostream).nl()
     Manpage(mxstream)
 
     bf(FBB::OFdStream): stream inserting information into a device whose
@@ -779,7 +779,7 @@ END)
     insertions to multiple tt(std::ostream) objects.nl()
     Manpage(multistreambuf)
 
-    bf(FBB::MxStream): Mutex protected tt(std::ostream).nl()
+    bf(FBB::OMutexStream): Mutex protected tt(std::ostream).nl()
     Manpage(mxstream)
 
     bf(FBB::OFdStream): stream inserting information into a device whose

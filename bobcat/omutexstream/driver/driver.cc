@@ -5,12 +5,12 @@
 #include <cmath>
 #include <ctime>
 
-#include <bobcat/mxstream>
+#include <bobcat/omutexstream>
 
 using namespace std;
 using namespace FBB;
 
-MxStream mout(cout);
+OMutexStream mout(cout);
 
 void run(int nr)
 {

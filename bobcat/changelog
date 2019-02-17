@@ -1,6 +1,6 @@
 bobcat (4.10.00)
 
-  * Added class MxStream for mutex protected ostream operations.
+  * Added class OMutexStream for mutex protected ostream operations.
 
 bobcat (4.09.00)
 

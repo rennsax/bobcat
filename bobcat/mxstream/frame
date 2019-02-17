@@ -1,5 +1,0 @@
-#include "mxstream.ih"
-
-MxStream::
-{
-}

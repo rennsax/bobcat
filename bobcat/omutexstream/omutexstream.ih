@@ -1,4 +1,4 @@
-#include "mxstream"
+#include "omutexstream"
 
 //#include <iostream>
 //#define XERR std::cerr << __FILE__": "
