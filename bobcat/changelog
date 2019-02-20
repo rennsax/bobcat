@@ -2,6 +2,9 @@ bobcat (4.10.00)
 
   * Added class OMutexStream for mutex protected ostream operations.
 
+  * Fixed flaw in Log's FBB::fnl handling
+
+
 bobcat (4.09.00)
 
   * The class Log unconditionally inserts level-free messages; level

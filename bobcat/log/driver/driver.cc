@@ -2,6 +2,7 @@
 #include <iomanip>
 
 #include <bobcat/log>
+#include <bobcat/level>
 
 using namespace std;
 using namespace FBB;
@@ -23,7 +24,11 @@ int main()
 
     log << level(0) << "not shown" << level(2) << "shown at level 2\n";
     log << level(3) << "at level(3)" << level(1) << "not shown" << fnl;
+
     log << "separate new line\n";
+
+    log << level(2) << "in business again\n";
+    log << "final line\n";
 }
 
 

@@ -20,8 +20,7 @@ int LogBuffer::overflow(int c)
         break;
 
         case 1:             // at fnl (forced new line) (re)activate and
-            d_active = true;    // fallthrough (continue) as \n
-            c = '\n';
+            c = '\n';       // fallthrough (continue) as \n
         [[fallthrough]];
 
         case '\n':          // at '\n', set d_empty to true. This generates 

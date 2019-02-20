@@ -16,8 +16,9 @@ std::ostream &operator<<(std::ostream &str, LogManipulator manipulator)
                                             // LogBuffer as '\n', without
         break;                              // timestamp writing request.
 
-        default:                            // fnl not used. This 
-        break;                              // prevents the 'not used' warning
+        case fnl:
+            str << static_cast<char>(1);
+        break;
     }
     return str;
 }
