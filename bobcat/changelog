@@ -4,6 +4,7 @@ bobcat (4.10.00)
 
   * Fixed flaw in Log's FBB::fnl handling
 
+  * Added missing DateTime::utcSeconds()
 
 bobcat (4.09.00)
 

@@ -340,6 +340,7 @@ class DateTime::DSTSpec
 #include "opsubis1.f"
 #include "opsubis3.f"
 
+#include "utcseconds.f"
 #include "seconds.f"
 #include "setfields.f"
 #include "setmonth2.f"
