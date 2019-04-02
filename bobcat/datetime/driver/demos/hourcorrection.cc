@@ -38,9 +38,12 @@ int main()
 
 
     // set the local time to noon (12 hrs)
-    zoneTime = current + 3600 + dst * 3600;
+    zoneTime = current + 3600 + dst * 3600;     // use the currently active
+                                                // zone shift (3600) and DST
+                                                // correction
     ts = gmtime(&zoneTime);
-    ts->tm_hour = 12 + dst;
+    ts->tm_hour = 12 + dst;                     // the computer's DST spec.
+                                                // must be added
     zoneTime = mktime(ts);
     ts = gmtime(&zoneTime);
     cout << "noon: " << ts->tm_hour << '\n'; 
