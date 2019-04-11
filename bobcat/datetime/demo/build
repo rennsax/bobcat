@@ -1,0 +1,7 @@
+#!/bin/bash
+
+g++ --std=c++2a -Wall -I../../tmp -fconcepts \
+    -fdiagnostics-color=never -pthread \
+    $1 \
+    -L../../tmp/liba -lbobcat -s
+
