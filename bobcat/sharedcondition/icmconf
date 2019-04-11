@@ -1,4 +1,4 @@
 #define LIBRARY             "sharedcondition"
-#define THREAD              "-pthread -I."
+#define AUXFLAGS              "-pthread -I."
 
 #include "../icmconf"

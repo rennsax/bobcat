@@ -1,14 +1,14 @@
 #define USE_ECHO            ON
 #define CLS
 
-#ifndef THREAD
-#define THREAD              ""
+#ifndef AUXFLAGS
+#define AUXFLAGS              ""
 #endif
 
 #define CXX                 "g++"
 
     // Check INSTALL.im for 'build' compiler options
-#define CXXFLAGS            "--std=c++2a " ${THREAD} " -Wall -O2" \
+#define CXXFLAGS            "--std=c++2a " ${AUXFLAGS} " -Wall -O2" \
                             " -fdiagnostics-color=never "
 // see pf_iterator/icmconf for an example using -system
 

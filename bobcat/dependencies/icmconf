@@ -4,7 +4,7 @@
 #define TMP_DIR             "tmp"
 #define USE_ECHO              ON
 #define CXX                 "g++"
-#define CXXFLAGS            " --std=c++14 -Wall -O2" \
+#define CXXFLAGS            " --std=c++2a -Wall -O2" \
                             " -fdiagnostics-color=never "
 #define IH                  ".ih"
 #define REFRESH

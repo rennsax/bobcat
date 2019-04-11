@@ -11,7 +11,7 @@
 // #define USE_VERSION
 #define CXX                 "g++"
 //#define CC                "gcc"
-#define CXXFLAGS            " --std=c++14 -Wall -O2" \
+#define CXXFLAGS            " --std=c++2a -Wall -O2" \
                             " -fdiagnostics-color=never "
 //#define CFLAGS            " -Wall -O2"
 #define IH                  ".ih"

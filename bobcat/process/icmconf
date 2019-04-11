@@ -1,5 +1,5 @@
 #define LIBRARY             "process"
-#define THREAD              "-pthread"
+#define AUXFLAGS              "-pthread"
 
 #include "../icmconf"
 
