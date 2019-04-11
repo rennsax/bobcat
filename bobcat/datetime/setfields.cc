@@ -20,7 +20,7 @@ void DateTime::setFields(TM const &src, TimeFields fields)
     if (fields & YEAR)
         d_tm.tm_year = src.tm_year - 1900;
 
-    d_utcSec = utcFromTM(d_tm);
+    d_utcSec = utcForZone(Pimpl::get(this).spec().c_str(), d_tm);
 
     assignTM();
 }

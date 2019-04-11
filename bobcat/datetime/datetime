@@ -100,7 +100,7 @@ class DateTime
 
             static std::unordered_map<std::string, 
                                         std::unique_ptr<Zone>> s_zone;
-            static int s_ini;
+            static time_t s_thisZoneShift;
             static std::string s_defaultTZ;
             static std::mutex s_mutex;
             static char const s_anon[];
@@ -136,6 +136,8 @@ class DateTime
                 static void read(std::string const &fname); // read zone specs
                                                             // from file
 
+                static time_t thisZoneShift();              // in seconds
+
             private:
                 Zone() = default;       // required for the unordered_map
                 Zone(Data &&data);                                      // 4.f
@@ -170,9 +172,9 @@ class DateTime
 
                 static void requireAlpha(std::string const &name);
 
-                static int initialize();
+                static time_t initialize();
 
-                static void thisZone(); // define the computer's current zone
+                static time_t thisZone(); // define the computer's current zone
 
                 static void addZone(std::string const &line, 
                                     std::string const &fname, 
@@ -316,9 +318,9 @@ class DateTime
         Month       month() const;                                  // .f
         size_t      monthDayNr() const;                             // .f
         size_t      seconds() const;                                // .f
-        DateTime    thisTime() const;  // The computer's local time   .f
+        DateTime    thisTime() const;  // The computer's local time    .f
         TM   const *timeStruct() const;                             // .f
-        DateTime   utc() const;                                    // .f
+        DateTime    utc() const;                                    // .f
         time_t      utcSeconds() const;                             // .f
         Weekday     weekday() const;                                // .f
         size_t      weekNr() const;

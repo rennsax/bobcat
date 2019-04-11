@@ -14,7 +14,7 @@ int main()
     cout << utcCopy << '\n';
 
 
-    DateTime local{ time(0), DateTime::LOCALTIME };
+    DateTime local{ DateTime::LOCALTIME };
     cout << local << ", dst = " << local.dst() << '\n';
 
     DateTime localCopy{ local };

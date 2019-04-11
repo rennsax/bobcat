@@ -42,7 +42,7 @@ mutex DateTime::Zone::s_mutex;
 
 unordered_map<string, unique_ptr<DateTime::Zone>> DateTime::Zone::s_zone;
 
-int DateTime::Zone::s_ini = DateTime::Zone::initialize();
+time_t DateTime::Zone::s_thisZoneShift = DateTime::Zone::initialize();
 
 string DateTime::Zone::s_defaultTZ;
 
