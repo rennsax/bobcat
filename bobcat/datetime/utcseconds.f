@@ -1,4 +1,4 @@
 inline time_t DateTime::utcSeconds() const
 {
-    return d_time;
+    return d_utcSec;
 }

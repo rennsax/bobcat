@@ -2,5 +2,5 @@
 
 DateTime::TriVal DateTime::dst() const
 {
-    return Pimpl::get(this).activeDST() ? YES : NO;
+    return d_tm.tm_isdst ? YES : NO;
 }

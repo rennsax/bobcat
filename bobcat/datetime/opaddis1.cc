@@ -1,9 +1,9 @@
 #include "datetime.ih"
 
-DateTime &DateTime::operator+=(int seconds)
+DateTime &DateTime::operator+=(chrono::seconds seconds)
 {
-    DateTime tmp{ *this };
-    tmp.d_time += seconds;
+    d_utcSec += seconds.count();
+    assignTM();
 
-    return install(tmp);
+    return *this;
 }

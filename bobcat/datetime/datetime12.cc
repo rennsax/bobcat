@@ -2,5 +2,5 @@
 
 DateTime::DateTime(string const &timeStr,  TimeType type)
 :
-    DateTime(istringstream{timeStr}, type)          // 14.f
+    DateTime(istringstream{timeStr}, type)                  // 14.f
 {}

@@ -1,12 +1,7 @@
 #include "datetime.ih"
 
-bool DateTime::setYear(int year)
+void DateTime::setYear(int year)
 {
                 //    s  m  h  md m
-    return setTMfields(TM{ 0, 0, 0, 0, 0, year },
-        [](TM &dest, TM const &src)
-        {
-            dest.tm_year = src.tm_year - 1900;
-        }
-    );
+    setFields(TM{ 0, 0, 0, 0, 0, year }, YEAR);
 }

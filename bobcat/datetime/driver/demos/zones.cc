@@ -8,7 +8,7 @@ using namespace FBB;
 int main()
 try
 {
-    DateTime::readZones("zones");
+    DateTime2::readZones("zones");
 }
 catch (exception const &exc)
 {

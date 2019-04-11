@@ -10,8 +10,8 @@ void showLocalTime();
 void showDesiredTime();
 void changeHours();
 
-extern time_t localZone;        // local zone shift, not considering DST
-extern time_t localDST;         // local DST info (all in seconds)
+extern time_t thisZone;        // local zone shift, not considering DST
+extern time_t thisDST;         // local DST info (all in seconds)
 
 extern bool showDesired;
 extern bool setHours;

@@ -9,10 +9,10 @@ using namespace FBB;
 
 int main()
 {
-//    DateTime dt;                        // Current UTC time
+//    DateTime2 dt;                        // Current UTC time
 //    cout << " 1: " << dt << " (UTC Time)\n";
 //
-//    DateTime local(DateTime::LOCALTIME); // Current local time
+//    DateTime2 local(DateTime2::LOCALTIME); // Current local time
 //
 //    cout << " 2: " << local << " (Local Time (LT))\n"
 //            "    Y: " << local.year() << " M: " << local.month() << 
@@ -25,11 +25,11 @@ int main()
 //                                    " yrDayNr: " << local.yearDayNr() <<
 //                                    " weekNr: " << local.weekNr() << endl;
 //
-//    DateTime pst(-8 * 60);              // Current PST
+//    DateTime2 pst(-8 * 60);              // Current PST
 //    cout << " 3: " << pst << " (Current PST)\n";
 //
 //                                        // current local time
-//    DateTime modify(dt.time(), DateTime::LOCALTIME);
+//    DateTime2 modify(dt.time(), DateTime2::LOCALTIME);
 //    cout << " 4: " << modify << " (Local time now equal to earlier UTC)\n";
 //    cout << "    " << modify.utc() << " (matching UTC time)\n";
 //    cout << modify.dst() << endl;
@@ -47,7 +47,7 @@ int main()
 //    cout << "    DST active: "  << modify.dst() << endl;
 //
 //                                        // 01:00.yy, 2nd of Jan. next year
-//    modify.setMonth(DateTime::JANUARY, DateTime::NEXT); 
+//    modify.setMonth(DateTime2::JANUARY, DateTime2::NEXT); 
 //    cout << " 8: " << modify << " (prev. LT at jan next yr)\n";
 //    cout << "    DST active: "  << modify.dst() << endl;
 //
@@ -60,7 +60,7 @@ int main()
 //    modify.setTime(dt.time());          // back to current time 
 //    cout << "11: " << modify << " (LT again)\n";
 //
-//    modify.setWeekday(DateTime::MONDAY);  // coming Monday
+//    modify.setWeekday(DateTime2::MONDAY);  // coming Monday
 //    cout << "12: " << modify << " (LT next monday (or now's monday))\n";
 //
 //    modify.setYear(2000);               // some years ago
@@ -72,33 +72,33 @@ int main()
 //    modify = modify.utc();
 //    cout << "14: " << modify << " (UTC via LT in timeStruct)\n";
 //            
-//    DateTime local2(timeStruct, DateTime::LOCALTIME);  // local time 
+//    DateTime2 local2(timeStruct, DateTime2::LOCALTIME);  // local time 
 //    cout << "15: " << local2 << " (LT again)\n";
 //
-//    DateTime local3(timeStruct, 2 * 60);  
+//    DateTime2 local3(timeStruct, 2 * 60);  
 //    cout << "16: " << local3 << " (LT + 2 hours)\n";
 
 
-    DateTime t7a{" 2008-11-02 13:29:11+00:00", DateTime::LOCALTIME };
+    DateTime2 t7a{" 2008-11-02 13:29:11+00:00", DateTime2::LOCALTIME };
     cout << t7a << ", utc: " << t7a.utc() << '\n';
 
 
 //    cout << "\n"
 //            "Using UTC time string `Tue Nov 18 15:06:29 2008'\n";
 //
-//    DateTime utcStr("Tue Nov 18 15:06:29 2008");    // LT string
+//    DateTime2 utcStr("Tue Nov 18 15:06:29 2008");    // LT string
 //    cout << "17: " << utcStr << " " << utcStr.time() << " (UTC timestring)\n";
 
-//    DateTime utcX(utcStr.time(), DateTime::UTC);
+//    DateTime2 utcX(utcStr.time(), DateTime2::UTC);
 //    cout << "18: " << utcX << " " << utcX.time() << " (same)\n";
 //
-//    DateTime localStr("Tue Nov 18 15:06:29 2008", DateTime::LOCALTIME);
+//    DateTime2 localStr("Tue Nov 18 15:06:29 2008", DateTime2::LOCALTIME);
 //    cout << "19: " << localStr << " (creating LT)\n";
 //
-//    DateTime localStr2("Tue Nov 18 15:06:29 2008", DateTime::LOCALTIME, +60);
+//    DateTime2 localStr2("Tue Nov 18 15:06:29 2008", DateTime2::LOCALTIME, +60);
 //    cout << "20: " << localStr2 << " (creating  LT + 1 hr (== UTC + 2 hr))\n";
 //
-//    DateTime timeStr3("Tue Nov 18 15:06:29 2008", 120, 60);
+//    DateTime2 timeStr3("Tue Nov 18 15:06:29 2008", 120, 60);
 //    cout << "21: " << timeStr3 << " (creating  UTC + 2 + 1 hr))\n";
 //
 //    timeStr3 += 31;
@@ -126,15 +126,15 @@ int main()
 //    timeStr3 -= timeStruct;
 //    cout << "26: " << timeStr3 << " (begin of the epoch)\n";
 //
-//    DateTime dst(DateTime::LOCALTIME);
-//    dst.setMonth(DateTime::AUGUST);
+//    DateTime2 dst(DateTime2::LOCALTIME);
+//    dst.setMonth(DateTime2::AUGUST);
 //    cout << "27: " << dst << ", DST: " << dst.dst() << 
 //                                            " (LT in aug., show dst)\n";
 //
 //    cout << "28: " << dst.rfc2822() << " (same, rfc 2822)\n";
 //    cout << "29: " << dst.rfc3339() << " (same, rfc 3339)\n";
 //
-//    dst.setMonth(DateTime::JANUARY);
+//    dst.setMonth(DateTime2::JANUARY);
 //    cout << "30: " << dst << ", DST: " << dst.dst() << 
 //                                            " (LT in jan., show dst)\n";
 //
@@ -142,7 +142,7 @@ int main()
 //    cout << "32: " << dst.rfc3339() << " (same, rfc 3339)\n";
 //
 //
-//    DateTime utcDst(dst.utc());
+//    DateTime2 utcDst(dst.utc());
 //
 //    cout << "33: " << dst.timeZoneShift(3 * 60) << " (UTC + 3 time zones)\n";
 //    cout << "34: " << dst << " (time in jan. again)\n";

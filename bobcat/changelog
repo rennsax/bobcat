@@ -6,6 +6,8 @@ bobcat (4.10.00)
 
   * Added missing DateTime::utcSeconds()
 
+  * Redesigned DateTime
+
 bobcat (4.09.00)
 
   * The class Log unconditionally inserts level-free messages; level

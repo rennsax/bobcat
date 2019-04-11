@@ -8,11 +8,11 @@ void getLocal()
 
     gmtime_r(&current, &ts);             // convert to struct tm
 
-    localZone = current - mktime(&ts);   // local zone shift
+    thisZone = current - mktime(&ts);   // local zone shift
 
-    localDST = ts.tm_isdst == 1 ? 3600 : 0; // the computer thinks DST is used
+    thisDST = ts.tm_isdst == 1 ? 3600 : 0; // the computer thinks DST is used
 
     
-    cout << "Local zone = " << localZone / 3600. << 
-                " hour(s), local DST: " << localDST / 3600 << " hour(s)\n\n";
+    cout << "Local zone = " << thisZone / 3600. << 
+                " hour(s), local DST: " << thisDST / 3600 << " hour(s)\n\n";
 }

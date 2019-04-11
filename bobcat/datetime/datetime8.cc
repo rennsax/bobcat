@@ -1,12 +1,10 @@
 #include "datetime.ih"
 
-// time provides UTC time in seconds, zoneMinutes (in minutes) sets d_zone
+// time provides UTC time in seconds, zone sets zone + DST.
 
-                                                // zoneMinutes in minutes
-DateTime::DateTime(time_t time, int zoneMinutes, DSTSpec const &spec)
+DateTime::DateTime(time_t time, Zone const &zone)
 :
-    d_time(time),
-    d_zone(asSeconds(zoneMinutes))
+    d_utcSec(time)
 {
-    iniLocal(spec);
+    setZone(zone);
 }

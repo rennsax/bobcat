@@ -7,8 +7,8 @@ using namespace FBB;
 
 int main()
 {
-    DateTime utc;
-    DateTime local{ DateTime::LOCALTIME };
+    DateTime2 utc;
+    DateTime2 local{ DateTime2::LOCALTIME };
 
     cout << "local time:\n"
             "  utc time: " << utc << "\n"

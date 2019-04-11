@@ -1,6 +1,6 @@
 #include "datetime.ih"
 
-bool DateTime::setWeekday(Weekday weekday, Relative where)
+void DateTime::setWeekday(Weekday weekday, Relative where)
 {
     int difference = static_cast<int>(weekday) - d_tm.tm_wday;
 
@@ -11,7 +11,7 @@ bool DateTime::setWeekday(Weekday weekday, Relative where)
         break;
 
         case LAST:
-            difference  -= 7;
+            difference -= 7;
         break;
 
         case THIS_WEEK:
@@ -21,5 +21,6 @@ bool DateTime::setWeekday(Weekday weekday, Relative where)
         throw Exception{ 1 } <<
                             "DateTime::setWeekday(): invalid Relative spec.";
     }
-    return setDay(d_tm.tm_mday + difference);
+
+    setDay(d_tm.tm_mday + difference);
 }

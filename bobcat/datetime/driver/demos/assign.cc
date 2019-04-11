@@ -7,14 +7,14 @@ using namespace FBB;
 
 int main()
 {
-    DateTime local{::time(0), DateTime::LOCALTIME };
+    DateTime2 local{::time(0), DateTime2::LOCALTIME };
     
     cout << "\nCurrent local time:\n"
             "local time: " << local << "\n"
             "   its utc: " << local.utc() <<"\n\n";
 
-    DateTime july{ (7 * 365 - 3) * 24 * 3600 + 6 * 31 * 24 * 3600,
-                   DateTime::LOCALTIME };
+    DateTime2 july{ (7 * 365 - 3) * 24 * 3600 + 6 * 31 * 24 * 3600,
+                   DateTime2::LOCALTIME };
     
     cout << "July, 7 years after the beginning of the epoch:\n"
             "local time: " << july << "\n"

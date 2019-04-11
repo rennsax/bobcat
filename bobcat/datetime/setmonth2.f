@@ -1,4 +1,4 @@
-inline bool DateTime::setMonth(Month month)
+inline void DateTime::setMonth(Month month)
 {
-    return setMonth(static_cast<int>(month));
+    setMonth(static_cast<int>(month));
 }

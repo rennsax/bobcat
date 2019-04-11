@@ -1,0 +1,11 @@
+#include "dtpimpl"
+
+//#include <iostream>
+//#define XERR std::cerr << __FILE__": "
+
+#include <cstring>
+
+#include "../datetime2/datetime"
+
+using namespace std;
+using namespace FBB;

@@ -4,8 +4,8 @@ void getDesired(int argc, char **argv)
 {
     if (argc == 1)
     {
-        desiredZone = localZone;
-        desiredDST = localDST;
+        desiredZone = thisZone;
+        desiredDST = thisDST;
     }
     else
     {

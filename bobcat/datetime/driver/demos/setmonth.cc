@@ -7,16 +7,16 @@ using namespace FBB;
 
 int main()
 {
-    DateTime local{ DateTime::LOCALTIME };
+    DateTime2 local{ DateTime2::LOCALTIME };
 
     cout << "local time: " << local << '\n';
 
-    local.setMonth(DateTime::Jun, DateTime::THIS_YEAR);
+    local.setMonth(DateTime2::Jun, DateTime2::THIS_YEAR);
     cout << "Jun this year: " << local << '\n';
 
-    local.setMonth(DateTime::Jun, DateTime::LAST);
+    local.setMonth(DateTime2::Jun, DateTime2::LAST);
     cout << "Jun last year: " << local << '\n';
 
-    local.setMonth(DateTime::Jun, DateTime::NEXT);
+    local.setMonth(DateTime2::Jun, DateTime2::NEXT);
     cout << "Jun next year: " << local << '\n';
 }

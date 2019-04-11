@@ -17,11 +17,11 @@ int main()
         2018                 // year
     };
 
-    DateTime utc{ ts };
+    DateTime2 utc{ ts };
     cout << "\nInfo: struct tm at utc Mar 10, 12:00, 2018:\n"
             "utc: " << utc << "\n\n";
 
-    DateTime local{ ts, DateTime::LOCALTIME };
+    DateTime2 local{ ts, DateTime2::LOCALTIME };
 
 //    string zone{ local.zone(local.zone() / 60) };
 //    cout << "Info: current zone shift: " << zone << "\n"
@@ -34,11 +34,11 @@ int main()
 
     ts.tm_mon = 6;                                      // July
 
-    DateTime utc2{ ts };                                // default: UTC
+    DateTime2 utc2{ ts };                                // default: UTC
     cout << "Info: tm at UTC Jul 10, 12:00, 2018\n"
             "utc: " << utc2 << "\n\n";
 
-    DateTime local2{ ts, DateTime::LOCALTIME };
+    DateTime2 local2{ ts, DateTime2::LOCALTIME };
     cout << "Info: tm at LOCAL time Jul 10, 12:00, 2018\n"
             "local time: " << local2 << ", DST = " << local2.dst() << "\n"
             "   its utc: " << local2.utc() <<"\n\n";

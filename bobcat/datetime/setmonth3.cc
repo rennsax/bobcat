@@ -1,6 +1,6 @@
 #include "datetime.ih"
 
-bool DateTime::setMonth(Month month, Relative where)
+void DateTime::setMonth(Month month, Relative where)
 {
      //    s  m  h  md          year
     TM ts{ 0, 0, 0, 0, month, d_tm.tm_year + 1900 };
@@ -28,5 +28,7 @@ bool DateTime::setMonth(Month month, Relative where)
         timeException();
     }
 
-    return setFields(ts, MONTH | YEAR);
+    setFields(ts, MONTH | YEAR);
 }
+
+

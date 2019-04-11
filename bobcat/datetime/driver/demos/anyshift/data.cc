@@ -7,5 +7,5 @@ int hours;
 
 time_t desiredDST;       // desired DST info (all in seconds)
 time_t desiredZone;      // desired zone shift, not considering DST
-time_t localDST;
-time_t localZone;
+time_t thisDST;
+time_t thisZone;

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$1" == "l" ] ; then
+if [ "$1" == "l" ] ; then   # lima, not  one
     cd ../../
     icmbuild
     exit $?
@@ -9,7 +9,8 @@ fi
 if [ $# -eq 0 ] ; then
     echo "filename (w/o .cc) to compile needed"
 else
-    g++ --std=c++2a -Wall $1.cc  -L../../tmp -ldatetime -lbobcat -s
+                                                    # -ldatetime
+    g++ --std=c++2a -Wall -pthread $1.cc  -L../../tmp -lbobcat -s
     if [ $? -eq 0 ] ; then
         tput clear
         a.out

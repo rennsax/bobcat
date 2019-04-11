@@ -7,8 +7,8 @@ using namespace FBB;
 
 int main()
 {
-    DateTime local{ DateTime::LOCALTIME };
-    DateTime copy{ local };
+    DateTime2 local{ DateTime2::LOCALTIME };
+    DateTime2 copy{ local };
 
     cout << "local time: " << local << ", DST = " << local.dst() << "\n\n";
 

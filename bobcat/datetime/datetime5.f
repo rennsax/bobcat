@@ -1,5 +1,6 @@
-// UTC time is ::time(0), zone shift is zoneMinutes (in minutes) as seconds
-inline DateTime::DateTime(time_t zoneMinutes, DSTSpec const &spec) // minutes
+// UTC time is ::time(0), zone shift is zoneMinutes
+
+inline DateTime::DateTime(Zone const &zone) 
 :
-    DateTime(::time(0), zoneMinutes, spec)          // -> 8
+    DateTime(::time(0), zone)   // -> 8
 {}

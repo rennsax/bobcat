@@ -7,7 +7,7 @@ using namespace FBB;
 
 int main()
 {
-    DateTime local{ 120  };
+    DateTime2 local{ 120  };
 
     cout << 
         "using UTC of the local time, then using a zone shift of +2 hours\n"

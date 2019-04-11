@@ -2,7 +2,7 @@
 
 void showLocalTime()
 {
-    time_t current = time(0) + localZone + localDST;
+    time_t current = time(0) + thisZone + thisDST;
 
     tm ts;
 

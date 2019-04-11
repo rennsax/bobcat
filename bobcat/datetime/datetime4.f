@@ -1,5 +1,7 @@
-// UTC time is ::time(0), zone shift is zoneMinutes (in minutes) as seconds
-inline DateTime::DateTime(int zoneMinutes) // minutes
+// UTC time is ::time(0), zoneMinutes is localZone (in minutes)
+// no dst, zone = local
+
+inline DateTime::DateTime(std::chrono::minutes minutes)
 :
-    DateTime( zoneMinutes, DSTSpec{ false } )          // 5.f
+    DateTime( Zone{ seconds2str(minutes.count() * 60) } )    // -> 5.f
 {}

@@ -8,10 +8,10 @@ using namespace FBB;
 int main()
 {
     {   
-        DateTime utc{ 0, DateTime::UTC };
-        DateTime local{
+        DateTime2 utc{ 0, DateTime2::UTC };
+        DateTime2 local{
                         ::time(0),
-                        DateTime::LOCALTIME };
+                        DateTime2::LOCALTIME };
     
         cout << "\nBeginning of the epoch:\n"
                 "  utc time: " << utc << "\n"
@@ -20,9 +20,9 @@ int main()
     }
 
     {   
-        DateTime local{
+        DateTime2 local{
                         (7 * 365 - 3) * 24 * 3600 + 6 * 31 * 24 * 3600,
-                        DateTime::LOCALTIME };
+                        DateTime2::LOCALTIME };
     
         cout << "July 7 years after the beginning of the epoch:\n"
                 "local time: " << local << "\n"

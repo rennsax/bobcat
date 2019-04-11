@@ -3,9 +3,9 @@
 namespace FBB
 {
 
-std::istream &operator>>(std::istream &in, DateTime &dt)
+std::istream &operator>>(std::istream &in, FBB::DateTime &dt)
 {
-    DateTime tmp{ in, dt.d_type };
+    FBB::DateTime tmp{ in, dt.d_type };
     dt.swap(tmp);
 
     return in;

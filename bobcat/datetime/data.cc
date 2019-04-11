@@ -1,14 +1,5 @@
 #include "datetime.ih"
 
-unordered_map<string, DateTime::ZoneData>   DateTime::ZoneNames::s_zone =
-{
-    {"CET", ZoneData{ 60, DSTSpec{ 60 } } }
-};
-
-unordered_map<DateTime const *, unique_ptr<DateTime::Pimpl>>
-                                                  DateTime::Pimpl::s_pimpl;
-mutex DateTime::Pimpl::s_mutex;
-
 char const *DateTime::s_month[] =
 {
     "Jan",
@@ -36,20 +27,25 @@ char const *DateTime::s_day[] =
     "Sat"
 };
 
-Pattern DateTime::ZoneNames::s_spec           // string to match assumed
-    {                                       // trimmed, used by match.cc
-        //   1           2
-        R"_(^(\w+)\s*:\s*(-?\d+)\s+)_"      // ID : zoneshift: minutes
-        // 3
-        "("
-        //  4           5   6
-        R"_((true|false)(\s+(\d+))?|)_"     // true/false [nMinutes shift]
-        //  7
-        R"_((\d+)|)_"                       // nMinutes shift
+// Pimpl static data:
+// ==================
 
-                                            // hhmm hhmm [nMinutes shift]
-        //  8           9        10  11
-        R"_((\d{3,4})\s+(\d{3,4})(\s+(-?\d+))?)_"
-        ")$",
-        true, 12
-    };
+mutex DateTime::Pimpl::s_mutex;
+
+unordered_map<DateTime const *, unique_ptr<DateTime::Pimpl>> 
+                                                    DateTime::Pimpl::s_pimpl;
+
+// Zone static data:
+// =================
+
+mutex DateTime::Zone::s_mutex;
+
+unordered_map<string, unique_ptr<DateTime::Zone>> DateTime::Zone::s_zone;
+
+int DateTime::Zone::s_ini = DateTime::Zone::initialize();
+
+string DateTime::Zone::s_defaultTZ;
+
+char const DateTime::Zone::s_utc[] = "<000>";
+char const DateTime::Zone::s_this[] = "<001>";
+char const DateTime::Zone::s_anon[] = "<999>";

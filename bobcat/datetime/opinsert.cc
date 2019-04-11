@@ -7,6 +7,7 @@ namespace FBB
 
 std::ostream &operator<<(std::ostream &out, DateTime const &dt)
 {
+//    dt.assignTM();
     return out << put_time(&dt.d_tm, "%c");
 }
 

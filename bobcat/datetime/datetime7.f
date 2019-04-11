@@ -1,5 +1,5 @@
-// time provodes UTC time, zoneMinutes (in minutes) sets d_zone
-inline DateTime::DateTime(time_t time, int zoneMinutes)
+    // time provides UTC time, zone at zoneMinutes, no DST.
+inline DateTime::DateTime(time_t time, std::chrono::minutes zoneMinutes)
 :
-    DateTime(time, zoneMinutes, DSTSpec{ false })       // 8.cc
+    DateTime(time, Zone{ seconds2str(zoneMinutes.count() * 60) } ) // -> 8.cc
 {}

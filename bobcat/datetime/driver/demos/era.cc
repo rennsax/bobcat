@@ -7,7 +7,7 @@
     int main()
     {
 //info
-DateTime dt{ 0, DateTime::UTC };    // set UTC at begin of era
+DateTime2 dt{ 0, DateTime2::UTC };    // set UTC at begin of era
 
 tm era{ 0 };                        // define a tm with tm_mday == 1
 era.tm_mday = 1;
