@@ -6,6 +6,8 @@
 
 // TMP ONLY:
 #include <iostream>
+#define COUT std::cout << __FILE__": "
+
 
 #include <iomanip>
 #include <algorithm>
@@ -16,9 +18,6 @@
 
 using namespace std;
 using namespace FBB;
-
-#include "pimplspec.f"
-#include "pimpldstseconds.f"
 
 #include "parseformat.f"
 #include "parsezoneshift.f"

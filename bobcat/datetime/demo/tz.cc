@@ -170,8 +170,40 @@ tm *local_r(time_t *utcSec, struct tm *tm, char const *tzSpec)
     return tm;
 }
 
+time_t zoneShift()
+{
+    char *tz;
+    string tzStr;
+
+    tz = getenv("TZ");          // save the current TZ info
+    if (tz)
+        tzStr = tz;
+
+    tm ts;
+//    setenv("TZ", ":Europe/Amsterdam", 1);    // use tzSpec as TZ (empty is UTC)
+    setenv("TZ", ":Asia/Calcutta", 1);    // use tzSpec as TZ (empty is UTC)
+    tzset();
+
+    time_t ret = 0;
+    gmtime_r(&ret, &ts);
+
+    ret = mktime(&ts);
+
+    if (tzStr.empty())
+        unsetenv("TZ");    
+    else
+        setenv("TZ", tzStr.c_str(), 1);
+
+    tzset();
+    return ret;
+}
+
 int main()
 {
+    cout << zoneShift() << '\n';
+
+return 0;
+
     tm src{  0,          // sec
             0,          // min
             19,         // hour -> current zone = CET -> UTC = 18

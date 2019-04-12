@@ -93,8 +93,9 @@ class DateTime
             //      <999>   - anonymous zone
             struct Data
             {
-                int dstSeconds;
                 std::string spec;
+                int zoneShift;
+                int dstSeconds;
             };
             Data d_data;
 
@@ -120,6 +121,8 @@ class DateTime
                 std::string const &spec() const;                        // .f
                 int dstSeconds() const;         // only use when mktime // .f
                                                 // sets tm_isdst = 1
+                                                // (-> DateTime::dst() == YES)
+                int zoneShift() const;
 
                                                 // retrieve a zone from s_zone
                 static Zone const &get(std::string const &name);
@@ -136,7 +139,9 @@ class DateTime
                 static void read(std::string const &fname); // read zone specs
                                                             // from file
 
-                static time_t thisZoneShift();              // in seconds
+                static time_t thisZoneShift();              // this computer's
+                                                            // zone shift in 
+                                                            // seconds
 
             private:
                 Zone() = default;       // required for the unordered_map
@@ -189,6 +194,10 @@ class DateTime
                             StringVector::const_iterator begin,
                             StringVector::const_iterator end);
 
+                static int zoneSeconds();    // current zone        // 1.cc
+
+                                             // specified zone
+                static int zoneSeconds(std::string const &spec);    // 2.cc
         };
 
     private:
@@ -206,11 +215,7 @@ class DateTime
                                                             // 1
                 Pimpl(Zone const &zone);
             
-                // bool activeDST() const;
-
-                std::string const &spec() const;            // .f
-                int dstSeconds() const;                     // .f
-
+                Zone const &zone() const;                   // .f
         
                                                     // zone specification
                 static Pimpl const &get(DateTime const *ptr);
@@ -327,6 +332,7 @@ class DateTime
         size_t      year() const;       // the real year (e.g., 2019)  .f
         size_t      yearDay() const;    // 0-based                  // .f
         size_t      yearDayNr() const;  // 1-based                  // .f
+        Zone const &zone() const;
 
         std::string rfc2822() const;
         std::string rfc3339() const;
@@ -350,15 +356,18 @@ class DateTime
         static void        tm2cout(char const *label, TM const &ts);
 
     private:
+
             // from d_utcSec seconds + current zone to TM
         TM const &assignTM() const;
 
             // from zone and time spec. in TM to utcSecs
         time_t utcFromTM(TM &tm) const;
 
+        static void setTZ(std::string const &spec);     // use "" for UTC
+        static void resetTZ();
                                             // use "" to use a local time 
                                             // TM specification as UTC spec.
-        static time_t utcForZone(char const *zoneSpec, TM &tm);
+        static time_t utcForZone(std::string const &zoneSpec, TM &tm);
 
                                             // show d_tm's clock time as 
                                             // hh::mm::ss
@@ -401,6 +410,7 @@ class DateTime
 #include "year.f"
 #include "yearday.f"
 #include "yeardaynr.f"
+#include "zone.f"
 
 #include "setmonth2.f"
 #include "setmonthnr.f"
@@ -408,8 +418,10 @@ class DateTime
 #include "zone4.f"
 #include "zonespec.f"
 #include "zonedstseconds.f"
-#include "zoneanonymous.f"
 #include "zonedefaulttz.f"
+#include "zonezoneshift.f"
+
+#include "pimplzone.f"
 
 }   // FBB
 

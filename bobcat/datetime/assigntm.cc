@@ -4,19 +4,17 @@
     // use utcFromTM to obtain UTC seconds given zone and spec. in TM
 struct tm const &DateTime::assignTM() const
 {
-    setenv("TZ", 
-            Pimpl::get(this).spec().c_str(), 
-            1);   // use tzSpec as TZ (empty is UTC)
-    tzset();
+    cout << __FILE__": shift = " << zone().zoneShift() << '\n';
 
-    localtime_r(&d_utcSec, &d_tm);
+    setTZ(zone().spec());
+    
+    if (not localtime_r(&d_utcSec, &d_tm))
+        throw Exception{ 1 } << "can't compute time for " <<
+                                zone().spec() << '\n';
 
-    if (Zone::defaultTZ().empty())
-        unsetenv("TZ");    
-    else
-        setenv("TZ", Zone::defaultTZ().c_str(), 1);
+    tm2cout(__FILE__" SPEC: ", d_tm);
 
-    tzset();
+    resetTZ();
 
     return d_tm;
 }

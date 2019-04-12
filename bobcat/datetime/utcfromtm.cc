@@ -4,10 +4,10 @@
     // use assignTM to set TM from utc seconds + current zone
 time_t DateTime::utcFromTM(TM &tm) const
 {
-    time_t ret = utcForZone(Pimpl::get(this).spec().c_str(), tm);
+    time_t ret = utcForZone(zone().spec(), tm);
 
     if (tm.tm_isdst)
-        ret -= Pimpl::get(this).dstSeconds();
+        ret -= zone().dstSeconds();
 
     return ret;
 }

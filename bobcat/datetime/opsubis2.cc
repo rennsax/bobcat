@@ -9,8 +9,7 @@ DateTime &DateTime::operator-=(TM const &src)
     d_tm.tm_mon  -= src.tm_mon;
     d_tm.tm_year -= src.tm_year;
 
-    d_utcSec = utcFromTM(d_tm);
-
+    d_utcSec = utcForZone(zone().spec(), d_tm);
     assignTM();
 
     return *this;

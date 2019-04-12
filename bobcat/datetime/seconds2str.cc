@@ -11,7 +11,6 @@ std::string DateTime::seconds2str(time_t seconds)
         seconds = -seconds;
     }
 
-    seconds %= (12 * 3600);             // at most 12 hours away
     seconds /= 60;                      // ignore the seconds, use the minutes
 
                                         // zoneshift as -hh:mm

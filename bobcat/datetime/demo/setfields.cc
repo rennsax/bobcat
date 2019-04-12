@@ -25,26 +25,29 @@ int main()
     time_t now = time(0);
 
     DateTime utc{ now, DateTime::UTC };
-    cout << "UTC: " << utc << '\n';
+    cout << "1: current UTC: " << utc << '\n';
 
     utc += tm{ 0, 0, 2, 1 };
-    cout << utc << '\n';
+    cout << "2: utc the next day, 2 hrs later: " << utc << '\n';
 
     cout << "\n\n";
 
-
     DateTime dt{ now, DateTime::LOCALTIME };
-    cout << "Local time: " << dt << '\n';
+    cout << "3: current local time: " << dt << ", zone shift: " << 
+            dt.zone().zoneShift() << " seconds\n";
 
     dt.setSeconds(0);
 
-    cout << "Local time: " << dt << '\n';
+    cout << "4: local time, 0 seconds: " << dt << '\n';
+
+    dt += tm{ 0, 0, 2 };
+    cout << "5a: local time, 2 hrs later: " << dt << '\n';
 
     dt += tm{ 0, 0, 2, 1 };
-    cout << dt << '\n';
+    cout << "5: local time, next day, 2 hrs later: " << dt << '\n';
 
     dt += chrono::hours(1);
-    cout << dt << '\n';
+    cout << "6: local time: add another hour: " << dt << '\n';
 
 
     utc.setFields(
@@ -53,12 +56,12 @@ int main()
                     DateTime::HOURS | 
                     DateTime::MONTHDAY
                 );
-    show(utc, "utc, 1st, 8 hrs, zero seconds");
+    show(utc, "7: utc, 1st of the month, 8 hrs, zero seconds");
 
     cout << "---------------\n";
 
     DateTime dt1{ now, DateTime::LOCALTIME };
-    cout << "Local time: " << dt << '\n';
+    cout << "8: current local time: " << dt1 << '\n';
 
     dt1.setFields(
                     tm{ 0, 0, 8, 1 }, 
@@ -66,13 +69,17 @@ int main()
                     DateTime::HOURS | 
                     DateTime::MONTHDAY
                 );
-    show(dt1, "local time, 1st, 8 hrs, zero seconds");
+    show(dt1, "9: local time for 1st of the month, 8 hrs, zero seconds");
 
     DateTime dt2{ now, DateTime::LOCALTIME };
     dt2.setDay(dt2.monthDayNr() - 7);
-    show(dt2, "local time, one week ago");
-
+    show(dt2, "10: current local time, one week ago");
 }
+
+
+
+
+
 
 
 
