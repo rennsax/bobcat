@@ -4,6 +4,9 @@ int Selector::wait()
 {
     timeval t = d_alarm;
 
+    if (isEmpty(d_read) and isEmpty(d_write) and isEmpty(d_except))
+        return 0;
+
     d_ret_read = d_read;
     d_ret_write = d_write;
     d_ret_except = d_except;

@@ -8,6 +8,9 @@ bobcat (4.10.00)
 
   * Redesigned DateTime
 
+  * Selector::wait() returns 0 when its read, write and except file descriptor
+    sets are empty.
+
 bobcat (4.09.00)
 
   * The class Log unconditionally inserts level-free messages; level

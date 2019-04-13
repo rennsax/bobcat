@@ -46,8 +46,10 @@ class Selector
         void rmExceptFd(int fd);                                        // .f
 
     private:
-        int checkSet(int *index, fd_set &set);
+        int checkSet(int *index, fd_set const &set);
         void addFd(fd_set *set, int fd);
+
+        static bool isEmpty(fd_set const &set);
 };
 
 #include "addexceptfd.f"

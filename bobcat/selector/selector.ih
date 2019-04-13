@@ -1,6 +1,7 @@
 #include "selector"
 
 #include <limits>
+#include <cstring>
 
 #include "../exception/exception"
 

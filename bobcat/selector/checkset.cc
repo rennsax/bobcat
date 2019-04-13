@@ -1,6 +1,6 @@
 #include "selector.ih"
 
-int Selector::checkSet(int *index, fd_set &set)
+int Selector::checkSet(int *index, fd_set const &set)
 {
     int &idx = *index;
 

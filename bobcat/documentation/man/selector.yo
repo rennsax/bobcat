@@ -95,6 +95,7 @@ available file descriptors. Note that tt(wait) may also return with an input
 file descriptor returned by tt(readFd) of a file at its end-of-file
 position. The file is `ready for reading', but no characters will be returned
 when trying to read from it due to its end-of-file status.
+
     itb(int writeFd())
         Returns -1 of no more file descriptors are available for
 writing. Otherwise the next available file descriptor for writing is
@@ -148,15 +149,6 @@ manpageseealso()
     bf(bobcat)(7), bf(select)(2)
 
 manpagebugs()
-    Not so much a bug as something to be aware of: When removing input file
-descriptors of files at their end-of-file positions the set of active file
-descriptors monitored by tt(wait) may decay to an empty set. If 
-tt(wait) is thereupon called it will wait forever since there are no more 
-file descriptors to monitor. The monitoring process should check for this
-empty-set situation before calling tt(wait).
-
-    Facilities to prevent tt(wait) from waiting indefinitely in this situation
-will be added to tt(Selector) in a future Bobcat release.
-
+    None reported
 
 includefile(include/trailer)
