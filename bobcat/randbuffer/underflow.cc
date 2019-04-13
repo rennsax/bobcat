@@ -1,21 +1,20 @@
 #include "randbuffer.ih"
 
+#include <cstring>
+
 int Randbuffer::underflow()
 {
     ostringstream ostr;
 
-    ostr << d_min + 
-            static_cast<int>((d_max - d_min) * 
-                                (random() / (RAND_MAX + 1.0))) << 
-            " ";        
+    d_buffer = 
+        to_string(
+                d_min + static_cast<int>(
+                            (d_max - d_min) * (random() / (RAND_MAX + 1.))
+                        )
+        ) + ' ';
 
-    size_t n = ostr.str().length();
-
-    char *cp = new char[n];
-    d_buffer.reset(cp);
-
-    ostr.str().copy(cp, string::npos);
-    setg(cp, cp, cp + n);
+    setg(&d_buffer[0], &d_buffer[0], &d_buffer[d_buffer.length()]);
 
     return static_cast<unsigned char>(*gptr());
 }
+

@@ -1,8 +1,7 @@
 #include <iostream>
 #include <istream>
 
-#include <bobcat/randbuffer>
-#include <bobcat/a2x>
+#include "../randbuffer"
 
 using namespace std;
 using namespace FBB;
@@ -15,11 +14,11 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    Randbuffer rb(A2x{argv[2]}, A2x{argv[3]}, A2x{argv[4]}.to<size_t>());
+    Randbuffer rb(stoi(argv[2]), stoi(argv[3]), stoul(argv[4]));
 
     istream istr(&rb);
 
-    for (int idx = A2x{argv[1]}; idx--; )
+    for (unsigned idx = stoul(argv[1]); idx--; )
     {
         int c;
         if (!(istr >> c))
