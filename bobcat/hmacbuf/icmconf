@@ -2,6 +2,7 @@
 
 #include "../icmconf"
 
-#undef CXXFLAGS
-#define CXXFLAGS            "--std=c++2a " ${AUXFLAGS} " -isystem " \
-                            "/home/frank/git/bobcat/src/bobcat/tmp -Wall -O2"
+//#undef CXXFLAGS
+//#define CXXFLAGS            "--std=c++2a " ${AUXFLAGS} " -isystem " \
+//                            " -fdiagnostics-color=never "\
+//                            "/home/frank/git/bobcat/src/bobcat/tmp -Wall -O2"

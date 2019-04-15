@@ -1,13 +1,20 @@
 #include "encryptbuf"
 
+#include <openssl/evp.h>
+#include <openssl/err.h>
+
+#include <iostream>
+#define CERRX std::cerr << __FILE__": " <<
+
 #include <string>
 #include <iomanip>
 #include <ostream>
 #include <algorithm>
-#include <openssl/evp.h>
 
 #include "../exception/exception"
+#include "../randbuffer/randbuffer"
 #include "../irandstream/irandstream"
+#include "../ohexstreambuf/ohexstreambuf"
 
 #if  OPENSSL_VERSION_NUMBER < 0x10100000L
 
@@ -27,33 +34,9 @@ inline void EVP_CIPHER_CTX_free(EVP_CIPHER_CTX *ctx)
     delete ctx;
 }
 
-#endif
+#endif  // BOBCAT_EVP
     
-#endif
-
-namespace FBB
-{
-
-struct EncryptBufImp
-{
-    EVP_CIPHER_CTX     *ctx;
-    EVP_CIPHER const   *md;
-    bool                active;
-    size_t              bufsize;
-    char               *buffer;
-    char               *out;
-    std::string         iv;
-    std::ostream       &outStream;
-
-    EncryptBufImp(std::ostream &outStream, std::string const &iv, 
-                  size_t bufsize);
-    ~EncryptBufImp();
-
-    static void setChar(char &ch, IRandStream &irs);
-
-};
-
-} // FBB
+#endif  // OPENSSL_VERSION
 
 using namespace std;
 using namespace FBB;

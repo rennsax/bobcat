@@ -2,5 +2,5 @@
 
 HMacBuf::~HMacBuf()
 {
-    delete d_pimpl;
+    delete [] d_buffer;
 }

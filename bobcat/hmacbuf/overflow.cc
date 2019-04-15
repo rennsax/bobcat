@@ -2,11 +2,11 @@
 
 int HMacBuf::overflow(int ch)
 {
-    HMAC_Update(d_pimpl->ctx, 
-                reinterpret_cast<unsigned char *>(d_pimpl->buffer), 
-                d_pimpl->bufsize);
+    HMAC_Update(d_ctx, 
+                reinterpret_cast<unsigned char *>(d_buffer), 
+                d_bufsize);
 
-    setp(d_pimpl->buffer, d_pimpl->buffer + d_pimpl->bufsize);
+    setp(d_buffer, d_buffer + d_bufsize);
 
     if (ch != EOF)
     {

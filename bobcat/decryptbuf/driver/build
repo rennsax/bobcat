@@ -2,25 +2,41 @@
 
 # ln -s .. bobcat
 # 
-# g++ -I. --std=c++14 -O2 -Wall -o driver driver.cc -lssl -lbobcat \
+# g++ -I. --std=c++2a -O2 -Wall -o driver driver.cc -lssl -lbobcat \
 #     -L../tmp -ldecryptbuf
 # 
 # rm bobcat
 
-# echo g++ --std=c++14 -O2 -Wall -o driver driver.cc -lbobcat 
-# g++ --std=c++14 -O2 -Wall -o driver driver.cc -lbobcat 
+# echo g++ --std=c++2a -O2 -Wall -o driver driver.cc -lbobcat 
+# g++ --std=c++2a -O2 -Wall -o driver driver.cc -lbobcat 
 
 tput clear
 
 LIBS=" -lbobcat -lcrypto"
-GPP="g++ --std=c++14"
+GPP="g++ --std=c++2a"
 
 #   Using the standard bobcat library
-#CMD="$GPP -o driver -Wall *.cc ${LIBS} -s"
+#CMD="$GPP -o driver -Wall driver.cc ${LIBS} -s"
 
-#   Using the library in ../tmp/
-CMD="$GPP -o driver -Wall *.cc -L../tmp -ldecryptbuf ${LIBS} -s"
+#   Using the decryptbuf library in ../tmp/ and the std bobcat library
+#CMD="$GPP -o driver -Wall driver.cc -L../tmp -ldecryptbuf ${LIBS} -s"
+
+#   Using the library in ../tmp/ and bobcat as /tmp/libbob.a
+CMD="$GPP -o driver -Wall driver.cc \
+            -L../.. -laz \
+            -L /tmp -lbob \
+            -lcrypto -s"
+
+#            -L../tmp -ldecryptbuf \
+#            -L../../encryptbuf/tmp -lencryptbuf \
+#            -L /tmp -lbob \
+#            -lcrypto -s"
+
 
 echo ${CMD}
 ${CMD}
+
+
+
+
 

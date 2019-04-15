@@ -10,35 +10,45 @@
 namespace FBB
 {
 
-struct DecryptBufImp;
-
 class DecryptBuf: public std::streambuf
 {
-    DecryptBufImp *d_pimpl;
-    static bool s_completed;
+    EVP_CIPHER_CTX     *d_ctx;
+    EVP_CIPHER const   *d_md;
+
+    std::string         d_encrypted;
+    std::string         d_decrypted;
+
+    std::string  d_iv;
+    std::string  d_key;
+
+    std::ostream       &d_outStream;
 
     public:
         DecryptBuf(std::ostream &outStream, char const *type, 
-                            std::string key, std::string iv,
-                            size_t bufsize = 1024);
+                   std::string const &key, std::string const &iv,
+                   size_t bufSize = 1024);
         ~DecryptBuf() override;
 
-        void setIv(std::string iv);
         bool setRounds(size_t nRounds);             // RC5 8, 12 or 16
 
-        void done();
-        static bool lastOK();                       // .f
+        void end();
 
     protected:
         EVP_CIPHER_CTX *cipherCtx();
 
     private:
-        void update();
-        void open();
         int overflow(int c) override;
+
+        void setMD(char const *type);
+        void flushBuffer();
+        void setp();
+
+        static unsigned char *ucharPtr(char *charPtr);              // 1.f
+        static unsigned char const *ucharPtr(char const *charPtr);  // 2.f
 };
 
-#include "lastok.f"
+// defined in bobcat/encryptbuf/end.cc
+std::ostream &end(std::ostream &out);       // end-manipulator
 
 }   // FBB
         

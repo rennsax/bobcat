@@ -7,8 +7,7 @@ std::ostream &operator<<(std::ostream &out, DigestBuf const &digestbuf)
 {
     OHexStreambuf ohex(out);
     ostream outs(&ohex);
-    outs.write(digestbuf.d_pimpl->digest.data(), 
-               digestbuf.d_pimpl->digest.length());
+    outs.write(digestbuf.d_digest.data(), digestbuf.d_digest.length());
     return out;
 }
 

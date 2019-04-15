@@ -2,8 +2,7 @@
 
 int EncryptBuf::overflow(int ch)
 {
-    update();
-    open();
+    flushBuffer();
 
     if (ch != EOF)
     {

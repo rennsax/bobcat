@@ -2,6 +2,6 @@
 
 string const &DigestBuf::hash() const
 {
-    return d_pimpl->digest;
+    return d_digest;
 }
 

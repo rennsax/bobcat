@@ -2,5 +2,5 @@
 
 DigestBuf::~DigestBuf()
 {
-    delete d_pimpl;
+    delete[] d_buffer;
 }

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ostream>
 #include <bobcat/exception>
-#include <bobcat/digestbuf>
+#include "../digestbuf"
 
 using namespace std;
 using namespace FBB;

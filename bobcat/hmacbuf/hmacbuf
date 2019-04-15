@@ -1,20 +1,26 @@
 #ifndef INCLUDED_HMACBUF_
 #define INCLUDED_HMACBUF_
 
+#include <openssl/hmac.h>
+
 #include <iosfwd>
 #include <streambuf>
 
 namespace FBB
 {
 
-struct HMacBufImp;
-
 class HMacBuf: public std::streambuf
 {
     friend std::ostream &operator<<(std::ostream &out, 
                                     HMacBuf const &hmacbuf);
 
-    HMacBufImp *d_pimpl;
+    HMAC_CTX     *d_ctx;
+    EVP_MD const *d_md;
+    std::string   d_digest;
+
+    char         *d_buffer;
+    size_t        d_bufsize;
+    std::string   d_key;
 
     public:
         HMacBuf(std::string const &key, 

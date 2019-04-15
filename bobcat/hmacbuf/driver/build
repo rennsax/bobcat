@@ -2,7 +2,7 @@
 
 # ln -s .. bobcat
 # 
-# g++ -I. --std=c++14 -O2 -Wall -o driver driver.cc -lssl -lbobcat \
+# g++ -I. --std=c++2a -O2 -Wall -o driver driver.cc -lssl -lbobcat \
 #     -L../../ohexstreambuf/tmp -L../tmp -lhmacbuf   -lohexstreambuf
 # 
 # rm bobcat
@@ -10,13 +10,17 @@
 tput clear
 
 LIBS=" -lbobcat -lcrypto"
-GPP="g++ --std=c++14"
+
+GPP="g++ --std=c++2a"
 
 #   Using the standard bobcat library
-#CMD="$GPP -o driver -Wall *.cc ${LIBS} -s"
+# CMD="$GPP -o driver -Wall *.cc ${LIBS} -s"
+
+#   Using the library in ../tmp/ and bobcat as /tmp/libbob.a
+CMD="$GPP -o driver -Wall *.cc -L../tmp -lhmacbuf -L /tmp -lbob -lcrypto -s"
 
 #   Using the library in ../tmp/
-CMD="$GPP -o driver -Wall *.cc -L../tmp -lhmacbuf ${LIBS} -s"
+# CMD="$GPP -o driver -Wall *.cc -L../tmp -lhmacbuf ${LIBS} -s"
 
 echo ${CMD}
 ${CMD}

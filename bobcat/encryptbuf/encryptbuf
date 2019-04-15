@@ -4,27 +4,32 @@
 // https://wiki.openssl.org/index.php/EVP_Symmetric_Encryption_and_Decryption
 
 #include <iosfwd>
-#include <streambuf>
-#include <openssl/ossl_typ.h>
+#include <string>
+
+#include <bobcat/cryptbuf>
 
 namespace FBB
 {
 
-struct EncryptBufImp;
+class IRandStream;
 
-class EncryptBuf: public std::streambuf
+class EncryptBuf: public CryptBuf
 {
-    EncryptBufImp *d_pimpl;
+    EVP_CIPHER_CTX     *d_ctx;
+
+    std::string         d_incoming;
+    std::string         d_encrypted;
+
+    std::string         d_iv;           // maybe initialize iv ourselves
+    std::string         d_key;
+    std::ostream       &d_outStream;
 
     public:
         EncryptBuf(std::ostream &outStream, char const *type, 
-                            std::string key, std::string iv,
-                            size_t bufsize = 1024);
+                   std::string key, std::string const &iv,
+                   size_t bufSize = 1024);
 
         ~EncryptBuf() override;
-
-        void setKey(std::string key, size_t numberOfBytes = 0);
-        void setIv(std::string iv);
 
         size_t keyLength() const;                   // bytes
         size_t blockLength() const;                 // bytes
@@ -35,16 +40,28 @@ class EncryptBuf: public std::streambuf
 
         std::string const &iv() const;
 
+        void end();                                 // .f
+
     protected:
         EVP_CIPHER_CTX *cipherCtx();
 
     private:
         int overflow(int ch) override;
+        void end_() override;                       // .cc
 
-        void update();
-        void open();
-        void installKey(std::string const &key, size_t length);
+        void prepareIV();
+        void prepareKey();
+        void setMD(char const *type);
+
+        void flushBuffer();
+
+        void setp();                    // setp for d_buffer
+
+        static void setChar(char &ch, IRandStream &irs);
 };
+
+#include "end.f"
+
 
 }   // FBB
 

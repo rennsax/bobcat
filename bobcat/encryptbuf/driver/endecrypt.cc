@@ -17,7 +17,11 @@ string encrypt(string const &in, string const &key, string const &iv)
                             (unsigned char *)&key[0], 
                             (unsigned char *)&iv[0]);
 
-    string ret(in.length() + EVP_MAX_BLOCK_LENGTH, 0);
+    cerr << "key len: " << key.length() << ": " << key << '\n';
+    cerr << "iv len: " << iv.length() << ": " << iv << '\n';
+
+//    string ret(in.length() + EVP_MAX_BLOCK_LENGTH, 0);
+    string ret(1000, 0);
     int buflen;
     if (!EVP_EncryptUpdate(ctx, 
                 (unsigned char *)&ret[0], 
@@ -30,6 +34,17 @@ string encrypt(string const &in, string const &key, string const &iv)
         return "";
    
     ret.resize(buflen + tmplen);
+
+    cerr << "IV: " << hex << setfill('0');
+    for (unsigned char ch: iv)
+        cerr << setw(2) << static_cast<unsigned>(ch);
+    cerr << '\n';
+
+    cerr << "ENCRYPTED: " << hex << setfill('0');
+    for (unsigned char ch: ret)
+        cerr << setw(2) << static_cast<unsigned>(ch);
+    cerr << '\n';
+
 
     EVP_CIPHER_CTX_free(ctx);
 
@@ -44,7 +59,8 @@ string decrypt(string const &in, string const &key, string const &iv)
                             (unsigned char *)&key[0], 
                             (unsigned char *)&iv[0]);
    
-    string ret(EVP_MAX_BLOCK_LENGTH, 0);
+//    string ret(EVP_MAX_BLOCK_LENGTH, 0);
+    string ret(1000, 0);
 
     int buflen;
     if(!EVP_DecryptUpdate(ctx, (unsigned char *)&ret[0], &buflen, 

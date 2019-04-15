@@ -2,8 +2,8 @@
 
 int DigestBuf::overflow(int ch)
 {
-    EVP_DigestUpdate(d_pimpl->ctx, d_pimpl->buffer, d_pimpl->bufsize);
-    setp(d_pimpl->buffer, d_pimpl->buffer + d_pimpl->bufsize);
+    EVP_DigestUpdate(d_ctx, d_buffer, d_bufsize);
+    setp(d_buffer, d_buffer + d_bufsize);
 
     if (ch != EOF)
     {

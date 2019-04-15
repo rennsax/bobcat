@@ -2,15 +2,5 @@
 
 DecryptBuf::~DecryptBuf()
 {
-    if (d_pimpl->active)
-    try
-    {
-        done();
-        s_completed = true;
-    }
-    catch(...)
-    {
-        s_completed = false;
-    }
-    delete d_pimpl;
+    EVP_CIPHER_CTX_free(d_ctx);
 }

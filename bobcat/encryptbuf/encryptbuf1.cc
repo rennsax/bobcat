@@ -1,51 +1,32 @@
 #include "encryptbuf.ih"
 
 EncryptBuf::EncryptBuf(ostream &outStream, char const *type, 
-                        string key, string iv, size_t bufsize)
+                       string key, string const &iv, size_t bufSize)
 :
-    d_pimpl(new EncryptBufImp(outStream, iv, bufsize))
+    d_ctx(EVP_CIPHER_CTX_new()),
+    d_incoming(bufSize, 0),
+    d_encrypted(bufSize + EVP_MAX_BLOCK_LENGTH, 0),
+    d_iv(iv),
+    d_key(key),
+    d_outStream(outStream)
 {
-    try
-    {
-        OpenSSL_add_all_ciphers();
-    
-        d_pimpl->md = EVP_get_cipherbyname(type);
-        if (!d_pimpl->md)
-        {
-            if (type == 0)
-                type = "** unspecified cipher type **";
-    
-            throw Exception{1} << "EncryptBuf `" << type << "' not available";
-        }
+    prepareIV();
+    prepareKey();
 
-        size_t keyLength = key.length();
-        if (keyLength > EVP_MAX_KEY_LENGTH)
-            keyLength = EVP_MAX_KEY_LENGTH;
-    
-        key.resize(EVP_MAX_KEY_LENGTH);
-        iv.resize(EVP_MAX_IV_LENGTH);
+    d_key = key;
 
-        if 
-        (
-            not EVP_EncryptInit_ex(d_pimpl->ctx, d_pimpl->md, 0,
-                0, // no key yet, is entered next
-                reinterpret_cast<unsigned char const *>(iv.data()))
-        )
-            throw Exception{1} << "EncryptBuf: initialization failed";
+    if (
+        not EVP_EncryptInit_ex(d_ctx, md(), 0, ucharPtr(d_key), 
+                                               ucharPtr(d_iv))
+    )
+        throw Exception{ 1 } << "Encrypt initialization failed";
 
-        installKey(key, keyLength);
+
+//    cerr << "key len: " << d_key.length() << ": `" << d_key << "'\n"
+//            "iv len: " << d_iv.length() << ": `" << d_iv << "'\n"
+//            "incoming: `";
     
-        d_pimpl->buffer = new char[bufsize];
-        d_pimpl->out = new char[
-                bufsize + EVP_CIPHER_CTX_block_size(d_pimpl->ctx)]; 
-        
-        open();
-    }
-    catch (...)
-    {
-        delete d_pimpl;
-        throw;
-    }
+    setp();  
 }
 
 

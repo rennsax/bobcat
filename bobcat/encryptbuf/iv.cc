@@ -2,5 +2,5 @@
 
 std::string const &EncryptBuf::iv() const
 {
-    return d_pimpl->iv;
+    return d_iv;
 }

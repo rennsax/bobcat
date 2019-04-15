@@ -1,48 +1,35 @@
 #include "decryptbuf.ih"
 
 DecryptBuf::DecryptBuf(ostream &outStream, char const *type, 
-                        string key, string iv, size_t bufsize)
+                        string const &key, string const &iv, size_t bufSize)
 :
-    d_pimpl(new DecryptBufImp(outStream, bufsize))
+    d_ctx(EVP_CIPHER_CTX_new()),
+    d_encrypted(bufSize < EVP_MAX_BLOCK_LENGTH ? 
+                    (bufSize = EVP_MAX_BLOCK_LENGTH) 
+                : 
+                    bufSize, 
+                0),
+    d_decrypted(bufSize, 0),
+    d_iv(iv),
+    d_key(key),
+    d_outStream(outStream)
 {
-    try
-    {
-        OpenSSL_add_all_ciphers();
-    
-        d_pimpl->md = EVP_get_cipherbyname(type);
-        if (!d_pimpl->md)
-        {
-            if (type == 0)
-                type = "** unspecified cipher type **";
-    
-            throw Exception{1} << "DecryptBuf `" << type << "' not available";
-        }
+    setMD(type);
 
-        size_t keyLength = key.length();
-        if (keyLength > EVP_MAX_KEY_LENGTH)
-            keyLength = EVP_MAX_KEY_LENGTH;
+    if (
+        not EVP_DecryptInit_ex(d_ctx, d_md, 0,
+                               ucharPtr(&d_key[0]), ucharPtr(&d_iv[0]))
+    )
+        throw Exception{ 1 } << "DecryptBuf: initialization failed";
 
-        key.resize(EVP_MAX_KEY_LENGTH);
-        iv.resize(EVP_MAX_IV_LENGTH);
+////    d_cipherBlockSize = EVP_CIPHER_CTX_block_size(d_ctx);
 
-        if
-        (
-            not EVP_DecryptInit_ex(d_pimpl->ctx, d_pimpl->md , 0,
-                (unsigned char const *)key.data(), 
-                reinterpret_cast<unsigned char const *>(iv.data()))
-        )
-            throw Exception{1} << "DecryptBuf: initialization failed";
-
-        d_pimpl->buffer = new char[bufsize];
-        d_pimpl->out = new char[
-            bufsize + EVP_CIPHER_CTX_block_size(d_pimpl->ctx)];
-
-        open();
-    }
-    catch (...)
-    {
-        delete d_pimpl;
-        throw;
-    }
+    setp();
 }
+
+
+
+
+
+
 

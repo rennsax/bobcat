@@ -1,7 +1,13 @@
 #include <iostream>
 #include <fstream>
 #include <bobcat/exception>
-#include <bobcat/decryptbuf>
+#include <bobcat/ohexstreambuf>
+
+#include <openssl/evp.h>
+#include <openssl/err.h>
+
+#include "../decryptbuf"
+#include "../../encryptbuf/encryptbuf"
 
 using namespace std;
 using namespace FBB;
@@ -11,17 +17,23 @@ try
 {
     if (argc == 1)
         throw Exception(1) << 
-                    "1st arg: method, 2nd arg: key, 3rd arg: file to "
-                    "decrypt (to stdout), 4th arg: iv";
+                    "1st arg: method, 2nd arg: key, 3rd arg: iv, "
+                    "4th arg: file to decrypt (to stdout)";
+
+    // e.g., driver aes-128-cbc somekey iv-from-encryptbuf-driver 
+    // /tmp/enc > /tmp/driver.dec
 
     cerr << "Key: `" << argv[2] << "'\n"
-            "IV:  `" << argv[4] << "'\n";
+            "IV:  `" << argv[3] << "'\n";
 
-    DecryptBuf decryptbuf(cout, argv[1], argv[2], argv[4]);
+    DecryptBuf decryptbuf(cout, argv[1], argv[2], argv[3]);
+
+//  decryptbuf.end();
+
     ostream out(&decryptbuf);
-    ifstream in(argv[3]);
+    ifstream in(argv[4]);
 
-    out << in.rdbuf();
+    out << in.rdbuf() << end;
 }
 catch(exception const &err)
 {
