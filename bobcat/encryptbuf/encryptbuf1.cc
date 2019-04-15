@@ -3,6 +3,7 @@
 EncryptBuf::EncryptBuf(ostream &outStream, char const *type, 
                        string key, string const &iv, size_t bufSize)
 :
+    CryptBuf(type),
     d_ctx(EVP_CIPHER_CTX_new()),
     d_incoming(bufSize, 0),
     d_encrypted(bufSize + EVP_MAX_BLOCK_LENGTH, 0),

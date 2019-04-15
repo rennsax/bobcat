@@ -4,16 +4,15 @@
 // https://wiki.openssl.org/index.php/EVP_Symmetric_Encryption_and_Decryption
 
 #include <iosfwd>
-#include <streambuf>
-#include <openssl/ossl_typ.h>
+#include <string>
+#include <bobcat/cryptbuf>
 
 namespace FBB
 {
 
-class DecryptBuf: public std::streambuf
+class DecryptBuf: public CryptBuf
 {
     EVP_CIPHER_CTX     *d_ctx;
-    EVP_CIPHER const   *d_md;
 
     std::string         d_encrypted;
     std::string         d_decrypted;
@@ -38,17 +37,11 @@ class DecryptBuf: public std::streambuf
 
     private:
         int overflow(int c) override;
+        void end_() override;                       // .cc
 
-        void setMD(char const *type);
         void flushBuffer();
         void setp();
-
-        static unsigned char *ucharPtr(char *charPtr);              // 1.f
-        static unsigned char const *ucharPtr(char const *charPtr);  // 2.f
 };
-
-// defined in bobcat/encryptbuf/end.cc
-std::ostream &end(std::ostream &out);       // end-manipulator
 
 }   // FBB
         

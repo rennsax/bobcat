@@ -3,6 +3,7 @@
 DecryptBuf::DecryptBuf(ostream &outStream, char const *type, 
                         string const &key, string const &iv, size_t bufSize)
 :
+    CryptBuf(type),
     d_ctx(EVP_CIPHER_CTX_new()),
     d_encrypted(bufSize < EVP_MAX_BLOCK_LENGTH ? 
                     (bufSize = EVP_MAX_BLOCK_LENGTH) 
@@ -14,11 +15,9 @@ DecryptBuf::DecryptBuf(ostream &outStream, char const *type,
     d_key(key),
     d_outStream(outStream)
 {
-    setMD(type);
-
     if (
-        not EVP_DecryptInit_ex(d_ctx, d_md, 0,
-                               ucharPtr(&d_key[0]), ucharPtr(&d_iv[0]))
+        not EVP_DecryptInit_ex(d_ctx, md(), 0, ucharPtr(d_key), 
+                                               ucharPtr(d_iv))
     )
         throw Exception{ 1 } << "DecryptBuf: initialization failed";
 
