@@ -30,13 +30,10 @@ DateTime::DateTime(istream &in, TimeType type)
         break;
     }
 
-    Pimpl::set(
-                this,    // with LOCALTIME Pimpl's values define 
-                zoneName.empty() ?
+    d_zone = zoneName.empty() ?
                     Zone{ seconds2str(parse.zoneShift()) }
                 :
-                    Zone::get(zoneName)
-            );
+                    Zone::get(zoneName);
 
     d_utcSec = utcFromTM(d_tm);
     assignTM();

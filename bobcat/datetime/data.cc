@@ -27,14 +27,6 @@ char const *DateTime::s_day[] =
     "Sat"
 };
 
-// Pimpl static data:
-// ==================
-
-mutex DateTime::Pimpl::s_mutex;
-
-unordered_map<DateTime const *, unique_ptr<DateTime::Pimpl>> 
-                                                    DateTime::Pimpl::s_pimpl;
-
 // Zone static data:
 // =================
 

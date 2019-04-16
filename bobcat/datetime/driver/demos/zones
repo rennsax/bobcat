@@ -1,9 +1,0 @@
-# 4 warnings about redefining CET are shown
-CET: 60 true
-
-# comment
-
-CET: 60 true 60
-CET: 60 0101 0630
-CET: 60 0101 0630 120
-

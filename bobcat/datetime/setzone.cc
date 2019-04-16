@@ -3,7 +3,7 @@
 void DateTime::setZone(Zone const &zone)
 {
     d_type = LOCALTIME;
-
-    Pimpl::set(this, zone);
+    d_zone = zone;
+//    Pimpl::set(this, zone);
     assignTM();    
 }

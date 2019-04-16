@@ -7,10 +7,8 @@
 DateTime::DateTime(time_t time, TimeType type)
 :
     d_type(type),
-    d_utcSec(time)
+    d_utcSec(time),
+    d_zone(Zone::get(d_type == UTC ? "<000>" : "<001>") )
 {
-    Pimpl::set(this,            // with LOCALTIME Pimpl's values define 
-               Zone::get(d_type == UTC ? "<000>" : "<001>") );
-
     assignTM();
 }

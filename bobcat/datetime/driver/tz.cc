@@ -202,8 +202,6 @@ int main()
 {
     cout << zoneShift() << '\n';
 
-return 0;
-
     tm src{  0,          // sec
             0,          // min
             19,         // hour -> current zone = CET -> UTC = 18

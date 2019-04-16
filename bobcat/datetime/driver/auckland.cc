@@ -18,6 +18,8 @@ void tm2cout(tm const &ts)
 
 int main()
 {
+    cout << "Local reconfig to :Pacific/Auckland, not using DateTime\n\n";
+
     time_t now = time(0);
 
     setenv("TZ", ":Pacific/Auckland", 1);
@@ -32,5 +34,7 @@ int main()
     }
 
     tm2cout(ts);
+
+    cout << '\n';
 }
 

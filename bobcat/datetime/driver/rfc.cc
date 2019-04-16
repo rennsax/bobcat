@@ -17,7 +17,7 @@ int main()
     cout << utc << "\n\n";
 
     DateTime dt{ now, DateTime::LOCALTIME };
-    cout << "Localtime: " << dt << '\n' <<
+    cout << "LOCAL TIME: " << dt << '\n' <<
             dt.rfc2822() << '\n' <<
             dt.rfc3339() << "\n\n";
 

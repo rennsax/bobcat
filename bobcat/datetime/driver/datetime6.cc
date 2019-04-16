@@ -10,10 +10,10 @@ int main()
     time_t utcSec = time(0);
 
     DateTime utcTime{ utcSec, DateTime::UTC };
-    cout << utcTime << '\n';
+    cout << "Current UTC time  = " << utcTime << '\n';
 
     DateTime dateTime{ utcSec, DateTime::LOCALTIME };
 
-    cout << dateTime << '\n';
+    cout << "Current LOCALTIME = " << dateTime << '\n';
 }
 

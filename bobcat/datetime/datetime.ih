@@ -13,8 +13,8 @@
 #include <algorithm>
 
 #include "../exception/exception"
-#include "../fswap/fswap"
 #include "../string/string"
+#include "../fswap/fswap"
 
 using namespace std;
 using namespace FBB;

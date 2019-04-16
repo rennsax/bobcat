@@ -8,7 +8,7 @@ using namespace FBB;
 int main()
 {
     DateTime utc;
-    cout << "real UTC: " << utc << '\n';
+    cout << "current UTC: " << utc << "\n\n";
 
     tm ts{  0,      // sec
             0,      // min
@@ -19,17 +19,17 @@ int main()
          };
 
     DateTime dt{ ts, DateTime::UTC };
-    cout << "specified UTC: 19:00:00: " << dt << "\n\n";
+    cout << "explicitly specified UTC: 19:00:00: " << dt << "\n\n";
 
     DateTime dt2{ ts, DateTime::LOCALTIME };
-    cout << "specified localtime 19:00:00: " << dt2 << "\n"
+    cout << "explicitly specified LOCAL TIME 19:00:00: " << dt2 << "\n"
             "corresponding UTC: " << dt2.utc() << "\n\n";
 
-    cout << "time not using DST:\n";
+    cout << "time (hr explicitly set to 19):\n";
     ts.tm_mon = 10;
-
     DateTime dt3{ ts, DateTime::LOCALTIME };
-    cout << "specified localtime 19:00:00: " << dt3 << "\n"
-            "corresponding UTC: " << dt3.utc() << '\n';
+    cout << "specified localtime 19:00:00: " << dt3 << 
+                        ", dst = " << dt3.dst() << "\n"
+            "corresponding UTC: " << dt3.utc() << "\n\n";
 }
 

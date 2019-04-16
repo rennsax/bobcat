@@ -25,21 +25,24 @@ int main()
     time_t now = time(0);
 
     DateTime utc{ now, DateTime::UTC };
-    show(utc, "UTC");
+    show(utc, "Current UTC time");
 
     DateTime local{ utc.thisTime() };
 
-    cout << "the computer's local time: " << local << '\n';
+    cout << "The COMPUTER'S LOCAL TIME: " << local << '\n';
 
     DateTime dt{ now, DateTime::LOCALTIME };
-    show(dt, "Local time");
+    show(dt, "Current LOCAL TIME");
 
     DateTime utc2{ dt.utc() };
-    cout << "utc from local time: " << utc2 << '\n';
+    cout << "UTC obtained from LOCAL TIME: " << utc2 << '\n';
 
-    DateTime jan1{ "2019-01-01 13:29:11+01:00", DateTime::LOCALTIME };
-    cout << "Jan 1: " << jan1 << '\n';
-    show(jan1, "January 1st");
+    DateTime jan1{ "2019-01-01 13:00:00+01:00", DateTime::LOCALTIME };
+    cout << "Jan 1, 1919, 13:00h: " << jan1 << '\n';
+    show(jan1, "Jan 1, details:");
+
+    cout << "\nOptionally rerun specifying another time zone specification\n"
+            "\n";
 }
 
 
