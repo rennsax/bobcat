@@ -1,4 +1,4 @@
-inline int DateTime::Parse::zoneShift() const
+inline int DateTime::Parse::zoneSeconds() const
 {
-    return d_zoneShift;
+    return d_zoneSeconds;
 }

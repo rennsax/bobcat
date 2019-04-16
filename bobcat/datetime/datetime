@@ -68,12 +68,6 @@ class DateTime
             FRIDAY,                     Fri = FRIDAY,
             SATURDAY,                   Sat = SATURDAY,
         };
-        enum TriVal: int
-        {
-            UNKNOWN = -1,
-            NO,
-            YES
-        };
         enum TimeFields
         {
             SECONDS  = 1 << 0,
@@ -96,7 +90,7 @@ class DateTime
             struct Data
             {
                 std::string spec;
-                int zoneShift;
+                int zoneSeconds;
                 int dstSeconds;
             };
             Data d_data;
@@ -123,8 +117,8 @@ class DateTime
                 std::string const &spec() const;                        // .f
                 int dstSeconds() const;         // only use when mktime // .f
                                                 // sets tm_isdst = 1
-                                                // (-> DateTime::dst() == YES)
-                int zoneShift() const;
+                                                // (-> DateTime::dst(): true)
+                int seconds() const;
 
                                                 // retrieve a zone from s_zone
                 static Zone const &get(std::string const &name);
@@ -208,14 +202,14 @@ class DateTime
             std::istream &d_in;
             TM &d_tm;
             std::string d_zoneName;
-            int d_zoneShift = 0;     // zone shift in seconds
+            int d_zoneSeconds = 0;      // zone shift in seconds
             int d_format;               // see parse1.cc for supported formats
 
             public:
                 Parse(std::istream &in, TM &tm);
         
                 int format() const;                                 // .f
-                int zoneShift() const;                              // .f
+                int zoneSeconds() const;                              // .f
                 std::string const &zoneName() const;                // .f
         
             private:
@@ -227,9 +221,6 @@ class DateTime
                 void setZoneShift(bool negative, int minutes, int sign = 0);
                 void setMonth(std::string const &month);    // throws 1 on err
         };
-
-//        time_t      d_thisZone; // this computer's zone correction (seconds)
-//        int         d_thisDST;  // this computer's DST shift (seconds)
 
         TimeType    d_type;     // current type of info in d_tm member
                                 // (LOCALTIME (implied when using displayZone)
@@ -252,9 +243,6 @@ class DateTime
                                                 // time displayed as TimeType
         explicit DateTime(TimeType type = UTC);                    // 1
 
-//        DateTime(DateTime const &other);                          // 2
-//        DateTime(DateTime &&tmp);                                 // 3
-
                                                 // LOCAL: UTC + zoneMinutes
                                                 // (no DST)
         explicit DateTime(std::chrono::minutes zoneMinutes);        // 4.f
@@ -270,21 +258,22 @@ class DateTime
 
                                                 // Local time: time (UTC) +
                                                 // Zone specification
-        DateTime(time_t time, Zone const &spec);                    // 8
+        DateTime(time_t time, Zone const &zone);                    // 8
 
                                                 // tm fields specify either
                                                 // UTC or LOCALTIME
-        explicit DateTime(TM const &tm, TimeType type = UTC);      // 9
+        explicit DateTime(TM const &tm, TimeType type = UTC);       // 9
+
+                                                // tm fields specify a 
+                                                // LOCALTIME time point in 
+                                                // Zone `zone'
+        explicit DateTime(TM const &tm, Zone const &zone);          // 10
 
                                                 // UTC/LOCAL text time, 
         DateTime(std::string const &timeStr, TimeType type);       // 12
         DateTime(std::istream &in, TimeType type);                 // 13
         DateTime(std::istream &&in, TimeType type);                // 14.f
 
-//        ~DateTime();
-    
-//        DateTime &operator=(DateTime const &other);               // 1
-//        DateTime &operator=(DateTime &&tmp);                      // 2
 
         DateTime &operator+=(std::chrono::seconds  seconds);       // 1.
         DateTime &operator+=(TM const &tm);                        // 2.
@@ -294,7 +283,7 @@ class DateTime
 
         void swap(DateTime &other);
 
-        TriVal      dst() const;       // YES if DST active, else NO
+        bool        dst() const;                                    // .f
         size_t      hours() const;                                  // .f
         size_t      minutes() const;                                // .f
         Month       month() const;                                  // .f
@@ -374,6 +363,7 @@ class DateTime
 
 #include "opbitor.f"                        // TimeFields | TimeFields
 
+#include "dst.f"
 #include "hours.f"
 #include "minutes.f"
 #include "month.f"
@@ -396,7 +386,7 @@ class DateTime
 #include "zonespec.f"
 #include "zonedstseconds.f"
 #include "zonedefaulttz.f"
-#include "zonezoneshift.f"
+#include "zoneseconds.f"
 
 }   // FBB
 

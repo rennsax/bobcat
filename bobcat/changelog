@@ -3,6 +3,14 @@ bobcat (5.00.00)
   * Fixed flaw in Log's FBB::fnl handling
 
   * Redesigned DateTime
+      - The TriVal type is not used anymore. Instead, `true' (DST is used for
+        the object's time) and `false' (DST is not used) are used.
+      - DateTime(std::chrono::minutes zoneMinutes) replaces 
+            DateTime(int zoneMinutes) 
+      - Discontinued:
+            DateTime(int zoneMinutes, DSTSpec const &dstSpec) 
+            DateTime(time_t time, int zoneMinutes, DSTSpec const &dstSpec)
+    refer to DateTime's man-page for further details.
 
   * Selector::wait() returns 0 when its read, write and except file descriptor
     sets are empty.

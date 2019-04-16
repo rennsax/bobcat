@@ -24,14 +24,14 @@ DateTime::DateTime(istream &in, TimeType type)
         case 4:                 // 2018-12-03 13:29:11+01:00
             if (type == UTC)
             {
-                d_tm.tm_sec -= parse.zoneShift();    // UTC spec in d_tm
+                d_tm.tm_sec -= parse.zoneSeconds();    // UTC spec in d_tm
                 zoneName = "<000>";
             }
         break;
     }
 
     d_zone = zoneName.empty() ?
-                    Zone{ seconds2str(parse.zoneShift()) }
+                    Zone{ seconds2str(parse.zoneSeconds()) }
                 :
                     Zone::get(zoneName);
 
