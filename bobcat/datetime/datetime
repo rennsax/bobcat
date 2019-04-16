@@ -201,31 +201,31 @@ class DateTime
         };
 
     private:
-        class Pimpl
-        {
-            Zone d_zone;
-          
-                                                      // DST is active
-            static std::mutex s_mutex;
-            static std::unordered_map<DateTime const *, 
-                                      std::unique_ptr<Pimpl>> s_pimpl;
-
-            public:
-                Pimpl() = default;
-                                                            // 1
-                Pimpl(Zone const &zone);
-            
-                Zone const &zone() const;                   // .f
-        
-                                                    // zone specification
-                static Pimpl const &get(DateTime const *ptr);
-
-                static void copy(DateTime *ptr, DateTime const &other);
-                static void erase(DateTime const *ptr);
-                static void move(DateTime *ptr, DateTime &&other);
-                static void set(DateTime const *ptr, Zone const &spec);
-                static void swap(DateTime &lhs, DateTime &rhs);
-        };
+//        class Pimpl
+//        {
+//            Zone d_zone;
+//          
+//                                                      // DST is active
+//            static std::mutex s_mutex;
+//            static std::unordered_map<DateTime const *, 
+//                                      std::unique_ptr<Pimpl>> s_pimpl;
+//
+//            public:
+//                Pimpl() = default;
+//                                                            // 1
+//                Pimpl(Zone const &zone);
+//            
+//                Zone const &zone() const;                   // .f
+//        
+//                                                    // zone specification
+//                static Pimpl const &get(DateTime const *ptr);
+//
+//                static void copy(DateTime *ptr, DateTime const &other);
+//                static void erase(DateTime const *ptr);
+//                static void move(DateTime *ptr, DateTime &&other);
+//                static void set(DateTime const *ptr, Zone const &spec);
+//                static void swap(DateTime &lhs, DateTime &rhs);
+//        };
 
         class Parse             // parse textual time specifications
         {
@@ -252,21 +252,21 @@ class DateTime
                 void setMonth(std::string const &month);    // throws 1 on err
         };
 
+        time_t      d_thisZone; // this computer's zone correction (seconds)
+        int         d_thisDST;  // this computer's DST shift (seconds)
+
         TimeType    d_type;     // current type of info in d_tm member
                                 // (LOCALTIME (implied when using displayZone)
                                 // or UTC)
         time_t      d_utcSec;   // UTC time in seconds
 
-        time_t      d_thisZone; // this computer's zone correction (seconds)
-        int         d_thisDST;  // this computer's DST shift (seconds)
+        Zone        d_zone;     // the object's current zone info
 
         mutable TM  d_tm;       // holds the latest broken down time
                                 // given d_type, d_utcSec, d_thisZone,
                                 // and d_dst. d_type UTC only
                                 // considers d_utcSec -> updateTM()
 
-        bool        d_1 = true; // previous d_ok and d_error data
-        size_t      d_2 = 0;    // members. Not used anymore
 
         static char const *s_month[];
         static char const *s_day[];
@@ -421,7 +421,7 @@ class DateTime
 #include "zonedefaulttz.f"
 #include "zonezoneshift.f"
 
-#include "pimplzone.f"
+// #include "pimplzone.f"
 
 }   // FBB
 
