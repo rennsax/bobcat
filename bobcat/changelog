@@ -7,9 +7,17 @@ bobcat (5.00.00)
         the object's time) and `false' (DST is not used) are used.
       - DateTime(std::chrono::minutes zoneMinutes) replaces 
             DateTime(int zoneMinutes) 
+        DateTime operator+(DateTime const &obj, std::chrono::seconds seconds)
+            replaces operator+(DateTime const &obj, time_t seconds)
+        DateTime operator-(DateTime const &obj, std::chrono::seconds seconds)
+            replaces operator-(DateTime const &obj, time_t seconds)
       - Discontinued:
             DateTime(int zoneMinutes, DSTSpec const &dstSpec) 
             DateTime(time_t time, int zoneMinutes, DSTSpec const &dstSpec)
+            DateTime(tm const &ts, int zoneMinutes)
+            DateTime(tm const &ts, int zoneMinutes, DSTSpec const &dstSpec)
+            DateTime(std::string const &timeStr, int zoneMinutes)
+            DateTime(std::istream &in, int zoneMinutes)
     refer to DateTime's man-page for further details.
 
   * Selector::wait() returns 0 when its read, write and except file descriptor
