@@ -31,12 +31,11 @@ GPP="g++ --std=c++2a"
 #   Using the library in ../tmp/ and bobcat as /tmp/libbob.a
 #CMD="$GPP -o driver -Wall driver.cc -L../tmp -lencryptbuf -L /tmp -lbob -lcrypto -s"
 
-#   Using the library in ../tmp/, bobcat as /tmp/libbob.a, and librandbuffer
-#   in ../../randbuffer/tmp
+#   Using libraries in ../tmp/, and /tmp (-> boblib)
 CMD="$GPP -o driver -Wall driver.cc \
         -L../tmp -lencryptbuf \
-        -L../../decryptbuf/tmp -ldecryptbuf \
-        -L../../randbuffer/tmp -lrandbuffer -L /tmp -lbob -lcrypto -s"
+        -L/tmp -lcryptb -lrandb -lbob \
+        -lcrypto -s"
 
 echo ${CMD}
 ${CMD}

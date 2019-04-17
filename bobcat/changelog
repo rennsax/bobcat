@@ -41,6 +41,23 @@ bobcat (5.00.00)
 
     refer to DateTime's man-page for further details.
 
+  * Redesigned DecryptBuf
+        - Discontinued:
+            done()
+            setIV()
+        - Discontinued static member:
+            lastOK()
+
+    refer to DecryptBuf's man-page for further details.
+
+  * Redesigned EncryptBuf
+        - Discontinued:
+            setKey()
+            setIV()
+
+    refer to EncryptBuf's man-page for further details.
+
+
   * Selector::wait() returns 0 when its read, write and except file descriptor
     sets are empty.
 

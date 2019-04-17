@@ -5,7 +5,9 @@
 
 #include <iosfwd>
 #include <string>
+
 #include <bobcat/cryptbuf>
+#include "../cryptbuf/cryptbuf"
 
 namespace FBB
 {
@@ -15,6 +17,8 @@ class IRandStream;
 class EncryptBuf: public CryptBuf
 {
     EVP_CIPHER_CTX     *d_ctx;
+
+    bool                d_end = false;  // end() was called
 
     std::string         d_incoming;
     std::string         d_encrypted;
@@ -59,6 +63,7 @@ class EncryptBuf: public CryptBuf
         static void setChar(char &ch, IRandStream &irs);
 };
 
+#include "iv.f"
 #include "end.f"
 
 

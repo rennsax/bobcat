@@ -9,4 +9,6 @@ void EncryptBuf::end_()         // overrides CryptBuf::end_()
         throw Exception{ 1 } << "Encrypt finalization failed";
 
     d_outStream.write(&d_encrypted[0], encryptedLen);
+
+    d_end = true;
 }

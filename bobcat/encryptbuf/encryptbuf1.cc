@@ -12,9 +12,6 @@ EncryptBuf::EncryptBuf(ostream &outStream, char const *type,
     d_outStream(outStream)
 {
     prepareIV();
-    prepareKey();
-
-    d_key = key;
 
     if (
         not EVP_EncryptInit_ex(d_ctx, md(), 0, ucharPtr(d_key), 
@@ -22,12 +19,7 @@ EncryptBuf::EncryptBuf(ostream &outStream, char const *type,
     )
         throw Exception{ 1 } << "Encrypt initialization failed";
 
-
-//    cerr << "key len: " << d_key.length() << ": `" << d_key << "'\n"
-//            "iv len: " << d_iv.length() << ": `" << d_iv << "'\n"
-//            "incoming: `";
-    
-    setp();  
+    setp();
 }
 
 

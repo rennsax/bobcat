@@ -12,17 +12,17 @@ namespace FBB
 
 class DecryptBuf: public CryptBuf
 {
-    EVP_CIPHER_CTX     *d_ctx;
+    EVP_CIPHER_CTX *d_ctx;
 
-    std::string         d_encrypted;
-    std::string         d_decrypted;
+    std::string     d_encrypted;
+    std::string     d_decrypted;
 
-    bool d_end = false;
+    bool            d_end = false;
 
-    std::string  d_iv;
-    std::string  d_key;
+    std::string     d_iv;
+    std::string     d_key;
 
-    std::ostream       &d_outStream;
+    std::ostream   &d_outStream;
 
     public:
         DecryptBuf(std::ostream &outStream, char const *type, 

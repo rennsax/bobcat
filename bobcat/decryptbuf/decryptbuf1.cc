@@ -15,11 +15,6 @@ DecryptBuf::DecryptBuf(ostream &outStream, char const *type,
     d_key(key),
     d_outStream(outStream)
 {
-
-    cerr << "key len: " << d_key.length() << ": `" << d_key << "'\n"
-            "iv len: " << d_iv.length() << ": `" << d_iv << "'\n";
-    
-
     if (
         not EVP_DecryptInit_ex(d_ctx, md(), 0, ucharPtr(d_key), 
                                                ucharPtr(d_iv))

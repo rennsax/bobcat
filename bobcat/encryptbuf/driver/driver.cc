@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <fstream>
 #include <bobcat/exception>
+#include <bobcat/ohexstreambuf>
 #include "../encryptbuf"
 
 #include <openssl/evp.h>
@@ -15,9 +16,8 @@ try
     if (argc == 1)
         throw Exception(1) << 
                     "1st arg: method, 2nd arg: key, 3rd arg:  (opt): iv, "
-                    "stdin: file to encrypt (to stdout)";
-
-    // e.g., driver aes-128-cbc somekey < driver.cc > /tmp/drivr.enc
+                    "stdin: file to encrypt (to stdout)\n"
+            "e.g., driver aes-128-cbc somekey < driver.cc > /tmp/enc\n";
 
     string key(argv[2]);
     string iv;
@@ -28,20 +28,23 @@ try
     EncryptBuf encryptbuf(cout, argv[1], key, iv, 50);
 
     ostream out(&encryptbuf);
+
+    size_t ivLength = encryptbuf.iv().length();
     cerr << "Block length: " << encryptbuf.blockLength() << "\n"
             "Key length: " << encryptbuf.keyLength() << "\n"
             "Max Key length: " << EVP_MAX_KEY_LENGTH << "\n"
-            "actual IV length: " << encryptbuf.iv().length() << '\n';
+            "actual IV length: " << ivLength << "\n"
+            "IV =\n";
 
-//    cerr << hex << setfill('0');
-//    for (unsigned char ch: encryptbuf.iv())
-//        cerr << setw(2) << static_cast<unsigned>(ch);
-//    cerr << '\n';
+    OHexStreambuf ohb{ cerr, ivLength << 1 };
+    ostream outHex(&ohb);
+    outHex << encryptbuf.iv();
+    cerr << '\n' << dec;
 
     out << cin.rdbuf() << end;
 }
 catch(exception const &err)
 {
-    cout << err.what() << endl;
+    cerr << err.what() << endl;
     return 1;
 }
