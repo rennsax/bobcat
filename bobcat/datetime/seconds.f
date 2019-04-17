@@ -1,4 +1,4 @@
-inline size_t DateTime::seconds() const
+inline unsigned DateTime::seconds() const
 {
     return d_tm.tm_sec;
 }

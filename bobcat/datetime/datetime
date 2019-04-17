@@ -284,27 +284,27 @@ class DateTime
         void swap(DateTime &other);
 
         bool        dst() const;                                    // .f
-        size_t      hours() const;                                  // .f
-        size_t      minutes() const;                                // .f
+        unsigned    hours() const;                                  // .f
+        unsigned    minutes() const;                                // .f
         Month       month() const;                                  // .f
-        size_t      monthDayNr() const;                             // .f
-        size_t      seconds() const;                                // .f
+        unsigned    monthDayNr() const;                             // .f
+        unsigned    seconds() const;                                // .f
+
         DateTime    thisTime() const;  // The computer's local time    .f
         TM   const *timeStruct() const;                             // .f
         DateTime    utc() const;                                    // .f
         time_t      utcSeconds() const;                             // .f
         Weekday     weekday() const;                                // .f
-        size_t      weekNr() const;
-        size_t      year() const;       // the real year (e.g., 2019)  .f
-        size_t      yearDay() const;    // 0-based                  // .f
-        size_t      yearDayNr() const;  // 1-based                  // .f
+        unsigned    weekNr() const;
+        unsigned    year() const;       // the real year (e.g., 2019)  .f
+        unsigned    yearDay() const;    // 0-based                  // .f
+        unsigned    yearDayNr() const;  // 1-based                  // .f
         Zone const &zone() const;
 
         std::string rfc2822() const;
         std::string rfc3339() const;
 
-        void setDay(int day);
-
+        void setDay(int dayNr);
         void setFields(TM const &ts, TimeFields fields);
         void setHours(int hours);
         void setMinutes(int minutes);
@@ -315,7 +315,7 @@ class DateTime
         void setSeconds(int seconds);
         void setUTCseconds(time_t utcSeconds);
         void setWeekday(Weekday weekday, Relative where);
-        void setYear(int year);         // calendar year
+        void setYear(unsigned year);    // calendar year
         void setZone(Zone const &zone); // d_utcSec is kept, LOCALTIME.
                                         // use utc() for a utc DateTime
 

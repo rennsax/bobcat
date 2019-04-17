@@ -1,4 +1,4 @@
-inline size_t DateTime::yearDay() const
+inline unsigned DateTime::yearDay() const
 {
     return d_tm.tm_yday;
 }

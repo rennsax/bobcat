@@ -9,7 +9,7 @@ void show(DateTime const &dt, char const *label)
 {
     cout << 
         label << ": " << dt << "\n"
-        "dst: " << (dt.dst() == DateTime::YES) << "\n"
+        "dst: " << dt.dst() << "\n"
         "hh:mm:ss: " << dt.hours() << ':' << dt.minutes() << ':' << 
                         dt.seconds() << "\n"
         "year-month-monthdaynr: " << dt.year() << '-' << dt.month() << '-' <<

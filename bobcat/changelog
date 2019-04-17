@@ -4,20 +4,41 @@ bobcat (5.00.00)
 
   * Redesigned DateTime
       - The TriVal type is not used anymore. Instead, `true' (DST is used for
-        the object's time) and `false' (DST is not used) are used.
+            the object's time) and `false' (DST is not used) are used.
       - DateTime(std::chrono::minutes zoneMinutes) replaces 
             DateTime(int zoneMinutes) 
-        DateTime operator+(DateTime const &obj, std::chrono::seconds seconds)
-            replaces operator+(DateTime const &obj, time_t seconds)
-        DateTime operator-(DateTime const &obj, std::chrono::seconds seconds)
-            replaces operator-(DateTime const &obj, time_t seconds)
+        DateTime operator@(DateTime const &obj, std::chrono::seconds seconds)
+            replaces operator@(DateTime const &obj, time_t seconds)
+        (where @ is + or -)
+        DateTime operator@(std::chrono::seconds seconds)
+            replaces operator@(time_t seconds)
+        (where @ is += or -=)
+      - setUTCseconds() replaces setTime()
+      - Members expecting or returning size_t values now expect or return
+            unsigned values
+      - Members returning bool values are now void members
       - Discontinued:
+            The TriVal enum
             DateTime(int zoneMinutes, DSTSpec const &dstSpec) 
             DateTime(time_t time, int zoneMinutes, DSTSpec const &dstSpec)
             DateTime(tm const &ts, int zoneMinutes)
             DateTime(tm const &ts, int zoneMinutes, DSTSpec const &dstSpec)
             DateTime(std::string const &timeStr, int zoneMinutes)
+            DateTime(std::string const &timeStr, int zoneMinutes, 
+                     DSTSpec const &dstSpec)
             DateTime(std::istream &in, int zoneMinutes)
+            DateTime(std::istream &in, int zoneMinutes, DSTSpec const
+                     &dstSpec)
+            localTime()
+            to()
+       - Discontinued static members:
+            zoneMinutes, 
+            addZone,
+            defaultZoneMinutes,
+            minutes,
+            readZones
+            zoneTxt
+
     refer to DateTime's man-page for further details.
 
   * Selector::wait() returns 0 when its read, write and except file descriptor

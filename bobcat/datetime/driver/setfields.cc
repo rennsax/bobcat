@@ -9,7 +9,7 @@ void show(DateTime const &dt, char const *label)
 {
     cout << 
         label << ": " << dt << "\n"
-        "    dst: " << (dt.dst() == DateTime::YES) << "\n"
+        "    dst: " << dt.dst() << "\n"
         "    hh:mm:ss: " << dt.hours() << ':' << dt.minutes() << ':' << 
                               dt.seconds() << "\n"
         "    year-month-monthdaynr: " << dt.year() << '-' << 
@@ -32,7 +32,7 @@ int main()
 
     DateTime dt{ now, DateTime::LOCALTIME };
     cout << "3: current local time: " << dt << ", zone shift: " << 
-            dt.zone().zoneShift() << " seconds\n\n";
+            dt.zone().seconds() << " seconds\n\n";
 
     dt.setSeconds(0);
 

@@ -1,4 +1,4 @@
-inline size_t DateTime::minutes() const
+inline unsigned DateTime::minutes() const
 {
     return d_tm.tm_min;
 }
