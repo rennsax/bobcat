@@ -1,7 +1,5 @@
 bobcat (5.00.00)
 
-  * Fixed flaw in Log's FBB::fnl handling
-
   * Redesigned DateTime
       - The TriVal type is not used anymore. Instead, `true' (DST is used for
             the object's time) and `false' (DST is not used) are used.
@@ -57,15 +55,16 @@ bobcat (5.00.00)
 
     refer to EncryptBuf's man-page for further details.
 
-
   * Selector::wait() returns 0 when its read, write and except file descriptor
     sets are empty.
 
   * IRandStream and Randbuffer expect a size_t seed (used to be: long seed);
-    fixed a memory leak in RandBuffer
+
+  * Fixed a memory leak in RandBuffer
+
+  * Fixed flaw in Log's FBB::fnl handling
 
   * Added class OMutexStream for mutex protected ostream operations.
-
 
 
 
