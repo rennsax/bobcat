@@ -34,27 +34,9 @@ class CryptBuf: public std::streambuf
 
 std::ostream &end(std::ostream &out);
 
-//  #include "md.f"
-// static
-inline EVP_CIPHER const *CryptBuf::md() const
-{
-    return d_md;
-}
-
-//  #include "ucharptr1.f"
-// static
-inline unsigned char *CryptBuf::ucharPtr(std::string &str)
-{
-    return reinterpret_cast<unsigned char *>(&str[0]);
-}
-
-//  #include "ucharptr2.f"
-// static
-inline unsigned char const *CryptBuf::ucharPtr(std::string const &str)
-{
-    return reinterpret_cast<unsigned char const *>(&str[0]);
-}
-   
+#include "md.f"
+#include "ucharptr1.f"
+#include "ucharptr2.f"
 
 } // FBB        
 #endif

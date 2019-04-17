@@ -27,7 +27,7 @@
 
     // Classes requiring the -pthread compiler option
 #define PTHREAD     "sharedmutex sharedblock sharedmemory sharedsegment " \
-                    "process processdata semaphore datetime "
+                    "process processdata semaphore "
 
     // Specify linker options that should be used when creating the shared
     // library:
@@ -47,7 +47,7 @@
 
 
 // INTERNAL USE ONLY:
-// #define BUILD_SHARED
+#define BUILD_SHARED
 
 
 // COMPONENTS TO INSTALL
