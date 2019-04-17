@@ -17,6 +17,8 @@ class DecryptBuf: public CryptBuf
     std::string         d_encrypted;
     std::string         d_decrypted;
 
+    bool d_end = false;
+
     std::string  d_iv;
     std::string  d_key;
 
@@ -30,7 +32,7 @@ class DecryptBuf: public CryptBuf
 
         bool setRounds(size_t nRounds);             // RC5 8, 12 or 16
 
-        void end();
+        void end();                                 // .f
 
     protected:
         EVP_CIPHER_CTX *cipherCtx();
@@ -42,6 +44,8 @@ class DecryptBuf: public CryptBuf
         void flushBuffer();
         void setp();
 };
+
+#include "end.f"
 
 }   // FBB
         

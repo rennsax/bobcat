@@ -9,4 +9,6 @@ void DecryptBuf::end_()     // overrides
         throw Exception{ 1 } << "DecryptBuf: padding error";
 
     d_outStream.write(&d_decrypted[0], restLen);
+
+    d_end = true;
 }

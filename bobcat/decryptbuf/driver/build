@@ -1,14 +1,21 @@
-#!/bin/sh
+#!/bin/bash
 
 # ln -s .. bobcat
+# ln -s ../ohexstreambuf/ohexstreambuf bobcat
 # 
 # g++ -I. --std=c++2a -O2 -Wall -o driver driver.cc -lssl -lbobcat \
-#     -L../tmp -ldecryptbuf
+#       -L../../ohexstreambuf/tmp -L../tmp -ldecryptbuf -lohexstreambuf
 # 
-# rm bobcat
+# rm bobcat/ohexstreambuf bobcat
 
 # echo g++ --std=c++2a -O2 -Wall -o driver driver.cc -lbobcat 
 # g++ --std=c++2a -O2 -Wall -o driver driver.cc -lbobcat 
+
+# echo g++ -I. --std=c++2a -O2 -Wall -o driver driver.cc -L../tmp -ldecryptbuf \
+#         -lssl -lbobcat
+# 
+# g++ -I. --std=c++2a -O2 -Wall -o driver driver.cc -L../tmp -ldecryptbuf \
+#         -lssl -lbobcat
 
 tput clear
 
@@ -18,20 +25,17 @@ GPP="g++ --std=c++2a"
 #   Using the standard bobcat library
 #CMD="$GPP -o driver -Wall driver.cc ${LIBS} -s"
 
-#   Using the decryptbuf library in ../tmp/ and the std bobcat library
+#   Using the library in ../tmp/
 #CMD="$GPP -o driver -Wall driver.cc -L../tmp -ldecryptbuf ${LIBS} -s"
 
 #   Using the library in ../tmp/ and bobcat as /tmp/libbob.a
+#CMD="$GPP -o driver -Wall driver.cc -L../tmp -ldecryptbuf -L /tmp -lbob -lcrypto -s"
+
+#   Using libraries in ../tmp/, and /tmp (-> boblib)
 CMD="$GPP -o driver -Wall driver.cc \
-            -L../.. -laz \
-            -L /tmp -lbob \
-            -lcrypto -s"
-
-#            -L../tmp -ldecryptbuf \
-#            -L../../encryptbuf/tmp -lencryptbuf \
-#            -L /tmp -lbob \
-#            -lcrypto -s"
-
+        -L../tmp -ldecryptbuf \
+        -L/tmp -lcryptb -lrandb -lbob \
+        -lcrypto -s"
 
 echo ${CMD}
 ${CMD}

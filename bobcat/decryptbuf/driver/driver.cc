@@ -28,11 +28,12 @@ try
 
     DecryptBuf decryptbuf(cout, argv[1], argv[2], argv[3]);
 
-//  decryptbuf.end();
-
     ostream out(&decryptbuf);
     ifstream in(argv[4]);
 
+    if (not in)
+        throw Exception{} << "can't read `" << argv[4] << '\n';
+    
     out << in.rdbuf() << end;
 }
 catch(exception const &err)
