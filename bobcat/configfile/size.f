@@ -1,4 +1,4 @@
-inline size_t ConfigFile__::size() const
+inline size_t ConfigFile_::size() const
 {
     return d_line.size();
 }

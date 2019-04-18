@@ -1,7 +1,6 @@
 #!/bin/bash
 
-ln -sf ../configfile .
-ln -sf ../configfile.ih .
+ln -sf .. configdir
 
 case $1 in
     (b)
@@ -16,7 +15,8 @@ case $1 in
         g++ --std=c++2a -o driver *.cc -lbobcat -s
     ;;
     (l)
-        g++ --std=c++2a -o driver *.cc -lconfigfile -lbobcat -L.. -s
+        g++ --std=c++2a -o driver -Iconfigdir *.cc \
+                            -L../tmp -lconfigfile -lbobcat  -s
     ;;
     (*)
     echo $0 b links to bobcat built by 'build libraries all'
@@ -27,7 +27,8 @@ case $1 in
     ;;
 esac
 
-rm -f configfile configfile.ih
+rm -f configdir
+
 
 
 

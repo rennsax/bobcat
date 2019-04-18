@@ -17,7 +17,7 @@ namespace FBB
 
 class RE_iterator: public std::iterator<std::input_iterator_tag, std::string>
 {
-    friend class ConfigFile__;
+    friend class ConfigFile_;
 
     friend int operator-(RE_iterator const &lhs,        // opneg.f
                          RE_iterator const &rhs);
@@ -41,7 +41,7 @@ class RE_iterator: public std::iterator<std::input_iterator_tag, std::string>
         RE_iterator(VsIterVector const &vsIter, size_t idx);
 };
 
-struct CFEnums__
+struct CFEnums_
 {
         typedef RE_iterator const_RE_iterator;
         typedef std::vector<std::string>::const_iterator const_iterator;
@@ -66,10 +66,10 @@ struct CFEnums__
         };
 };
 
-class ConfigFile__;
-class ConfigFile: public CFEnums__
+class ConfigFile_;
+class ConfigFile: public CFEnums_
 {
-    ConfigFile__ *d_ptr;
+    ConfigFile_ *d_ptr;
 
     public:
         explicit ConfigFile(Comment cType = KeepComment,        // 1

@@ -5,7 +5,7 @@
 #ifdef BOBCAT
     #include <bobcat/configfile>
 #else
-    #include "configfile"
+    #include "configdir/configfile"
 #endif
 
 using namespace std;

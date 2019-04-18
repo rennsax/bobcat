@@ -1,6 +1,6 @@
 #include "configfile.ih"
 
-void ConfigFile__::trimLeft(string &line)
+void ConfigFile_::trimLeft(string &line)
 {
                                                     // remove initial ws.
     string::size_type pos = line.find_first_not_of(" \t");

@@ -1,6 +1,6 @@
 #include "configfile.ih"
 
-bool ConfigFile__::rmCommentAndEscapes(string &line)
+bool ConfigFile_::rmCommentAndEscapes(string &line)
 {
     size_t pos = 0;
     size_t lastBackslash = 0;

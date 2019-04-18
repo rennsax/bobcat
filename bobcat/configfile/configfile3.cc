@@ -2,5 +2,5 @@
 
 ConfigFile::ConfigFile(ConfigFile &&tmp)
 :
-    d_ptr( new ConfigFile__(move(*tmp.d_ptr) ))
+    d_ptr( new ConfigFile_(move(*tmp.d_ptr) ))
 {}

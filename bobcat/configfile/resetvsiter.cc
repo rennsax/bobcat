@@ -1,6 +1,6 @@
 #include "configfile.ih"
 
-void ConfigFile__::resetVsIter(string const &re)
+void ConfigFile_::resetVsIter(string const &re)
 {
     d_vsIter.clear();
 

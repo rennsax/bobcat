@@ -1,4 +1,4 @@
-inline ConfigFile__::const_iterator ConfigFile__::end() const
+inline ConfigFile_::const_iterator ConfigFile_::end() const
 {
     return d_line.end();
 }

@@ -1,6 +1,6 @@
 #include "configfile.ih"
 
-bool ConfigFile__::nextLine(istream &inStream, string &dest)
+bool ConfigFile_::nextLine(istream &inStream, string &dest)
 {
     dest.erase();
     string line;
