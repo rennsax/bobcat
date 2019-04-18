@@ -38,8 +38,6 @@ class TableBuf: public TableBase, public std::streambuf
         void setRowSeparator(char rs);                              // 2.f
 
     private:
-        virtual int pSync();            // see the 4.09.00 changelog
-
         int sync() override;
         int overflow(int ch) override;
 

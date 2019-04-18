@@ -68,6 +68,14 @@ bobcat (5.00.00)
 
   * IRandStream and Randbuffer expect a size_t seed (used to be: long seed);
 
+  * New members replacing old ones:
+        - OHexStreambuf::sync() replaces OHexStreambuf::pSync() 
+        - MultiStreambuf::sync() replaces MultiStreambuf::pSync() 
+        - OFdStreambuf::sync() replaces OFdStreambuf::pSync() 
+        - TableBuf::sync() replaces TableBuf::pSync() 
+        - IOStreambuf::sync() replaces IOStreambuf::pSync() 
+        - IOStreambuf::xsputn() replaces IOStreambuf::pXsputn() 
+
   * Fixed a memory leak in RandBuffer
 
   * Fixed flaw in Log's FBB::fnl handling

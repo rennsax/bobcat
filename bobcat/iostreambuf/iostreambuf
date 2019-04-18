@@ -29,7 +29,6 @@ class IOStreambuf: public std::streambuf
                       std::ios::openmode mode = std::ios::in | std::ios::out);
 
     private:
-        int pSync();                            // see the 4.09.00 changelog
                                                 // see the 4.09.00 changelog
         std::streamsize pXsputn(char const *buffer,  
                                 std::streamsize n);
