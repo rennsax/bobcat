@@ -24,11 +24,8 @@ manpagesection(INHERITS FROM)
 
 manpagesection(CONSTRUCTORS)
 
-    The default, copy and move constructors are available.
-
-manpagesection(OVERLOADED OPERATORS)
-
-    The copy and move assignment operators are available.
+    The default, copy and move constructors as well as the copy and move
+assignment operators are available.
 
 manpagesection(MEMBER FUNCTIONS)
 

@@ -52,11 +52,9 @@ manpagesection(INHERITS FROM)
     -
 
 manpagesection(CONSTRUCTORS)
-    itemization(
-    itb(Fork())
-        This is the only available constructor. 
+
+    Only the default constructor is available. 
     )
-    Note that there is no copy constructor.
 
 manpagesection(DESTRUCTOR)
     itemization(

@@ -85,8 +85,7 @@ The following classes and functions are available:
     Manpage(configfile)
 
     bf(FBB::CSV4180): Objects of this class allow for easy handling of
-    comma-separated values (implements RFC 4180, replaces the class bf(CSV),
-    which is now deprecated).nl()  
+    comma-separated values (implements RFC 4180).nl()  
     Manpage(csv4180)
 
     bf(FBB::DateTime): Manipulations with date and time values.nl()
@@ -992,6 +991,7 @@ END)
     bf(FBB::Xpointer): sets and retrieves the X-windows pointer.nl()
     Manpage(xpointer)
 
+COMMENT(
     it() bf(DEPRECATED CLASSES)
         Deprecated classes should no longer be used. Their functionality is
         better provided by other classes. The deprecated classes are no
@@ -999,15 +999,16 @@ END)
 
         bf(FBB::CSV): Comma separated values are now handled by the class
         bf(CSV4180), implementing RFC 4180.nl()
+END)
      )
 
 manpagesection(LINKING)
 
     To link programs against the shared bf(Bobcat) library (e.g.,
-tt(libbobcat4.so)) it is usually sufficient to merely specify
+tt(libbobcat5.so)) it is usually sufficient to merely specify
 tt(-lbobcat). E.g.,
         verb(
-    g++ --std=c++11 main.cc -lbobcat
+    g++ --std=c++2a main.cc -lbobcat
         )
 
     Due to a change in library handling by the linker
@@ -1018,7 +1019,7 @@ your program. With some classes (e.g., tt(BigInt)) the tt(libcrypto) library
 must also be specified, and programs using such classes must be linked against
 tt(bobcat) and tt(crypto):
         verb(
-    g++ --std=c++11 main.cc -lbobcat -lcrypto
+    g++ --std=c++2a main.cc -lbobcat -lcrypto
         )
     Man-pages of classes requiring additional libraries mention these
 additional libraries in their bf(SYNOPSIS) sections. 

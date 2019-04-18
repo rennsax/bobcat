@@ -82,7 +82,7 @@ manpagesection(CONSTRUCTORS)
         path, tt(searchPath) is ignored.
     )
 
-    The copy and move constructors are available.
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(OVERLOADED OPERATORS)
     itemization(
@@ -90,8 +90,6 @@ manpagesection(OVERLOADED OPERATORS)
        This operator returns tt(true) if the tt(Stat) object holds information
         about an existing object. Otherwise tt(false) is returned.
     )
-
-    The copy and move assignment operators are available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

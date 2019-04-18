@@ -166,7 +166,6 @@ struct Process: private Fork, public IOStream, public ProcessEnums
                             size_t timeLimit, size_t bufSize);
 
         std::istream &childErrStream();         // READ cerr from the child
-        std::istream &cerr();                   // same, but deprecated
 
         std::istream &childOutStream();         //                      .f
                                                 // READ cout from the child

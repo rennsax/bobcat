@@ -127,11 +127,8 @@ for tt(mode), an bf(FBB::Exception) exception is thrown.
     itb(Note)
     There is no default constructor.
     )
-    Copy and move constructors are available.
 
-manpagesection(OVERLOADED OPERATORS)
-
-    The copy and move assignment operators are available.
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(PUBLIC MEMBER FUNCTION)
     itemization(

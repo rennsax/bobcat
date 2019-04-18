@@ -16,8 +16,6 @@ class SocketBase: public InetAddress
     int         d_sock;
 
     public:
-        ~SocketBase() = default;
-
         void verify() const;
 
         bool debug() const;                                         // .f
@@ -31,6 +29,9 @@ class SocketBase: public InetAddress
         explicit SocketBase(uint16_t port);                         // 1
         SocketBase(std::string const &host, uint16_t port);         // 2
         SocketBase(int socket, sockaddr_in const &address);         // 1.f
+
+        SocketBase(SocketBase const &other)          = default;
+        SocketBase &operator=(SocketBase const &rhs) = default;
 
     private:
         bool boolOption(int optname) const;

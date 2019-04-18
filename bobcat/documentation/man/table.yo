@@ -108,7 +108,8 @@ separators, etc, etc. The bf(TableSupport) object is passed as a non-const
 reference as the bf(Table) object must be able to manipulate its data. See
 bf(tablesuppport)(3bobcat) for more information about tt(TableSupport).
     )
-    The copy constructor is not available.
+
+    Copy and move constructors and assignment operators are not available.
 
 manpagesection(OVERLOADED OPERATORS)
 
@@ -130,7 +131,6 @@ bf(std::ostringstream) insertions are possible.  It inserts the value/object
 tt(x) into the bf(Table)'s bf(std::ostringstream) base class object as the
 next element of the table.
     )
-    The overloaded assignment operator is not available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

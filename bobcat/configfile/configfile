@@ -97,26 +97,16 @@ class ConfigFile: public CFEnums__
         const_iterator begin() const;
         const_iterator end() const;
 
-        const_RE_iterator beginRE(std::string const &re);   // 2, deprecated
-        const_RE_iterator endRE() const;                    // deprecated
-
-        RE_iteratorPair beginEndRE(std::string const &re) const;
-        RE_iteratorPair beginEndRE() const;
-
-        RE_iteratorPair beginEndRE(std::string const &re);  // deprecated
-        RE_iteratorPair beginEndRE();                       // deprecated
+        RE_iteratorPair beginEndRE(std::string const &re) const;    // 1
+        RE_iteratorPair beginEndRE() const;                         // 2
 
         const_iterator find(std::string const &target) const;
         const_iterator findRE(std::string const &re) const;
 
         std::string findKey(std::string const &key, size_t count = 1) const;
-        std::string findKeyTail(std::string const &key, size_t count = 1) 
-                                                                        const;
 
-                                                        // deprecated (2x):
-        std::string findKey(std::string const &key, size_t count = 1); 
-        std::string findKeyTail(std::string const &key, size_t count = 1);  
-
+        std::string findKeyTail(std::string const &key, 
+                                size_t count = 1) const;
 
         size_t index(size_t lineNr);                        // 1
         size_t index(const_iterator const &iterator);       // 2

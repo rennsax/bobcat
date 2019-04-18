@@ -101,7 +101,8 @@ characters to escape. The backslash is used as the escape character. The
 escape-prefix is not used if the tt(defaultEscape) value is specified as
 tt(false) and if no insertions into the bf(CGI) object were performed.
     )
-    The copy and move constructors are available.
+
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(OERLOADED OPERATORS)
 
@@ -187,8 +188,6 @@ attempts to modify that set is silently ignored.
         Each character is displayed on a line by itself.
 
     )
-
-    The copy and move assignment operators are available. 
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

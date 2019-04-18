@@ -50,7 +50,7 @@ tt(DigestBuf) to store incoming characters temporarily. The provided default
 argument should be OK in all normal cases. 
     )
 
-    The copy and move constructors (and assignment operators) are not
+    The copy and move constructors and assignment operators are not
 available. 
 
 manpagesection(OVERLOADED OPERATOR)

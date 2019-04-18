@@ -156,7 +156,7 @@ have the same meanings as those of the abovementioned constructor. A
 tt(nullptr) indicates that no text needs to be prepended to syslog messages.
     )
 
-    Copy and move constructors are not available.
+    Copy and move constructors and assignment operators are not available.
 
 manpagesection(MEMBER FUNCTIONS)
 

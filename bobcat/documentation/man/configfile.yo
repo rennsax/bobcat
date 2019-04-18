@@ -87,8 +87,7 @@ address of the line of the configuration file the iterator refers to;
         )
     tt(const_RE_iterator)s can be compared for (in)equality and they can be
 copy-constructed; tt(const_RE_iterator) objects are returned by the
-tt(ConfigFile::beginRE), tt(ConfigFile::endRE) and tt(ConfigFile::beginEndRE)
-members and cannot otherwise be constructed.
+tt(ConfigFile::beginEndRE) member and cannot otherwise be constructed.
 
     When two tt(const_RE_iterator) objects are subtracted the
 number of lines matching their regular expression is returned. E.g., (see
@@ -126,15 +125,15 @@ the first constructor. It throws an tt(FBB::Exception) exception if the file
 could not be opened.
     )
 
-    Copy and move constructors are available.
 
 manpagesection(OVERLOADED OPERATORS)
     itemization(
     itb(std::string const &operator[](size_t idx) const)
         This member returns the (0-based) tt(idx)-th line of the configuration
     file. 
-    )nl()
-    The overloaded assignment and move assignment operators are available.
+    )
+
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(
@@ -224,9 +223,7 @@ field is an iterator to the same line and whose tt(second) field is the
 end-iterator for lines matching tt(target). If the tt(RemoveComment) flag was
 specified, then comment-text is not searched.  The inherited tt(end) member
 can be used to determine the end-iterator. It is not guaranteed that all lines
-between the returned iterator and tt(end) also contain tt(target). If
-that is required, the members tt(beginRE) and tt(endRE) can be used.  This
-member also interprets the tt(SearchCasing) flag.
+between the returned iterator and tt(end) also contain tt(target).
 
     itb(size_t index(size_t idx))
         This function should only be used when the parameter tt(StoreIndices)
@@ -240,8 +237,7 @@ was specified at construction time. In that case it returns the original
 0-based line index in the configuration file associated with the configuration
 line in the current tt(Configuration) object pointed to by tt(iter). This may
 also be an (incremented version of the) iterator returned by the member
-tt(findRE) or tt(beginRE), as long as the iterator's value is within the half
-open range tt(beginRE) to tt(endRE).
+tt(findRE).
 
     itb(void open(std::string const &fname))
         This member reads the configuration file having name tt(fname).
@@ -310,12 +306,12 @@ int main(int argc, char **argv)
 {
     ConfigFile cf(argv[1]);     
 
-    cout << *cf.find("this one") << endl; // find text within a line
+    cout << *cf.find("this one") << '\n'; // find text within a line
 
                                          // find all lines matching 
-                                         // `^line:'
-    copy(cf.beginRE("^line:"), cf.endRE(), 
-                    ostream_iterator<string>(cout, "\n"));
+    auto [begin, end] = cv.beginEndRE("^line:"); // `^line:'
+
+    copy(begin, end, ostream_iterator<string>(cout, "\n"));
 }
     )
 

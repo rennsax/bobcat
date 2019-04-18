@@ -22,7 +22,7 @@ configured.
     bf(FBB::Mbuf) objects themselves are tt(std::streambuf) objects, so they
 can be used to construct tt(std::ostream) objects. However, they are intended
 to be used by bf(mstream)(3bobcat) objects, and passing tt(Mbuf) objects to
-other kind of tt(ostream) objects is deprecated and may result in undefined
+other kind of tt(ostream) objects is deprecated and results in undefined
 behavior.
 
 manpagesection(NAMESPACE)
@@ -63,8 +63,8 @@ cannot be opened for writing. If a file by that name already exists it is
 rewritten.  The remaining parameters are identical to those of the previous
 two constructors.
     )
-    As bf(FBB::Mbuf) inherits from tt(std::streambuf) the copy constructor is
-not available. Neither is the move constructor.
+
+    Copy and move constructors and assignment operators are not available.
 
 manpagesection(MEMBER FUNCTIONS)
 
@@ -105,9 +105,9 @@ after completing a message.
                 std::string const &tag, bool throwing))
         messages inserted into bf(FBB::Mbuf) objects are handled by a
 tt(std::ofstream) created using the provided tt(name) parameter. It throws an
-tt(FBB::Exception) exception if the stream cannot be opened for writing. If a file
-by that name already exists it is rewritten.  The remaining parameters are
-identical to those of the previous tt(reset) members.
+tt(FBB::Exception) exception if the stream cannot be opened for writing. If a
+file by that name already exists it is rewritten.  The remaining parameters
+are identical to those of the previous tt(reset) members.
 
     itb(void reset(FBB::Mbuf const &mbuf))
         the current object is reset using the parameters of the tt(mbuf)

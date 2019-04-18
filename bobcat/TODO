@@ -1,7 +1,10 @@
-At the next major version upgrade:
-    remove SF members listed in the 4.09.00 changelog
+
+    Copy and move constructors and assignment operators are available.
+
+    Copy and move constructors and assignment operators are not available.
 
 Provide examples in the following man-pages:
     ifdstreambuf.yo
     milter.yo
 
+fix the ConfigFile driver

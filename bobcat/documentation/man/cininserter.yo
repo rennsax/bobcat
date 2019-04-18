@@ -63,6 +63,8 @@ manpagesection(CONSTRUCTOR)
         internal buffer size used by the tt(CinInserter's) streambuf.
     )
 
+    Copy and move constructors and assignment operators are not available.
+
 manpagesection(DESTRUCTOR)
 
     The destructor ends the tt(CinInserter's) child process, if it is still

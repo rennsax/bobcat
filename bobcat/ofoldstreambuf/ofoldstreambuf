@@ -104,8 +104,6 @@ class OFoldStreambuf: virtual public OFoldStreambufEnums,
         static size_t rightMargin(std::streambuf const *buffer);
 
     private:
-        int pSync();                    // see the 4.09.00 changelog
-
         int sync() override;
         int overflow(int c) override;
 

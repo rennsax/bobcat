@@ -140,10 +140,8 @@ initiator's public and private data.
 tt(std::istreams) rather than file names. It should be called by the
 initiator, to load the initiator's public and private info.
     )
-    Copy and move constructors are available.
 
-manpagesection(OVERLOADED OPERATORS)
-    Copy and move assignment operators are available.
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

@@ -105,7 +105,8 @@ tt(LEFT_MID)).
 
 manpagesection(CONSTRUCTORS)
 
-    The default, copy and move constructors are available.
+    The default, copy and move constructors as well as the copy and move
+assignment operators are available.
 
 manpagesection(OVERLOADED OPERATORS)
 
@@ -133,7 +134,6 @@ specified row should be displayed (see the description of tt(ColumnType) in
 the tt(ENUMERATION) section).
     )
 
-    The copy and move assignment operators are available.
 
 manpagesection(PUBLIC MEMBER FUNCTIONS)
     itemization(

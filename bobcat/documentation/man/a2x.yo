@@ -44,6 +44,7 @@ represents a textual value of some type, the tt(A2x) object may be used to
 initialize or assign this value to a variable of that particular
 type. Extraction is also still possible.
     )
+
     The copy and move constructors are available.
 
 manpagesection(STATIC MEMBER FUNCTION)
@@ -94,9 +95,9 @@ tt(ios::good). If a 0-pointer is passed, an empty string is stored.
     itb(A2x &operator=(std::string const &)) 
         Stores the text stored in the tt(std::string) argument in the
 tt(A2x) object, resets the status flags to tt(ios::good).
-    itb(A2x &operator=(A2x const &)) 
-    The standard overloaded assignment operator is available
     )
+
+    The overloaded assignment operator is available
 
 manpagesection(EXAMPLE)
          verb(

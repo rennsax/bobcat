@@ -114,8 +114,8 @@ that is stored in tt(bigEndian) represents a negative value, then provide a
 second argument tt(true).
     )
 
-    The standard copy constructor is available, the move constructor is not
-available. 
+    The copy constructor and assignment operator is available, move operations
+are not available.
 
 
 manpagesection(MEMBER FUNCTIONS)
@@ -524,7 +524,6 @@ tt(BigInt), possibly promoting the rhs operand.
     bf((Arithmetic) assignment operator(s):)
 
     itemization(
-    itb(BigInt &operator=(BigInt const &rhs))
     itb(BigInt &operator*=(BigInt const &rhs))
     itb(BigInt &operator/=(BigInt const &rhs))
        This operator assigns the result of the (integer) division of the current
@@ -548,8 +547,6 @@ tt(BigInt), possibly promoting the rhs operand.
         This operator tt(bit_xor)s the bits and sign flags of the current
         object and the rhs operand.
     )
-
-    Note that the move operator is not available
 
 manpagesection(STATIC MEMBERS)
 

@@ -54,7 +54,8 @@ manpagesection(CONSTRUCTORS)
        The current state of tt(/dev/tty) is saved, and the object's member
         tt(echo(type)) is called.
     )
-    Default copy and move constructors are available.
+
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(OVERLOADED OPERATORS)
     itemization(
@@ -66,7 +67,6 @@ manpagesection(OVERLOADED OPERATORS)
        The insertion operator does not affect tt(out), but tt(/dev/tty)'s
         state is set according to the way the tt(tty) object was constructed.
     )
-    Default copy and move assignment operators are available.
 
 manpagesection(MEMBER FUNCTION)
 

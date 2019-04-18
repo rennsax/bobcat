@@ -50,11 +50,9 @@ manpagesection(CONSTRUCTORS)
         The tt(Cidr) object is initialized with CIDR specifications
         read from the tt(std::istream cidrStream). 
     )
-    The default, copy and move constructors are available.
 
-manpagesection(OVERLOADED OPERATORS)
-
-    The copy and move assignment operators are available.
+    Default, copy and move constructors and the copy and move assignment
+operators are available. 
 
 manpagesection(MEMBER FUNCTIONS)
 

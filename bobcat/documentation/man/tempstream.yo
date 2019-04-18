@@ -33,7 +33,7 @@ given base-name to which six random characters are appended. If the
 tt(TempStream) could not be constructed an tt(FBB::Exception) is thrown.
     )
 
-    Copy and move constructors are not available.
+    Copy and move constructors and assignment operators are not available.
 
 manpagesection(MEMBER FUNCTIONS)
      All bf(std::fstream) members are available, as bf(FBB::TempStream)

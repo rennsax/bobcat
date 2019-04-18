@@ -122,8 +122,9 @@ manpagesection(CONSTRUCTORS)
        The last two parameters are interpreted as the last two parameters of
         the previous constructor.
 
-    )nl()
-    The copy and move constructors are available.
+    )
+
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(OVERLOADED OPERATORS)
     itemization(
@@ -136,9 +137,7 @@ manpagesection(OVERLOADED OPERATORS)
         lines must match the number and types of the fields, as specified by
         the tt(csv) object. When input lines do not match these specifications
         tt(in's) fail status is set.
-    )nl()
-
-    The copy and move assignment operators are available.
+    )
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

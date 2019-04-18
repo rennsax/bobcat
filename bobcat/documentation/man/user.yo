@@ -24,14 +24,12 @@ manpagesection(CONSTRUCTORS)
     itemization(
     itb(User())
         The default constructor determines the current user's data.  
-        This constructor throws an tt(Exception) exception if it did not properly
-complete because the current user name could not be found in tt(/etc/passwd).
+        This constructor throws an tt(Exception) exception if it did not
+properly complete because the current user name could not be found in
+tt(/etc/passwd).
     )
-    The copy and move constructors are available.
 
-manpagesection(OVERLOADED OPERATORS)
-
-    The copy and move assignment operators are available.
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

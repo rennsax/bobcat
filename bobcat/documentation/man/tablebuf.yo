@@ -122,6 +122,8 @@ reference as the bf(Table) object must be able to manipulate its data. See
 bf(tablesuppport)(3bobcat) for more information about tt(TableSupport).
     )
 
+    Copy and move constructors and assignment operators are not available.
+
 manpagesection(OVERLOADED OPERATORS)
 
     itemization(
@@ -140,7 +142,6 @@ insertion operators available for tt(Table) type objects, the insertion
 operator for tt(TableBuf) objects is only used to define column or
 cell-alignment.
     )
-    The overloaded assignment operator is not available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

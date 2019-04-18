@@ -45,7 +45,8 @@ construction of the socket does not mean that a connection has actually been
 established. In order to connect to the server, the member bf(connect()) (see
 below) should be used.
     )
-    The copy constructor is not available.
+
+    Copy and move constructors and assignment operators are not available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(FBB::SocketBase) (and thus of bf(FBB::InetAddress)) are

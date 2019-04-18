@@ -100,7 +100,7 @@ manpagesection(CONSTRUCTORS)
         )
     )
 
-    Move and copy constructors are available.
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::exception) are
@@ -117,7 +117,7 @@ manpagesection(OVERLOADED OPERATORS)
 can be used to insert values of any type that can also be inserted into an
 tt(ostringstream) object.
     )
-    The overloaded assignment and move assignment operators are  available.
+
 
 manpagesection(STATIC MEMBERS)
 

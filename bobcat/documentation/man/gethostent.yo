@@ -42,9 +42,7 @@ manpagesection(INHERITS FROM)
 
 manpagesection(CONSTRUCTORS)
     All members of the class bf(FBB::GetHostent) are static. Consequently,
-there is no need to construct a bf(FBB::GetHostent) object. However, the
-default- and copy-constructors are available.
-
+there is no need to construct a bf(FBB::GetHostent) object. 
 
 manpagesection(STATIC MEMBERS)
     itemization(

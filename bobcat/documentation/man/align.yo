@@ -46,7 +46,8 @@ programmer to ensure that the table's element exists.
         This constructor is used to initialize the object with the address of
 an existing io-manipulator function.
     )
-    The copy constructor is available.
+
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(OVERLOADED OPERATORS)
 
@@ -54,7 +55,6 @@ manpagesection(OVERLOADED OPERATORS)
     itb(operator size_t() const)
         Returns the value representing a requested width of an element in a
 bf(Table) object.
-
     )
 
 

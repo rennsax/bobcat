@@ -31,9 +31,9 @@ try
     cf.open(argv[1]);
 
     cout << "opened again: " << argv[1] << "\n"
-    cout << "Got " << cf.size() << " lines\n" <<
-    cout << cf[0] << " from line " << cf.index(0) << "\n"
-    cout << "================\n";
+            "Got " << cf.size() << " lines\n" <<
+            cf[0] << " from line " << cf.index(0) << "\n"
+            "================\n";
 
     copy(cf.begin(), cf.end(), ostream_iterator<string>(cout, "\n"));
     
@@ -47,9 +47,9 @@ try
         auto it = cf.find(param);
 
         if (it != cf.end())
-            cout << *it << ": at index " << cf.index(it) << endl;
+            cout << *it << ": at index " << cf.index(it) << '\n';
         else        
-            cout << " < not found > " << endl;
+            cout << " < not found > " << '\n';
     }
     
     while (true)
@@ -62,9 +62,9 @@ try
         auto it = cf.findRE(param);
 
         if (it != cf.end())
-            cout << *it << ": at index " << cf.index(it) << endl;
+            cout << *it << ": at index " << cf.index(it) << '\n';
         else        
-            cout << " < not found > " << endl;
+            cout << " < not found > " << '\n';
     }
     
     while (true)
@@ -75,13 +75,13 @@ try
         if (!getline(cin, param) || !param.length())
             return 0;
     
-        auto iters = cf.beginEndRE(param);
+        auto [begin, end] = cf.beginEndRE(param);
     
-        cout << "Counting: " << (iters.second - iters.first) << " matches\n";
-        while (iters.first != iters.second)
+        cout << "Counting: " << (end - begin) << " matches\n";
+        while (begin != end)
         {
-            cout << *iters.first << endl;
-            ++iters.first;
+            cout << *begin << '\n';
+            ++begin;
         }
     
         cout << "value of findKey: " << cf.findKey(param) << '\n';
@@ -89,7 +89,7 @@ try
 }
 catch (exception const &e)
 {
-    cout << "Fatal: " << e.what() << endl;
+    cout << "Fatal: " << e.what() << '\n';
     return 1;
 }
 
