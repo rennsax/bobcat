@@ -109,8 +109,9 @@ exceptions are thrown when inserting messages.
         remaining parameters are identical to those of the previous two
         constructors.
     )
-    As tt(Mstream) inherits from tt(std::ostream) the copy constructor is
-not available. Neither is the move constructor.
+
+    Copy and move constructors (and assignment operators) are not available.
+
 
 manpagesection(MEMBER FUNCTIONS)
 

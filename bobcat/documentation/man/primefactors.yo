@@ -107,7 +107,7 @@ indeed 2 and 3. An tt(FBB::Exception) is thrown if this condition is not met.
 stream, and the stream can be reused by other tt(PrimeFactors) objects.
     )
 
-    Copy and move constructors and assignment operators are available.
+    Copy and move constructors (and assignment operators) are available.
 
     bf(FBB::PrimeFactor) objects created using the copy constructor or
 receiving their values using the copy assignment operator share the prime

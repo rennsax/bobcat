@@ -63,6 +63,14 @@ bobcat (5.00.00)
 
     refer to EncryptBuf's man-page for further details.
 
+  * OHexStreambuf 
+        - added an extra parameter to its constructor: std::string const
+            &separator, by default initialized to an empty string. It
+            defines the separator inserted between hexadecimal character
+            values. 
+        - added members `separator' to redefine or reset the currently used
+            separator. 
+
   * Selector::wait() returns 0 when its read, write and except file descriptor
     sets are empty.
 

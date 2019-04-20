@@ -35,7 +35,8 @@ object is thrown if the hostname information could not be retrieved.
 bf(InetAddress) object. An bf(FBB::Exception)
 object is thrown if the hostname information could not be retrieved.
     )
-        The copy constructor is available.
+
+    Copy and move constructors (and assignment operators) are available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(FBB::Hostent) are available, as bf(FBB::Hostname)

@@ -31,7 +31,7 @@ manpagesection(CONSTRUCTORS)
 using a buffer of size tt(n), by default having size 1. 
     )
 
-    Copy and move constructors and assignment operators are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::ostream) are available, as bf(FBB::OFdStream)

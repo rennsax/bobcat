@@ -197,10 +197,18 @@ function failed to perform its task.
 function succeeded in performing its task.
     )
 
-manpagesection(CONSTRUCTORS)
+manpagesection(CONSTRUCTOR/DESTRUCTOR)
 
-    The default- and copy constructors are available for derived classes. They
-perform no actions.
+    itemization(
+    itb(Milter())
+       The default constructor is available for derived classes. It performs
+        no actions. 
+    itb(virtual ~Milter())
+       The (public) virtual destructor performs no actions: derived classes
+        can override the destructor to suit their own needs.
+    )
+
+    Overloaded assignment operators are not available.
 
 manpagesection(PUBLIC STATIC MEMBER FUNCTIONS)
 

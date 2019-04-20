@@ -31,7 +31,7 @@ manpagesection(CONSTRUCTORS)
     tt(StringLine) is an empty shell around tt(std::string). It does not
 explicitly define constructors. 
 
-    Copy and move constructors and assignment operators are available.
+    Copy and move constructors (and assignment operators) are available.
 
 manpagesection(OVERLOADED OPERATOR)
     itemization(    

@@ -68,15 +68,16 @@ defined in the tt(FBB) namespace.
 
 manpagesection(CONSTRUCTOR)
     itemization(
-    itb(IQuotedPrintableStreambuf<CryptType>(std::istream &in, size_t bufSize = 1000))
-        This constructor initializes the streambuf.
+    itb(IQuotedPrintableStreambuf<CryptType>(std::istream &in, size_t bufSize
+        = 1000))
+       This constructor initializes the streambuf.
 
     - tt(IQuotedPrintableStreambuf<ENCODE>) objects perform quoted-printable
         encoding;nl()
     - tt(IQuotedPrintableStreambuf<DECODE>) objects perform quoted-printable
         decoding;nl()
-    - tt(IQuotedPrintableStreambuf<CryptType>) objects obtain the bytes to encode or
-        decode from tt(std::istream &in);nl()
+    - tt(IQuotedPrintableStreambuf<CryptType>) objects obtain the bytes to
+        encode or decode from tt(std::istream &in);nl()
     - The tt(IFilterStreambuf) base class is initialized with a buffer of
         size tt(bufSize), using a lower bound of 100 characters.
 
@@ -87,7 +88,7 @@ information beyond the quoted-printable input block should remain available,
 then a buffer size of 1 should be specified.
     )
 
-    Copy- and move constructors are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(EXAMPLE)
 

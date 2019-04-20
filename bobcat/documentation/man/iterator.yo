@@ -37,8 +37,8 @@ manpagesection(CONSTRUCTORS)
         returned. 
     )
         
-The default implementations of the bf(Iterator<Type>)'s default, copy, and
-move constructors are available.
+The bf(Iterator<Type>)'s default, copy, and
+move constructors (and its copy and move assignment operators) are available.
 
     Constructors for bf(ReverseIterator<Type>):
     itemization(
@@ -56,9 +56,8 @@ move constructors are available.
         value) that is stored inside the bf(Iterator)).
     )
         
-The default implementations of the bf(ReverseIterator<Type>)'s default, copy,
-and move constructors are available.
-
+The bf(ReverseIterator<Type>)'s default, copy, and
+move constructors (and its copy and move assignment operators) are available.
 
 manpagesection(MEMBER FUNCTIONS)
     For template parameter type tt(Type) all members of

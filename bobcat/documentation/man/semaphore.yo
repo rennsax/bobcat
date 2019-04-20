@@ -49,7 +49,7 @@ until its value is incremented by another thread, calling one of the
 semaphore's tt(notify) members.
     )
 
-    Copy and move constructors and assignment operators are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 
 manpagesection(MEMBER FUNCTIONS)

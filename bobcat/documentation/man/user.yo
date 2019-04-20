@@ -29,7 +29,7 @@ properly complete because the current user name could not be found in
 tt(/etc/passwd).
     )
 
-    Copy and move constructors and assignment operators are available.
+    Copy and move constructors (and assignment operators) are available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

@@ -52,7 +52,7 @@ manpagesection(CONSTRUCTORS)
             )
     )
 
-    Copy and move constructors and assignment operators are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

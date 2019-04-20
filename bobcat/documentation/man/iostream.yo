@@ -40,7 +40,8 @@ streams passed to tt(IOStream) should outlive the bf(IOStream) object. This
 constructor performs the actions of the default constructor and then calls the
 tt(IOStream::open) member
     )
-    De copy constructor is available as well.
+
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of tt(std::istream) and tt(std::ostream)  are

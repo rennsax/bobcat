@@ -66,7 +66,7 @@ current message, as usually appearing in messages in tt(/var/log) files. E.g.,
 tt(Aug 5 13:52:23).
     )
 
-    Copy and move constructors are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::streambuf) are available, as bf(FBB::LogBuffer)

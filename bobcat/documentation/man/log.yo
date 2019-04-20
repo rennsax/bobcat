@@ -124,7 +124,7 @@ The parameter tt(delim) is inserted immediately beyond the time stamp.  If a
 delimiter should not be used an empty string or a 0-pointer may be specified.
     )
 
-    Copy and move constructors are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of tt(std::ostream) are available, as tt(Log) inherits

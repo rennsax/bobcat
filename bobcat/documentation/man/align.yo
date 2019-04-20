@@ -47,7 +47,7 @@ programmer to ensure that the table's element exists.
 an existing io-manipulator function.
     )
 
-    Copy and move constructors and assignment operators are available.
+    Copy and move constructors (and assignment operators) are available.
 
 manpagesection(OVERLOADED OPERATORS)
 

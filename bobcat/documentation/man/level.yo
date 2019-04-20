@@ -41,7 +41,8 @@ manpagesection(CONSTRUCTORS)
         This constructor is used in insertion statements, usually inserting it
 as anonymous object into an tt(FBB::Log) object. 
     )
-    Copy and move constructors and assignment operators are available.
+
+    Copy and move constructors (and assignment operators) are available.
 
 manpagesection(OVERLOADED OPERATOR)
     itemization(

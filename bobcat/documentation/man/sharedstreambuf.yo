@@ -73,7 +73,7 @@ manpagesection(CONSTRUCTORS)
         memory segment having ID tt(id) exists),
     )
 
-    Copy and move constructors and assignment operators are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
 

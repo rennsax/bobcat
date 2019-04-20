@@ -37,11 +37,12 @@ hash's value type.
 manpagesection(CONSTRUCTORS)
 
     Variants of the tt(FBB::Hash) container are available for tt(char const *)
-or tt(std::string) keys, used case sensitively or case insensitively. All
-variants support default, copy, and move construction, support 
-construction from initializer
-lists and support construction from iterators defining a half-open range of
-tt(value_type) values.
+or tt(std::string) keys, used case sensitively or case insensitively. 
+
+All variants support default and move construction (as well as move
+assignment), support construction from initializer lists. and support
+construction from iterators defining a half-open range of tt(value_type)
+values.
 
     The following variants are available (showing their default
 constructors). tt(Value) refers to the value type stored in the hash table.
@@ -59,6 +60,7 @@ bf(std::string) keys;
     itb(HashStringCase<Value>())  this hash table uses em(case insensitive)
 bf(std::string) keys;
     )
+
 
 manpagesection(OVERLOADED OPERATOR)
      In addition to the index operator inherited from tt(unordered_map) the

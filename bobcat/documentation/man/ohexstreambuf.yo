@@ -31,14 +31,17 @@ manpagesection(INHERITS FROM)
 
 manpagesection(CONSTRUCTOR)
     itemization(
-    itb(OHexStreambuf(std::ostream &stream, size_t width = 0))
+    itb(OHexStreambuf(std::ostream &stream, size_t width = 0, std::string
+        const &separator = ""))
     The hexadecimal characters produced by the tt(OFilterStreambuf) object 
 are inserted into tt(stream). Optionally the maximum line width (in number of
 characters) may be specified using tt(width). The (default) value 0 indicates
-that no line breaks are requested.
+that no line breaks are requested. The parameter tt(separator) defines the
+separator that's inserted between hexadecimal character values. By default no
+separator is used.
     )
 
-    Copy and move constructors and assignment operators are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
     The destructor writes any buffered information to the destination stream
 and then flushes the destination stream. Finally, the destructor restores the
@@ -49,6 +52,17 @@ manpagesection(MEMBER FUNCTIONS)
 tt(open()) members are available, as bf(FBB::OHexStreambuf) inherits from
 this class.
     itemization(
+    itb(void separator(bool reset = true))
+       This member clears the separator that's inserted between hexadecimal
+        character values. When the tt(reset) parameter is set to tt(true)
+        (which is the default) the currently used output width is reset to 0.
+
+    itb(void separator(std::string const &separator, bool reset = true))
+       This member resets the separator that's inserted between hexadecimal
+        character values to tt(separator's) value. When the tt(reset)
+        parameter is set to tt(true) (which is the default) the currently used
+        output width is reset to 0.
+
     itb(size_t size() const)
         This member returns the next column offset where the next
 hexadecimal character will appear. If a maximum line length is requested and

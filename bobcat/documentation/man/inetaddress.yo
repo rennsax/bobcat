@@ -70,7 +70,8 @@ initialized bf(sockaddr_in) object. It is primarily used to promote a
 bf(sockaddr_in) to an bf(FBB::InetAddresss).
     )
 
-    The (public) copy constructor is available.
+    The (public) copy and move constructors (and assignment operators) are
+    available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(
@@ -81,14 +82,14 @@ manpagesection(MEMBER FUNCTIONS)
 string. If the address could not be determined, an bf(FBB::Exception) object is
 thrown. 
     itb(size_t size() const)
-        Accessor returning the size of the object's bf(sockaddr_in) (address)
-information. 
+       Accessor returning the size of the object's bf(sockaddr_in) (address)
+        information. 
     itb(sockaddr const *sockaddrPtr() const)
-        Accessor returning the pointer to the object's bf(sockaddr) data
-member. 
+       Accessor returning the pointer to the object's bf(sockaddr) data
+        member. 
     itb(sockaddr_in const *sockaddr_inPtr() const)
-        Accessor returning the pointer to the object's bf(sockaddr_in) data
-member. 
+       Accessor returning the pointer to the object's bf(sockaddr_in) data
+        member. 
     )
 
 manpagesection(PROTECTED MEMBER FUNCTIONS)

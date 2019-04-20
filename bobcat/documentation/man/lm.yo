@@ -39,10 +39,17 @@ manpagesection(CONSTRUCTOR)
     itemization(
     itb(lm(size_t newValue))
     )
-    The standard copy constructor is available.
+
+    Copy and move constructors (and assignment operators) are available.
 
 manpagesection(MEMBER FUNCTIONS)
-    There are no public or protected member functions in this class. 
+
+    itemization(
+    itb(std::ostream &modify(std::ostream &out) const)
+        This member is normally not directly called from
+user-programs. Instead, it is called by the insertion operator when inserting
+the tt(lm) manipulator.
+    )
 
 manpagesection(EXAMPLE)
         verb(

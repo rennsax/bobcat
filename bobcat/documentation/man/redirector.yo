@@ -106,7 +106,7 @@ or tt(cerr) to extract information from, or insert information into other
 streams using its standard input and output streams.
     )
 
-    Copy and move constructors and assignment operators are available.
+    Copy and move constructors (and assignment operators) are available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

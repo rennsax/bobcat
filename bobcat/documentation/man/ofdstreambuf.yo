@@ -71,7 +71,7 @@ the bf(open) member is called, the bf(Mode) argument determines whether the
 file descriptor will be closed or will remain open.
     )
 
-    Copy and move constructors and assignment operators are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::streambuf) are available, as bf(FBB::OFdStreambuf)

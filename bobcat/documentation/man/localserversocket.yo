@@ -72,7 +72,8 @@ the socket does not mean that the bf(FBB::LocalServerSocket) object is
 actually listening for connections. To start listening, the member
 bf(listen()) should be called.
     )
-    The copy constructor is not available.
+
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

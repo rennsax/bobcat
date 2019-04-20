@@ -54,7 +54,7 @@ tt(HMacBuf) to store incoming characters temporarily. The provided default
 argument should be OK in all normal cases. 
     )
 
-    The copy and move constructors (and assignment operators) are not
+    Copy and move constructors (and assignment operators) are not
 available. 
 
 manpagesection(OVERLOADED OPERATOR)

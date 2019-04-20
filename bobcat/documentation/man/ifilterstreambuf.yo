@@ -39,8 +39,6 @@ manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::streambuf) are available, as bf(IFilterStreambuf)
 inherits from this class.
 
-    The copy and move constructors (and assignment operators) are not
-available. 
 
 manpagesection(PROTECTED CONSTRUCTOR)
     itemization(
@@ -52,6 +50,8 @@ buffer, making room for more recent characters. At most half the tt(bufSize)
 number of characters will be removed during a single refill. The constructor
 ensures that the size of the buffer will always be at least 100.
     )
+
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(PROTECTED MEMBER FUNCTION)
 

@@ -31,8 +31,7 @@ class IFilterStreambuf: public std::streambuf
         void setBuffer();                                   // .f
 
     private:
-        virtual bool filter(char const **srcBegin, 
-                            char const **srcEnd) = 0;
+        virtual bool filter(char const **srcBegin, char const **srcEnd) = 0;
 
         int underflow()             final override;
         std::streamsize showmanyc() final override;

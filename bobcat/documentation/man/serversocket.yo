@@ -48,7 +48,7 @@ listening for connections. To start listening, the member bf(listen()) should
 be used.
     )
 
-    Copy and move constructors and assignment operators are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(FBB::SocketBase) (and thus of bf(FBB::InetAddress)) are

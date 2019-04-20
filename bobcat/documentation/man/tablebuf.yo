@@ -122,7 +122,7 @@ reference as the bf(Table) object must be able to manipulate its data. See
 bf(tablesuppport)(3bobcat) for more information about tt(TableSupport).
     )
 
-    Copy and move constructors and assignment operators are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(OVERLOADED OPERATORS)
 

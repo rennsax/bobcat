@@ -86,7 +86,7 @@ any filtered information into the provided  tt(ostream) object.
     The class's destructor closes the destination (filtered) stream (cf. the
 description of tt(close()) below).
 
-    Copy and move constructors and assignment operators are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::ostreambuf) are available, as

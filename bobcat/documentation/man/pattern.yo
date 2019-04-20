@@ -128,7 +128,7 @@ The em(options) flags may be:
                     whether eflags contains REG_NOTEOL.
     )
 
-    Copy and move constructors and assignment operators are available.
+    Copy and move constructors (and assignment operators) are available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::ostringstream) and bf(  std::exception) are

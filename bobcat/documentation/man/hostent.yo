@@ -41,7 +41,8 @@ bf(hostent) struct. Functions like bf(gethostbyname)(3) and
 bf(gethostbyaddress)(3) return pointers to bf(hostent) structs.
     )
 
-    The default, copy and move constructors are available.
+    The default, copy and move constructors (and the copy and move assignment
+    operators) are available.
 
 manpagesection(MEMBER FUNCTIONS)
 
@@ -84,9 +85,6 @@ value returned by this member.
         The current tt(Hostent) object's contents are swapped with the other
     object's contents.
     )
-
-    The overloaded assignment operator and the move-aware overloaded
-assignment operators are available.
 
 manpagesection(EXAMPLE)
         verb(

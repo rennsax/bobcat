@@ -54,7 +54,7 @@ manpagesection(CONSTRUCTOR)
         size used by the tt(CinInserter's) streambuf.
     )
 
-    Copy and move constructors and assignment operators are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBERS)
 

@@ -22,6 +22,8 @@ class Milter
     SMFICTX *d_ctx;                 // for local use only
 
     public:
+        virtual ~Milter();          // empty
+
         typedef size_t callback_set;
         enum CallBack
         {
@@ -94,7 +96,8 @@ class Milter
         }
 
     protected:
-        virtual ~Milter();          // empty
+        Milter() = default;
+        Milter(Milter const &other) = delete;
 
         virtual sfsistat abort();
 

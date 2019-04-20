@@ -29,12 +29,6 @@ includefile(include/namespace)
 manpagesection(INHERITS FROM)
     bf(FBB::IFilterStreambuf)
 
-manpagesection(MEMBER FUNCTIONS)
-     All members of bf(FBB::IFilterStreambuf) are available, as
-bf(IBase64Streambuf) inherits from this class.
-
-    Overloaded move and/or copy assignment operators are not available.
-
 manpagesection(ENUMERATION)
 
     bf(IBase64Streambuf) objects either base64 encode or decode
@@ -65,7 +59,11 @@ beyond the base64 input block should remain available, then specify a
 buffer size of 1.
     )
 
-    Copy- and move constructors are not available.
+    Copy and move constructors (and assignment operators) are not available.
+
+manpagesection(MEMBER FUNCTIONS)
+     All members of bf(FBB::IFilterStreambuf) are available, as
+bf(IBase64Streambuf) inherits from this class.
 
 manpagesection(EXAMPLE)
 

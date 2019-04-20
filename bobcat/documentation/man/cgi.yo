@@ -102,7 +102,7 @@ escape-prefix is not used if the tt(defaultEscape) value is specified as
 tt(false) and if no insertions into the bf(CGI) object were performed.
     )
 
-    Copy and move constructors and assignment operators are available.
+    Copy and move constructors (and assignment operators) are available.
 
 manpagesection(OERLOADED OPERATORS)
 

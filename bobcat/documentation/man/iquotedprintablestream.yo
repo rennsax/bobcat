@@ -54,6 +54,8 @@ manpagesection(CONSTRUCTORS)
         block should remain available, then specify a buffer size of 1.
     )
 
+    Copy and move constructors (and assignment operators) are not available.
+
 manpagesection(INHERITED MEMBERS)
 
     Since the class uses public derivation from bf(std::istream), all members

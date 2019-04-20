@@ -66,7 +66,7 @@ manpagesection(CONSTRUCTORS)
         object. 
     )
 
-    Copy and move constructors and assignment operators are available.
+    Copy and move constructors (and assignment operators) are available.
 
 manpagesection(OVERLOADED OPERATORS)
     itemization(

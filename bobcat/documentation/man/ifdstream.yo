@@ -30,7 +30,9 @@ manpagesection(CONSTRUCTORS)
         The constructor initializes the object to read from descriptor tt(fd),
 using a buffer of size tt(n), by default having size 1. 
     )
-    The copy constructor is not available.
+
+    Copy and move constructors (and assignment operators) are not available.
+
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::istream) are available, as bf(FBB::IFdStream)

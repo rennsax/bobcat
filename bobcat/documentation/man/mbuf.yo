@@ -64,7 +64,7 @@ rewritten.  The remaining parameters are identical to those of the previous
 two constructors.
     )
 
-    Copy and move constructors and assignment operators are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
 

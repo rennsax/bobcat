@@ -56,7 +56,7 @@ manpagesection(CONSTRUCTOR)
         streambuf.
     )
 
-    Copy and move constructors and assignment operators are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBERS)
 

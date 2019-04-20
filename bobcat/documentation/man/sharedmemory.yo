@@ -93,7 +93,7 @@ manpagesection(CONSTRUCTORS, DESTRUCTOR)
         removed.
     )
 
-    Copy and move constructors and assignment operators are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 
 manpagesection(OVERLOADED OPERATORS)

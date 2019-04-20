@@ -104,8 +104,8 @@ method. Its default argument value indicates that no hardware acceleration is
 available.
         )
     )
-    Copy- and move constructors are not available.
 
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(EXAMPLE)
 

@@ -200,7 +200,7 @@ tt(type) is specified as tt(EXPAND_HISTORY) a tt(logic_error) exception is
 thrown.
     )
 
-    Copy and move constructors and assignment operators are not available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::streambuf) are

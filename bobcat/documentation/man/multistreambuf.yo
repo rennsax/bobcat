@@ -105,7 +105,7 @@ immediately associated with all tt(std::ostream) objects that are stored in
 the bf(MultiStreambuf::stream) elements of the specified vector.
     )
 
-    Copy and move constructors (and assignment operators) are available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of tt(std::ostringstream) and tt(std::exception) are
