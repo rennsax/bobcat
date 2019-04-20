@@ -29,6 +29,8 @@ seed is used to initialize the random number generator.Random values between
 tt(min) and tt(max) (inclusive) are returned.
     )
 
+    Copy and move constructors and assignment operators are not available.
+`
 manpagesection(VIRTUAL MEMBERS)
 
     itemization(

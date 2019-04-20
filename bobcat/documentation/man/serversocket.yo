@@ -47,7 +47,8 @@ socket does not mean that the bf(FBB::ServerSocket) object is actually
 listening for connections. To start listening, the member bf(listen()) should
 be used.
     )
-    The copy constructor is not available.
+
+    Copy and move constructors and assignment operators are not available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(FBB::SocketBase) (and thus of bf(FBB::InetAddress)) are
@@ -56,9 +57,9 @@ available, as bf(FBB::ServerSocket) inherits from bf(FBB::SocketBase).
     itb(void listen(size_t backlog = 5, bool blocking = true))
         The bf(listen()) member defines the way the bf(FBB::ServerSocket) will
 listen for clients requesting a connection.  It can be used only once with a
-bf(FBB::ServerSocket). An bf(FBB::Exception) object is thrown if listening fails,
-if the constructor could not create a socket, or if the bf(SocketBase) base
-class could not properly be constructed.
+bf(FBB::ServerSocket). An bf(FBB::Exception) object is thrown if listening
+fails, if the constructor could not create a socket, or if the bf(SocketBase)
+base class could not properly be constructed.
 
      The bf(listen()) member's tt(backlog) parameter defines the size of the
 bf(FBB::ServerSocket)'s internal queue in which connection requests may be

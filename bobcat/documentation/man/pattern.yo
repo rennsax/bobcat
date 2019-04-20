@@ -128,7 +128,7 @@ The em(options) flags may be:
                     whether eflags contains REG_NOTEOL.
     )
 
-    tt(Pattern) offers  copy and move constructors.
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::ostringstream) and bf(  std::exception) are
@@ -191,8 +191,6 @@ swapped.
 manpagesection(OVERLOADED OPERATORS)
 
     itemization(
-    itb(Pattern &operator=(Pattern &other)) 
-        A standard overloaded assignment operator.
     itb(std::string operator[](size_t index) const)
         Returns the matched text (for index 0) or the text of a
 subexpression. An empty string is returned for index values which are at least

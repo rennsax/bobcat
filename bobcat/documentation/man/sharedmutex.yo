@@ -69,7 +69,8 @@ d_sharedMutex->~SharedMutex();
         object.) 
 
     )
-       Copy and move constructors are not available. 
+
+    Copy and move constructors and assignment operators are not available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

@@ -71,7 +71,8 @@ manpagesection(OVERLOADED OPERATORS)
         tt(idx) is or exceeds tt(nBlocks()).
 
     )
-    Overloaded move and copy assignment operators are not available.
+
+    Copy and move constructors and assignment operators are not available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

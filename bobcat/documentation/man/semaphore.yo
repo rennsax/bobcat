@@ -48,7 +48,8 @@ A semaphore containing the value 0 blocks. I.e., its tt(wait) member waits
 until its value is incremented by another thread, calling one of the
 semaphore's tt(notify) members.
     )
-    Copy and move constructors are not available.
+
+    Copy and move constructors and assignment operators are not available.
 
 
 manpagesection(MEMBER FUNCTIONS)

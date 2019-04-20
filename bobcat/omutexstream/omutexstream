@@ -24,10 +24,10 @@ class OMutexStream::Out: public std::ostream
     friend Out OMutexStream::ostream() const;
 
     template <typename Tp>
-    friend Out operator<<(OMutexStream const &mstr, Tp &&tp);               // 1.f
+    friend Out operator<<(OMutexStream const &mstr, Tp &&tp);           // 1.f
 
     template <typename Ret>
-    friend Out operator<<(OMutexStream const &mstr,                         // 2.f
+    friend Out operator<<(OMutexStream const &mstr,                     // 2.f
                           Ret &(*manip)(Ret &os));
 
     static std::recursive_mutex s_mutex;

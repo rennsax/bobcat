@@ -204,7 +204,7 @@ exception is thrown.
 
 manpagesection(CONSTRUCTORS)
     As the class bf(ReadLineBuf) is a singleton class it offers no public
-constructors.
+constructors, nor are overloaded assignment operators available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::streambuf) are

@@ -33,9 +33,10 @@ manpagesection(TYPEDEFS AND ENUMS)
 
 manpagesection(CONSTRUCTORS)
     
-    Default, copy and move constructors are available. The default constructor
-        does not yet monitor the offset of an tt(FBB::SharedSegment)
-        object. The member tt(reset) is used to start monitoring offsets.
+    Default, copy and move constructors as well as the copy and move
+    assignment operators are available. The default constructor
+    does not yet monitor the offset of an tt(FBB::SharedSegment)
+    object. The member tt(reset) is used to start monitoring offsets.
 
 manpagesection(OVERLOADED OPERATORS)
     itemization(
@@ -53,8 +54,7 @@ manpagesection(OVERLOADED OPERATORS)
        Inserts information about the bf(SharedPos) object into tt(out).
     )
 
-    Copy and move assignment operators are available.
-
+    
 manpagesection(MEMBER FUNCTIONS)
 
     Note: the behavior of member functions returning values which refer to

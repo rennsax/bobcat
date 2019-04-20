@@ -17,9 +17,9 @@ manpagedescription()
 line-editing and history manipulation.
 
 The bf(ReadLineStream) class uses Gnu's readline library to allow editing of
-input lines. The tt(ReadLineStream) object can be used to construct a tt(std::istream)
-allowing in-line editing of lines read from the terminal. All lines may be
-preceded by a configurable prompt. 
+input lines. The tt(ReadLineStream) object can be used to construct a
+tt(std::istream) allowing in-line editing of lines read from the terminal. All
+lines may be preceded by a configurable prompt.
 
 Since Gnu's readline library operates on global data there can only be one
 bf(ReadLineStream) (and underlying bf(ReadLineBuf)) object. 
@@ -186,19 +186,21 @@ bf(ReadLineBuf) object results in a tt(logic_error) exception being thrown.
     itb(ReadLineStream(std::string const &prompt = "", Type type =
 NO_EXPANSION))
         This constructor initializes the tt(ReadLineStream) object with an
-initial prompt, using a history of at most tt(std::numeric_limits<int>::max()) lines, by default not
-using history expansion. 
+initial prompt, using a history of at most tt(std::numeric_limits<int>::max())
+lines, by default not using history expansion.
     itb(ReadLineStream(std::string const &prompt, size_t historySize, Type
             type = NO_EXPANSION))
         This constructor initializes the tt(ReadLineStream) with an initial
 prompt, an initial history of a predefined maximum size, by default not using
 history expansion. Specifying a history size 0 results in no history being
-kept, any value equal to or exceeding the predefined constant tt(std::numeric_limits<int>::max())
-results in a history of at most tt(std::numeric_limits<int>::max()) lines. If no history is requested
-but tt(type) is specified as tt(EXPAND_HISTORY) a tt(logic_error) exception is
-thrown. 
+kept, any value equal to or exceeding the predefined constant
+tt(std::numeric_limits<int>::max()) results in a history of at most
+tt(std::numeric_limits<int>::max()) lines. If no history is requested but
+tt(type) is specified as tt(EXPAND_HISTORY) a tt(logic_error) exception is
+thrown.
     )
-    The standard copy constructor is not available.
+
+    Copy and move constructors and assignment operators are not available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::streambuf) are

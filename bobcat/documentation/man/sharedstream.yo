@@ -87,11 +87,8 @@ manpagesection(CONSTRUCTORS)
         An tt(FBB::Exception) is thrown if construction fails (e.g., no shared
         memory segment having ID tt(id) exists),
     )
-    Copy and move constructors are not available.
 
-manpagesection(OVERLOADED OPERATORS)
-
-    No overloaded move and copy assignment operators are available.
+    Copy and move constructors and assignment operators are not available.
 
 manpagesection(MEMBER FUNCTIONS)
 

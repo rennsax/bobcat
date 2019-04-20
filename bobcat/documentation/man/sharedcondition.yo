@@ -82,12 +82,10 @@ manpagesection(CONSTRUCTORS, DESTRUCTOR)
         condition variables mutex lock. The destructor takes no action if its
         object is an empty stub.
     )
-       (Default) copy and move constructors are available. 
 
-manpagesection(OVERLOADED OPERATORS)
-
-    The (default) overloaded move and copy assignment operators are available.
-
+    Default, copy, and move constructors as well as the copy and move
+    assignment operators are available.
+    
 manpagesection(MEMBER FUNCTIONS)
 
 Returning from bf(SharedCondition) member functions the offset of the

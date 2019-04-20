@@ -61,10 +61,8 @@ type (e.g., tt(std::string *)).
 for-loop. All elements defined by the range will subsequently be visited by
 the range-based for-loop.
     )
-    The copy and move constructors are available.
 
-manpagesection(OVERLOADED OPERATORS)
-    The copy and move assignment operators are available.
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

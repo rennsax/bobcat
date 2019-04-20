@@ -51,8 +51,8 @@ manpagesection(CONSTRUCTORS)
              `direct keyboard input' mode.
             )
     )
-        The copy constructor (and the overloaded assignment operator) are not
-        available. 
+
+    Copy and move constructors and assignment operators are not available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

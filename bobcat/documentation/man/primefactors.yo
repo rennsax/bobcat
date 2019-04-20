@@ -107,19 +107,12 @@ indeed 2 and 3. An tt(FBB::Exception) is thrown if this condition is not met.
 stream, and the stream can be reused by other tt(PrimeFactors) objects.
     )
 
-    The default copy and move constructors are available. bf(FBB::PrimeFactor)
-objects created using the copy constructor share the prime numbers storage
-device (the tt(BigIntVector) or the stream containing the primes) with their
-source objects.
+    Copy and move constructors and assignment operators are available.
 
-manpagesection(OVERLOADED OPERATORS)
-
-    The default copy and move assignment operators are available. Left-hand
-side bf(FBB::PrimeFactor) objects receiving values from right-hand side
-bf(FBB::PrimeFactor) objects using the copy assignment operator share the
-prime numbers storage device (the tt(BigIntVector) or the stream containing
-the primes) with their right-hand side bf(FBB::PrimeFactors) arguments.
- 
+    bf(FBB::PrimeFactor) objects created using the copy constructor or
+receiving their values using the copy assignment operator share the prime
+numbers storage device (the tt(BigIntVector) or the stream containing the
+primes) with their source objects.
 
 manpagesection(MEMBER FUNCTION)
 

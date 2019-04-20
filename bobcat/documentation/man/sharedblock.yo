@@ -21,7 +21,8 @@ manpagesection(INHERITS FROM)
 
 manpagesection(CONSTRUCTORS)
 
-    Only the default constructor is available.
+    Only the default constructor is available. Copy and move assignment
+    operators are not available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

@@ -55,7 +55,8 @@ bf(pipe)(2) function.
 pipe, stored at tt(fd). Following the construction of the tt(Pipe) object 
 the array pointed at by tt(fd) is no longer used by the tt(Pipe) object.
     )
-        The copy constructor is available.
+
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(MEMBER FUNCTIONS)
 

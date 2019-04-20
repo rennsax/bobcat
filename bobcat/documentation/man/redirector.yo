@@ -105,7 +105,8 @@ tt(STDIN, STDOUT), or tt(STDERR), allowing the program to use tt(cin, cout),
 or tt(cerr) to extract information from, or insert information into other
 streams using its standard input and output streams.
     )
-        The copy constructor is available.
+
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

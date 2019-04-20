@@ -55,7 +55,8 @@ specified when defining a tt(PtrIter) object. E.g.,
     PtrIter<set<string>::iterator> PtrIter(mySet.begin());
     )
         )
-    The copy and move constructors are available.
+
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(OVERLOADED OPERATORS)
     itemization(
@@ -68,7 +69,6 @@ manpagesection(OVERLOADED OPERATORS)
     itb(bool operator!=(PtrIter const &other) const)
         tt(true) is returned if the two iterators are unequal;
     )
-    The copy and move assignment operators are available.
 
 manpagesection(DEFINED TYPE)
     tt(PtrIter) defines the following type:

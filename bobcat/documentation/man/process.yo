@@ -283,7 +283,8 @@ internally used stream buffers. The (initial part of a) command to execute
 from a tt(Process) object may optionally be specified. Note that this
 constructor's tt(mode) parameter does not accept a tt(size_t) argument.
     )
-    The class bf(Process) does not offer copy or move constructors.
+
+    Copy and move constructors and assignment operators are not available.
 
 manpagesection(OVERLOADED OPERATORS)
 
@@ -407,8 +408,6 @@ final process:
 piping operator is a shell-feature. tt(Process's operator|) handles I/O piping
 itself, and thus avoids the additional shell process.
     )
-    The default overloaded copy and move assignment operators are not
-available.
 
 manpagesection(MEMBERS)
 

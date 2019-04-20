@@ -27,7 +27,8 @@ manpagesection(CONSTRUCTORS)
     itb(Selector())
         This constructor initializes the object.
     )
-        The copy constructor is available.
+
+    Copy and move constructors and assignment operators are available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

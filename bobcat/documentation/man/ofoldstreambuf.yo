@@ -135,6 +135,8 @@ destination stream the tt(std::ostream stream).
     The destructor writes any buffered information to the destination stream
 and will then flush the destination stream.
 
+    Copy and move constructors and assignment operators are not available.
+
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(FBB::OFilterStreambuf), in particular its tt(out()) and
 tt(open()) members are available, as bf(FBB::OFoldStreambuf) inherits from
@@ -170,8 +172,8 @@ an tt(FBB::Exception) exception is thrown if that cast fails.
     itb(size_t rightMargin(std::ostreambuf const *buffer))
         This member returns the current right margin setting of the
 tt(OFoldStreambuf) object passed to it as its argument. The member's parameter
-is down cast in the same way as tt(leftMargin())'s argument: an tt(FBB::Exception)
-exception is thrown if that cast fails.
+is down cast in the same way as tt(leftMargin())'s argument: an
+tt(FBB::Exception) exception is thrown if that cast fails.
     )
 
 manpagesection(EXAMPLE)

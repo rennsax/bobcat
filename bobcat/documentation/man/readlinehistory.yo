@@ -13,8 +13,9 @@ manpagesynopsis()
     Linking option: -lreadline -lbobcat
 
 manpagedescription()
-    bf(FBB::ReadLineHistory) objects offer access to the history maintained by
-bf(FBB::ReadLineBuf) and bf(ReadLineStream) objects.
+
+    The bf(FBB::ReadLineHistory) object offers access to the history
+maintained by bf(FBB::ReadLineBuf) and bf(ReadLineStream) objects.
 
 The latter two classes use Gnu's readline library to allow editing of
 input lines. The accumulated history of these objects can be accessed 
@@ -75,8 +76,8 @@ bf(HistoryElement) objects and their addresses.
 
 manpagesection(CONSTRUCTORS)
 
-    As the class bf(ReadLineBuf) is a singleton class, there are no publicly
-available constructors.
+    As the class bf(ReadLineHistory) is a singleton class, there are no
+publicly available constructors, nor are assignment operators available.
 
 manpagesection(STATIC MEMBER FUNCTIONS)
 
