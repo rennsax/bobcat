@@ -111,7 +111,7 @@ void main(int argc, list argv)
     {
         option = "libraries";
         g_all   = 0;
-        libraries(keepPch, "bobcat", 1, argv[2] == "strip", 0);
+        libraries(keepPch, "bobcat", 1, argv[2] == "strip", 0, 0);
     }
 
     if (option == "select")
@@ -127,7 +127,7 @@ void main(int argc, list argv)
         for (int elem = listlen(argv); elem-- != idx; )
             (subset += argv[elem]) += ' ';
         system("icmake/subset.sh " + subset + "> CLASSES");
-        libraries(keepPch, "bobcat", 0, idx == 3, 1);
+        libraries(keepPch, "bobcat", 0, idx == 3, 1, 0);
     }
 
 
@@ -143,13 +143,21 @@ void main(int argc, list argv)
         else                    // not all: defines 'strip'
             strip = all;
 
-        libraries(keepPch, "bobcat", all == "all", strip == "strip", 0);
+        libraries(keepPch, "bobcat", all == "all", strip == "strip", 0,
+                                                                0);
     }
 
     if (option == "l")
     {
         system(P_NOCHECK, "tput clear");
-        libraries(keepPch, "bobcat", 1, 0, 0);
+        libraries(keepPch, "bobcat", 1, 0, 0, 0);
+    }
+
+    if (option == "h")
+    {
+        system(P_NOCHECK, "tput clear");
+        libraries(keepPch, "bobcat", 1, 0, 0, 1);
+        exit(0);
     }
 
     if (option == "mantest")
@@ -179,7 +187,7 @@ void main(int argc, list argv)
         exit(0);
     }
 
-    printf("Usage: build [-q -p -P] what\n"
+    printf("Usage: build [-h -q -p -P] what\n"
         "Where\n"
         "   [-q]:   run quietly, do not show executed commands\n"
         "   [-p]:   used with build light, build libraries and build l\n"
@@ -223,13 +231,14 @@ void main(int argc, list argv)
         "                         in the file 'logfile'\n"
         "\n"
         "internal use only:\n"
-        "   test                - build one class (align) for testing\n"
-        "                         purposes\n"
-        "   mantest             - build a small subset of man-pages for\n"
-        "                         testing purposes\n"
-        "   man1 .yo-file       - build one man-page file (in /tmp)\n"
         "   dep                 - refresh the class-dependencies overview\n"
         "   gitlab              - prepare gitlab's web-pages update\n"
+        "   h                   - only create the headers in .../tmp/bobcat\n"
+        "   man1 .yo-file       - build one man-page file (in /tmp)\n"
+        "   mantest             - build a small subset of man-pages for\n"
+        "                         testing purposes\n"
+        "   test                - build one class (align) for testing\n"
+        "                         purposes\n"
     );
 }
 

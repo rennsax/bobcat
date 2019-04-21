@@ -1,119 +1,126 @@
 a2x 
 align 
-arg exception iuo string 
-argconfig arg configfile exception fswap iuo pattern ranger string 
-base64streambufbase exception ifilterstreambuf 
-bigint exception fswap 
+arg 
+argconfig arg configfile 
+base64streambufbase ifilterstreambuf 
+bigint 
 binarysearch 
 binops typetrait 
 binopsbase 
-cerrextractor exception exec extractorbase ifdstreambuf pipe redirector string 
-cgi datetime exception fswap gs pattern ranger stat string user 
-cidr exception fswap pattern ranger stringline 
-cininserter exception exec ofdstreambuf pipe redirector string 
-clientsocket exception fswap gethostent inetaddress pattern ranger socketbase 
-cmdfinder cmdfinderbase exception fswap string 
-cmdfinderbase exception string 
-configfile exception fswap iuo pattern ranger 
-coutextractor exception exec extractorbase ifdstreambuf pipe redirector string 
-csv exception string 
-datetime exception 
-decryptbuf exception 
-diffiehellman bigint exception fswap mbuf mstream 
-digestbuf exception 
-encryptbuf exception irandstream randbuffer 
+cerrextractor exec extractorbase ifdstreambuf pipe 
+cgi pattern 
+cidr 
+cininserter exec ofdstreambuf pipe 
+clientsocket inetaddress socketbase 
+cmdfinder cmdfinderbase fswap 
+cmdfinderbase 
+configfile 
+coutextractor exec extractorbase ifdstreambuf pipe 
+cryptbuf 
+csv4180 
+datetime 
+decryptbuf 
+diffiehellman bigint 
+digestbuf 
+encryptbuf 
+eoi 
+eoibuf 
 exception 
-exec exception string 
-extractorbase exception exec ifdstreambuf pipe redirector string 
+exec 
+extractorbase exec ifdstreambuf pipe 
 fbb 
-fork exception 
+fork 
 fswap 
-gethostent exception fswap pattern ranger 
-glob datetime exception fswap gs stat string user 
+gethostent 
+glob gs 
 gs 
 hash string 
-hmacbuf exception 
-hostent fswap 
-hostname exception fswap gethostent hostent inetaddress pattern ranger 
+hmacbuf 
+hostent 
+hostname hostent 
 ibase64stream ibase64streambuf 
 ibase64streambuf 
 ifdstream ifdstreambuf 
 ifdstreambuf 
 ifilterstreambuf 
 indent 
-inetaddress exception fswap gethostent pattern ranger 
+inetaddress 
 iostream iostreambuf 
 iostreambuf 
+iquotedprintablestream iquotedprintablestreambuf 
+iquotedprintablestreambuf 
 irandstream randbuffer 
 isharedstream sharedstreambuf 
 isymcryptstream isymcryptstreambuf 
 isymcryptstreambuf 
 iterator 
 iuo 
-level exception log logbuffer 
+level log logbuffer 
 linearmap 
-localclientsocket exception localsocketbase 
-localserversocket exception localsocketbase 
-localsocketbase exception 
-log exception logbuffer 
+localclientsocket localsocketbase 
+localserversocket localsocketbase 
+localsocketbase 
+log logbuffer 
 logbuffer 
-mailheaders exception fswap string 
-mbuf exception 
-milter exception 
-mstream exception mbuf 
+mailheaders string 
+mbuf 
+milter 
+mstream mbuf 
 multistreambuf 
 ofdstream ofdstreambuf 
 ofdstreambuf 
 ofilterstreambuf 
-ofoldstream exception ofoldstreambuf 
-ofoldstreambuf exception 
+ofoldstream ofoldstreambuf 
+ofoldstreambuf 
 ohexstreambuf 
-onekey exception 
+omutexstream 
+onekey 
 osharedstream sharedstreambuf 
-pattern exception fswap ranger 
+pattern 
 pf_iterator 
 pf_iteratorstream 
-pipe exception redirector 
-primefactors bigint exception fswap user 
-process exception fork ifdstreambuf iostream iostreambuf ofdstreambuf pipe processenums redirector selector string 
+pipe 
+primefactors bigint 
+process fork ifdstreambuf iostream iostreambuf ofdstreambuf pipe processenums selector string 
 processdata 
 processenums 
 ptriter 
+qpstreambufbase ifilterstreambuf 
 randbuffer 
 ranger 
 readlinebuf 
 readlinehistory 
 readlinestream readlinebuf 
-redirector exception 
+redirector 
 repeat typetrait 
-selector exception 
+selector 
 semaphore 
-serversocket exception fswap gethostent inetaddress pattern ranger socketbase 
-sharedblock exception sharedmutex 
-sharedcondition exception fswap ranger sharedblock sharedmemory sharedmutex sharedpos sharedsegment 
-sharedmemory exception fswap ranger sharedblock sharedmutex sharedpos sharedsegment 
-sharedmutex exception 
-sharedpos exception ranger sharedblock sharedmutex sharedsegment 
-sharedsegment exception ranger sharedblock sharedmutex 
+serversocket inetaddress socketbase 
+sharedblock sharedmutex 
+sharedcondition exception fswap sharedblock sharedmemory sharedmutex sharedpos sharedsegment 
+sharedmemory exception fswap sharedblock sharedmutex sharedpos sharedsegment 
+sharedmutex 
+sharedpos sharedblock sharedmutex sharedsegment 
+sharedsegment sharedblock sharedmutex 
 sharedstream sharedstreambuf 
 sharedstreambuf 
-signal exception 
-socketbase exception fswap gethostent inetaddress pattern ranger 
-stat datetime exception fswap gs string user 
-stdextractor exception exec extractorbase ifdstreambuf pipe redirector string 
+signal 
+socketbase inetaddress 
+stat datetime gs 
+stdextractor exec extractorbase ifdstreambuf pipe 
 string 
 stringline 
-symcryptstreambufbase exception ifilterstreambuf 
+symcryptstreambufbase ifilterstreambuf 
 syslogbuf 
-syslogstream string syslogbuf 
-table align fswap string tablebase tablesupport 
-tablebase align fswap tablesupport 
+syslogstream syslogbuf 
+table align tablebase tablesupport 
+tablebase align tablesupport 
 tablebuf 
-tablelines align fswap ranger tablesupport 
-tablesupport align fswap 
-tempstream exception 
-tty exception 
+tablelines align tablesupport 
+tablesupport align 
+tempstream 
+tty 
 typetrait 
-user exception fswap 
+user 
 x2a 
-xpointer exception 
+xpointer 

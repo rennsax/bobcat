@@ -77,29 +77,39 @@ manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::streambuf) are available, as bf(FBB::OFdStreambuf)
 inherits from this class.
     itemization(
-    itb(void close())
+    itb(void eoi())
         The file descriptor used by the tt(OFdStreambuf) is closed,
 irrespective of the tt(Mode) that was specified when the tt(OFdStreambuf)
-object was constructed. Following tt(close) the tt(OFdStreambuf) object can
-no longer be used until one of its tt(open) members has been called.
+object was constructed. Following tt(eoi) the tt(OFdStreambuf) object can
+no longer be used until one of its tt(reset) members has been called. Instead
+of using this member the tt(eoi) manipulator can also be used.
 
     itb(int fd() const)
         The file descriptor used by the tt(OFdStreambuf) object is returned. 
         If the tt(OFdStreambuf) is not associated with a file descriptor -1 is
         returned. 
 
-    itb(void open(int xfd, size_t n = 1))
+    itb(void reset(int xfd, size_t n = 1))
         The streambuf is (re)initialized, using file descriptor tt(fd), and an
 optional unget buffer size (by default having size 1). When called repeatedly,
 the bf(Mode) specification used whem the object was constructed determines
 whether the file descriptor will be closed or will remain open.
 
-    itb(void open(int xfd, Mode mode, size_t n = 1))
+    itb(void reset(int xfd, Mode mode, size_t n = 1))
         The streambuf is (re)initialized, using file descriptor tt(fd), a file
 descriptor closing parameter and an optional unget buffer size (by default
 having size 1). Depending on the bf(Mode) argument the object's currently used
 file descriptor will be closed or will remain open when the tt(IFdStreambuf)
 object is destroyed.
+    )
+
+manpagesection(MANIPULATOR)
+    itemization(
+    itb(FBB::eoi)
+        The tt(eoi) manipulator can be inserted into the tt(ostream) instead
+of calling the tt(OFdStreambuf::end) member. It performs the same actions as
+the tt(eoi) member.  If inserted into a plain tt(std::ostream) nothing
+happens.
     )
 
 manpagesection(EXAMPLE)

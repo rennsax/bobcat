@@ -69,7 +69,7 @@ manpagesection(MEMBER FUNCTIONS)
 inherits from this class. 
 
     itemization(
-    itb(void close())
+    itb(void eoi())
         This member finishes the computation of the  message digest
 computation. It is needed as the tt(DigestBuf) object has no external means
 for deciding whether all information to compute the digest for has yet been
@@ -79,7 +79,8 @@ digest is therefore:
     create a DigestBuf object
     use it to create a std::ostream object
     insert information into the ostream object
-    call the DigestBuf object's close() member
+    call the DigestBuf object's eoi() member or insert the
+        eoi manipulator into the ostream (see below)
     obtain/process the hash value from the DigestBuf object.
         )
 
@@ -91,11 +92,19 @@ member contains the number of characters used by the hash value, and its
 tt(data()) member refers to the hash value's characters. Note that a hash
 value's character value may be 0 (not to be confused with tt('0')).
 
-    itb(void open())
+    itb(void reset())
         This member reinitializes the message digest computation. One a
 message digest has been computed for, say a stream tt(streamA) this member can
 be called after which the digest for a stream tt(streamB) can be computed
 using the same tt(DigestBuf) object.
+    )
+
+manpagesection(MANIPULATOR)
+    itemization(
+    itb(FBB::eoi)
+        The tt(eoi) manipulator can be inserted into the tt(ostream) to
+complete the digest. It performs the same actions as the tt(eoi) member. If
+inserted into a plain tt(std::ostream) nothing happens.
     )
 
 manpagesection(EXAMPLE)

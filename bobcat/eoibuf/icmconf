@@ -1,0 +1,4 @@
+#define LIBRARY             "eoibuf"
+
+#include "../icmconf"
+

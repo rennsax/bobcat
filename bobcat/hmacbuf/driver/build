@@ -1,11 +1,10 @@
 #!/bin/sh
 
-# ln -s .. bobcat
+ln -s .. bobcat
 # 
 # g++ -I. --std=c++2a -O2 -Wall -o driver driver.cc -lssl -lbobcat \
 #     -L../../ohexstreambuf/tmp -L../tmp -lhmacbuf   -lohexstreambuf
 # 
-# rm bobcat
 
 tput clear
 
@@ -22,5 +21,15 @@ CMD="$GPP -o driver -Wall *.cc -L../tmp -lhmacbuf -L /tmp -lbob -lcrypto -s"
 #   Using the library in ../tmp/
 # CMD="$GPP -o driver -Wall *.cc -L../tmp -lhmacbuf ${LIBS} -s"
 
+#   Using tmp libraries and bobcat
+CMD="$GPP -o driver -Wall -I../tmp driver.cc \
+    -L../tmp -lhmacbuf \
+    -L../../ohexstreambuf/tmp -lohexstreambuf \
+    -L../../eoibuf/tmp -leoibuf \
+    -L../../eoi/tmp -leoi \
+    ${LIBS} -s"
+
 echo ${CMD}
 ${CMD}
+
+rm bobcat

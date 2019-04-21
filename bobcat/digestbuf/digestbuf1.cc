@@ -2,8 +2,8 @@
 
 DigestBuf::DigestBuf(char const *type, size_t bufsize)
 :
-    d_buffer(0),
-    d_bufsize(bufsize)
+    EoiBuf(bufsize),
+    d_ctx(0)
 {
     OpenSSL_add_all_digests();
     d_md = EVP_get_digestbyname(type);
@@ -13,8 +13,8 @@ DigestBuf::DigestBuf(char const *type, size_t bufsize)
         if (type == 0)
             type = "** unspecified digest type **";
 
-        throw Exception{1} << "DigestBuf `" << type << "' not available";
+        throw Exception{ 1 } << "DigestBuf `" << type << "' not available";
     }
-    d_buffer = new char[bufsize];
-    open();
+
+    reset();
 }

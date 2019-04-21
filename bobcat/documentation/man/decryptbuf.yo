@@ -63,7 +63,7 @@ provided default argument can most likely be kept as-is.
 
     itb(~DecryptBuf()) 
         Normally, once all encrypted information has been inserted into 
-the decryption stream the tt(end) manipulator (see below) is inserted to
+the decryption stream the tt(eoi) manipulator (see below) is inserted to
 complete the decryption process. Alternatively, the decryption process ends
 once the tt(DecryptBuf's) destructor is called. E.g., if tt(decStream) is the
 tt(std::ostream) to receive the encrypted information and tt(encStream) is the
@@ -74,7 +74,7 @@ tt(std::istream) containing the encrypted information then
     completes the decryption once tt(DecryptBuf's) destructor is
 called. Alternatively,
         verb(
-    desStream << encStream.rdbuf() << end;
+    desStream << encStream.rdbuf() << eoi;
         )
     can be used to immediately complete the decryption process.
     )
@@ -86,7 +86,7 @@ manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::streambuf) are available, as bf(FBB::DecryptBuf)
 inherits from this class. 
     itemization(
-    itb(void end())
+    itb(void eoi())
         This member can be called instead of using the manipulator to end the
 decryption process. It throws an tt(std::exception) if decryption fails (which
 may happen if the tt(DecryptBuf) object is provided with incorrect (usually
@@ -111,8 +111,8 @@ functions to set or query parameters of an decryption method.
 
 manpagesection(MANIPULATOR)
     itemization(
-    itb(FBB::end)
-        The tt(end) manipulator can be inserted into the decryption stream 
+    itb(FBB::eoi)
+        The tt(eoi) manipulator can be inserted into the decryption stream 
 to complete the decryption process. If it is inserted into an tt(std::ostream)
 that is not initialized with either a tt(DecryptBuf) or an tt(EncryptBuf)
 nothing happens. 

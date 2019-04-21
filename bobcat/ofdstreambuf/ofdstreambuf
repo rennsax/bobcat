@@ -1,12 +1,12 @@
 #ifndef INCLUDED_BOBCAT_OFDSTREAMBUF_
 #define INCLUDED_BOBCAT_OFDSTREAMBUF_
 
-#include <streambuf>
+#include <bobcat/eoibuf>
 
 namespace FBB
 {    
 
-class OFdStreambuf: public std::streambuf
+class OFdStreambuf: public EoiBuf
 {
     public:
             // Mode defines what to do with the file descriptor at
@@ -24,40 +24,39 @@ class OFdStreambuf: public std::streambuf
 
     private:
         Mode        d_mode;
-        size_t      d_n;
-        int         d_fd;
-        char       *d_buffer;
+        int         d_fd = -1;
 
     public:
-        OFdStreambuf();                                     // 1.cc
+        OFdStreambuf();                                         // 1.cc
         OFdStreambuf(OFdStreambuf const &other) = delete;
 
-        explicit OFdStreambuf(Mode mode);                   // 2.cc
-        explicit OFdStreambuf(int fd, size_t n = 1);        // 3.cc
-        OFdStreambuf(int fd, Mode mode, size_t n = 1);      // 4.cc
+        explicit OFdStreambuf(Mode mode);                       // 2.cc
+        explicit OFdStreambuf(int fd, size_t bufSize = 1);      // 3.cc
+        OFdStreambuf(int fd, Mode mode, size_t bufSize = 1);    // 4.cc
 
         ~OFdStreambuf() override;
 
         OFdStreambuf &operator=(OFdStreambuf const &other) = delete;
 
-        void open(int fd, Mode mode, size_t n = 1);         // .cc
-        void open(int fd, size_t n = 1);                    // .f
+        void reset(int fd, Mode mode, size_t bufSize = 1);         // .cc
+        void reset(int fd, size_t bufSize = 1);                    // .f
 
         int fd() const;                                     // .f
-        void close();                                       // .f
+        void eoi();                                         // .f
 
     private:
         int sync() override;
         int overflow(int c) override;
+        void eoi_() override;                               // .cc
 
         std::streamsize xsputn(char const *buffer, std::streamsize n) 
                                                                 override;
         void cleanup(Mode mode);
 };
 
-#include "close.f"
+#include "eoi.f"
 #include "fd.f"
-#include "open.f"
+#include "reset.f"
 
 } // FBB
 

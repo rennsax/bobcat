@@ -1,6 +1,6 @@
 #include "encryptbuf.ih"
 
-void EncryptBuf::end_()         // overrides CryptBuf::end_()
+void EncryptBuf::eoi_()         // overrides Eoi::eoi_()
 {
     flushBuffer();
 
@@ -10,5 +10,5 @@ void EncryptBuf::end_()         // overrides CryptBuf::end_()
 
     d_outStream.write(&d_encrypted[0], encryptedLen);
 
-    d_end = true;
+    d_eoi = true;
 }

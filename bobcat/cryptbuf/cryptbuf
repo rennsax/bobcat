@@ -3,40 +3,20 @@
 
 #include <openssl/ossl_typ.h>
 
-#include <ostream>
-#include <streambuf>
-#include <string>
-
 namespace FBB
 {
 
-class CryptBuf: public std::streambuf
+class CryptBuf: public EoiBuf
 {
-    friend std::ostream &end(std::ostream &out);
-
     EVP_CIPHER const   *d_md;
 
     protected:
         CryptBuf(char const *type);
 
         EVP_CIPHER const *md() const;                               // .f
-
-        static unsigned char *ucharPtr(std::string &str);           // 1.f
-        static unsigned char const *ucharPtr(                       // 2.f
-                                       std::string const &str);
-
-    private:
-        virtual void end_() = 0; // this function implements the actions of
-                // the end-manipulator in derived classes. This allows the
-                // end-manipulator to perform only one check, after which it
-                // can call end_ to perform the correct end_ members
 };
 
-std::ostream &end(std::ostream &out);
-
 #include "md.f"
-#include "ucharptr1.f"
-#include "ucharptr2.f"
 
 } // FBB        
 #endif

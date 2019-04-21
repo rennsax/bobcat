@@ -21,14 +21,12 @@ try
 
     string hw{ "hello world\n" };
 
-    out << hw;
-    hmacbuf.close();
+    out << hw << eoi;
     cout << ">" << hmacbuf << "<" << endl;
 
-    hmacbuf.open();
-    out.write(hw.c_str(), hw.length());
-    hmacbuf.close();
-    cout << ">" << hmacbuf << "<" << endl;
+//    hmacbuf.reset();
+//    out.write(hw.c_str(), hw.length()) << eoi;
+//    cout << ">" << hmacbuf << "<" << endl;
 }
 catch(exception const &err)
 {

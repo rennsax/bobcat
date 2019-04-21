@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# ln -s .. bobcat
+# 
+# g++ -I. --std=c++2a -O2 -Wall -o driver driver.cc -lssl -lbobcat \
+#     -L../../ohexstreambuf/tmp -L../tmp -lhmacbuf   -lohexstreambuf
+# 
+
+tput clear
+
+LIBS=" -lbobcat -lcrypto"
+
+GPP="g++ --std=c++2a"
+
+#   Using tmp libraries and bobcat
+CMD="$GPP -o driver -Wall -I../tmp driver.cc \
+    -L../tmp -lofdstreambuf \
+    -L../../eoibuf/tmp -leoibuf \
+    -L../../eoi/tmp -leoi \
+    ${LIBS} -s"
+
+echo ${CMD}
+${CMD}
+
+# rm bobcat

@@ -1,44 +1,35 @@
 #ifndef _INCLUDED_OFILTERSTREAMBUF_
 #define _INCLUDED_OFILTERSTREAMBUF_
 
-#include <streambuf>
 #include <fstream>
+#include <bobcat/eoi>
 
 namespace FBB
 {
 
-class OFilterStreambuf: public std::streambuf
+class OFilterStreambuf: public Eoi
 {
     typedef std::ios::openmode openmode;
     std::ofstream d_dest;
 
     std::ostream *d_out;
 
-    public:
+    protected:
         OFilterStreambuf();                                 // 1.f
-        OFilterStreambuf(char const *fname,                 // 2.f
+        OFilterStreambuf(std::string const &fname,          // 2.cc
                          openmode mode = std::ios::out);
         OFilterStreambuf(std::ostream &out);                // 3.f
-        OFilterStreambuf(std::string const &fname, 
-                         openmode mode = std::ios::out);
-        ~OFilterStreambuf() override;
 
-        void open(char const *fname, openmode mode = std::ios::out);
-        void open(std::string const &fname, openmode mode = std::ios::out);
-        void open(std::ostream &out);                       // .f
+        void reset(std::string const &fname,                // 1.cc
+                  openmode mode = std::ios::out);
+        void reset(std::ostream &out);                      // 2.cc
 
-        void close();                                       // .f
-
-    protected:
         std::ostream &out() const;                          // .f
 };
 
 #include "ofilterstreambuf1.f"
-#include "ofilterstreambuf2.f"
 #include "ofilterstreambuf3.f"
 
-#include "close.f"
-#include "open.f"
 #include "out.f"
 
 } // FBB

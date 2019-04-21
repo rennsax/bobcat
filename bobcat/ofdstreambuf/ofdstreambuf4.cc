@@ -1,10 +1,10 @@
 #include "ofdstreambuf.ih"
 
-OFdStreambuf::OFdStreambuf(int fd, Mode mode, size_t n)
+OFdStreambuf::OFdStreambuf(int fd, Mode mode, size_t bufSize)
 :
-    d_mode(mode),
-    d_buffer(0)
+    EoiBuf(0),
+    d_mode(mode)
 {
-    open(fd, CLOSE_FD, n);
+    reset(fd, CLOSE_FD, bufSize);
 }
 

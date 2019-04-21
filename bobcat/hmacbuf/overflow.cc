@@ -3,10 +3,9 @@
 int HMacBuf::overflow(int ch)
 {
     HMAC_Update(d_ctx, 
-                reinterpret_cast<unsigned char *>(d_buffer), 
-                d_bufsize);
+                ucharPtr(buffer()), bufSize());
 
-    setp(d_buffer, d_buffer + d_bufsize);
+    setp();
 
     if (ch != EOF)
     {

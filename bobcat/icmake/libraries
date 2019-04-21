@@ -155,7 +155,8 @@ void _shared_library(string libso, string libsoshared,
     }
 }
 
-void libraries(int keepPch, string libname, int all, int strip, int select)
+void libraries(int keepPch, string libname, int all, int strip, int select,
+                                                            int headersOnly)
 {
     string libso;
     string libsoshared;
@@ -170,6 +171,9 @@ void libraries(int keepPch, string libname, int all, int strip, int select)
     md(g_tmpliba + " " + g_tmphdr + " " + g_tmplibso);
 
     _cpHeaders();
+
+    if (headersOnly)
+        return;
 
     _precompileHeaders();
 

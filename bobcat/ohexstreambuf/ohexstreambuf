@@ -27,15 +27,20 @@ class OHexStreambuf: public OFilterStreambuf
         ~OHexStreambuf() override;
         size_t size() const;                                            // .f
 
+        void setWidth(size_t width);
+
         void separator(bool reset = true);                          // 1
         void separator(std::string const &sep, bool reset = true);  // 2
+
+        void eoi();                                                 // .f
         
         static std::string text2bin(std::string const &in); // length and 
                                                             // contents not
                                                             // checked
     private:
         int overflow(int ch) override;
-        int sync() override;
+        int sync()           override;
+        void eoi_()          override;
 
         void separated(int ch);
         void plain(int ch);

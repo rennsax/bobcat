@@ -14,13 +14,11 @@ try
 
     string hw("hello world\n");
 
-    out << hw;
-    digestbuf.close();
+    out << hw << eoi;
     cout << ">" << digestbuf << "<" << endl;
 
-    digestbuf.open();
-    out.write(hw.c_str(), hw.length());
-    digestbuf.close();
+    digestbuf.reset();
+    out.write(hw.c_str(), hw.length()) << eoi;
     cout << ">" << digestbuf << "<" << endl;
 }
 catch(exception const &err)

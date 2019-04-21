@@ -1,6 +1,6 @@
 #include "decryptbuf.ih"
 
-void DecryptBuf::end_()     // overrides
+void DecryptBuf::eoi_()     // overrides
 {
     flushBuffer();
 
@@ -10,5 +10,5 @@ void DecryptBuf::end_()     // overrides
 
     d_outStream.write(&d_decrypted[0], restLen);
 
-    d_end = true;
+    d_eoi = true;
 }

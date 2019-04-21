@@ -1,0 +1,4 @@
+#define LIBRARY             "eoi"
+
+#include "../icmconf"
+

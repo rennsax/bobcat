@@ -18,7 +18,7 @@ class EncryptBuf: public CryptBuf
 {
     EVP_CIPHER_CTX     *d_ctx;
 
-    bool                d_end = false;  // end() was called
+    bool                d_eoi = false;  // eoi() was called
 
     std::string         d_incoming;
     std::string         d_encrypted;
@@ -43,14 +43,14 @@ class EncryptBuf: public CryptBuf
 
         std::string const &iv() const;
 
-        void end();                                 // .f
+        void eoi();                                 // .f
 
     protected:
         EVP_CIPHER_CTX *cipherCtx();
 
     private:
         int overflow(int ch) override;
-        void end_() override;                       // .cc
+        void eoi_() override;                       // .cc
 
         void prepareIV();
         void prepareKey();
@@ -64,7 +64,7 @@ class EncryptBuf: public CryptBuf
 };
 
 #include "iv.f"
-#include "end.f"
+#include "eoi.f"
 
 
 }   // FBB

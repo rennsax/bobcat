@@ -1,0 +1,5 @@
+#include "eoi.ih"
+
+Eoi::
+{
+}

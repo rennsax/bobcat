@@ -2,5 +2,5 @@
 
 void DecryptBuf::setp()
 {
-    streambuf::setp(&*d_encrypted.begin(), &*d_encrypted.end());
+    streambuf::setp(&*d_encrypted.begin(), &*d_encrypted.eoi());
 }

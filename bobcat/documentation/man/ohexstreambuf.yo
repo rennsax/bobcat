@@ -52,6 +52,12 @@ manpagesection(MEMBER FUNCTIONS)
 tt(open()) members are available, as bf(FBB::OHexStreambuf) inherits from
 this class.
     itemization(
+    itb(void eoi())
+       This member completes the current hexadecimal character conversion,
+        clears the separator, and no longer uses a the maximum output line
+        width. Instead of calling this member the tt(eoi) manipulator
+        (see below) can be used.
+
     itb(void separator(bool reset = true))
        This member clears the separator that's inserted between hexadecimal
         character values. When the tt(reset) parameter is set to tt(true)
@@ -63,6 +69,11 @@ this class.
         parameter is set to tt(true) (which is the default) the currently used
         output width is reset to 0.
 
+    itb(void setWidth(size_t width))
+       This member sets the width of the generated output lines to tt(width)
+        characters. No maximum line width is used when tt(width = 0)  is
+        specified.
+
     itb(size_t size() const)
         This member returns the next column offset where the next
 hexadecimal character will appear. If a maximum line length is requested and
@@ -71,6 +82,15 @@ a tt('\n') character. See also the example below.
 
     This member's return value is undefined if  no maximum line length was
 requested. 
+    )
+
+manpagesection(MANIPULATOR)
+    itemization(
+    itb(FBB::eoi)
+       The tt(eoi) manipulator can be inserted into the tt(ostream) to
+        complete the hexaecimal conversion. It acts identically to calling the
+        tt(end) member. If inserted into a plain tt(std::ostream) nothing
+        happens.
     )
 
 manpagesection(STATIC MEMBER)

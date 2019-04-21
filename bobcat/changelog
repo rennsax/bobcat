@@ -1,6 +1,20 @@
 bobcat (5.00.00)
 
-  * Redesigned DateTime
+  * New members replacing old ones:
+        - in all classes previously offering a pSync member:
+            - sync() replaces pSync() 
+        - IOStreambuf::xsputn()     replaces IOStreambuf::pXsputn() 
+        - Process::childErrStream() replaces Process::cerr()
+
+  * ConfigFile:
+        - removed deprecated members:
+            beginRE(std::string const &re);
+            endRE() const;
+        - fixed a (potentially occurring) segfault in ConfigFile
+
+  * CSV: removed, use CSV4180 instead.
+
+  * DateTime:
       - The TriVal type is not used anymore. Instead, `true' (DST is used for
             the object's time) and `false' (DST is not used) are used.
       - DateTime(std::chrono::minutes zoneMinutes) replaces 
@@ -45,64 +59,52 @@ bobcat (5.00.00)
             readZones
             zoneTxt
 
-    refer to DateTime's man-page for further details.
-
-  * Redesigned DecryptBuf
+  * DecryptBuf:
         - Discontinued:
             done()
             setIV()
         - Discontinued static member:
             lastOK()
 
-    refer to DecryptBuf's man-page for further details.
+  * DigestBuf:
+        - reset() replaces open()
+        - eoi() replaces close(), alternatively the eoi manipulator can be
+                used 
 
-  * Redesigned EncryptBuf
+  * EncryptBuf:
         - Discontinued:
             setKey()
             setIV()
 
-    refer to EncryptBuf's man-page for further details.
+  * HMacBuf:
+        - reset() replaces open() 
+        - eoi()   replaces close(), or use the eoi manipulator
 
-  * OHexStreambuf 
+  * IRandStream expects a size_t seed (used to be: long seed);
+
+  * OHexStreambuf:
         - added an extra parameter to its constructor: std::string const
             &separator, by default initialized to an empty string. It
             defines the separator inserted between hexadecimal character
             values. 
         - added members `separator' to redefine or reset the currently used
             separator. 
+        - added member `setWidth' to modify the maximum width of lines written
+            to the ostream initialized with an OHexStreambuf object.
+        - eoi() replaces close(), or use the eoi manipulator
 
-  * Selector::wait() returns 0 when its read, write and except file descriptor
-    sets are empty.
+  * OMutexStream:
+        new class offering mutex protected ostream operations.
 
-  * IRandStream and Randbuffer expect a size_t seed (used to be: long seed);
+  * Randbuffer:
+        - expects a size_t seed (used to be: long seed);
+        - fixed a memory leak
 
-  * New members replacing old ones:
-        - OHexStreambuf::sync()     replaces OHexStreambuf::pSync() 
-        - MultiStreambuf::sync()    replaces MultiStreambuf::pSync() 
-        - OFdStreambuf::sync()      replaces OFdStreambuf::pSync() 
-        - TableBuf::sync()          replaces TableBuf::pSync() 
-        - IOStreambuf::sync()       replaces IOStreambuf::pSync() 
-        - IOStreambuf::xsputn()     replaces IOStreambuf::pXsputn() 
-        - OFoldStreambuf::sync()    replaces OFoldStreambuf::pSync() 
-        - Syslogbuf::sync()         replaces Syslogbuf::pSync() 
-        - LogBuffer::sync()         replaces LogBuffer::pSync() 
-        - Process::childErrStream() replaces Process::cerr()
-
-  * Removed deprecated members:
-        ConfigFile::beginRE(std::string const &re);
-        ConfigFile::endRE() const;
-
-  * Removed the deprecated class CSV: use CSV4180 instead.
-
-  * Fixed a memory leak in RandBuffer
-
-  * Fixed a (potentially occurring) segfault in ConfigFile
+  * Selector:
+        - wait() returns 0 when its read, write and except file descriptor
+            sets are empty.
 
   * Fixed flaw in Log's FBB::fnl handling
-
-  * Added class OMutexStream for mutex protected ostream operations.
-
-
 
 
 bobcat (4.09.00)

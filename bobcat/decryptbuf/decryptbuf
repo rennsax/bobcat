@@ -17,7 +17,7 @@ class DecryptBuf: public CryptBuf
     std::string     d_encrypted;
     std::string     d_decrypted;
 
-    bool            d_end = false;
+    bool            d_eoi = false;
 
     std::string     d_iv;
     std::string     d_key;
@@ -32,20 +32,20 @@ class DecryptBuf: public CryptBuf
 
         bool setRounds(size_t nRounds);             // RC5 8, 12 or 16
 
-        void end();                                 // .f
+        void eoi();                                 // .f
 
     protected:
         EVP_CIPHER_CTX *cipherCtx();
 
     private:
         int overflow(int c) override;
-        void end_() override;                       // .cc
+        void eoi_() override;                       // .cc
 
         void flushBuffer();
         void setp();
 };
 
-#include "end.f"
+#include "eoi.f"
 
 }   // FBB
         

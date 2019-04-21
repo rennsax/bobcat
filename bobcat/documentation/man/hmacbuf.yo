@@ -73,17 +73,19 @@ manpagesection(MEMBER FUNCTIONS)
 inherits from this class. 
 
     itemization(
-    itb(void close())
-        This member finishes the computation of the  message digest
-computation. It is needed as the tt(HMacBuf) object has no external means
-for deciding whether all information to compute the digest for has yet been
-received or not. The general approach to follow when computing a message
-hmac is therefore:
+    itb(void eoi())
+        This member completes the message digest computation. It is needed as
+the tt(HMacBuf) object has no external means for deciding whether all
+information to compute the digest for has yet been received or
+not. Alternatively, the tt(eoi) manipulator can be inserted into the stream
+computing the message digest (see below) The general approach for
+computing a message hmac is therefore:
         verb(
     create a HMacBuf object
     use it to create a std::ostream object
     insert information into the ostream object
-    call the HMacBuf object's close() member
+    call the HMacBuf object's eoi() member or insert eoi into the ostream
+    object 
     obtain/process the hash value from the HMacBuf object.
         )
 
@@ -95,11 +97,24 @@ member contains the number of characters used by the hash value, and its
 tt(data()) member refers to the hash value's characters. Note that a hash
 value's character value may be 0 (not to be confused with tt('0')).
 
-    itb(void open())
+    itb(void reset())
         This member reinitializes the message hmac computation. One a
 message hmac has been computed for, say a stream tt(streamA) this member can
 be called after which the hmac for a stream tt(streamB) can be computed
 using the same tt(HMacBuf) object.
+
+    itb(void eoi())
+        This member can be called to complete the message digest
+computation. Instead of calling this member the tt(eoi) manipulator (see
+below) can be used.
+    )
+
+manpagesection(MANIPULATOR)
+    itemization(
+    itb(FBB::eoi)
+        The tt(eoi) manipulator can be inserted into the tt(ostream) to
+complete the digest computation. If it is inserted into a plain
+tt(std::ostream) nothing happens.
     )
 
 manpagesection(EXAMPLE)
