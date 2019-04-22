@@ -65,6 +65,8 @@ bobcat (5.00.00)
             setIV()
         - Discontinued static member:
             lastOK()
+        - eoi() replaces done(), alternatively the eoi manipulator can be
+                used 
 
   * DigestBuf:
         - reset() replaces open()

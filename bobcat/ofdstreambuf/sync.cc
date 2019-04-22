@@ -4,7 +4,7 @@ int OFdStreambuf::sync()
 {
     if (pptr() > pbase())               // if there are chars in the buffer
     {                                   // then write them to the device
-        if (write(d_fd, ucharPtr(buffer()), pptr() - pbase()) < 0)
+        if (write(d_fd, ucharPtr(), pptr() - pbase()) < 0)
             std::cerr << "[Warning] OFdStreambuf::sync could not "
                             "write to FD " << d_fd << '\n';
 

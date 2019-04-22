@@ -17,8 +17,11 @@ class EoiBuf: public Eoi
         size_t bufSize() const;
         void resize(size_t size);
 
-        static unsigned char *ucharPtr(std::string &str);           // 1.f
-        static unsigned char const *ucharPtr(                       // 2.f
+        unsigned char *ucharPtr();                                  // 1.f
+        unsigned char const *ucharPtr() const;                      // 2.f
+
+        static unsigned char *ucharPtr(std::string &str);           // 3.f
+        static unsigned char const *ucharPtr(                       // 4.f
                                        std::string const &str);
 };
 
@@ -29,6 +32,9 @@ class EoiBuf: public Eoi
 
 #include "ucharptr1.f"
 #include "ucharptr2.f"
+
+#include "ucharptr3.f"
+#include "ucharptr4.f"
 
 
 } // FBB        

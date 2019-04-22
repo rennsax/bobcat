@@ -1,6 +1,8 @@
 #include "cryptbuf.ih"
 
-CryptBuf::CryptBuf(char const *type)
+CryptBuf::CryptBuf(char const *type, size_t bufSize)
+:
+    EoiBuf(bufSize)
 {
     OpenSSL_add_all_ciphers();
 

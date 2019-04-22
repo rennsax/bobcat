@@ -14,9 +14,7 @@ class DecryptBuf: public CryptBuf
 {
     EVP_CIPHER_CTX *d_ctx;
 
-    std::string     d_encrypted;
     std::string     d_decrypted;
-
     bool            d_eoi = false;
 
     std::string     d_iv;
@@ -42,7 +40,6 @@ class DecryptBuf: public CryptBuf
         void eoi_() override;                       // .cc
 
         void flushBuffer();
-        void setp();
 };
 
 #include "eoi.f"

@@ -2,8 +2,7 @@
 
 int HMacBuf::overflow(int ch)
 {
-    HMAC_Update(d_ctx, 
-                ucharPtr(buffer()), bufSize());
+    HMAC_Update(d_ctx, ucharPtr(), bufSize());
 
     setp();
 

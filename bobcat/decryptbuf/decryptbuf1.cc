@@ -1,16 +1,12 @@
 #include "decryptbuf.ih"
 
 DecryptBuf::DecryptBuf(ostream &outStream, char const *type, 
-                        string const &key, string const &iv, size_t bufSize)
+                        string const &key, string const &iv, size_t size)
 :
-    CryptBuf(type),
+    CryptBuf(type, size < EVP_MAX_BLOCK_LENGTH ? 
+                        (size = EVP_MAX_BLOCK_LENGTH) : size),
     d_ctx(EVP_CIPHER_CTX_new()),
-    d_encrypted(bufSize < EVP_MAX_BLOCK_LENGTH ? 
-                    (bufSize = EVP_MAX_BLOCK_LENGTH) 
-                : 
-                    bufSize, 
-                0),
-    d_decrypted(bufSize, 0),
+    d_decrypted(bufSize(), 0),
     d_iv(iv),
     d_key(key),
     d_outStream(outStream)

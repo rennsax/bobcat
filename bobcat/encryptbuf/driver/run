@@ -6,4 +6,5 @@ else
     method=$1
 fi
 
-./driver $method theKeyOfRunAES 1234567890qwertyuiop < input > /tmp/enc
+./driver $method theKeyOfRunAES 1234567890qwertyuiop < driver.cc > /tmp/enc
+ls -Fla /tmp/enc

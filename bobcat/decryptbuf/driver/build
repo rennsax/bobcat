@@ -34,8 +34,10 @@ GPP="g++ --std=c++2a"
 #   Using libraries in ../tmp/, and /tmp (-> boblib)
 CMD="$GPP -o driver -Wall driver.cc \
         -L../tmp -ldecryptbuf \
-        -L/tmp -lcryptb -lrandb -lbob \
-        -lcrypto -s"
+        -L../../cryptbuf/tmp -lcryptbuf \
+        -L../../eoibuf/tmp -leoibuf \
+        -L../../eoi/tmp -leoi \
+        -lbobcat -lcrypto -s"
 
 echo ${CMD}
 ${CMD}

@@ -1,5 +1,4 @@
-// static
-inline unsigned char *EoiBuf::ucharPtr(std::string &str)
+inline unsigned char *EoiBuf::ucharPtr()
 {
-    return reinterpret_cast<unsigned char *>(&str[0]);
+    return reinterpret_cast<unsigned char *>(&d_buffer[0]);
 }

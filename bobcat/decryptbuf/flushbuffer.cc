@@ -38,7 +38,7 @@ void DecryptBuf::flushBuffer()
     if (
         not EVP_DecryptUpdate(d_ctx, 
                 ucharPtr(d_decrypted), &decryptedLen, 
-                ucharPtr(d_encrypted), srcLen)
+                ucharPtr(), srcLen)
     )
     {
         ERR_print_errors_fp(stderr);

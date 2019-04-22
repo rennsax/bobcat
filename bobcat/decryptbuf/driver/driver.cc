@@ -34,7 +34,7 @@ try
     if (not in)
         throw Exception{} << "can't read `" << argv[4] << '\n';
     
-    out << in.rdbuf() << end;
+    out << in.rdbuf() << eoi;
 }
 catch(exception const &err)
 {

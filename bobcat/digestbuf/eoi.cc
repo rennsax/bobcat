@@ -6,7 +6,7 @@ void DigestBuf::eoi_()
         return;
 
     if (pptr() > pbase())
-       EVP_DigestUpdate(d_ctx, ucharPtr(buffer()), pptr() - pbase());
+       EVP_DigestUpdate(d_ctx, ucharPtr(), pptr() - pbase());
 
     unsigned int digestbufLen;
          

@@ -18,10 +18,8 @@ class EncryptBuf: public CryptBuf
 {
     EVP_CIPHER_CTX     *d_ctx;
 
-    bool                d_eoi = false;  // eoi() was called
-
-    std::string         d_incoming;
     std::string         d_encrypted;
+    bool                d_eoi = false;  // eoi() was called
 
     std::string         d_iv;           // maybe initialize iv ourselves
     std::string         d_key;
@@ -57,8 +55,6 @@ class EncryptBuf: public CryptBuf
         void setMD(char const *type);
 
         void flushBuffer();
-
-        void setp();                    // setp for d_buffer
 
         static void setChar(char &ch, IRandStream &irs);
 };

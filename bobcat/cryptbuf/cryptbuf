@@ -3,6 +3,8 @@
 
 #include <openssl/ossl_typ.h>
 
+#include <bobcat/eoibuf>
+
 namespace FBB
 {
 
@@ -11,7 +13,7 @@ class CryptBuf: public EoiBuf
     EVP_CIPHER const   *d_md;
 
     protected:
-        CryptBuf(char const *type);
+        CryptBuf(char const *type, size_t bufSize);
 
         EVP_CIPHER const *md() const;                               // .f
 };

@@ -41,7 +41,7 @@ try
     outHex << encryptbuf.iv();
     cerr << '\n' << dec;
 
-    out << cin.rdbuf() << end;
+    out << cin.rdbuf() << eoi;
 }
 catch(exception const &err)
 {

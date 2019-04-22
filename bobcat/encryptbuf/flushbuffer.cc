@@ -4,13 +4,13 @@
 void EncryptBuf::flushBuffer()  // called by overflow when d_buffer is 
                                 // full and by end()
 {
-    int incomingLen = pptr() - pbase();
+    int srcLen = pptr() - pbase();
 
     int encryptedLen;
     if (
         not EVP_EncryptUpdate(d_ctx, 
                               ucharPtr(d_encrypted), &encryptedLen, 
-                              ucharPtr(d_incoming),  incomingLen)
+                              ucharPtr(),  srcLen)
     )
         throw Exception{ 1 } << "Encrypt update failed";
 
