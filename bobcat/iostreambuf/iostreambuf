@@ -19,7 +19,7 @@ class IOStreambuf: public std::streambuf
 
         ~IOStreambuf() override;
 
-        void open(std::istream &in, std::ostream &out);
+        void reset(std::istream &in, std::ostream &out);
 
     protected:
         pos_type pSeekoff(off_type offset, std::ios::seekdir way,
@@ -29,10 +29,6 @@ class IOStreambuf: public std::streambuf
                       std::ios::openmode mode = std::ios::in | std::ios::out);
 
     private:
-                                                // see the 4.09.00 changelog
-        std::streamsize pXsputn(char const *buffer,  
-                                std::streamsize n);
-
         int underflow() override;
         pos_type seekoff(off_type offset, std::ios::seekdir way,
                        std::ios::openmode mode = std::ios::in | std::ios::out)

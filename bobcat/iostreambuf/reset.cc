@@ -1,6 +1,6 @@
 #include "iostreambuf.ih"
 
-void IOStreambuf::open(std::istream &in, std::ostream &out)
+void IOStreambuf::reset(std::istream &in, std::ostream &out)
 {
     if (d_out)
         sync();

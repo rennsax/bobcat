@@ -12,10 +12,14 @@ class EoiBuf: public Eoi
     
     protected:
         EoiBuf(size_t size);
+
+        void resize(size_t size);
+
         void setp();
+        void setg(unsigned next, unsigned beyond); // begin is fixed
+
         std::string &buffer();
         size_t bufSize() const;
-        void resize(size_t size);
 
         unsigned char *ucharPtr();                                  // 1.f
         unsigned char const *ucharPtr() const;                      // 2.f

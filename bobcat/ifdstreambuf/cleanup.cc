@@ -2,13 +2,13 @@
 
 void IFdStreambuf::cleanup(Mode mode)
 {
-    if (d_buffer)
-    {
-        if (mode == CLOSE_FD)
-            ::close(d_fd);
+//    CERRX << buffer() << '\n';
 
-        delete [] d_buffer;
-        d_buffer = 0;
-        d_fd = -1;
-    }
+    if (d_fd == -1)
+        return;
+
+    if (mode == CLOSE_FD)
+        ::close(d_fd);
+
+    d_fd = -1;
 }

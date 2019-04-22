@@ -1,9 +1,9 @@
 #include "ifdstreambuf.ih"
 
-IFdStreambuf::IFdStreambuf(int fd, size_t n)
+IFdStreambuf::IFdStreambuf(int fd, size_t size)
 :
-    d_mode(KEEP_FD),        // comply with old default
-    d_buffer(0)
+    EoiBuf(0),
+    d_mode(KEEP_FD)         // comply with old default
 {
-    open(fd, KEEP_FD, n);
+    reset(fd, KEEP_FD, size);
 }

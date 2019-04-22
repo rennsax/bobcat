@@ -1,8 +1,8 @@
 #include "ifdstreambuf.ih"
 
-std::streamsize IFdStreambuf::xsgetn(char *dest, std::streamsize n)
+std::streamsize IFdStreambuf::xsgetn(char *dest, std::streamsize size)
 {
-    if (n == 0)
+    if (size == 0)
         return 0;
 
     // this function is called from istream's read() member. 
@@ -15,12 +15,12 @@ std::streamsize IFdStreambuf::xsgetn(char *dest, std::streamsize n)
     
     int avail = egptr() - gptr();
 
-    if (avail > n)
-        avail = n;
+    if (avail > size)
+        avail = size;
 
     memcpy(dest, gptr(), avail);
     gbump(avail);                       
 
-    return avail + read(d_fd, dest + avail, n - avail);
+    return avail + read(d_fd, dest + avail, size - avail);
 }
 

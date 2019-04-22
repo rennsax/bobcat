@@ -3,7 +3,6 @@ bobcat (5.00.00)
   * New members replacing old ones:
         - in all classes previously offering a pSync member:
             - sync() replaces pSync() 
-        - IOStreambuf::xsputn()     replaces IOStreambuf::pXsputn() 
         - Process::childErrStream() replaces Process::cerr()
 
   * ConfigFile:
@@ -82,7 +81,18 @@ bobcat (5.00.00)
         - reset() replaces open() 
         - eoi()   replaces close(), or use the eoi manipulator
 
+  * IFdStreambuf:
+        - reset() replaces open() 
+
+  * IOStreambuf:
+        - xsputn() replaces pXsputn() 
+        - reset()  replaces open()
+
   * IRandStream expects a size_t seed (used to be: long seed);
+
+  * OFdStreambuf:
+        - reset() replaces open() 
+        - eoi()   replaces close(), or use the eoi manipulator
 
   * OHexStreambuf:
         - added an extra parameter to its constructor: std::string const
