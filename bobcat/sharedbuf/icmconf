@@ -1,0 +1,3 @@
+#define LIBRARY             "sharedbuf"
+
+#include "../icmconf"

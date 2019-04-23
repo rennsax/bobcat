@@ -1,6 +1,6 @@
 #include "syslogbuf.ih"
 
-int Syslogbuf::sync()
+int SyslogBuf::sync()
 {
     if (bufSize() != 0)
     {

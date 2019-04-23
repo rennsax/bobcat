@@ -5,17 +5,17 @@
 #include <ostream>
 #include <fstream>
 
-#include <bobcat/ofoldstreambuf>
+#include <bobcat/ofoldbuf>
 
 namespace FBB
 {
 
-    // 'virtual public OFoldStreambufBlanks is used to avoid 'base class not
-    // accessible' warnings since OFoldStreambuf also inherits from
-    // OFoldStreambufBlanks and only one struct definition is needed in the
+    // 'virtual public OFoldBufBlanks is used to avoid 'base class not
+    // accessible' warnings since OFoldBuf also inherits from
+    // OFoldBufBlanks and only one struct definition is needed in the
     // final OFoldStream class.
-class OFoldStream: virtual public OFoldStreambufEnums, 
-                   private OFoldStreambuf, public std::ostream
+class OFoldStream: virtual public OFoldBufEnums, 
+                   private OFoldBuf, public std::ostream
 {
     public:
         OFoldStream()           = default;

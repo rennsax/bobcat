@@ -1,6 +1,0 @@
-#define LIBRARY             "ofoldstreambuf"
-
-#define AUXFLAGS "-I../../tmp"
-
-#include "../icmconf"
-

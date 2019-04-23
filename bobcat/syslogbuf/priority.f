@@ -1,4 +1,4 @@
-inline Priority Syslogbuf::priority()   const
+inline Priority SyslogBuf::priority()   const
 {
     return d_priority;
 }

@@ -9,8 +9,8 @@
 #include <bobcat/string>
 #include <bobcat/pipe>
 #include <bobcat/selector>
-#include <bobcat/ifdstreambuf>
-#include <bobcat/ofdstreambuf>
+#include <bobcat/ifdbuf>
+#include <bobcat/ofdbuf>
 #include <bobcat/iostream>
 #include <bobcat/processenums>
 
@@ -54,9 +54,9 @@ struct Process: private Fork, public IOStream, public ProcessEnums
         Pipe d_iChildOutPipe;   // cout written by the CHILD
         Pipe d_iChildErrPipe;   // cerr written by the CHILD    
 
-        OFdStreambuf    d_oChildInbuf;      // Child extracts,  
-        IFdStreambuf    d_iChildOutbuf;     // Child inserts,
-        IFdStreambuf    d_iChildErrbuf;     // Child inserts
+        OFdBuf    d_oChildInbuf;      // Child extracts,  
+        IFdBuf    d_iChildOutbuf;     // Child inserts,
+        IFdBuf    d_iChildErrbuf;     // Child inserts
     
         std::ostream   d_oChildIn;          // Parent inserts to child's cin
         std::istream   d_iChildOut;         // Parent extracts child's cout

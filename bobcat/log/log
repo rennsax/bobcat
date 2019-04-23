@@ -4,7 +4,7 @@
 #include <fstream>
 #include <memory>
 
-#include <bobcat/logbuffer>
+#include <bobcat/logbuf>
 
 namespace FBB
 {
@@ -16,7 +16,7 @@ enum LogManipulator
     fnl,                // forced new line, even at low level specs.
 };
 
-class Log: private LogBuffer, public std::ostream
+class Log: private LogBuf, public std::ostream
 {
     private:
         static std::unique_ptr<Log> s_stream;

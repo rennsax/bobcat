@@ -1,5 +1,0 @@
-#include "qpstreambufbase.ih"
-
-QPStreambufBase::
-{
-}

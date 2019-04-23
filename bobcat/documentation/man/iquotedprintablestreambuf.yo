@@ -1,27 +1,27 @@
 includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::IQuotedPrintableStreambuf)(3bobcat)(_CurYrs_)
+manpage(FBB::IQuotedPrintableBuf)(3bobcat)(_CurYrs_)
         (libbobcat-dev__CurVers_-x.tar.gz)
         (QuotedPrintable converting Stream Buffer)
 
-manpagename(FBB::IQuotedPrintableStreambuf)
+manpagename(FBB::IQuotedPrintableBuf)
             (Input Filtering stream buffer doing quoted printable conversions)
 
 manpagesynopsis()
-    bf(#include <bobcat/iquotedprintablestreambuf>)nl()
+    bf(#include <bobcat/iquotedprintablebuf>)nl()
     Linking option: tt(-lbobcat) 
 
 manpagedescription()
 
-    The information made available by bf(IQuotedPrintableStreambuf) objects is
+    The information made available by bf(IQuotedPrintableBuf) objects is
 either quoted-printable encoded or decoded. The information to convert is read
-by bf(IQuotedPrintableStreambuf) objects via tt(std::istream) objects.
+by bf(IQuotedPrintableBuf) objects via tt(std::istream) objects.
 
-    The class bf(IQuotedPrintableStreambuf) is a class template, using a
+    The class bf(IQuotedPrintableBuf) is a class template, using a
 tt(FBB::CryptType) template non-type parameter. Objects of the class
-bf(FBB::IQuotedPrintableStreambuf<FBB::ENCODE>) encode the information they
-receive, objects of the class bf(FBB::IQuotedPrintableStreambuf<FBB::DECODE>)
+bf(FBB::IQuotedPrintableBuf<FBB::ENCODE>) encode the information they
+receive, objects of the class bf(FBB::IQuotedPrintableBuf<FBB::DECODE>)
 decode the information they receive. See also section bf(ENUMERATION) below.
 
     Quoted-printable encoding is sometimes used in e-mail attachments (See
@@ -47,38 +47,38 @@ characteristics are:
 includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
-    bf(FBB::IFilterStreambuf)
+    bf(FBB::IFilterBuf)
 
 manpagesection(MEMBER FUNCTIONS)
-     All members of bf(FBB::IFilterStreambuf) are available, as
-bf(IQuotedPrintableStreambuf) inherits from this class.
+     All members of bf(FBB::IFilterBuf) are available, as
+bf(IQuotedPrintableBuf) inherits from this class.
 
     Overloaded move and/or copy assignment operators are not available.
 
 manpagesection(ENUMERATION)
 
-    bf(IQuotedPrintableStreambuf) objects either encode or decode
-quoted-printable information. bf(IQuotedPrintableStreambuf) objects of the
-class bf(FBB::IQuotedPrintableStreambuf<FBB::ENCODE>) encode the data they
-receive, bf(IQuotedPrintableStreambuf) objects of the class
-bf(FBB::IQuotedPrintableStreambuf<FBB::DECODE>) decode the data they receive.
+    bf(IQuotedPrintableBuf) objects either encode or decode
+quoted-printable information. bf(IQuotedPrintableBuf) objects of the
+class bf(FBB::IQuotedPrintableBuf<FBB::ENCODE>) encode the data they
+receive, bf(IQuotedPrintableBuf) objects of the class
+bf(FBB::IQuotedPrintableBuf<FBB::DECODE>) decode the data they receive.
 
 The values tt(ENCODE) and tt(DECODE) are defined in the tt(enum CryptType),
 defined in the tt(FBB) namespace.
 
 manpagesection(CONSTRUCTOR)
     itemization(
-    itb(IQuotedPrintableStreambuf<CryptType>(std::istream &in, size_t bufSize
+    itb(IQuotedPrintableBuf<CryptType>(std::istream &in, size_t bufSize
         = 1000))
        This constructor initializes the streambuf.
 
-    - tt(IQuotedPrintableStreambuf<ENCODE>) objects perform quoted-printable
+    - tt(IQuotedPrintableBuf<ENCODE>) objects perform quoted-printable
         encoding;nl()
-    - tt(IQuotedPrintableStreambuf<DECODE>) objects perform quoted-printable
+    - tt(IQuotedPrintableBuf<DECODE>) objects perform quoted-printable
         decoding;nl()
-    - tt(IQuotedPrintableStreambuf<CryptType>) objects obtain the bytes to
+    - tt(IQuotedPrintableBuf<CryptType>) objects obtain the bytes to
         encode or decode from tt(std::istream &in);nl()
-    - The tt(IFilterStreambuf) base class is initialized with a buffer of
+    - The tt(IFilterBuf) base class is initialized with a buffer of
         size tt(bufSize), using a lower bound of 100 characters.
 
     The constructor uses a configurable buffer size for reading. Characters
@@ -92,27 +92,27 @@ then a buffer size of 1 should be specified.
 
 manpagesection(EXAMPLE)
 
-    The example shows the construction of tt(IQuotedPrintableStreambuf<ENCODE>)
+    The example shows the construction of tt(IQuotedPrintableBuf<ENCODE>)
 objects tt(encode) which are used to initialize a tt(std::istream) object. The
 information read from this tt(istream) is quoted-printable encoded. 
 
-tt(IQuotedPrintableStreambuf<DECODE>) objects read quoted-printable encoded
+tt(IQuotedPrintableBuf<DECODE>) objects read quoted-printable encoded
 information from tt(std::istream) objects, decoding the information.
 
 The tt(std::istream din) object is initialized with the
-tt(IQuotedPrintableStreambuf<DECODE>) object, and its contents is sent to
+tt(IQuotedPrintableBuf<DECODE>) object, and its contents is sent to
 tt(std::cout). The information that is presented at tt(std::cin) and that
 appears at tt(std::cout) should be identical.
 
-    verbinclude(../../iquotedprintablestreambuf/driver/driver.cc)
+    verbinclude(../../iquotedprintablebuf/driver/driver.cc)
 
 manpagefiles()
-    em(bobcat/iquotedprintablestreambuf) - defines the class interface
+    em(bobcat/iquotedprintablebuf) - defines the class interface
 
 manpageseealso()
     bf(bobcat)(7), bf(isymcryptstreambuf)(3bobcat),
-bf(iquotedprintablestream)(3bobcat), bf(ifilterstreambuf)(3bobcat),
-bf(ofilterstreambuf)(3bobcat), bf(std::streambuf).
+bf(iquotedprintablestream)(3bobcat), bf(ifilterbuf)(3bobcat),
+bf(ofilterbuf)(3bobcat), bf(std::streambuf).
 
 manpagebugs()
     None reported.

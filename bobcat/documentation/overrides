@@ -1,16 +1,16 @@
 hmacbuf/hmacbuf
-randbuffer/randbuffer
+randbuf/randbuf
 digestbuf/digestbuf
-ohexstreambuf/ohexstreambuf
-multistreambuf/multistreambuf       xsputn
-ofdstreambuf/ofdstreambuf
+ohexbuf/ohexbuf
+multibuf/multibuf       xsputn
+ofdbuf/ofdbuf
 tablebuf/tablebuf
-iostreambuf/iostreambuf             xsputn
-ifdstreambuf/ifdstreambuf           xsgetn
-sharedstreambuf/sharedstreambuf     xsputn
+iobuf/iobuf             xsputn
+ifdbuf/ifdbuf           xsgetn
+sharedbuf/sharedbuf     xsputn
 decryptbuf/decryptbuf
-ofoldstreambuf/ofoldstreambuf
+ofoldbuf/ofoldbuf
 syslogbuf/syslogbuf
 readlinebuf/readlinebuf
-ifilterstreambuf/ifilterstreambuf
+ifilterbuf/ifilterbuf
 encryptbuf/encryptbuf

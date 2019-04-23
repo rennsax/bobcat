@@ -1,5 +1,0 @@
-#include "ofilterstreambuf.ih"
-
-OFilterStreambuf::
-{
-}

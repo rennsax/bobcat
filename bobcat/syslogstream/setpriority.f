@@ -1,4 +1,4 @@
 inline Priority SyslogStream::setPriority(Priority priority)
 {
-    return Syslogbuf::setPriority(priority);
+    return SyslogBuf::setPriority(priority);
 }        

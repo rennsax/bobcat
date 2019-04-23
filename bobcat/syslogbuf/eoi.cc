@@ -1,6 +1,6 @@
 #include "syslogbuf.ih"
 
-void Syslogbuf::eoi_()
+void SyslogBuf::eoi_()
 {
     sync();   
     closelog();                     // syslog.h

@@ -13,7 +13,7 @@ std::ostream &operator<<(std::ostream &str, LogManipulator manipulator)
 
         case nl:
             str << static_cast<char>(0);    // 0-char is interpreted by
-                                            // LogBuffer as '\n', without
+                                            // LogBuf as '\n', without
         break;                              // timestamp writing request.
 
         case fnl:

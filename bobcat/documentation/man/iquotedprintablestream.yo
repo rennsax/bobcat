@@ -26,7 +26,7 @@ decode the information they receive.
 includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
-    bf(FBB::IQuotedPrintableStreambuf) (private), nl()
+    bf(FBB::IQuotedPrintableBuf) (private), nl()
     bf(std::istream) 
 
 manpagesection(CONSTRUCTORS)
@@ -34,8 +34,8 @@ manpagesection(CONSTRUCTORS)
     itb(IQuotedPrintableStream<CodeType>(std::istream &in, size_t bufSize =
             1000))
        This constructor initializes a tt(std::istream) providing it with an
-        bf(FBB::IQuotedPrintableStreambuf) stream buffer. The
-        bf(IQuotedPrintableStreambuf)'s constructor receives all arguments
+        bf(FBB::IQuotedPrintableBuf) stream buffer. The
+        bf(IQuotedPrintableBuf)'s constructor receives all arguments
         that are passed to this constructor.
 
     - tt(IQuotedPrintableStream<ENCODE>) objects perform quoted printable
@@ -44,7 +44,7 @@ manpagesection(CONSTRUCTORS)
         decoding;nl() 
     - tt(IQuotedPrintableStream<CodeType>) objects obtain the bytes to encode
         or decode from tt(std::istream &in);nl()
-    - The internally used tt(IFilterStreambuf) is initialized with a buffer of
+    - The internally used tt(IFilterBuf) is initialized with a buffer of
         size tt(bufSize), using a lower bound of 100.
 
     The constructor uses a configurable buffer size for reading. Characters
@@ -64,14 +64,14 @@ of this class can be used.
 manpagesection(EXAMPLE)
     verbinclude(../../iquotedprintablestream/driver/driver.cc)
 
-    See also the example in the bf(iquotedprintablestreambuf)(3bobcat)
+    See also the example in the bf(iquotedprintablebuf)(3bobcat)
         man-page. 
 
 manpagefiles()
     em(bobcat/iquoted printablestream) - defines the class interface
 
 manpageseealso()
-    bf(bobcat)(7), bf(iquotedprintablestreambuf)(3bobcat)
+    bf(bobcat)(7), bf(iquotedprintablebuf)(3bobcat)
 
 manpagebugs()
     None Reported.

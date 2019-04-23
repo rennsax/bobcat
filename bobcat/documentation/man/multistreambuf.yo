@@ -1,41 +1,41 @@
 includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::MultiStreambuf)(3bobcat)(_CurYrs_)
+manpage(FBB::MultiBuf)(3bobcat)(_CurYrs_)
                     (libbobcat-dev__CurVers_-x.tar.gz)
                     (Writing multiple streams)
 
-manpagename(FBB::MultiStreambuf)(Selectively writes multiple streams)
+manpagename(FBB::MultiBuf)(Selectively writes multiple streams)
 
 manpagesynopsis()
-    bf(#include <bobcat/multistreambuf>)nl()
+    bf(#include <bobcat/multibuf>)nl()
     Linking option: tt(-lbobcat) 
 
 manpagedescription()
-    The bf(FBB::MultiStreambuf) class is a specialization of
+    The bf(FBB::MultiBuf) class is a specialization of
 tt(std::streambuf). It can be used to write selectively to multiple
 tt(std::ostreams). Each tt(std::ostream) that is associated with a
-bf(MultiStreambuf) is given a mode-tag indicating whether the stream
+bf(MultiBuf) is given a mode-tag indicating whether the stream
 should always be used when information is inserted into the
-bf(MultiStreambuf), just once, or not at all. Each of the stream's 
+bf(MultiBuf), just once, or not at all. Each of the stream's 
 mode-tags may be set to any of the defined tag-values. 
 
-    When the address of a bf(MultiStreambuf) is used to initialize a
+    When the address of a bf(MultiBuf) is used to initialize a
 tt(std::ostream) the constructed tt(std::ostream) becomes an
 output-multiplexer: by inserting information into the tt(std::ostream) object,
-all tt(std::ostream) objects added to its bf(MultiStreambuf) buffer which
+all tt(std::ostream) objects added to its bf(MultiBuf) buffer which
 have an active mode receive that information.
 
-An bf(MultiStreambuf) object should be outlived by all active streams
+An bf(MultiBuf) object should be outlived by all active streams
 that are associated with it.
 
-bf(MultiStreambuf) objects refer to tt(std::ostreams) which are passed to it,
+bf(MultiBuf) objects refer to tt(std::ostreams) which are passed to it,
 and not to their tt(std::streambufs). So it is possible to change these
 tt(std::ostream's std::streambufs) without reinstalling the tt(std::ostreams)
 themselves. 
 
 No assumptions should be made about the order in which the tt(std::ostream)
-objects that are associated with the bf(MultiStreambuf) objects are
+objects that are associated with the bf(MultiBuf) objects are
 visited when information is inserted.
 
 includefile(include/namespace)
@@ -48,17 +48,17 @@ manpagesection(ENUMERATION)
     itemization(
     itb(OFF)
         A tt(std::ostream) having this mode will not be used when information
-is inserted into a bf(MultiStreambuf)
+is inserted into a bf(MultiBuf)
     itb(ON)
         A tt(std::ostream) having this mode will be used when information
-is inserted into a bf(MultiStreambuf)
+is inserted into a bf(MultiBuf)
     itb(ONCE)
         A tt(std::ostream) having this mode will be used once, until the next
 flushing operation, when information is inserted into an
-bf(MultiStreambuf)
+bf(MultiBuf)
     itb(RESET)
         A tt(std::ostream) having this mode will not be used when information
-is inserted into a bf(MultiStreambuf). At a flush operation all bf(ONCE)
+is inserted into a bf(MultiBuf). At a flush operation all bf(ONCE)
 modes will be set to bf(RESET)
     itb(ALL)
         This mode is used in combination with the member tt(remove) to remove 
@@ -66,7 +66,7 @@ all tt(std::ostream) elements matching a specified tt(std::ostream) argument.
     )
 
 manpagesection(TYPES)
-    The following subtypes are defined in the class bf(FBB:MultiStreambuf):
+    The following subtypes are defined in the class bf(FBB:MultiBuf):
     itemization(
     itb(iterator)
         This is a synonym of tt(std::vector<stream>::iterator)
@@ -75,8 +75,8 @@ manpagesection(TYPES)
     )
 
 manpagesection(NESTED CLASS)
-    The class bf(MultiStreambuf::stream) is defined as a nested class of
-bf(MultiStreambuf). It offers the following constructor and public
+    The class bf(MultiBuf::stream) is defined as a nested class of
+bf(MultiBuf). It offers the following constructor and public
 members: 
     itemization(
     itb(stream(std::ostream &os, Mode mode = ON))
@@ -92,37 +92,37 @@ bf(Mode) value with it.
 
 manpagesection(CONSTRUCTORS)
     itemization(
-    itb(MultiStreambuf())
-        The default constructor creates a bf(MultiStreambuf) object which
+    itb(MultiBuf())
+        The default constructor creates a bf(MultiBuf) object which
 contains no associated tt(std::ostream) objects.
-    itb(MultiStreambuf(std::ostream &os, Mode mode = ON))
-        This constructor creates a bf(MultiStreambuf) object which
+    itb(MultiBuf(std::ostream &os, Mode mode = ON))
+        This constructor creates a bf(MultiBuf) object which
 is immediately associated with the tt(std::ostream) specified as its first
 argument. 
-    itb(MultiStreambuf(std::vector<MultiStreambuf::stream> const &osvector))
-        This constructor creates a bf(MultiStreambuf) object which is
+    itb(MultiBuf(std::vector<MultiBuf::stream> const &osvector))
+        This constructor creates a bf(MultiBuf) object which is
 immediately associated with all tt(std::ostream) objects that are stored in
-the bf(MultiStreambuf::stream) elements of the specified vector.
+the bf(MultiBuf::stream) elements of the specified vector.
     )
 
     Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of tt(std::ostringstream) and tt(std::exception) are
-available, as bf(MultiStreambuf) inherits from these classes.
+available, as bf(MultiBuf) inherits from these classes.
     itemization(
     itb(iterator begin())
         This member returns an iterator to the first bf(stream) element that
-is stored in a bf(MultiStreambuf) object.
+is stored in a bf(MultiBuf) object.
     itb(const_iterator begin())
         This member returns an iterator to the first (unmodifiable) bf(stream)
-element that is stored in a bf(MultiStreambuf) object.
+element that is stored in a bf(MultiBuf) object.
     itb(iterator end())
         This member returns an iterator pointing beyond the last bf(stream)
-element that is stored in a bf(MultiStreambuf) object.
+element that is stored in a bf(MultiBuf) object.
     itb(const_iterator end())
         This member returns an iterator pointing beyond the last
-(unmodifiable) bf(stream) element that is stored in a bf(MultiStreambuf)
+(unmodifiable) bf(stream) element that is stored in a bf(MultiBuf)
 object.
     itb(void insert(std::ostream &os, Mode mode = ON))
         This member adds the specified tt(std::ostream) using the specified
@@ -133,38 +133,38 @@ multiple times as well.
         This member adds all bf(stream) objects stored in the bf(os) vector to
 the current set of bf(stream) objects.
     itb(bool remove(std::ostream &os, Mode mode = ONCE))
-        If tt(os) is stored in the bf(MultiStreambuf) it is removed, and
+        If tt(os) is stored in the bf(MultiBuf) it is removed, and
 tt(true) is returned. If mode tt(ALL) is specified all tt(os) objects that
-were stored in the bf(MultiStreambuf) object are removed (and tt(true) is
+were stored in the bf(MultiBuf) object are removed (and tt(true) is
 returned). If the tt(os) object was not stored tt(false) is returned. To
-determine whether tt(os) has been stored in the bf(MultiStreambuf) object its
+determine whether tt(os) has been stored in the bf(MultiBuf) object its
 address is compared to the addresses of the tt(std::ostream) objects that are
-stored inside the bf(MultiStreambuf) object: the object(s) having addresses
+stored inside the bf(MultiBuf) object: the object(s) having addresses
 tt(&os) is (are) removed.
     itb(void void setOnce())
         This member will reset all the tt(RESET) bf(Mode) values of the stored
 bf(stream) objects to tt(ONCE).
     itb(size_t size() const)
         The number of streams currently serviced by the
-bf(MultiStreambuf) object is returned.
+bf(MultiBuf) object is returned.
     )
 
 manpagesection(EXAMPLE)
     verb(
 #include <iostream>
 #include <fstream>
-#include <bobcat/multistreambuf>
+#include <bobcat/multibuf>
 
 using namespace std;
 using namespace FBB;
 
 int main()
 {
-    MultiStreambuf  msb(cout);
+    MultiBuf  msb(cout);
     ostream         os(&msb);
     ofstream        out("out");
 
-    msb.insert(out, MultiStreambuf::ONCE);
+    msb.insert(out, MultiBuf::ONCE);
 
     os << "This is on cout and out\n"
           "This is on cout only\n";
@@ -176,7 +176,7 @@ int main()
     )
 
 manpagefiles()
-    em(bobcat/multistreambuf) - defines the class interface
+    em(bobcat/multibuf) - defines the class interface
 
 manpageseealso()
     bf(bobcat)(7)

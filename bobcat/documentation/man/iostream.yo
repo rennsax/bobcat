@@ -22,7 +22,7 @@ bf(FBB::IfdStream) and bf(FBB::OFdStream)), to construct bi-directional pipes.
 includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
-    bf(FBB::IOStreambuf) (private inheritance),nl()
+    bf(FBB::IOBuf) (private inheritance),nl()
     bf(std::istream),nl()
     bf(std::ostream)
 
@@ -71,7 +71,7 @@ manpagefiles()
     em(bobcat/iostream) - defines the class interface
 
 manpageseealso()
-    bf(bobcat)(7), bf(ifdstream)(3bobcat), bf(iostreambuf)(3bobcat), 
+    bf(bobcat)(7), bf(ifdstream)(3bobcat), bf(iobuf)(3bobcat), 
     bf(ofdstream)(3bobcat), bf(process)(3bobcat)
 
 manpagebugs()

@@ -2,12 +2,12 @@
 #define INCLUDED_BOBCAT_OFDSTREAM_
 
 #include <ostream>
-#include <bobcat/ofdstreambuf>
+#include <bobcat/ofdbuf>
 
 namespace FBB
 {    
 
-class OFdStream: private OFdStreambuf, public std::ostream
+class OFdStream: private OFdBuf, public std::ostream
 {
     public:
         explicit OFdStream(int fd, size_t n = 1);

@@ -27,14 +27,14 @@ between the margins then the word will exceed the right hand margin.
 configurable, using a default of 8 positions in the destination stream.
 
     tt(OFoldStream) is implemented as a wrapper class around tt(std::ostream)
-and tt(FBB::OFoldStreambuf) and a more complete description of the folding
-process can be found in the bf(ofoldstreambuf)(3bobcat) man page.
+and tt(FBB::OFoldBuf) and a more complete description of the folding
+process can be found in the bf(ofoldbuf)(3bobcat) man page.
 
 includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
     std::ostream,nl()
-    (and privately from FBB::OFoldStreambuf)
+    (and privately from FBB::OFoldBuf)
 
 manpagesection(ENUMERATION)
     The enumeration tt(TabsOrBlanks) is used to select tabs or blanks when
@@ -53,7 +53,7 @@ of tab-characters.
     The enumeration tt(TrailingBlanks) is used to configure the
 tt(OFoldStream) object with respect to any trailing blanks that may appear
 on the final line. It is the same enumeration type as used with
-tt(OFoldStreambuf) (cf. bf(ofoldstreambuf)(3bobcat)) having two values:
+tt(OFoldBuf) (cf. bf(ofoldbuf)(3bobcat)) having two values:
     itemization(
     itb(IGNORE_TRAILING_BLANKS)
         This indicates that trailing blanks appearing at the final line if it
@@ -138,7 +138,7 @@ tt(OFoldStream) object passed to it as its argument. The member defines a
 tt(std::ostream) parameter since in many cases the tt(OFoldStream) object will
 be used in functions themselves defining tt(std::ostream)
 parameters. Internally, the tt(std::ostream)'s tt(std::streambuf) is down cast
-to an tt(OFoldStreambuf) and an tt(FBB::Exception) exception is thrown if that
+to an tt(OFoldBuf) and an tt(FBB::Exception) exception is thrown if that
 cast fails.
     itb(size_t rightMargin(std::ostream const &os))
         This member returns the current right margin setting of the
@@ -155,7 +155,7 @@ manpagefiles()
 
 manpageseealso()
     bf(bobcat)(7),  bf(lm)(3bobcat), bf(mlm)(3bobcat),
-    bf(ofoldstreambuf)(3bobcat)
+    bf(ofoldbuf)(3bobcat)
 
 manpagebugs()
     None Reported.

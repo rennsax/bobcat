@@ -2,12 +2,12 @@
 #define INCLUDED_BOBCAT_IFDSTREAM_
 
 #include <istream>
-#include <bobcat/ifdstreambuf>
+#include <bobcat/ifdbuf>
 
 namespace FBB
 {    
 
-class IFdStream: private IFdStreambuf, public std::istream
+class IFdStream: private IFdBuf, public std::istream
 {
     public:
         explicit IFdStream(int fd, size_t n = 1);       // 1.f

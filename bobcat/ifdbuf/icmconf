@@ -1,0 +1,4 @@
+#define LIBRARY             "ifdbuf"
+
+#include "../icmconf"
+

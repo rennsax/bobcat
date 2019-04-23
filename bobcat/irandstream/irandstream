@@ -2,12 +2,12 @@
 #define INCLUDED_BOBCAT_IRANDSTREAM_H_
 
 #include <istream>
-#include <bobcat/randbuffer>
+#include <bobcat/randbuf>
 
 namespace FBB
 {
 
-class IRandStream: private Randbuffer, public std::istream
+class IRandStream: private RandBuf, public std::istream
 {
     public:    
         explicit IRandStream(int max);

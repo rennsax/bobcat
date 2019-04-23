@@ -11,7 +11,7 @@
 namespace FBB
 {
 
-class SyslogStream: private Syslogbuf, public std::ostream
+class SyslogStream: private SyslogBuf, public std::ostream
 {
     public:
         explicit SyslogStream(std::string const &ident = "",

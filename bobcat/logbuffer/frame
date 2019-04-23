@@ -1,5 +1,0 @@
-#include "logbuffer.ih"
-
-void LogBuffer::
-{
-}

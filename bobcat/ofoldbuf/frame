@@ -1,0 +1,5 @@
+#include "ofoldbuf.ih"
+
+OFoldBuf::
+{
+}

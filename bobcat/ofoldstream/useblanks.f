@@ -1,4 +1,4 @@
 inline void OFoldStream::useBlanks()
 {
-    OFoldStreambuf::useBlanks();
+    OFoldBuf::useBlanks();
 }

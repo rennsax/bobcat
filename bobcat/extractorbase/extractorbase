@@ -4,7 +4,7 @@
 #include <istream>
 
 #include <bobcat/pipe>
-#include <bobcat/ifdstreambuf>
+#include <bobcat/ifdbuf>
 #include <bobcat/exec>
 
 namespace FBB
@@ -14,7 +14,7 @@ namespace IUO
 {
 
 class ExtractorBase: public CloseMode, protected Exec, 
-                     private IFdStreambuf, public std::istream
+                     private IFdBuf, public std::istream
                      
 {                    // the child process inserts into the pipe,
     size_t d_bufSize;

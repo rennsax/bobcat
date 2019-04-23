@@ -12,10 +12,10 @@ manpagesynopsis()
 
 manpagedescription()
 
-The class bf(FBB::Log) defines an tt(std::ostream) using an tt(FBB::LogBuffer
+The class bf(FBB::Log) defines an tt(std::ostream) using an tt(FBB::LogBuf
 std::streambuf). It is used to send log-messages to the (r)syslog stream or to
-a (configurable) file. Refer to the bf(logbuffer)(3bobcat) man-page for
-details about tt(LogBuffer).
+a (configurable) file. Refer to the bf(logbuf)(3bobcat) man-page for
+details about tt(LogBuf).
 
 Which (part of) messages are actually logged can be configured using
 bf(FBB::level) in combination with the tt(Log) member tt(setLevel). By default
@@ -43,7 +43,7 @@ manpagesection(INHERITS FROM)
 manpagesection(ENUMERATIONS)
 
     The enumeration tt(TimeStamps) is defined in the namespace tt(FBB),
-primarily for initializing tt(FBB::LogBuffer) objects. It is used with
+primarily for initializing tt(FBB::LogBuf) objects. It is used with
 tt(Log) members as well. It has the following values:
     itemization(
     itb(NOTIMESTAMPS)
@@ -225,11 +225,11 @@ manpagefiles()
 
 manpageseealso()
     bf(bobcat)(7), bf(exception)(3bobcat), bf(level)(3bobcat),
-    bf(logbuffer)(3bobcat)
+    bf(logbuf)(3bobcat)
 
 manpagebugs()
     The tt(nl) and tt(fnl) manipulators are received by the tt(Log) objects'
-tt(LogBuffers) as, respectively, characters 0 and 1. Since log files in
+tt(LogBufs) as, respectively, characters 0 and 1. Since log files in
 practice only received printable characters this should not cause any
 problems.
 

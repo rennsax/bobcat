@@ -1,5 +1,0 @@
-#include "ofdstreambuf.ih"
-
-void OFdStreambuf::
-{
-}

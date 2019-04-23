@@ -6,7 +6,7 @@
 
 #include "../exception/exception"
 
-#include "../ohexstreambuf/ohexstreambuf"
+#include "../ohexbuf/ohexbuf"
 
 #if  OPENSSL_VERSION_NUMBER < 0x10100000L
     inline EVP_MD_CTX *EVP_MD_CTX_new()

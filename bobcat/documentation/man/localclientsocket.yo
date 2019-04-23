@@ -122,7 +122,7 @@ manpagefiles()
     em(bobcat/localclientsocket) - defines the class interface
 
 manpageseealso()
-    bf(bobcat)(7), bf(ifdstream)(3bobcat), bf(ifdstreambuf)(3bobcat),
+    bf(bobcat)(7), bf(ifdstream)(3bobcat), bf(ifdbuf)(3bobcat),
 bf(clientsocket)(3bobcat), bf(localserversocket)(3bobcat),
 bf(localsocketbase)(3bobcat), bf(ofdstream)(3bobcat), bf(ofdstream)(3bobcat)
 

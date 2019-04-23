@@ -142,21 +142,21 @@ The following classes and functions are available:
     using a tt(FBB::Base64Streambuf) stream buffer.nl() 
     Manpage(ibase64stream)
 
-    bf(FBB::IBase64Streambuf): tt(FBB::IFilterStreambuf) specialization
+    bf(FBB::IBase64Buf): tt(FBB::IFilterBuf) specialization
     implementing base64 encoding and decoding.nl()
-    Manpage(ibase64streambuf)
+    Manpage(ibase64buf)
 
     bf(FBB::IFdStream): stream extracting information from a device whose
         file descriptor is available. nl()
     Manpage(ifdstream)
 
-    bf(FBB::IFdStreambuf): Input stream buffer initialized by a file
+    bf(FBB::IFdBuf): Input stream buffer initialized by a file
         descriptor.nl()
-    Manpage(ifdstreambuf)
+    Manpage(ifdbuf)
 
-    bf(FBB::IFilterStreambuf): tt(std::streambuf) specialization implementing
+    bf(FBB::IFilterBuf): tt(std::streambuf) specialization implementing
     an tt(std::istream) filtering design pattern.nl()
-    Manpage(ifilterstreambuf)
+    Manpage(ifilterbuf)
 
     bf(FBB::Indent): Class and manipulators performing text indentation. nl()
     Manpage(indent)
@@ -174,21 +174,21 @@ The following classes and functions are available:
     features. nl()
     Manpage(iostream)
 
-    bf(FBB::IOStreambuf): tt(std::streambuf) specialization allowing combined 
+    bf(FBB::IOBuf): tt(std::streambuf) specialization allowing combined 
     input and output operations. nl()
-    Manpage(iostreambuf)
+    Manpage(iobuf)
 
     bf(FBB::ISharedStream): tt(std::istream) operations on shared memory.nl()
     Manpage(isharedstream)
 
     bf(FBB::IQuotedPrintableStream): stream implementing quoted printable
-    encoding and decoding, using a tt(FBB::IQuotedPrintableStreambuf) stream
+    encoding and decoding, using a tt(FBB::IQuotedPrintableBuf) stream
     buffer.nl() 
     Manpage(iquotedprintablestream)
 
-    bf(FBB::IQuotedPrintableStreambuf): tt(FBB::IFilterStreambuf)
+    bf(FBB::IQuotedPrintableBuf): tt(FBB::IFilterBuf)
     specialization implementing quoted printable encoding and decoding.nl()
-    Manpage(iquotedprintablestreambuf)
+    Manpage(iquotedprintablebuf)
 
     bf(FBB::IRandStream): stream to extract random numbers from. nl()
     Manpage(irandstream)
@@ -197,7 +197,7 @@ The following classes and functions are available:
     decryption, using a tt(FBB::ISymCryptStreambuf) stream buffer.nl()
     Manpage(isymcryptstream)
 
-    bf(FBB::ISymCryptStreambuf): tt(FBB::IFilterStreambuf) specialization
+    bf(FBB::ISymCryptStreambuf): tt(FBB::IFilterBuf) specialization
     implementing symmetric cryptography.nl()
     Manpage(isymcryptstreambuf)
 
@@ -240,8 +240,8 @@ The following classes and functions are available:
     bf(FBB::Log): tt(std::ostream) handling log messages.nl()
     Manpage(log)
 
-    bf(FBB::LogBuffer): tt(std::streambuf) handling log messages.nl()
-    Manpage(logbuffer)
+    bf(FBB::LogBuf): tt(std::streambuf) handling log messages.nl()
+    Manpage(logbuf)
 
     bf(FBB::MailHeaders): extracts mail headers from SMTP-email.nl()
     Manpage(mailheaders)
@@ -263,9 +263,9 @@ The following classes and functions are available:
     bf(FBB::Mstream): Inserts messages into streams. nl()
     Manpage(mstream)
 
-    bf(FBB::MultiStreambuf): tt(std::streambuf) specializations performing
+    bf(FBB::MultiBuf): tt(std::streambuf) specializations performing
     insertions to multiple tt(std::ostream) objects.nl()
-    Manpage(multistreambuf)
+    Manpage(multibuf)
 
     bf(FBB::OMutexStream): Mutex protected tt(std::ostream).nl()
     Manpage(mxstream)
@@ -274,25 +274,25 @@ The following classes and functions are available:
         file descriptor is available. nl()
     Manpage(ofdstream)
 
-    bf(FBB::OFdStreambuf): Output stream buffer initialized by a file
+    bf(FBB::OFdBuf): Output stream buffer initialized by a file
         descriptor.nl()
-    Manpage(ofdstreambuf)
+    Manpage(ofdbuf)
 
-    bf(FBB::OFilterStreambuf): tt(std::streambuf) specialization implementing
+    bf(FBB::OFilterBuf): tt(std::streambuf) specialization implementing
     an tt(std::ostream) filtering design pattern.nl()
-    Manpage(ofilterstreambuf)
+    Manpage(ofilterbuf)
 
-    bf(FBB::OFoldStream): tt(std::ostream) using an tt(OFoldStreambuf) as its
+    bf(FBB::OFoldStream): tt(std::ostream) using an tt(OFoldBuf) as its
     streambuf. nl()
     Manpage(ofoldstream)
 
-    bf(FBB::OFoldStreambuf): tt(OFilterStreambuf) (tt(std::streambuf))
+    bf(FBB::OFoldBuf): tt(OFilterBuf) (tt(std::streambuf))
     specialization folding text lines between left and right margins.nl()
-    Manpage(ofoldstreambuf)
+    Manpage(ofoldbuf)
 
-    bf(FBB::OHexStreambuf): tt(OHexStreambuf) (tt(std::streambuf))
+    bf(FBB::OHexBuf): tt(OHexBuf) (tt(std::streambuf))
     specialization inserting characters into a stream by their hex values.nl()
-    Manpage(ohexstreambuf)
+    Manpage(ohexbuf)
 
     bf(FBB::OneKey): Single keystroke input, not requiring `Return'.nl()
     Manpage(onekey)
@@ -318,9 +318,9 @@ The following classes and functions are available:
     function template. nl()
     Manpage(ptriter)
 
-    bf(FBB::Randbuffer): implements a tt(streambuf) generating random 
+    bf(FBB::RandBuf): implements a tt(streambuf) generating random 
     numbers. nl()
-    Manpage(randbuffer)
+    Manpage(randbuf)
 
     bf(FBB::Ranger): a class template creating ranges that are accepted by
     range-based for-loops. Also offered: a tt(ranger) function template. nl()
@@ -383,9 +383,9 @@ The following classes and functions are available:
     bf(FBB::SharedStream): I/O operations on shared memory.nl()
     Manpage(sharedstream)
 
-    bf(FBB::SharedStreambuf): tt(std::streambuf) interfacing to shared
+    bf(FBB::SharedBuf): tt(std::streambuf) interfacing to shared
         memory.nl()
-    Manpage(sharedstreambuf)
+    Manpage(sharedbuf)
    
     bf(FBB::Signal): Defines signals, allowing signal handlers to use object's
     data members c.q. to call object's members functions. nl()
@@ -409,7 +409,7 @@ The following classes and functions are available:
         tt(std::istream) objects.nl()
     Manpage(stringline)
 
-    bf(FBB::Syslogbuf): streambuf to
+    bf(FBB::SyslogBuf): streambuf to
         Buffer generating bf(syslog)(3) messages. nl()
     Manpage(syslogbuf)
 
@@ -530,18 +530,18 @@ END)
     using a tt(FBB::Base64Streambuf) stream buffer.nl() 
     Manpage(ibase64stream)
 
-    bf(FBB::IBase64Streambuf): tt(FBB::IFilterStreambuf) specialization
+    bf(FBB::IBase64Buf): tt(FBB::IFilterBuf) specialization
     implementing base64 encoding and decoding.nl()
-    Manpage(ibase64streambuf)
+    Manpage(ibase64buf)
 
     bf(FBB::IQuotedPrintableStream): stream implementing quoted printable
-    encoding and decoding, using a tt(FBB::IQuotedPrintableStreambuf) stream
+    encoding and decoding, using a tt(FBB::IQuotedPrintableBuf) stream
     buffer.nl() 
     Manpage(iquotedprintablestream)
 
-    bf(FBB::IQuotedPrintableStreambuf): tt(FBB::IFilterStreambuf)
+    bf(FBB::IQuotedPrintableBuf): tt(FBB::IFilterBuf)
     specialization implementing quoted printable encoding and decoding.nl()
-    Manpage(iquotedprintablestreambuf)
+    Manpage(iquotedprintablebuf)
 
     bf(FBB::X2a): x-to-Ascii conversions of any type supporting insertions
     into tt(o[string]stream) objects.nl()
@@ -566,10 +566,10 @@ END)
     bf(FBB::Log): tt(std::ostream) handling log messages.nl()
     Manpage(log)
 
-    bf(FBB::LogBuffer): tt(std::streambuf) handling log messages.nl()
-    Manpage(logbuffer)
+    bf(FBB::LogBuf): tt(std::streambuf) handling log messages.nl()
+    Manpage(logbuf)
 
-    bf(FBB::Syslogbuf): streambuf to
+    bf(FBB::SyslogBuf): streambuf to
         Buffer generating bf(syslog)(3) messages. nl()
     Manpage(syslogbuf)
 
@@ -677,7 +677,7 @@ END)
     decryption, using a tt(FBB::ISymCryptStreambuf) stream buffer.nl()
     Manpage(isymcryptstream)
 
-    bf(FBB::ISymCryptStreambuf): tt(FBB::IFilterStreambuf) specialization
+    bf(FBB::ISymCryptStreambuf): tt(FBB::IFilterBuf) specialization
     implementing symmetric cryptography.nl()
     Manpage(isymcryptstreambuf)
 
@@ -737,21 +737,21 @@ END)
         file descriptor is available. nl()
     Manpage(ifdstream)
 
-    bf(FBB::IFdStreambuf): Input stream buffer initialized by a file
+    bf(FBB::IFdBuf): Input stream buffer initialized by a file
         descriptor.nl()
-    Manpage(ifdstreambuf)
+    Manpage(ifdbuf)
 
-    bf(FBB::IFilterStreambuf): tt(std::streambuf) specialization implementing
+    bf(FBB::IFilterBuf): tt(std::streambuf) specialization implementing
     an tt(std::istream) filtering design pattern.nl()
-    Manpage(ifilterstreambuf)
+    Manpage(ifilterbuf)
 
     bf(FBB::IOStream): class combining tt(std::istream) and tt(std::ostream)
     features. nl()
     Manpage(iostream)
 
-    bf(FBB::IOStreambuf): tt(std::streambuf) specialization allowing combined 
+    bf(FBB::IOBuf): tt(std::streambuf) specialization allowing combined 
     input and output operations. nl()
-    Manpage(iostreambuf)
+    Manpage(iobuf)
 
     bf(FBB::IRandStream): stream to extract random numbers from. nl()
     (Manpage(irandstream))
@@ -774,9 +774,9 @@ END)
     bf(FBB::Mstream): Inserts messages into streams. nl()
     Manpage(mstream)
 
-    bf(FBB::MultiStreambuf): tt(std::streambuf) specializations performing
+    bf(FBB::MultiBuf): tt(std::streambuf) specializations performing
     insertions to multiple tt(std::ostream) objects.nl()
-    Manpage(multistreambuf)
+    Manpage(multibuf)
 
     bf(FBB::OMutexStream): Mutex protected tt(std::ostream).nl()
     Manpage(mxstream)
@@ -785,25 +785,25 @@ END)
         file descriptor is available. nl()
     Manpage(ofdstream)
 
-    bf(FBB::OFdStreambuf): Output stream buffer initialized by a file
+    bf(FBB::OFdBuf): Output stream buffer initialized by a file
         descriptor.nl()
-    Manpage(ofdstreambuf)
+    Manpage(ofdbuf)
 
-    bf(FBB::OFilterStreambuf): tt(std::streambuf) specialization implementing
+    bf(FBB::OFilterBuf): tt(std::streambuf) specialization implementing
     an tt(std::ostream) filtering design pattern.nl()
-    Manpage(ofilterstreambuf)
+    Manpage(ofilterbuf)
 
-    bf(FBB::OFoldStream): tt(std::ostream) using an tt(OFoldStreambuf) as its
+    bf(FBB::OFoldStream): tt(std::ostream) using an tt(OFoldBuf) as its
     streambuf. nl()
     Manpage(ofoldstream)
 
-    bf(FBB::OFoldStreambuf): tt(OFilterStreambuf) (tt(std::streambuf))
+    bf(FBB::OFoldBuf): tt(OFilterBuf) (tt(std::streambuf))
     specialization folding text lines between left and right margins.nl()
-    Manpage(ofoldstreambuf)
+    Manpage(ofoldbuf)
 
-    bf(FBB::OHexStreambuf): tt(OHexStreambuf) (tt(std::streambuf))
+    bf(FBB::OHexBuf): tt(OHexBuf) (tt(std::streambuf))
     specialization inserting characters into a stream by their hex values.nl()
-    Manpage(ohexstreambuf)
+    Manpage(ohexbuf)
 
     bf(FBB::OSharedStream): tt(std::ostream) operations on shared memory.nl()
     Manpage(osharedstream)
@@ -811,9 +811,9 @@ END)
     bf(FBB::Pipe): Defines a system level pipe. nl()
     Manpage(pipe)
 
-    bf(FBB::Randbuffer): implements a tt(streambuf) generating random 
+    bf(FBB::RandBuf): implements a tt(streambuf) generating random 
     numbers. nl()
-    Manpage(randbuffer)
+    Manpage(randbuf)
 
     bf(FBB::ReadLineBuf): implements a tt(streambuf) using the Gnu
     tt(readline) library to allow editing an tt(std::istream)'s contents. nl()
@@ -836,9 +836,9 @@ END)
     bf(FBB::SharedStream): I/O operations on shared memory.nl()
     Manpage(sharedstream)
 
-    bf(FBB::SharedStreambuf): tt(std::streambuf) interfacing to shared
+    bf(FBB::SharedBuf): tt(std::streambuf) interfacing to shared
         memory.nl()
-    Manpage(sharedstreambuf)
+    Manpage(sharedbuf)
 
     bf(FBB::Stat): Determines file characteristics.nl()
     Manpage(stat)
@@ -879,9 +879,9 @@ END)
     bf(FBB::SharedStream): I/O operations on shared memory.nl()
     Manpage(sharedstream)
 
-    bf(FBB::SharedStreambuf): tt(std::streambuf) interfacing to shared
+    bf(FBB::SharedBuf): tt(std::streambuf) interfacing to shared
         memory.nl()
-    Manpage(sharedstreambuf)
+    Manpage(sharedbuf)
 
     it() bf(TABLES)
 

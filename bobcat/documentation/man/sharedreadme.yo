@@ -106,13 +106,13 @@ member tt(SharedCondition::size). bf(SharedCondition) members ensure that the
 thread has access to the tt(`Condition') object, and that the shared memory's
 offset has not changed when returning from the bf(SharedCondition's) members.
 
-    it() bf(SharedStreambuf)(3bobcat)
+    it() bf(SharedBuf)(3bobcat)
 
-The class bf(SharedStreambuf) implements a tt(std::streambuf) specialization
+The class bf(SharedBuf) implements a tt(std::streambuf) specialization
 interfacing to a tt(SharedMemory) object. In addition to a default constructor
 which is an empty stub the class offers constructors which immediately
 interface to a tt(SharedMemory) object, as well as a member to (re)associate
-a bf(SharedStreambuf) object with a tt(SharedMemory) object.
+a bf(SharedBuf) object with a tt(SharedMemory) object.
 
     it() bf(SharedStream, ISharedStream, OSharedStream)(3bobcat)
 
@@ -153,7 +153,7 @@ manpageseealso()
         bf(sharedpos)(3bobcat), 
         bf(sharedsegment)(3bobcat), 
         bf(sharedstream)(3bobcat), 
-        bf(sharedstreambuf)(3bobcat)
+        bf(sharedbuf)(3bobcat)
 
 manpagebugs()
     None Reported.

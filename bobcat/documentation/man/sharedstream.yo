@@ -31,7 +31,7 @@ fail state.
 includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
-    bf(FBB::SharedStreambuf) (private inheritance),nl()
+    bf(FBB::SharedBuf) (private inheritance),nl()
     bf(std::istream),nl()
     bf(std::ostream),nl()
     bf(FBB::SharedEnum__) (cf. bf(sharedmemory)(3bobcat) for a description of
@@ -205,7 +205,7 @@ manpageseealso()
         bf(sharedmutex)(3bobcat), 
         bf(sharedpos)(3bobcat), 
         bf(sharedsegment)(3bobcat),
-        bf(sharedstreambuf)(3bobcat)
+        bf(sharedbuf)(3bobcat)
 
 manpagebugs()
     Note that by default exceptions thrown from within a bf(std::stream)

@@ -5,7 +5,7 @@ namespace FBB
 
 std::ostream &operator<<(std::ostream &out, HMacBuf const &digestbuf)
 {
-    OHexStreambuf ohex(out);
+    OHexBuf ohex(out);
     ostream outs(&ohex);
     outs.write(digestbuf.d_digest.data(), 
                digestbuf.d_digest.length());

@@ -9,7 +9,7 @@
 #include <sstream>
 
 #include <bobcat/pipe>
-#include <bobcat/ofdstreambuf>
+#include <bobcat/ofdbuf>
 #include <bobcat/exec>
 
 #include <iostream>
@@ -19,7 +19,7 @@ namespace FBB
 {
 
 class CinInserter: public IUO::CloseMode, private Exec,
-                   private OFdStreambuf, public std::ostream
+                   private OFdBuf, public std::ostream
 {
     size_t d_bufSize;
     Pipe d_oChildInPipe;           // cin read by the CHILD

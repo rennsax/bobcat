@@ -5,7 +5,7 @@ GCC='g++ --std=c++14 -o driver'
 # Using the standard bobcat library
 # ${GCC} driver.cc -lbobcat
 
-#Using the randbuffer/tmp library, bobcat, and the local randbuffer/irandstream
+#Using the randbuf/tmp library, bobcat, and the local randbuf/irandstream
 #header files
-${GCC} -I../../randbuffer:.. driver.cc -L../../randbuffer/tmp \
-	    -lrandbuffer -lbobcat -s
+${GCC} -I../../randbuf:.. driver.cc -L../../randbuf/tmp \
+	    -lrandbuf -lbobcat -s

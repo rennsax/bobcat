@@ -2,7 +2,7 @@
 
 Log::Log()
 :
-    LogBuffer(TIMESTAMPS, false, " "),
+    LogBuf(TIMESTAMPS, false, " "),
     ostream(this)
 {
     init();

@@ -18,7 +18,7 @@ shared memory.
 includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
-    bf(FBB::ISharedStreambuf) (private inheritance),nl()
+    bf(FBB::ISharedBuf) (private inheritance),nl()
     bf(std::istream),nl()
     bf(FBB::SharedEnum__) (cf. bf(sharedmemory(3bobcat)) for a description of
         this last base class).
@@ -177,7 +177,7 @@ manpageseealso()
         bf(sharedreadme)(7bobcat), 
         bf(sharedsegment)(3bobcat),
         bf(sharedstream)(3bobcat),
-        bf(sharedstreambuf)(3bobcat)
+        bf(sharedbuf)(3bobcat)
 
 manpagebugs()
     Note that by default exceptions thrown from within a bf(std::stream)

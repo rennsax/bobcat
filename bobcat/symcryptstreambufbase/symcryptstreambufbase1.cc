@@ -16,7 +16,7 @@ SymCryptStreambufBase::SymCryptStreambufBase(
             size_t bufSize, size_t filterBufSize, ENGINE *engine
 )
 :
-    IFilterStreambuf(filterBufSize),
+    IFilterBuf(filterBufSize),
     d_ctx(EVP_CIPHER_CTX_new()),
     d_inBufSize(bufSize < 100 ? 100 : bufSize),
     d_in(in),

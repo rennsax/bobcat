@@ -1,6 +1,6 @@
 #include "syslogbuf.ih"
 
-Syslogbuf::~Syslogbuf()
+SyslogBuf::~SyslogBuf()
 {
 //    eoi();
 }

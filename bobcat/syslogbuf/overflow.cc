@@ -1,6 +1,6 @@
 #include "syslogbuf.ih"
 
-int Syslogbuf::overflow(int ch)
+int SyslogBuf::overflow(int ch)
 {
     if (ch != EOF)
         buffer() += ch;

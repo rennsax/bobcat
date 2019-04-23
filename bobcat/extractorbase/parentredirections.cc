@@ -2,5 +2,5 @@
 
 void ExtractorBase::parentRedirections()
 {
-    open(d_iChildOutPipe.readOnly(), IFdStreambuf::CLOSE_FD, d_bufSize);
+    open(d_iChildOutPipe.readOnly(), IFdBuf::CLOSE_FD, d_bufSize);
 }

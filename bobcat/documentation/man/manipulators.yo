@@ -39,9 +39,9 @@ manpagesection(MANIPULATORS)
         This manipulator will insert, then reduce the indentation level.
     itb(FBB::indentinc) defined in tt(bobcat/indent)
         This manipulator will insert, then increment the indentation level.
-    itb(FBB::lm) defined in tt(bobcat/ofoldstreambuf)
+    itb(FBB::lm) defined in tt(bobcat/ofoldbuf)
         This manipulator sets the left margin of bf(FBB::OFoldStream) objects.
-    itb(FBB::mlm) defined in tt(bobcat/ofoldstreambuf) 
+    itb(FBB::mlm) defined in tt(bobcat/ofoldbuf) 
         This manipulator modifies (alters) the left margin of
         bf(FBB::OFoldStream) objects.
     itb(FBB::nlindent) defined in tt(bobcat/indent)

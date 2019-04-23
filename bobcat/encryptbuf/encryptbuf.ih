@@ -12,9 +12,9 @@
 #include <algorithm>
 
 #include "../exception/exception"
-#include "../randbuffer/randbuffer"
+#include "../randbuf/randbuf"
 #include "../irandstream/irandstream"
-#include "../ohexstreambuf/ohexstreambuf"
+#include "../ohexbuf/ohexbuf"
 
 #if  OPENSSL_VERSION_NUMBER < 0x10100000L
 

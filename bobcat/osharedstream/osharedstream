@@ -3,12 +3,12 @@
 
 #include <ostream>
 
-#include <bobcat/sharedstreambuf>
+#include <bobcat/sharedbuf>
 
 namespace FBB
 {
 
-struct OSharedStream: private SharedStreambuf, public std::ostream, 
+struct OSharedStream: private SharedBuf, public std::ostream, 
                       public virtual SharedEnum__
 {
     OSharedStream();
@@ -22,15 +22,15 @@ struct OSharedStream: private SharedStreambuf, public std::ostream,
             size_t id, 
             std::ios::openmode openMode = std::ios::out | std::ios::in);
 
-    using SharedStreambuf::attachSharedCondition;
+    using SharedBuf::attachSharedCondition;
 
     using std::ostream::clear;
 
-    using SharedStreambuf::createSharedCondition;
+    using SharedBuf::createSharedCondition;
 
-    using SharedStreambuf::id;
+    using SharedBuf::id;
 
-    using SharedStreambuf::kill;
+    using SharedBuf::kill;
 
     void memInfo(std::ostream &out, char const *end = "\n") const;
 
@@ -43,7 +43,7 @@ struct OSharedStream: private SharedStreambuf, public std::ostream,
             int id,
             std::ios::openmode openMode = std::ios::in | std::ios::out);
 
-    using SharedStreambuf::remove;
+    using SharedBuf::remove;
 
     bool truncate(std::streamsize offset);
 };

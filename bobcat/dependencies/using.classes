@@ -5,7 +5,7 @@ align
 arg
     argconfig
 argconfig
-base64streambufbase
+base64bufbase
 binarysearch
 binops
 binopsbase
@@ -48,26 +48,26 @@ hostent
     hostname
 hostname
 ibase64stream
-ibase64streambuf
+ibase64buf
     ibase64stream
 ifdstream
-ifdstreambuf
+ifdbuf
     ifdstream
     extractorbase
     process
-ifilterstreambuf
-    qpstreambufbase
-    base64streambufbase
+ifilterbuf
+    qpbufbase
+    base64bufbase
     symcryptstreambufbase
 indent
 inetaddress
     socketbase
 iostream
     process
-iostreambuf
+iobuf
     iostream
 iquotedprintablestream
-iquotedprintablestreambuf
+iquotedprintablebuf
     iquotedprintablestream
 irandstream
 isharedstream
@@ -82,24 +82,24 @@ localsocketbase
     localclientsocket
 log
     level
-logbuffer
+logbuf
     log
 mailheaders
 mbuf
     mstream
 mstream
-multistreambuf
+multibuf
 omutexstream
 ofdstream
-ofdstreambuf
+ofdbuf
     ofdstream
     process
     cininserter
-ofilterstreambuf
+ofilterbuf
 ofoldstream
-ofoldstreambuf
+ofoldbuf
     ofoldstream
-ohexstreambuf
+ohexbuf
 onekey
 osharedstream
 pattern
@@ -113,8 +113,8 @@ processdata
 processenums
     process
 ptriter
-qpstreambufbase
-randbuffer
+qpbufbase
+randbuf
     irandstream
 ranger
 redirector
@@ -136,7 +136,7 @@ sharedpos
 sharedsegment
     sharedpos
 sharedstream
-sharedstreambuf
+sharedbuf
     osharedstream
     isharedstream
     sharedstream

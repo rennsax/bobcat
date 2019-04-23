@@ -46,7 +46,7 @@ manpagefiles()
     em(bobcat/ifdstream) - defines the class interface
 
 manpageseealso()
-    bf(bobcat)(7), bf(ifdstreambuf)(3bobcat), bf(ofdstream)(3bobcat)
+    bf(bobcat)(7), bf(ifdbuf)(3bobcat), bf(ofdstream)(3bobcat)
 
 manpagebugs()
     The tt(IFdStream) object uses a tt(IFdStreamBuf) for its

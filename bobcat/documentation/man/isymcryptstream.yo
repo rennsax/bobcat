@@ -62,7 +62,7 @@ method;nl()
 tt(bufSize) characters. The default value is the smallest value that is
 used. When a smaller tt(bufSize) value is specified, the default value is
 used;nl()
-    - The internally used tt(IFilterStreambuf) is initialized with a buffer of
+    - The internally used tt(IFilterBuf) is initialized with a buffer of
 size tt(filterBufSize), using a lower bound of 100;nl()
     - The parameter tt(ENGINE) can be used to specify a hardware
 acceleration engine, as supported by the used encryption/decryption

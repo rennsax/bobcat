@@ -1,5 +1,0 @@
-#include "iostreambuf.ih"
-
-void IOStreambuf::
-{
-}

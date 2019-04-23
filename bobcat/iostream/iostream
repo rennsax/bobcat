@@ -1,12 +1,12 @@
 #ifndef INCLUDED_BOBCAT_IOSTREAM_
 #define INCLUDED_BOBCAT_IOSTREAM_
 
-#include <bobcat/iostreambuf>
+#include <bobcat/iobuf>
 
 namespace FBB
 {
 
-class IOStream: private IOStreambuf, public std::istream, public std::ostream
+class IOStream: private IOBuf, public std::istream, public std::ostream
 {
     public:
         IOStream();                                         // 1.f

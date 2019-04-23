@@ -1,4 +1,0 @@
-#define LIBRARY             "ifdstreambuf"
-
-#include "../icmconf"
-

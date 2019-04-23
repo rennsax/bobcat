@@ -8,7 +8,7 @@ manpagename(FBB::lm)(Manipulator setting left margins of OFoldStream objects)
 
 manpagesynopsis()
     bf(#include <bobcat/ofoldstream>) or nl()
-    bf(#include <bobcat/ofoldstreambuf>) nl()
+    bf(#include <bobcat/ofoldbuf>) nl()
     Linking option: tt(-lbobcat) 
 
 manpagedescription()
@@ -28,7 +28,7 @@ stream then the new left margin will be effective at the next word inserted
 into that line (cf., the example section below).
 
 A em(bad_cast) exception is thrown when the manipulator is inserted into an
-tt(ostream) that is not using a tt(OFoldStreambuf) buffer.
+tt(ostream) that is not using a tt(OFoldBuf) buffer.
 
 includefile(include/namespace)
 

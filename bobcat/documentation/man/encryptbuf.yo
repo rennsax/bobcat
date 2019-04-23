@@ -147,15 +147,15 @@ wrapper class around the eventual output stream can be used. Here is an
 illustration:
         verb(
     #include <ostream>
-    #include <bobcat/ofilterstreambuf>
+    #include <bobcat/ofilterbuf>
     
-    class Skip256: public FBB::OFilterStreambuf
+    class Skip256: public FBB::OFilterBuf
     {
         size_t d_count;
         public:
             Skip256(std::ostream &os)
             :
-                OFilterStreambuf(os),
+                OFilterBuf(os),
                 d_count(0)
             {}
         private:
@@ -183,7 +183,7 @@ manpagefiles()
     em(bobcat/encryptbuf) - defines the class interface
 
 manpageseealso()
-    bf(bobcat)(7), bf(decryptbuf)(3bobcat), bf(ofilterstreambuf)(3bobcat),
+    bf(bobcat)(7), bf(decryptbuf)(3bobcat), bf(ofilterbuf)(3bobcat),
     bf(std::streambuf)
 
 manpagebugs()

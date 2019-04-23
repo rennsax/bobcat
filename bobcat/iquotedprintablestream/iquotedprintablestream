@@ -3,13 +3,13 @@
 
 #include <istream>
 
-#include <bobcat/iquotedprintablestreambuf>
+#include <bobcat/iquotedprintablebuf>
 
 namespace FBB
 {
 
 template <CryptType type>
-struct IQuotedPrintableStream: private IQuotedPrintableStreambuf<type>, 
+struct IQuotedPrintableStream: private IQuotedPrintableBuf<type>, 
                                public std::istream
 {
     IQuotedPrintableStream(std::istream &in, size_t bufSize = 1000);    // 1.f

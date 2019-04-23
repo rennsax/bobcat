@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <fstream>
 #include <bobcat/exception>
-#include <bobcat/ohexstreambuf>
+#include <bobcat/ohexbuf>
 #include "../encryptbuf"
 
 #include <openssl/evp.h>
@@ -36,7 +36,7 @@ try
             "actual IV length: " << ivLength << "\n"
             "IV =\n";
 
-    OHexStreambuf ohb{ cerr, ivLength << 1 };
+    OHexBuf ohb{ cerr, ivLength << 1 };
     ostream outHex(&ohb);
     outHex << encryptbuf.iv();
     cerr << '\n' << dec;

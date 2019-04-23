@@ -6,7 +6,7 @@
 using namespace std;
 using namespace FBB;
 
-class IBuf: public FBB::IFilterStreambuf
+class IBuf: public FBB::IFilterBuf
 {
     std::istream *d_in;
     char d_key[sizeof(unsigned long)];

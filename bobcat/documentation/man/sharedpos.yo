@@ -137,7 +137,7 @@ manpageseealso()
         bf(sharedreadme)(7bobcat), 
         bf(sharedsegment)(3bobcat), 
         bf(sharedstream)(3bobcat), 
-        bf(sharedstreambuf)(3bobcat)
+        bf(sharedbuf)(3bobcat)
 
 manpagebugs()
     None Reported.

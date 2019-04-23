@@ -13,8 +13,8 @@
 #include <bobcat/string>
 #include <bobcat/pipe>
 #include <bobcat/selector>
-#include <bobcat/ifdstreambuf>
-#include <bobcat/ofdstreambuf>
+#include <bobcat/ifdbuf>
+#include <bobcat/ofdbuf>
 
 #include <bobcat/iostream>
 
@@ -24,8 +24,8 @@ using namespace FBB;
 extern std::auto_ptr<Pipe> d_child_inp;          // cin read by the CHILD
 extern std::auto_ptr<Pipe> d_child_outp;         // cout written by the CHILD
 
-extern OFdStreambuf    d_childCinbuf;
-extern IFdStreambuf    d_childCoutbuf;
+extern OFdBuf    d_childCinbuf;
+extern IFdBuf    d_childCoutbuf;
 
 extern ostream   d_childCin;            // Parent inserts child cin
 extern istream   d_childCout;           // Parent extr. child cout

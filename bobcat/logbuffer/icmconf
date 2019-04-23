@@ -1,3 +1,0 @@
-#define LIBRARY             "logbuffer"
-
-#include "../icmconf"

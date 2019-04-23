@@ -49,18 +49,18 @@ enum Facility
    UUCP         = LOG_UUCP,
 };
 
-class Syslogbuf: public EoiBuf
+class SyslogBuf: public EoiBuf
 {
     Priority    d_priority;
     Priority    d_orgPriority;
     std::string d_ident;
 
     public:
-        explicit Syslogbuf(std::string const &ident = "",
+        explicit SyslogBuf(std::string const &ident = "",
             Priority priority = NOTICE, Facility facility = USER,
             int option = 0);
 
-        ~Syslogbuf();
+        ~SyslogBuf();
 
         void reset(std::string const &ident,                        // 1
             Priority priority = NOTICE, Facility facility = USER,

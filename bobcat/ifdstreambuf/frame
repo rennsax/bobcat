@@ -1,5 +1,0 @@
-#include "ifdstreambuf.ih"
-
-void IFdStreambuf::
-{
-}

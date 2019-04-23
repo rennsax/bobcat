@@ -35,7 +35,7 @@ includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
     bf(FBB::Exec) (private),
-    bf(FBB::IFdStreambuf) (private),
+    bf(FBB::IFdBuf) (private),
     bf(std::istream)
 
 manpagesection(CONSTRUCTOR)

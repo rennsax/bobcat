@@ -1,29 +1,29 @@
 includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::OFoldStreambuf)(3bobcat)(_CurYrs_)
+manpage(FBB::OFoldBuf)(3bobcat)(_CurYrs_)
     (libbobcat-dev__CurVers_-x.tar.gz)(Fold long lines)
 
-manpagename(FBB::OFoldStreambuf)(Folds long lines written to ostream)
+manpagename(FBB::OFoldBuf)(Folds long lines written to ostream)
 
 manpagesynopsis()
-    bf(#include <bobcat/ofoldstreambuf>)nl()
+    bf(#include <bobcat/ofoldbuf>)nl()
     Linking option: tt(-lbobcat) 
 
 manpagedescription()
-    bf(FBB::OFoldStreambuf) is a specialization of tt(FBB::OFilterStreambuf)
+    bf(FBB::OFoldBuf) is a specialization of tt(FBB::OFilterBuf)
 folding long lines written to an tt(std::ostream) object. The
-tt(OFoldStreambuf) writes the (folded) lines to a second tt(ostream) (the
+tt(OFoldBuf) writes the (folded) lines to a second tt(ostream) (the
 em(destination stream) which is either used by or opened by the
-tt(OFoldStreambuf) object).
+tt(OFoldBuf) object).
 
-    Internally the tt(OFoldStreambuf) defines its actions using a little
+    Internally the tt(OFoldBuf) defines its actions using a little
 finite state automation distinguishing three states (INDENT, WS and NON_WS)
 and three character categories (tt(\n), other white space characters (space),
 and non-space characters). The nine combinations resulting from these two sets
 are discussed below.
 
-    tt(OFoldStreambuf) objects will never fold lines in the middle of series
+    tt(OFoldBuf) objects will never fold lines in the middle of series
 of non-blank characters (called a `word' below) but will always break a line
 at a white space character. The resulting lines will always appear to the
 right of a configurable left margin and to the left of a configurable right
@@ -38,8 +38,8 @@ configurable, using a default of 8 positions in the destination stream.
     What follows is a description of the em(Finite State Automaton) (FSA)
 defining what happens when various character types appear at its three
 states. The phrase `... is written' means that the described information is
-written to the tt(ostream) used or opened by the tt(OFoldStreambuf)
-object. tt(OFoldStreambuf)'s initial state is tt(INDENT):
+written to the tt(ostream) used or opened by the tt(OFoldBuf)
+object. tt(OFoldBuf)'s initial state is tt(INDENT):
 
 DEFINEMACRO(rw)(3)(row(cell(ARG1)cell(ARG2)cell(ARG3)))
 
@@ -75,7 +75,7 @@ rowline()
 includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
-    FBB::OFilterStreambuf
+    FBB::OFilterBuf
 
 manpagesection(ENUMERATION)
     The enumeration tt(TabsOrBlanks) is used to select tabs or blanks when
@@ -92,7 +92,7 @@ of tab-characters.
     )
 
     The enumeration tt(TrailingBlanks) is used to configure the
-tt(OFoldStreambuf) object with respect to any trailing blanks that may appear
+tt(OFoldBuf) object with respect to any trailing blanks that may appear
 on the final line. These trailing blanks can appear on the final line it it is 
 not properly terminated with a newline character but instead ends in white
 space. By default these white space characters are ignored, but they may be
@@ -101,7 +101,7 @@ kept as well. The enumeration has two values:
     itb(IGNORE_TRAILING_BLANKS)
         This indicates that trailing blanks appearing at the final line if it
 is not terminated by a newline should not be written to the destination
-tt(std::ostream). This is the default used by tt(OFoldStreambuf) objects.
+tt(std::ostream). This is the default used by tt(OFoldBuf) objects.
     itb(KEEP_TRAILING_BLANKS)
         This indicates that trailing blanks at the final line if it is not
 terminated by a newline should be written to the destination tt(std::ostream)
@@ -109,26 +109,26 @@ terminated by a newline should be written to the destination tt(std::ostream)
 
 manpagesection(CONSTRUCTORS)
     itemization(
-    itb(OFoldStreambuf(size_t leftIndent = 0, size_t rightMargin = 80,
+    itb(OFoldBuf(size_t leftIndent = 0, size_t rightMargin = 80,
                     TabsOrBlanks tob = BLANKS,
                     TrailingBlanks tb = IGNORE_TRAILING_BLANKS))
-        This constructor initializes an tt(OFoldStreambuf) object but does not
+        This constructor initializes an tt(OFoldBuf) object but does not
 associate it with a destination stream. It can also be used as the default
 constructor. 
 
-    itb(OFoldStreambuf(char const *fname,
+    itb(OFoldBuf(char const *fname,
                    size_t leftIndent = 0, size_t rightMargin = 80,
                     TabsOrBlanks tob = BLANKS,
                    TrailingBlanks tb = IGNORE_TRAILING_BLANKS))
-    This constructor initializes an tt(OFoldStreambuf) object and opens (using
+    This constructor initializes an tt(OFoldBuf) object and opens (using
 tt(std::ios::out)) the destination stream using the name specified as its
 tt(fname) argument. 
 
-    itb(OFoldStreambuf(std::ostream &stream,
+    itb(OFoldBuf(std::ostream &stream,
                    size_t leftIndent = 0, size_t rightMargin = 80,
                     TabsOrBlanks tob = BLANKS,
                    TrailingBlanks tb = IGNORE_TRAILING_BLANKS))
-    This constructor initializes an tt(OFoldStreambuf) object and uses as its
+    This constructor initializes an tt(OFoldBuf) object and uses as its
 destination stream the tt(std::ostream stream).
     )
 
@@ -138,8 +138,8 @@ and will then flush the destination stream.
     Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(MEMBER FUNCTIONS)
-     All members of bf(FBB::OFilterStreambuf), in particular its tt(out()) and
-tt(open()) members are available, as bf(FBB::OFoldStreambuf) inherits from
+     All members of bf(FBB::OFilterBuf), in particular its tt(out()) and
+tt(open()) members are available, as bf(FBB::OFoldBuf) inherits from
 this class.
     itemization(
     itb(void setMargins(size_t leftMargin, size_t rightMargin))
@@ -166,12 +166,12 @@ manpagesection(STATIC MEMBER FUNCTIONS)
     itemization(
     itb(size_t leftMargin(std::ostreambuf const *buffer))
         This member returns the current left margin setting of the
-tt(OFoldStreambuf) object passed to it as its argument. The member defines a
-tt(std::streambuf) parameter which is down cast to an tt(OFoldStreambuf) and
+tt(OFoldBuf) object passed to it as its argument. The member defines a
+tt(std::streambuf) parameter which is down cast to an tt(OFoldBuf) and
 an tt(FBB::Exception) exception is thrown if that cast fails.
     itb(size_t rightMargin(std::ostreambuf const *buffer))
         This member returns the current right margin setting of the
-tt(OFoldStreambuf) object passed to it as its argument. The member's parameter
+tt(OFoldBuf) object passed to it as its argument. The member's parameter
 is down cast in the same way as tt(leftMargin())'s argument: an
 tt(FBB::Exception) exception is thrown if that cast fails.
     )
@@ -181,14 +181,14 @@ manpagesection(EXAMPLE)
     #include <iostream>
     #include <ostream>
     #include <string>
-    #include <bobcat/ofoldstreambuf>
+    #include <bobcat/ofoldbuf>
     
     using namespace std;
     using namespace FBB;
     
     int main()
     {
-        OFoldStreambuf fb(cout, 4, 40);
+        OFoldBuf fb(cout, 4, 40);
         ostream out(&fb);
 
         out << lm(4);
@@ -200,11 +200,11 @@ manpagesection(EXAMPLE)
         )
 
 manpagefiles()
-    em(bobcat/ofoldstreambuf) - defines the class interface
+    em(bobcat/ofoldbuf) - defines the class interface
 
 manpageseealso()
     bf(bobcat)(7),  bf(lm)(3bobcat), bf(mlm)(3bobcat),
-    bf(ofilterstreambuf)(3bobcat), bf(ofoldstream)(3bobcat)
+    bf(ofilterbuf)(3bobcat), bf(ofoldstream)(3bobcat)
 
 manpagebugs()
     None Reported.

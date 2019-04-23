@@ -1,4 +1,0 @@
-#define LIBRARY             "ifilterstreambuf"
-
-#include "../icmconf"
-

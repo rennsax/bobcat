@@ -7,7 +7,7 @@
 
 #include <openssl/evp.h>
 
-#include <bobcat/ifilterstreambuf>
+#include <bobcat/ifilterbuf>
 
 namespace FBB
 {
@@ -17,7 +17,7 @@ namespace IUO   // the facilities defined here are not further documented:
                 // used by ISymCryptStreambuf only.
 
 
-class SymCryptStreambufBase: public FBB::IFilterStreambuf
+class SymCryptStreambufBase: public FBB::IFilterBuf
 {
     EVP_CIPHER_CTX *d_ctx;
 

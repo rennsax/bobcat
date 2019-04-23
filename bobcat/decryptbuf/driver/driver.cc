@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <bobcat/exception>
-#include <bobcat/ohexstreambuf>
+#include <bobcat/ohexbuf>
 
 #include <openssl/evp.h>
 #include <openssl/err.h>

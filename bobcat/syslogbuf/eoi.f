@@ -1,4 +1,4 @@
-inline void Syslogbuf::eoi()
+inline void SyslogBuf::eoi()
 {
     eoi_();
 }

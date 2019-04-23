@@ -1,5 +1,5 @@
 #include "syslogbuf.ih"
 
-void Syslogbuf::
+void SyslogBuf::
 {
 }

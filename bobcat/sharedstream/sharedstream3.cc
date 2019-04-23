@@ -2,7 +2,7 @@
 
 SharedStream::SharedStream(int id, std::ios::openmode openMode)
 :
-    SharedStreambuf(id, openMode),
+    SharedBuf(id, openMode),
     std::istream(this),
     std::ostream(this)
 {}

@@ -1,6 +1,6 @@
 #include "syslogbuf.ih"
 
-Syslogbuf::Syslogbuf(std::string const &ident, 
+SyslogBuf::SyslogBuf(std::string const &ident, 
                      Priority priority, Facility facility, int option)
 :
     d_priority(priority),

@@ -2,7 +2,7 @@
 
 ostream &SyslogStream::setPriority(ostream &str, Priority value)
 {
-    Syslogbuf *sb = dynamic_cast<Syslogbuf *>(str.rdbuf());
+    SyslogBuf *sb = dynamic_cast<SyslogBuf *>(str.rdbuf());
 
     if (sb)
         sb->setPriority(value);

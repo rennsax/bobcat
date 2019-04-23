@@ -1,5 +1,23 @@
 bobcat (5.00.00)
 
+  * All classes derived from std::streambuf are now called ...Buf:
+        Base64StreambufBase         -> Base64BufBase
+        IBase64Streambuf            -> IBase64Buf
+        IFdStreambuf                -> IFdBuf
+        IFilterStreambuf            -> IFilterBuf
+        IOStreambuf                 -> IOBuf
+        IQuotedPrintableStreambuf   -> IQuotedPrintableBuf
+        LogBuffer                   -> LogBuf
+        MultiStreambuf              -> MultiBuf
+        OFdStreambuf                -> OFdBuf
+        OFilterStreambuf            -> OFilterBuf
+        OFoldStreambuf              -> OFoldBuf
+        OHexStreambuf               -> OHexBuf
+        QPStreambufBase             -> QPBufBase
+        Randbuffer                  -> RandBuf
+        SharedStreambuf             -> SharedBuf
+        Syslogbuf                   -> SyslogBuf
+
   * New members replacing old ones:
         - in all classes previously offering a pSync member:
             - sync() replaces pSync() 
@@ -85,26 +103,26 @@ bobcat (5.00.00)
         - eoi()   replaces close(), alternatively the eoi manipulator can be
                 inserted into HMacBuf's std::ostream
 
-  * IFdStreambuf:
+  * IFdBuf:
         - reset() replaces open() 
 
-  * IFilterStreambuf:
+  * IFilterBuf:
         - overriding members no longer are declared `final'
         - pbackfail()  inserts (if storage space is available) a character at
             the beginning of the object's internally used buffer.
 
-  * IOStreambuf:
+  * IOBuf:
         - xsputn() replaces pXsputn() 
         - reset()  replaces open()
 
   * IRandStream expects a size_t seed (used to be: long seed);
 
-  * OFdStreambuf:
+  * OFdBuf:
         - reset() replaces open() 
         - eoi()   replaces close(), alternatively the eoi manipulator can be
                 inserted into OFdStreambuf's std::ostream
 
-  * OFilterStreambuf:
+  * OFilterBuf:
         - reset() replaces open()
         - close(): discontinued
 
@@ -114,11 +132,11 @@ bobcat (5.00.00)
         - reset() replaces open()
         - close() discontinued
 
-  * OFoldStreambuf:
+  * OFoldBuf:
         - constructor parameter `std::string const &fname' replaces 
                                 `char const *fname'
 
-  * OHexStreambuf:
+  * OHexBuf:
         - added an extra parameter to its constructor: std::string const
             &separator, by default initialized to an empty string. It
             defines the separator inserted between hexadecimal character
@@ -138,7 +156,7 @@ bobcat (5.00.00)
         must be a Process::IOMode value. The same applies to the function call
         operator previously accespting a size_t argument.
 
-  * Randbuffer:
+  * RandBuf:
         - expects a size_t seed (used to be: long seed);
         - fixed a memory leak
 
@@ -146,7 +164,7 @@ bobcat (5.00.00)
         - wait() returns 0 when its read, write and except file descriptor
             sets are empty.
 
-  * Syslogbuf:
+  * SyslogBuf:
         - disontinued the Syslogbuf(char const *, ... ) constructor
         - reset() replaces open()
         - eoi() replaces close(), alternatively the eoi manipulator can be

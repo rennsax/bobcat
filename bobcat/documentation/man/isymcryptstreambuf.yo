@@ -54,10 +54,10 @@ includefile(symcryptciphers)
 includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
-    bf(FBB::IFilterStreambuf)
+    bf(FBB::IFilterBuf)
 
 manpagesection(MEMBER FUNCTIONS)
-     All members of bf(FBB::IFilterStreambuf) are available, as
+     All members of bf(FBB::IFilterBuf) are available, as
 bf(ISymCryptStreambuf) inherits from this class.
 
     Overloaded move and/or copy assignment operators are not available.
@@ -95,7 +95,7 @@ method;nl()
 tt(bufSize) characters. The default value is the smallest value that is
 used. When a smaller tt(bufSize) value is specified, the default value is
 used;nl()
-    - tt(FBB::ISymCryptStreambuf)'s tt(IFilterStreambuf) base class is
+    - tt(FBB::ISymCryptStreambuf)'s tt(IFilterBuf) base class is
 initialized with a buffer of size tt(filterBufSize), using a lower bound
 of 100;nl()
     - The parameter tt(ENGINE) can be used to specify a hardware
@@ -125,8 +125,8 @@ manpagefiles()
 
 manpageseealso()
     bf(bobcat)(7), bf(encryptbuf)(3bobcat), bf(isymcryptstream)(3bobcat),
-bf(ibase64streambuf)(3bobcat), bf(ifilterstreambuf)(3bobcat),
-bf(ofilterstreambuf)(3bobcat), bf(std::streambuf).
+bf(ibase64buf)(3bobcat), bf(ifilterbuf)(3bobcat),
+bf(ofilterbuf)(3bobcat), bf(std::streambuf).
 
 manpagebugs()
 

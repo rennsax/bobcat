@@ -7,7 +7,7 @@ manpage(FBB::RandBuffer)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
 manpagename(FBB::RandBuffer)(std::streambuf generating random numbers)
 
 manpagesynopsis()
-    bf(#include <bobcat/randbuffer>)nl()
+    bf(#include <bobcat/randbuf>)nl()
     Linking option: tt(-lbobcat) 
 
 manpagedescription()
@@ -23,8 +23,8 @@ manpagesection(INHERITS FROM)
 
 manpagesection(CONSTRUCTOR)
     itemization(
-    itb(Randbuffer(int min, int max, size_t seed = 1))
-    This bf(Randbuffer()) constructor initializes the random generator. The
+    itb(RandBuf(int min, int max, size_t seed = 1))
+    This bf(RandBuf()) constructor initializes the random generator. The
 seed is used to initialize the random number generator.Random values between
 tt(min) and tt(max) (inclusive) are returned.
     )
@@ -36,7 +36,7 @@ manpagesection(VIRTUAL MEMBERS)
     itemization(
     itb(int underflow())
     This function is called by tt(std::istream) objects using
-bf(Randbuffer). It produces the next available random number, separating the
+bf(RandBuf). It produces the next available random number, separating the
 random numbers by one blanks space. Random values between tt(min) and tt(max)
 (inclusive) are returned (see the description of the constructor).
     )
@@ -47,10 +47,10 @@ manpagesection(INHERITED MEMBERS)
 bf(std::streambuf), all members of this class can be used.
 
 manpagesection(EXAMPLE)
-    verbinclude(../../randbuffer/driver/driver.cc)
+    verbinclude(../../randbuf/driver/driver.cc)
 
 manpagefiles()
-    em(bobcat/randbuffer) - defines the class interface
+    em(bobcat/randbuf) - defines the class interface
 
 manpageseealso()
     bf(bobcat)(7), bf(irandstream)(3bobcat), bf(rand)(3), bf(srand)(3),

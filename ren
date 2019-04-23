@@ -1,0 +1,48 @@
+#!/bin/bash
+
+if [ $# -ne 2 ] ; then
+    echo 1st arg: current class name, 2nd arg: new class name
+    exit 0
+fi
+
+old=$1
+new=$2
+
+echo $old ' -> ' $new
+
+lcold=`echo $old | tr A-Z a-z`
+lcnew=`echo $new | tr A-Z a-z`
+
+ucold=`echo $old | tr a-z A-Z`
+ucnew=`echo $new | tr a-z A-Z`
+
+list=`find -mindepth 2 -type f`
+files=`grep -i -l $old $list | grep -v /tmp/`
+
+for file in $files          # change old class name into new class name
+do
+    sed -i '
+        s/'$old'/'$new'/g
+        s/'$lcold'/'$lcnew'/g
+    ' $file
+done
+
+[ $lcold == $lcnew ] && exit 0
+
+git mv $lcold $lcnew
+ 
+sed -i 's/'$lcold'/'$lcnew'/' CLASSES
+
+cd $lcnew
+
+sed -i 's/'$ucold'/'$ucnew'/' $lcold
+
+for file in `ls $lcold*` 
+do
+    git mv $file `echo $file | sed 's/'$lcold'/'$lcnew'/'`
+done
+
+
+
+
+
