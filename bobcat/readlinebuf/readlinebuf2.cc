@@ -4,7 +4,6 @@ ReadLineBuf::ReadLineBuf(string const &prompt, size_t historySize, Type type)
 :
     d_history(historySize > 0),
     d_prompt(prompt),
-    d_buffer(0),
     d_readline(&ReadLineBuf::readLine),
     d_timestamp(0)
 {

@@ -1,6 +1,96 @@
 #ifndef INCLUDED_BOBCAT_SYSLOGBUF_
 #define INCLUDED_BOBCAT_SYSLOGBUF_
 
+// see below for the options/facility/level overview
+
+#include <syslog.h>
+#include <string>
+#include <bobcat/eoibuf>
+                        
+namespace FBB
+{
+
+enum Priority
+{
+    NOTICE  = LOG_NOTICE,
+    EMERG   = LOG_EMERG,
+    ALERT   = LOG_ALERT,
+    CRIT    = LOG_CRIT,
+    ERR     = LOG_ERR,
+    WARNING = LOG_WARNING,
+    INFO    = LOG_INFO,
+    DEBUG   = LOG_DEBUG,
+};
+
+enum PriorityType
+{
+    SINGLE,
+    UPTO
+};
+
+enum Facility
+{
+   AUTHPRIV     = LOG_AUTHPRIV,
+   CRON         = LOG_CRON,
+   DAEMON       = LOG_DAEMON,
+   KERN         = LOG_KERN,
+   LOCAL0       = LOG_LOCAL0,
+   LOCAL1       = LOG_LOCAL1,
+   LOCAL2       = LOG_LOCAL2,
+   LOCAL3       = LOG_LOCAL3,
+   LOCAL4       = LOG_LOCAL4,
+   LOCAL5       = LOG_LOCAL5,
+   LOCAL6       = LOG_LOCAL6,
+   LOCAL7       = LOG_LOCAL7,
+   LPR          = LOG_LPR,
+   MAIL         = LOG_MAIL,
+   NEWS         = LOG_NEWS,
+   USER         = LOG_USER,
+   UUCP         = LOG_UUCP,
+};
+
+class Syslogbuf: public EoiBuf
+{
+    Priority    d_priority;
+    Priority    d_orgPriority;
+    std::string d_ident;
+
+    public:
+        explicit Syslogbuf(std::string const &ident = "",
+            Priority priority = NOTICE, Facility facility = USER,
+            int option = 0);
+
+        ~Syslogbuf();
+
+        void reset(std::string const &ident,                        // 1
+            Priority priority = NOTICE, Facility facility = USER,
+            int option = 0);
+
+        void eoi();                                                 // .f
+
+        Priority defaultPriority() const;                           // .f
+        Priority priority() const;                                  // .f
+
+        Priority setDefaultPriority(Priority priority);
+        Priority setPriority(Priority priority);
+
+    private:
+        int sync()           override;
+        int overflow(int ch) override;
+        void eoi_()          override;                              // .cc
+        std::streamsize xsputn(char const *buffer, std::streamsize nChars) 
+                                                                override;
+
+        void reset(std::string const &ident, Facility facility,     // 2
+                    int option);
+};
+
+#include "defaultpriority.f"
+#include "priority.f"
+#include "eoi.f"
+
+} // FBB
+
 /*
     options (default: none):
 
@@ -86,97 +176,6 @@
               debug-level message
 
 */
-
-#include <syslog.h>
-#include <streambuf>
-#include <string>
-                        
-namespace FBB
-{
-
-enum Priority
-{
-    NOTICE  = LOG_NOTICE,
-    EMERG   = LOG_EMERG,
-    ALERT   = LOG_ALERT,
-    CRIT    = LOG_CRIT,
-    ERR     = LOG_ERR,
-    WARNING = LOG_WARNING,
-    INFO    = LOG_INFO,
-    DEBUG   = LOG_DEBUG,
-};
-
-enum PriorityType
-{
-    SINGLE,
-    UPTO
-};
-
-enum Facility
-{
-   AUTHPRIV     = LOG_AUTHPRIV,
-   CRON         = LOG_CRON,
-   DAEMON       = LOG_DAEMON,
-   KERN         = LOG_KERN,
-   LOCAL0       = LOG_LOCAL0,
-   LOCAL1       = LOG_LOCAL1,
-   LOCAL2       = LOG_LOCAL2,
-   LOCAL3       = LOG_LOCAL3,
-   LOCAL4       = LOG_LOCAL4,
-   LOCAL5       = LOG_LOCAL5,
-   LOCAL6       = LOG_LOCAL6,
-   LOCAL7       = LOG_LOCAL7,
-   LPR          = LOG_LPR,
-   MAIL         = LOG_MAIL,
-   NEWS         = LOG_NEWS,
-   USER         = LOG_USER,
-   UUCP         = LOG_UUCP,
-};
-
-class Syslogbuf: public std::streambuf
-{
-    struct Data;
-        
-    Priority    d_priority;
-    Priority    d_orgPriority;
-    Data       *d_data;
-
-    public:
-        explicit Syslogbuf(std::string const &ident = "",
-            Priority priority = NOTICE, Facility facility = USER,
-            int option = 0);
-
-        explicit Syslogbuf(char const *ident,
-            Priority priority = NOTICE, Facility facility = USER,
-            int option = 0);
-
-        ~Syslogbuf();
-
-        void open(std::string const &ident,
-            Priority priority = NOTICE, Facility facility = USER,
-            int option = 0);
-
-        void close();
-
-        Priority defaultPriority() const;                           // .f
-        Priority priority() const;                                  // .f
-
-        Priority setDefaultPriority(Priority priority);
-        Priority setPriority(Priority priority);
-
-    private:
-        int sync() override;
-        int overflow(int ch) override;
-        std::streamsize xsputn(char const *buffer, std::streamsize nChars) 
-                                                                override;
-
-        void reset(std::string const &ident, Facility facility, int option);
-};
-
-#include "defaultpriority.f"
-#include "priority.f"
-
-} // FBB
 
 #endif
 

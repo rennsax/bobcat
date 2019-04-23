@@ -65,12 +65,12 @@ bobcat (5.00.00)
         - Discontinued static member:
             lastOK()
         - eoi() replaces done(), alternatively the eoi manipulator can be
-                used 
+                inserted into DecryptBuf's std::ostream
 
   * DigestBuf:
         - reset() replaces open()
         - eoi() replaces close(), alternatively the eoi manipulator can be
-                used 
+                inserted into DigestBuf's std::ostream
 
   * EncryptBuf:
         - Discontinued:
@@ -79,7 +79,8 @@ bobcat (5.00.00)
 
   * HMacBuf:
         - reset() replaces open() 
-        - eoi()   replaces close(), or use the eoi manipulator
+        - eoi()   replaces close(), alternatively the eoi manipulator can be
+                inserted into HMacBuf's std::ostream
 
   * IFdStreambuf:
         - reset() replaces open() 
@@ -97,7 +98,8 @@ bobcat (5.00.00)
 
   * OFdStreambuf:
         - reset() replaces open() 
-        - eoi()   replaces close(), or use the eoi manipulator
+        - eoi()   replaces close(), alternatively the eoi manipulator can be
+                inserted into OFdStreambuf's std::ostream
 
   * OFilterStreambuf:
         - reset() replaces open()
@@ -122,7 +124,8 @@ bobcat (5.00.00)
             separator. 
         - added member `setWidth' to modify the maximum width of lines written
             to the ostream initialized with an OHexStreambuf object.
-        - eoi() replaces close(), or use the eoi manipulator
+        - eoi()   replaces close(), alternatively the eoi manipulator can be
+                inserted into OHexStreambuf's std::ostream
 
   * OMutexStream:
         new class offering mutex protected ostream operations.
@@ -134,6 +137,15 @@ bobcat (5.00.00)
   * Selector:
         - wait() returns 0 when its read, write and except file descriptor
             sets are empty.
+
+  * Syslogbuf:
+        - disontinued the Syslogbuf(char const *, ... ) constructor
+        - reset() replaces open()
+        - eoi() replaces close(), alternatively the eoi manipulator can be
+                inserted into Syslogbuf's std::ostream
+
+  * SyslogStream:
+        - disontinued the SyslogStream(char const *, ... ) constructor
 
   * Fixed flaw in Log's FBB::fnl handling
 

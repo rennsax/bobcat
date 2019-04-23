@@ -1,6 +1,92 @@
 #ifndef INCLUDED_BOBCAT_SYSLOGSTREAM_
 #define INCLUDED_BOBCAT_SYSLOGSTREAM_
 
+// see below for an overview of options, facility, and priority
+
+#include <bobcat/syslogbuf>
+
+#include <ostream>
+#include <syslog.h>
+                        
+namespace FBB
+{
+
+class SyslogStream: private Syslogbuf, public std::ostream
+{
+    public:
+        explicit SyslogStream(std::string const &ident = "",
+            Priority priority = NOTICE, Facility facility = USER,
+            int option = 0);
+
+        Priority priority()   const;                            // .f
+        Priority defaultPriority()   const;                     // .f
+        Priority setPriority(Priority priority);                // .f
+        Priority setDefaultPriority(Priority priority);         // .f
+
+        void open(std::string const &ident,                     // .f
+            Priority priority = NOTICE, Facility facility = USER,
+            int option = 0);
+        void close();                                           // .f
+
+        static  Priority stoP(std::string const &name, 
+                                                Priority priority = NOTICE);
+        static  Facility stoF(std::string const &name, 
+                                                Facility facility = USER);
+
+        static int setMask(Priority p1, PriorityType upTo);     // 1.f
+        static int setMask(Priority p1);                        // 2.f
+
+        template <typename ...Priorities>
+        static int setMask(Priority p1, Priorities ...ps);      // 3.f
+
+// MANIPULATORS:
+        static std::ostream &emerg(std::ostream &str);          // .f
+        static std::ostream &alert(std::ostream &str);          // .f
+        static std::ostream &crit(std::ostream &str);           // .f
+        static std::ostream &err(std::ostream &str);            // .f
+        static std::ostream &warning(std::ostream &str);        // .f
+        static std::ostream &notice(std::ostream &str);         // .f
+        static std::ostream &info(std::ostream &str);           // .f
+        static std::ostream &debug(std::ostream &str);          // .f
+        static std::ostream &strerrno(std::ostream &str);       // .f
+
+    private:
+        static std::ostream &setPriority(std::ostream &str, 
+                                        Priority priority);
+
+        static int maskValue(Priority p1);                          // 1.f
+
+        template <typename ...Priorities>
+        static int maskValue(Priority p1, Priorities ...ps);        // 2.f
+
+        static int setMask(int maskValue, PriorityType upTo);
+};
+
+#include "alert.f"
+#include "close.f"
+#include "crit.f"
+#include "debug.f"
+#include "defaultpriority.f"
+#include "emerg.f"
+#include "err.f"
+#include "info.f"
+#include "notice.f"
+#include "open.f"
+#include "priority.f"
+#include "setdefaultpriority.f"
+#include "setmask1.f"
+#include "setmask2.f"
+#include "setmask3.f"
+#include "setpriority.f"
+#include "warning.f"
+
+// The following private inline members, must remain here as they are used by
+// the setMask member template
+
+#include "maskvalue1.f"
+#include "maskvalue2.f"
+#include "setmask4.f"
+
 //  options (default: none):
 //
 //     LOG_CONS
@@ -83,94 +169,6 @@
 //
 //     LOG_DEBUG
 //            debug-level message
-
-#include <bobcat/syslogbuf>
-
-#include <ostream>
-#include <syslog.h>
-                        
-namespace FBB
-{
-
-class SyslogStream: private Syslogbuf, public std::ostream
-{
-    public:
-        explicit SyslogStream(std::string const &ident = "",
-            Priority priority = NOTICE, Facility facility = USER,
-            int option = 0);
-
-        explicit SyslogStream(char const *ident,
-            Priority priority = NOTICE, Facility facility = USER,
-            int option = 0);
-
-        Priority priority()   const;                            // .f
-        Priority defaultPriority()   const;                     // .f
-        Priority setPriority(Priority priority);                // .f
-        Priority setDefaultPriority(Priority priority);         // .f
-
-        void open(std::string const &ident,                     // .f
-            Priority priority = NOTICE, Facility facility = USER,
-            int option = 0);
-        void close();                                           // .f
-
-        static  Priority stoP(std::string const &name, 
-                                                Priority priority = NOTICE);
-        static  Facility stoF(std::string const &name, 
-                                                Facility facility = USER);
-
-        static int setMask(Priority p1, PriorityType upTo);     // 1.f
-        static int setMask(Priority p1);                        // 2.f
-
-        template <typename ...Priorities>
-        static int setMask(Priority p1, Priorities ...ps);      // 3.f
-
-// MANIPULATORS:
-        static std::ostream &emerg(std::ostream &str);          // .f
-        static std::ostream &alert(std::ostream &str);          // .f
-        static std::ostream &crit(std::ostream &str);           // .f
-        static std::ostream &err(std::ostream &str);            // .f
-        static std::ostream &warning(std::ostream &str);        // .f
-        static std::ostream &notice(std::ostream &str);         // .f
-        static std::ostream &info(std::ostream &str);           // .f
-        static std::ostream &debug(std::ostream &str);          // .f
-        static std::ostream &strerrno(std::ostream &str);       // .f
-
-    private:
-        static std::ostream &setPriority(std::ostream &str, 
-                                        Priority priority);
-
-        static int maskValue(Priority p1);                          // 1.f
-
-        template <typename ...Priorities>
-        static int maskValue(Priority p1, Priorities ...ps);        // 2.f
-
-        static int setMask(int maskValue, PriorityType upTo);
-};
-
-#include "alert.f"
-#include "close.f"
-#include "crit.f"
-#include "debug.f"
-#include "defaultpriority.f"
-#include "emerg.f"
-#include "err.f"
-#include "info.f"
-#include "notice.f"
-#include "open.f"
-#include "priority.f"
-#include "setdefaultpriority.f"
-#include "setmask1.f"
-#include "setmask2.f"
-#include "setmask3.f"
-#include "setpriority.f"
-#include "warning.f"
-
-// The following private inline members, must remain here as they are used by
-// the setMask member template
-
-#include "maskvalue1.f"
-#include "maskvalue2.f"
-#include "setmask4.f"
 
 } // FBB
 

@@ -29,9 +29,9 @@ class ReadLineBuf: public HistoryExpansion, public std::streambuf
 {
     bool d_history;
     std::string d_prompt;
-    char *d_buffer;
+    std::string d_buffer;
 
-    char *(ReadLineBuf::*d_readline)(); // calls readLine() or expandLine()
+    size_t (ReadLineBuf::*d_readline)();// calls readLine() or expandLine()
     std::string (*d_timestamp)();       // return a timestamp
 
     Expansion d_expansion;
@@ -66,10 +66,11 @@ class ReadLineBuf: public HistoryExpansion, public std::streambuf
                              Type type = DONT_EXPAND_HISTORY);
 
         int underflow() override;
-        char *readLine();           // reads a line, adds it to the history
-        char *expandLine();         // reads a line, expands it if necessary,
+
+        size_t readLine();          // reads a line, adds it to the history
+        size_t expandLine();        // reads a line, expands it if necessary,
                                     // then adds it to the history
-        char *nextLine(char *buf);
+        size_t nextLine(char *buf);
 };
 
 #include "setprompt.f"

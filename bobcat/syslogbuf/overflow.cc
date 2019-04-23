@@ -3,7 +3,7 @@
 int Syslogbuf::overflow(int ch)
 {
     if (ch != EOF)
-        d_data->buffer += ch;
+        buffer() += ch;
     else
         sync();
 

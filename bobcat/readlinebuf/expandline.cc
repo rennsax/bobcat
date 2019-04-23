@@ -1,10 +1,10 @@
 #include "readlinebuf.ih"
 
-char *ReadLineBuf::expandLine()
+size_t ReadLineBuf::expandLine()
 {
     d_expansionError.clear();
 
-    char *buf = readline(d_prompt.c_str());
+    char *buf = readline(d_prompt.c_str());     // readline(3)
 
     if (buf == 0)
         return 0;

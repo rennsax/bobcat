@@ -2,8 +2,8 @@
 
 // override
 
-streamsize Syslogbuf::xsputn(char const *buffer, streamsize nChars)
+streamsize Syslogbuf::xsputn(char const *buf, streamsize nChars)
 {
-    d_data->buffer.append(buffer, nChars);
+    buffer().append(buf, nChars);
     return nChars;
 }

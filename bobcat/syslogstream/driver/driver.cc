@@ -11,14 +11,11 @@ using namespace FBB;
 
 int main(int argc, char **argv)
 {
-    Syslogbuf sbuf(argv[0]);        // via a separate Syslogbuf
+    cout << "messages are logged in /var/log/user.log\n";
 
-    ostream sls(0);
-    sls.rdbuf(&sbuf);
+    SyslogStream sls(argv[0]);      // via an explicit SyslogStream
 
-//    SyslogStream sls(argv[0]);      // via an explicit SyslogStream
-
-    sls << SyslogStream::notice << "Hello world" << endl;
+    sls << SyslogStream::notice << "Hello world 1" << endl;
 }
 
 

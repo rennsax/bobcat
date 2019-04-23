@@ -2,11 +2,12 @@
 
 int Syslogbuf::sync()
 {
-    if (d_data->buffer.length())
+    if (bufSize() != 0)
     {
-        syslog(d_priority, "%s", d_data->buffer.c_str());
-        d_data->buffer.erase();
+        syslog(d_priority, "%s", buffer().c_str());
+        buffer().clear();
         d_priority = d_orgPriority;
     }
+
     return 0;
 }

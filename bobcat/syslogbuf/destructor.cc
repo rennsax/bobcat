@@ -2,6 +2,6 @@
 
 Syslogbuf::~Syslogbuf()
 {
-    close();
+//    eoi();
 }
     

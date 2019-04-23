@@ -2,15 +2,12 @@
 
 int ReadLineBuf::underflow()
 {
-    delete[] d_buffer;
-    d_buffer = 0;
+    size_t end = (this->*d_readline)();
 
-    char *beyond = (this->*d_readline)();
-
-    if (beyond == 0)
+    if (end == 0)
         return EOF;
 
-    setg(d_buffer, d_buffer, beyond);
+    setg(&d_buffer[0], &d_buffer[0], &d_buffer[end]);
 
             // the static_cast<size_t char> is required to prevent
             // promotions of 0xff characters to -1, thus returning EOF...

@@ -1,4 +1,6 @@
 #define LIBRARY             "syslogstream"
 
+#define AUXFLAGS "-I../tmp"
+
 #include "../icmconf"
 
