@@ -57,6 +57,7 @@ class SymCryptStreambufBase: public FBB::IFilterStreambuf
         );
 
         ~SymCryptStreambufBase() override;        
+
     private:
         bool filter(char const **srcBegin, char const **srcEnd) override;
         void checkOutBufSize(size_t inputSize);
