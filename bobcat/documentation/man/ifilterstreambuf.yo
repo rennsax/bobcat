@@ -21,10 +21,12 @@ context of the bf(C) programming language, BIOs do not support bf(C++)
 streams. Nonetheless, the concept of a filtering device is an attractive one,
 and is offered by the bf(FBB::IFilterStreambuf) class.
 
-    In addition to filtering, bf(IFilterStreambuf) objects use split buffers,
-and thus, depending on the (configurable) size of buffer that is maintained by
-bf(IFilterStreambuf) objects, usually multiple characters read from the
-bf(IFilterStreambuf) can be pushed back again.
+    In addition to filtering, bf(IFilterStreambuf) offers flexible internal
+buffer management: derived classes can push back characters until the
+beginning of the internal buffer has been reached, but may then continue
+pushing back characters until the internal buffer has reached its maximum
+size. This maximum size is defined by the constructor's tt(maxSize) parameter
+(see below).
 
     The class bf(IFilterStreambuf) is an abstract base class. It is used via
 classes that are derived from bf(IFilterStreambuf), implementing its pure
@@ -42,13 +44,12 @@ inherits from this class.
 
 manpagesection(PROTECTED CONSTRUCTOR)
     itemization(
-    itb(IFilterStreambuf(size_t bufSize = 1000))
-        This constructor initializes the streambuf, using a buffer of the
-indicated size. While the streambuf is being used, its buffer is gradually
-filled. Eventually, when it is full the oldest characters are removed from the
-buffer, making room for more recent characters. At most half the tt(bufSize)
-number of characters will be removed during a single refill. The constructor
-ensures that the size of the buffer will always be at least 100.
+    itb(IFilterStreambuf(size_t maxSize = 1000))
+        This constructor initializes the streambuf. While the streambuf is
+being used, its internally used buffer is gradually filled. It may be filled
+with up to tt(maxSize) characters, but the actual number of characters that is
+stored in the buffer is determined by the member tt(filter) (see below) and by
+using the member tt(streambuf::sputbackc). 
     )
 
     Copy and move constructors (and assignment operators) are not available.
@@ -61,11 +62,12 @@ manpagesection(PROTECTED MEMBER FUNCTION)
 tt(eback, gptr,) and tt(egptr)) with the initial range of characters retrieved
 by tt(filter) (see below). 
 
-    The member tt(setBuffer) should only once be called from the derived
-class's constructor. Once it has been called, the tt(peek) member of the
-tt(std::istream) that is initialized with the bf(IFilterStreambuf) will return
-the next available character, even if no other stream operation has as yet
-been performed. If it is not called by the derived class's constructor, then
+    Derived classes do not have to call this member, but if they do they
+should only call tt(setBuffer) once from their constructors. Once
+tt(setBuffer) has been called, the tt(peek) member of the tt(std::istream)
+that is available to bf(IFilterStreambuf) objects can be called to inspect the
+next available character, even if no other stream operation has as yet been
+performed. If it is not called by the derived class's constructor, then
 tt(peek) returns 0 until at least one character has been retrieved from the
 tt(istream) object.
     )
@@ -96,30 +98,32 @@ derived from  bf(IFilterStreambuf).
 available. It should return tt(true) if information is available, in which
 case tt(*srcBegin) and tt(*srcEnd) should be pointing to, respectively, the
 first character and beyond the last character made available by tt(filter);
-    itb(int pbackfail() final override)
-        The tt(pbackfail) member is final; derived classes cannot override
-it. Currently it merely returns tt(EOF). This may change in future
-implementations. 
-    itb(std::streamsize showmanyc() final override)
-        The tt(showmanyc) member is final; derived classes cannot override
-it. It returns the current number of characters that are (still) waiting to
-be processed in the range of characters returned by the latest tt(filter)
-call. 
-    itb(int underflow() final override)
-        The tt(underflow) member is final; derived classes cannot override
-it. It calls tt(filter), and refreshes at most
-half the size of its internal buffer with characters from the range of
-characters that was returned by the most recent call of tt(filter).
-    )
-    The tt(final) attribute was added to the above three members to give
-tt(IFilterStreambuf) objects full control over their own buffers. 
 
+    itb(int pbackfail(int ch) override)
+       If tt(IFilterStreambuf's) internally used buffer has reached its
+        maximmum size then EOF is returned. Otherwise, tt(ch) is inserted at
+        the beginning of the internally used buffer, becoming the next
+        character that's retrieved from the object's buffer;
+
+    itb(std::streamsize showmanyc() override)
+       The sum of the number of not yet processed characters in the internally
+        used buffer and the number of not yet processed characters returned
+        by the latest tt(filter) call is returned;
+
+    itb(int underflow() override)
+       Once the internally used buffer is empty tt(filter) is called to obtain
+        a new series of filtered characters. If tt(filter) returns tt(false
+        underflow) returns EOF. Otherwise the series of characters returned by
+        tt(filter) are transferred to the tt(IFilterStreambuf's) internal
+        buffer to be processed by the tt(std::istream) that's initialized with
+        thie tt(IFilterStreambuf) object.
+    )
 
 manpagesection(EXAMPLE)
 
     Here is a class, derived from tt(IFilterStreambuf), filtering out a
 predefined set of characters. It is used twice to filter digits and
-vowels, to illustrate chaining of bf(IFilterStreambuf) objects.
+vowels, illustrating chaining of bf(IFilterStreambuf) objects.
 
     verbinclude(../../ifilterstreambuf/driver/driver.cc)
 

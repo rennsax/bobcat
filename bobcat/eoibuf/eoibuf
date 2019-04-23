@@ -11,7 +11,8 @@ class EoiBuf: public Eoi
     std::string d_buffer;
     
     protected:
-        EoiBuf(size_t size);
+        EoiBuf() = default;
+        EoiBuf(size_t size);                                        // 2.f
 
         void resize(size_t size);
 
@@ -29,7 +30,7 @@ class EoiBuf: public Eoi
                                        std::string const &str);
 };
 
-#include "eoibuf1.f"
+#include "eoibuf2.f"
 #include "buffer.f"
 #include "bufsize.f"
 #include "resize.f"

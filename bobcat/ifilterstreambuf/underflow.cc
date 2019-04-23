@@ -1,38 +1,23 @@
 #include "ifilterstreambuf.ih"
 
-#include <iostream>
-
 int IFilterStreambuf::underflow()
 {
-    if (d_srcBegin == d_srcEnd)                 // no source bytes, then
+    if (d_srcBegin == d_srcEnd)                 // no (more) source bytes:
     {                                           // get some. If none available
         if (not filter(&d_srcBegin, &d_srcEnd)) // return EOF
             return EOF;
     }
 
-    size_t srcSize = d_srcEnd - d_srcBegin;     // #available source bytes
+    size_t size = d_srcEnd - d_srcBegin;        // #available source bytes
+    if (size > d_maxSize)                       // store at most maxSize bytes
+        size = d_maxSize;
 
-        // as long as all src bytes fit in the buffer they can all be stored
-    if (srcSize <= d_remaining)
-        src2buffer(srcSize);
+    buffer().assign(d_srcBegin, size);          // store the chars in the buf.
+    setg(0, size);                              // set the buffer ptrs.
 
-        // else, if there is remaining space, use it to store some of the
-        //       source bytes
-    else if (d_remaining)
-        src2buffer(d_remaining);
+    d_srcBegin += size;                         // consumed `size' source
+                                                // bytes 
 
-        // else, create some remaining space by removing initial bytes from
-        //       the buffer, which therefore can no longer be ungot.
-    else if (srcSize <= d_maxRefresh)
-        makeAvailable(srcSize);
-
-        // else load at most d_maxRefresh of the available source bytes
-    else 
-        makeAvailable(d_maxRefresh);
-
-    setg(d_begin, d_next, d_end);       // reload the input buffer
-
-                                        // return the next available char
     return static_cast<unsigned char>(*gptr());
 }
 

@@ -84,6 +84,11 @@ bobcat (5.00.00)
   * IFdStreambuf:
         - reset() replaces open() 
 
+  * IFilterStreambuf:
+        - overriding members no longer are declared `final'
+        - pbackfail()  inserts (if storage space is available) a character at
+            the beginning of the object's internally used buffer.
+
   * IOStreambuf:
         - xsputn() replaces pXsputn() 
         - reset()  replaces open()
