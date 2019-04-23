@@ -16,8 +16,6 @@ class SocketBase: public InetAddress
     int         d_sock;
 
     public:
-        void verify() const;
-
         bool debug() const;                                         // .f
         bool reuse() const;                                         // .f
         int socket() const;                                         // .f

@@ -18,8 +18,6 @@ class Xpointer
         Xpointer();
         ~Xpointer();
 
-        void verify() const;    // kept for backward compatibility
-
         bool set(int x, int y) const;
         bool get(int *x, int *y) const;
 

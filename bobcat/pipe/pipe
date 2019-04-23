@@ -24,8 +24,6 @@ class Pipe
         //          empty and this class is not a Base class having virtual
         //          members
 
-        void verify() const;        // SF, now empty
-
         int readFd() const;                                     // .f
         int writeFd() const;                                    // .f
 
