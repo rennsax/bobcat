@@ -1,6 +1,7 @@
 #ifndef INCLUDED_BOBCAT_OFOLDSTREAM_
 #define INCLUDED_BOBCAT_OFOLDSTREAM_
 
+#include <iosfwd>
 #include <ostream>
 #include <fstream>
 
@@ -19,7 +20,7 @@ class OFoldStream: virtual public OFoldStreambufEnums,
     public:
         OFoldStream()           = default;
 
-        explicit OFoldStream(char const *fname,                     // 1.f
+        explicit OFoldStream(std::string const &fname,              // 1.f
                     size_t leftIndent = 0, size_t rightMargin = 80,
                     TabsOrBlanks tob = BLANKS,
                     TrailingBlanks tb = IGNORE_TRAILING_BLANKS);
@@ -29,15 +30,13 @@ class OFoldStream: virtual public OFoldStreambufEnums,
                     TabsOrBlanks tob = BLANKS,
                     TrailingBlanks tb = IGNORE_TRAILING_BLANKS);
 
-        void open(char const *fname,
+        void reset(std::string const &fname,
                   size_t leftIndent = 0, size_t rightMargin = 80,
                   TrailingBlanks tb = IGNORE_TRAILING_BLANKS);
 
-        void open(std::ostream &out,
+        void reset(std::ostream &out,
                   size_t leftIndent = 0, size_t rightMargin = 80,
                   TrailingBlanks tb = IGNORE_TRAILING_BLANKS);
-
-        void close();                                               // .f
 
         void setMargins(size_t leftMargin, size_t rightMargin);     // .f
         void setTrailingBlanks(TrailingBlanks tb);                  // .f
@@ -51,7 +50,6 @@ class OFoldStream: virtual public OFoldStreambufEnums,
 #include "ofoldstream1.f"
 #include "ofoldstream2.f"
 
-#include "close.f"
 #include "leftmargin.f"
 #include "rightmargin.f"
 #include "setmargins.f"    

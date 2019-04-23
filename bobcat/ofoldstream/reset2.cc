@@ -1,9 +1,9 @@
 #include "ofoldstream.ih"
 
-void OFoldStream::open(char const *fname, 
+void OFoldStream::reset(ostream &out, 
                     size_t leftIndent, size_t rightMargin, TrailingBlanks tb)
 {
-    OFoldStreambuf::open(fname);
+    OFoldStreambuf::reset(out);             // = OFilterStreambuf
     setMargins(leftIndent, rightMargin);
     setTrailingBlanks(tb);
 }

@@ -2,7 +2,7 @@
 
 OFoldStreambuf::~OFoldStreambuf()
 {
-    s_buffers.erase(findOFoldStreambuf(this));
+    s2_buffers.erase(findOFoldStreambuf(this));
 
     if (d_mode == NON_WS)
         flush();

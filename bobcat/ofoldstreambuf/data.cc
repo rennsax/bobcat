@@ -1,3 +1,3 @@
 #include "ofoldstreambuf.ih"
 
-vector<OFoldStreambuf const *> OFoldStreambuf::s_buffers;
+vector<OFoldStreambuf const *> OFoldStreambuf::s2_buffers;

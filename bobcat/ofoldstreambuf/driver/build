@@ -1,11 +1,24 @@
 #!/bin/bash
 
 # (cd ..; icmbuild) || exit 1
-# CMD="g++ -o driver -Wall -I../ driver.cc -L../tmp -lofoldstreambuf -L../../tmp/lib -lbobcat -s"
+# CMD="g++ -o driver -Wall -I../ driver.cc -L../tmp -lofoldstreambuf \
+#   -L../../tmp/lib -lbobcat -s"
 
 # CMD="g++ -o driver -Wall -I../../tmp driver.cc -L../../tmp/lib -lbobcat -s"
 
-CMD="g++ -o driver -Wall *.cc -lbobcat -s"
+# CMD="g++ -o driver -Wall *.cc -lbobcat -s"
+
+tput clear
+
+GPP="g++ --std=c++2a"
+
+#   Using tmp libraries and bobcat
+CMD="$GPP -o driver -Wall -I../../tmp driver.cc \
+    -L../../ofoldstream/tmp -lofoldstream \
+    -L../tmp -lofoldstreambuf \
+    -L../../ofilterstreambuf/tmp -lofilterstreambuf \
+    -L../../eoi/tmp -leoi \
+    -lbobcat -s"
 
 echo $CMD
 $CMD

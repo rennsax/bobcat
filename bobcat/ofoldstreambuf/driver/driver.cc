@@ -1,6 +1,6 @@
 #include <iostream>
 
-// #include "../ofoldstreambuf"
+//#include "../ofoldstreambuf"
 // #include "../../ofoldstream/ofoldstream"
 
 #include <bobcat/ofoldstream>
@@ -10,11 +10,12 @@ using namespace FBB;
 
 int main()
 {
-//    OFoldStreambuf fb(cout, 4, 40);
-//    OFoldStreambuf fb("fsb.out", 4, 40);
-//    ostream out(&fb);
+    OFoldStreambuf fb(cout, 4, 40);
 
-    OFoldStream out("foldstream.nam2", 4, 40, OFoldStream::TABS);
+//    OFoldStreambuf fb("fsb.out", 4, 40);
+    ostream out(&fb);
+
+//    OFoldStream out("foldstream.nam2", 4, 40, OFoldStream::TABS);
 
 //    int c;
 //    int linenr = 0;
@@ -28,9 +29,10 @@ int main()
 //        out << static_cast<char>(c);
 //    }
 
-    out << mlm(-3);
+//    out << mlm(-3);
 
     string line;
     while (getline(cin, line))
         out << line << '\n';
 }
+

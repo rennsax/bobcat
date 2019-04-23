@@ -99,6 +99,20 @@ bobcat (5.00.00)
         - reset() replaces open() 
         - eoi()   replaces close(), or use the eoi manipulator
 
+  * OFilterStreambuf:
+        - reset() replaces open()
+        - close(): discontinued
+
+  * OFoldStream:
+        - constructor parameter `std::string const &fname' replaces 
+                                `char const *fname'
+        - reset() replaces open()
+        - close() discontinued
+
+  * OFoldStreambuf:
+        - constructor parameter `std::string const &fname' replaces 
+                                `char const *fname'
+
   * OHexStreambuf:
         - added an extra parameter to its constructor: std::string const
             &separator, by default initialized to an empty string. It

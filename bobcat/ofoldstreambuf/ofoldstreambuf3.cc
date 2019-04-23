@@ -13,6 +13,6 @@ OFoldStreambuf::OFoldStreambuf(ostream &stream, size_t indent,
     d_mode(INDENT),
     d_handleTrailingBlanks(tb == HANDLE_TRAILING_BLANKS)
 {
-    s_buffers.push_back(this);
+    s2_buffers.push_back(this);
     iniBlankTabs(tob);
 }
