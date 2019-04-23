@@ -84,13 +84,13 @@ no longer be used until one of its tt(open) members has been called.
         If the tt(OFdStreambuf) is not associated with a file descriptor -1 is
         returned. 
 
-    itb(void reset(int xfd, size_t n = 1))
+    itb(void reset(int fd, size_t n = 1))
         The streambuf is (re)initialized, using file descriptor tt(fd), and an
 optional unget buffer size (by default having size 1). When called repeatedly,
 the bf(Mode) specification used whem the object was constructed determines
 whether the file descriptor will be closed or will remain open.
 
-    itb(void reset(int xfd, Mode mode, size_t n = 1))
+    itb(void reset(int fd, Mode mode, size_t n = 1))
         The streambuf is (re)initialized, using file descriptor tt(fd), a file
 descriptor closing parameter and an optional unget buffer size (by default
 having size 1). Depending on the bf(Mode) argument the object's currently used
@@ -110,13 +110,12 @@ manpageseealso()
     bf(std::streambuf)
 
 manpagebugs()
-    The member tt(xsgetn(char *dest, std::streamsize n)) will set
+    The member tt(xsgetn(char *dest, std::streamsize n)) sets
 tt(istream::good()) to tt(false) when fewer bytes than tt(n) were read using
 tt(istream::read()). Also see tt(xsgetn)'s description.
 
     Note that by default the provided file descriptors remain open. The
-complementary class bf(ofdstreambuf)(3bobcat) em(closes) the file descriptor
-by default. This inconsistency was deliberately accepted to keep the classes
-interfaces backward compatible.
+complementary class bf(ofdstreambuf)(3bobcat) by default em(closes) the file
+descriptor.
 
 includefile(include/trailer)

@@ -56,8 +56,6 @@ class Glob: public GS__
         char const *const *begin() const;
         char const *const *end() const;
 
-        void verify() const;        // no-op
-
         void swap(Glob &other);
 
     private:

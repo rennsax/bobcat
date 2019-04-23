@@ -238,11 +238,8 @@ executed.
 object constructions. A tt(start) member or the assignment operator (see
 below) is used to start the specified child process.
 
-    The tt(mode) parameter that is defined for the second through fourth
-constructor is defined as a tt(size_t) for backward compatibility reasons.
-Internally, this argument is immediately converted to a tt(Process::IOMode)
-value, silently ignoring values which do not represent valid tt(IOMode)
-values. Multiple tt(IOMode) values may be combined using the bit-or operator.
+    Constructors expecting an tt(IOMode) argument may be provided with
+multiple tt(IOMode) values by combining them using the bit-or operator.
 
     After constructing a tt(Process) object its parameters can be changed
 using tt(set)-member functions, function call operators or tt(start) members. 
@@ -253,21 +250,21 @@ using tt(set)-member functions, function call operators or tt(start) members.
 execute from a tt(Process) object. Default values are used for the
 process parameters (see section bf(PROCESS PARAMETERS)).
 
-    itb(Process(size_t mode, std::string const &cmd = ""))
+    itb(Process(IOMode mode, std::string const &cmd = ""))
         This constructor requires the specification of the object's 
 bf(IOMode), and it can be used to specify the (initial part of
 a) command to execute from a tt(Process) object. Default values
 are used for the remaining process parameters (see section bf(PROCESS
 PARAMETERS)). 
 
-    itb(Process(size_t mode, ProcessType type, std::string const &cmd = ""))
+    itb(Process(IOMode mode, ProcessType type, std::string const &cmd = ""))
         This constructor requires the specification of the object's
 bf(IOMode) and tt(ProcessType), and it can be used to specify the (initial
 part of a) command to execute from a tt(Process) object.  Default values are
 used for the remaining process parameters (see section bf(PROCESS
 PARAMETERS)).
 
-    itb(Process(size_t mode, ProcessType type, size_t timeLimit, 
+    itb(Process(IOMode mode, ProcessType type, size_t timeLimit, 
 std::string const &cmd = ""))
         This constructor requires the specification of the object's
 bf(IOMode), tt(ProcessType), and child process time limit. The (initial part
@@ -340,10 +337,9 @@ constructions like
         This operator changes the tt(Process) object's tt(IOMode) and
 tt(ProcessType) process parameters.
 
-    itb(Process &operator()(size_t mode, ProcessType type, size_t timeLimit))
+    itb(Process &operator()(IOMode mode, ProcessType type, size_t timeLimit))
         This operator changes the tt(Process) object's mentioned process
-parameters, silently converting the tt(size_t mode) to an tt(IOMode)
-value. The currently specified default size of the stream buffers is kept
+parameters. The currently specified default size of the stream buffers is kept
 as-is.
 
     itb(Process &operator()(IOMode mode, ProcessType type, size_t timeLimit,

@@ -77,6 +77,9 @@ bobcat (5.00.00)
             setKey()
             setIV()
 
+  * Glob:
+        - verify(): discontinued
+
   * HMacBuf:
         - reset() replaces open() 
         - eoi()   replaces close(), alternatively the eoi manipulator can be
@@ -129,6 +132,11 @@ bobcat (5.00.00)
 
   * OMutexStream:
         new class offering mutex protected ostream operations.
+
+  * Process:
+        The mode parameter defined for the second through fourth constructor
+        must be a Process::IOMode value. The same applies to the function call
+        operator previously accespting a size_t argument.
 
   * Randbuffer:
         - expects a size_t seed (used to be: long seed);

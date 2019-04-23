@@ -1,6 +1,6 @@
 #include "process.ih"
 
-Process &Process::operator()(size_t mode, ProcessType type, size_t timeLimit)
+Process &Process::operator()(IOMode mode, ProcessType type, size_t timeLimit)
 {
-    return operator()(iomode(mode), type, timeLimit, bufSize());
+    return operator()(mode, type, timeLimit, bufSize());
 }

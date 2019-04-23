@@ -85,9 +85,7 @@ manpagesection(OVERLOADED OPERATORS)
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(
-    itb(void verify() const)
-        Empty function, kept for backward compatibility.
-    itb(size_t size() const)
+     itb(size_t size() const)
         Returns the number of elements that were detected.
     itb(char const *const *begin() const)
         Returns a pointer to the first element that was detected. This pointer

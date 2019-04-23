@@ -146,14 +146,6 @@ binary `tt(bitor)' (`tt(|)') operator to combine options):
               include PID with each message nl()
 
     By default no options are used.
-
-    itb(Syslogbuf(char const *ident,
-                FBB::Priority priority = FBB::NOTICE, 
-                FBB::Facility facility = FBB::USER,
-                int option = 0))
-        This constructor is kept for backward compatibility. Its parameters
-have the same meanings as those of the abovementioned constructor. A
-tt(nullptr) indicates that no text needs to be prepended to syslog messages.
     )
 
     Copy and move constructors (and assignment operators) are not available.

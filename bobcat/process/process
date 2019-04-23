@@ -84,11 +84,14 @@ struct Process: private Fork, public IOStream, public ProcessEnums
     public:
         explicit Process(std::string const &command = "");              // 1
 
-        explicit Process(size_t iomode, std::string const &command = ""); // 2
-        Process(size_t mode, ProcessType type,                            // 3
+        explicit Process(IOMode iomode, std::string const &command = ""); // 2
+
+        Process(IOMode mode, ProcessType type,                            // 3
                                     std::string const &command = "");
-        Process(size_t mode, ProcessType type, size_t timeLimit,          // 4
+
+        Process(IOMode mode, ProcessType type, size_t timeLimit,          // 4
                                     std::string const &command = "");
+
         Process(IOMode mode, ProcessType type, size_t timeLimit,          // 5
                  size_t bufSize, std::string const &command = "");
 
@@ -160,7 +163,7 @@ struct Process: private Fork, public IOStream, public ProcessEnums
         Process &operator()(IOMode mode, ProcessType type);     // opfun2.f
 
                                                             // operatorfun1.cc
-        Process &operator()(size_t mode, ProcessType type, size_t timeLimit);
+        Process &operator()(IOMode mode, ProcessType type, size_t timeLimit);
                                                             
         Process &operator()(IOMode mode, ProcessType type,  // operatorfun2.cc
                             size_t timeLimit, size_t bufSize);
