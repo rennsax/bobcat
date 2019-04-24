@@ -48,7 +48,7 @@ Daylight Saving Time (DST), when defined for tt(DateTime) objects' zones is
 automatically applied when DST is active. E.g., when a tt(DateTime) object's
 time represents 12:00 hr., and it zone's DST (using a standard +1 hour shift)
 becomes active tomorrow, then the object's time shows 13:00 hr. when 1 day is
-addded to its current date/time.
+added to its current date/time.
 
 Handling time is complex. The bf(C) function bf(time)(2) returns the time in
 seconds since the beginning of the epoch. Beyond that, simplicity ends, and
@@ -294,7 +294,7 @@ manpagesection(ZONE MEMBERS)
     itemization(
     itb(std::string const &spec() const)
        The constructors' zone specifications are converted to a form
-        recognized by the function bf(tzset)(3). This member returnes the
+        recognized by the function bf(tzset)(3). This member returns the
         converted string;
 
     itb(int dstSeconds() const)
@@ -366,7 +366,7 @@ manpagesection(DATETIME CONSTRUCTORS)
         conversion to minutes is automatically applied;
 
     itb(DateTime(Datetime::Zone const &zone))
-       The object's local time is intialized to the the current UTC time to
+       The object's local time is initialized to the the current UTC time to
         which a zone shift defined by the tt(Zone) argument is added;
 
     itb(DateTime(time_t time, TimeType type = UTC))

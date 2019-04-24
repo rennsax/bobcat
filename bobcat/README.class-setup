@@ -22,16 +22,18 @@ hierarchy. Entries tagged with (Obs) are obsolete and should no longer be
 used. 
 
 
-0    Eoi            - eoi manipulator + member
+0    Eoi
       |
-     EoiBuf         - and a string buffer
+    EoiBuf
       |
-     CryptBuf       - and for en/decrryptbuf
-
-
-0   MultiStreambuf     SyslogBuf       ReadLineBuf      LinearMap
-                           |                |          
-                      SyslogStream     ReadLineStream  
+      +--------------+
+      |              |
+   CryptBuf          |
+                     |
+                     | 
+0   MultiBuf     SyslogBuf       ReadLineBuf      LinearMap     OMutexStream
+                     |                |          
+                SyslogStream     ReadLineStream  
 
 
 0   X2a     Hash   Hostent  TypeTrait   Swap     Indent     ReadLineHistory
@@ -40,21 +42,27 @@ used.
                           |            |
                         binops       repeat              
                   
-0                                                      RandBuffer    
-                                                           |        
-                                                       IRandStream  
-0   DateTime           Exception    IFilterStreambuf       |
+0                                           EoiBuf      RandBuf    
+                                            (cont)         |        
+                                              |        IRandStream  
+0   DateTime           Exception          IFilterBuf       |
        |                   |                               |                
        |                   |                               |                
        |       +-----+-----+---+------+----------+         |
        |       |     |     |   |      |          |         |
        |      User Signal CSV  |      |          +----+----+------+
        |       |               |      |               |           |
-       |       |     +---------+     Mbuf        EncryptBuf  SharedMutex
-       |       |     |         |      |                           |
-       |       |  BigInt       |    Mstream                   SharedBlock
-       |       |     |         |                                  |
-       |       |     |         |                              SharedSegment
+       |       |     +---------+     Mbuf             |      SharedMutex
+       |       |     |         |      |               |           |
+       |       |  BigInt       |    Mstream           |       SharedBlock
+       |       |     |         |            CryptBuf  |           |
+       |       |     |         +------+      (cont)   |       SharedSegment
+       |       |     |         |      |        |      |           |
+       |       |     |         |      +---+----+--+   |           |
+       |       |     |         |          |       |   |           |
+       |       |     |         |          |       +---+           |
+       |       |     |         |          |           |           |
+       |       |     |         |      DecryptBuf  EncryptBuf      |
        |       |     |         |                                  |
        |       |     |         |             SharedEnum__     SharedPos
        +-------+     |         |                  |               |
@@ -66,39 +74,39 @@ used.
        |        DiffieHellman  |                         |
        |                       |                    SharedMemory
        |   GS__                |                         |
-       |    |                  |                   SharedStreambuf   
+       |    |                  |                     SharedBuf   
        +----+                  |                         |        
        |                       |            +------------+-------------+
        |                       |            |            |             |
        |                       |     ISharedStream OSharedStream  SharedStream
       Stat                     |     
        |                       |
-      Glob                     |                                    LogBuffer
-              +--------+-------+------+------+-----+-------------+     |
-              |        |       |      |      |     |             |     |
-              |     Pattern  OneKey   |      |     |             +--+--+
-              |        |              |      |     |                |
-              +--------+          DecryptBuf |     |               Log
-              |        |                     |     |   Hostent      |  
-              |        |                     |     |    (cont)    level
-          ConfigFile   |                     |     |      |       
-                       |                     |     +---+--+       
-                       |                     |         |          
-                       |                     |     Hostname       
-                   GetHostent                |                    
-                       |              LocalSocketBase                 
-                   InetAddress               |                          
-                       |                     |                          
-                   SocketBase                +-------------------+  
-                       |                     |                   |
-                       |             LocalClientSocket   LocalServerSocket
+      Glob                     |                                    LogBuf
+              +--------+-------+-----------+-----+-------------+     |
+              |        |       |           |     |             |     |
+              |     Pattern  OneKey        |     |             +--+--+
+              |        |                   |     |                |
+              +--------+                   |     |               Log
+              |        |                   |     |   Hostent      |  
+              |        |                   |     |    (cont)    level
+          ConfigFile   |                   |     |      |       
+                       |                   |     +---+--+       
+                       |                   |         |          
+                       |                   |     Hostname       
+                   GetHostent              |                    
+                       |            LocalSocketBase                 
+                   InetAddress             |                          
+                       |                   |                          
+                   SocketBase              +-------------------+  
+                       |                   |                   |
+                       |           LocalClientSocket   LocalServerSocket
                 +------+---------+       
                 |                |       
             ClientSocket   ServerSocket  
 
      Exception(cont)
         |
-0       +---------+--------+----+----+-----+------+----------+    IOStreambuf
+0       +---------+--------+----+----+-----+------+----------+       IOBuf
         |         |        |    |    |     |      |          |         |
     Xpointer MailHeaders Milter |   Pipe  Fork  Selector Redirector  IOStream
                                 |    |     |      |          |         |
@@ -126,27 +134,30 @@ used.
          |             |                  |
      CmdFinder         +----+-------------+
                             |                                    
-                            |                   A2x(cont)        
-                            |                    |               
-                            |                    |               
-0           OFdStreambuf    |   IFdStreambuf     |   OFilterStreambuf  
+               EoiBuf       |                   A2x(cont)        
+               (cont)       |                    |               
+                 |          |                    |      Eoi      
+                 |          |                    |       |       
+0             OFdBuf        |     IFdBuf         |   OFilterBuf  
                  |          |        |           |       |             
                  |          |        |           |   +---+             
                  |          |        |           |   |   |             
                  |          |        |           +---+   |             
                  |          |        |           |       |             
-                 |          |        |     OHexStreambuf |             lm  mlm
+                 |          |        |        OHexBuf    |             lm  mlm
                  |          |        |           |       |              |   |
          +-------+          |        +----+      |       +-------+------+---+
          |       |          |        |    |      |               |        
      OFdStream   +-------+--+--------+ IFdStream |               |        
-                         |                       |          OFoldStreambuf 
-                      Process                    |                |        
-                                                 |                |        
+                         |                       |            OFoldBuf 
+                      Process                    |               |        
+                                                 |               |        
                                                  |          OFoldStream   
                                  Exception(cont) |
-                                       |         |
-                                       +----+----+
+                                       |         |  EoiBuf
+                                       +----+----+  (cont)
+                                            |         |
+                                            +---------+
                                             |     
                                       +-----+-----+
                                       |           |

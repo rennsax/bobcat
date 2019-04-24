@@ -116,7 +116,7 @@ first character and beyond the last character made available by tt(filter);
         underflow) returns EOF. Otherwise the series of characters returned by
         tt(filter) are transferred to the tt(IFilterBuf's) internal
         buffer to be processed by the tt(std::istream) that's initialized with
-        thie tt(IFilterBuf) object.
+        the tt(IFilterBuf) object.
     )
 
 manpagesection(EXAMPLE)
