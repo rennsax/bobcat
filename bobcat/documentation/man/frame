@@ -29,14 +29,12 @@ manpagesection(CONSTRUCTORS)
     itb(Classname())
     )
 
-    The copy and move constructors are available.
+    Copy and move constructors (and assignment operators) are not available.
 
 manpagesection(OVERLOADED OPERATORS)
     itemization(
     itb()
     )
-
-    The copy and move assignment operators are available.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::ostringstream) and bf(  std::exception) are

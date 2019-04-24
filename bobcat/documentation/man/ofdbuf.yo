@@ -113,7 +113,7 @@ happens.
     )
 
 manpagesection(EXAMPLE)
-    verbinclude(../../ofdbuf/driver/main.cc)
+    verbinclude(../../ofdbuf/driver/driver.cc)
 
 manpagefiles()
     em(bobcat/ofdbuf) - defines the class interface

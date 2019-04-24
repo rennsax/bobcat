@@ -104,6 +104,16 @@ The following classes and functions are available:
     bf(FBB::EncryptBuf): Encrypting information.nl()
     Manpage(encryptbuf)
 
+    bf(FBB::Eoi): tt(std::streambuf) offering the tt(eoi) manipulator.nl()
+    Manpage(eoi)
+
+    bf(FBB::Eoi): tt(std::streambuf) offering the tt(eoi) manipulator.nl()
+    Manpage(eoi)
+
+    bf(FBB::EoiBuf): tt(std::streambuf) offering the tt(eoi) manipulator and a
+    configurable stream buffer.nl()
+    Manpage(eoibuf)
+
     bf(FBB::Exception): objects of this class accept tt(ostream) insertions,
     and are also tt(std::exception) objects.nl()
     Manpage(exception)
@@ -732,6 +742,13 @@ END)
 
     bf(FBB::DigestBuf): Computing message digests.nl()
     Manpage(digestbuf)
+
+    bf(FBB::Eoi): tt(std::streambuf) offering the tt(eoi) manipulator.nl()
+    Manpage(eoi)
+
+    bf(FBB::EoiBuf): tt(std::streambuf) offering the tt(eoi) manipulator and a
+    configurable stream buffer.nl()
+    Manpage(eoibuf)
 
     bf(FBB::IFdStream): stream extracting information from a device whose
         file descriptor is available. nl()

@@ -12,6 +12,9 @@ class Eoi: public std::streambuf
 {
     friend std::ostream &eoi(std::ostream &out);
 
+    protected:
+        Eoi() = default;
+
     private:
         virtual void eoi_(); // this function implements the actions    //  1
                 // of the eoi-manipulator in derived classes. This allows the

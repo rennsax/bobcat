@@ -43,6 +43,7 @@ manpagesection(PROTECTED MEMBER)
     itb(SocketBase makeBase(int socket, sockaddr_in const &address))
        This member returns  a bf(FBB::SocketBase) object initializing
         its socket and bf(FBB::InetAddress) from the provided arguments.
+    )
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(FBB::InetAddress) are available, as bf(FBB::SocketBase)
