@@ -46,7 +46,7 @@ Process &operator|(Process &lhs, Process &rhs)
     if (lhs.d_oChildIn.rdbuf() != 0)      
     {
         lhs.d_oChildIn.rdbuf(0);
-        rhs.d_oChildInbuf.open(lhs.d_oChildInbuf.fd(), 200);
+        rhs.d_oChildInbuf.reset(lhs.d_oChildInbuf.fd(), 200);
         rhs.d_oChildIn.rdbuf(&rhs.d_oChildInbuf);
     }
 

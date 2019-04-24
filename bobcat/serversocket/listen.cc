@@ -4,8 +4,6 @@ void ServerSocket::listen(size_t backlog, bool blocking)
 {
     static char name[] = "ServerSocket::listen()";
 
-    verify();               // verify the SocketBase construction
-
     if (d_msg)
         throw Exception{1} << d_msg;
         

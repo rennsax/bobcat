@@ -6,7 +6,7 @@ int CinInserter::stop()
         return ret();
 
     flush();
-    close();
+    eoi();
 
     return setRet(waitForChild());
 }

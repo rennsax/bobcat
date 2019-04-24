@@ -18,16 +18,7 @@ SocketBase ServerSocket::accept()
         throw Exception{} << "ServerSocket::accept(): " << errnodescr;
 
 
-    class MakeSocketBase: public SocketBase
-    {
-        public:
-            MakeSocketBase(int socket, sockaddr_in const &addr)
-            :
-                SocketBase(socket, addr)
-            {}
-    };
-
-    return MakeSocketBase(sock, address);
+    return makeBase(sock, address);
 }
 
 

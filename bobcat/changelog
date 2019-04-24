@@ -20,8 +20,7 @@ bobcat (5.00.00)
 
   * New members replacing old ones:
         - in all classes previously offering a pSync member:
-            - sync() replaces pSync() 
-        - Process::childErrStream() replaces Process::cerr()
+            - pSync() is replaced by sync()
 
   * ConfigFile:
         - removed deprecated members:
@@ -34,18 +33,20 @@ bobcat (5.00.00)
   * DateTime:
       - The TriVal type is not used anymore. Instead, `true' (DST is used for
             the object's time) and `false' (DST is not used) are used.
-      - DateTime(std::chrono::minutes zoneMinutes) replaces 
-            DateTime(int zoneMinutes) 
-        DateTime operator@(DateTime const &obj, std::chrono::seconds seconds)
-            replaces operator@(DateTime const &obj, time_t seconds)
-        (where @ is + or -)
-        DateTime operator@(std::chrono::seconds seconds)
-            replaces operator@(time_t seconds)
-        (where @ is += or -=)
-      - setUTCseconds() replaces setTime()
-      - utcSeconds() replaces time()
-      - setFields(tm const &ts, TimeFields fields) replaces
-            setFields(tm const &ts, int fields)
+      - DateTime(int zoneMinutes) is replaced by
+            DateTime(std::chrono::minutes zoneMinutes) 
+
+        operator@(DateTime const &obj, time_t seconds) is replaced by
+            operator@(DateTime const &obj, std::chrono::seconds seconds)
+            (where @ is + or -)
+        operator@(time_t seconds) is replaced by
+            operator@(std::chrono::seconds seconds) 
+            (where @ is += or -=)
+      - setTime() is replaced by setUTCseconds()
+      - time() is replaced by utcSeconds()
+      - setFields(tm const &ts, int fields) is replaced by 
+            setFields(tm const &ts, TimeFields fields) 
+            
       - Members expecting or returning size_t values now expect or return
             unsigned values
       - Members returning bool values are now void members
@@ -82,13 +83,13 @@ bobcat (5.00.00)
             setIV()
         - Discontinued static member:
             lastOK()
-        - eoi() replaces done(), alternatively the eoi manipulator can be
-                inserted into DecryptBuf's std::ostream
+        - done() is replaced by eoi(), alternatively the eoi manipulator can
+            be inserted into DecryptBuf's std::ostream
 
   * DigestBuf:
-        - reset() replaces open()
-        - eoi() replaces close(), alternatively the eoi manipulator can be
-                inserted into DigestBuf's std::ostream
+        - open() is replaced by reset()
+        - close() is replaced by eoi(), alternatively the eoi manipulator can
+            be inserted into DigestBuf's std::ostream
 
   * EncryptBuf:
         - Discontinued:
@@ -99,12 +100,12 @@ bobcat (5.00.00)
         - verify(): discontinued
 
   * HMacBuf:
-        - reset() replaces open() 
-        - eoi()   replaces close(), alternatively the eoi manipulator can be
-                inserted into HMacBuf's std::ostream
+        - open() is replaced by reset()
+        - close() is replaced by eoi(), alternatively the eoi manipulator can
+            be inserted into HMacBuf's std::ostream
 
   * IFdBuf:
-        - reset() replaces open() 
+        - open() is replaced by reset()
 
   * IFilterBuf:
         - overriding members no longer are declared `final'
@@ -112,29 +113,29 @@ bobcat (5.00.00)
             the beginning of the object's internally used buffer.
 
   * IOBuf:
-        - xsputn() replaces pXsputn() 
-        - reset()  replaces open()
+        - pXsputn() is replaced by xsputn()
+        - open() is replaced by reset()
 
   * IRandStream expects a size_t seed (used to be: long seed);
 
   * OFdBuf:
-        - reset() replaces open() 
-        - eoi()   replaces close(), alternatively the eoi manipulator can be
-                inserted into OFdStreambuf's std::ostream
+        - open() is replaced by reset()
+        - close() is replaced by eoi(), alternatively the eoi manipulator can
+            be inserted into OFdStreambuf's std::ostream 
 
   * OFilterBuf:
-        - reset() replaces open()
+        - open() is replaced by reset()
         - close(): discontinued
 
   * OFoldStream:
-        - constructor parameter `std::string const &fname' replaces 
-                                `char const *fname'
-        - reset() replaces open()
+        - constructor parameter `char const *fname' is replaced by
+            `std::string const &fname'
+        - open() is replaced by reset()
         - close() discontinued
 
   * OFoldBuf:
-        - constructor parameter `std::string const &fname' replaces 
-                                `char const *fname'
+        - constructor parameter `char const *fname' is replaced by
+            `std::string const &fname'
 
   * OHexBuf:
         - added an extra parameter to its constructor: std::string const
@@ -145,16 +146,17 @@ bobcat (5.00.00)
             separator. 
         - added member `setWidth' to modify the maximum width of lines written
             to the ostream initialized with an OHexStreambuf object.
-        - eoi()   replaces close(), alternatively the eoi manipulator can be
-                inserted into OHexStreambuf's std::ostream
+        - close() is replaced by eoi(), alternatively the eoi manipulator can
+            be inserted into OHexStreambuf's std::ostream
 
   * OMutexStream:
         new class offering mutex protected ostream operations.
 
   * Process:
-        The mode parameter defined for the second through fourth constructor
-        must be a Process::IOMode value. The same applies to the function call
-        operator previously accespting a size_t argument.
+        - The mode parameter defined for the second through fourth constructor
+            must be a Process::IOMode value. The same applies to the function
+            call operator previously accespting a size_t argument.
+        - cerr() is replaced by childErrStream()
 
   * RandBuf:
         - expects a size_t seed (used to be: long seed);
@@ -166,9 +168,9 @@ bobcat (5.00.00)
 
   * SyslogBuf:
         - disontinued the Syslogbuf(char const *, ... ) constructor
-        - reset() replaces open()
-        - eoi() replaces close(), alternatively the eoi manipulator can be
-                inserted into Syslogbuf's std::ostream
+        - open() is replaced by reset()
+        - close() is replaced by eoi(), alternatively the eoi manipulator can
+            be inserted into Syslogbuf's std::ostream
 
   * SyslogStream:
         - disontinued the SyslogStream(char const *, ... ) constructor

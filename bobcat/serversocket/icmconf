@@ -1,4 +1,6 @@
 #define LIBRARY             "serversocket"
 
+#define AUXFLAGS    "-I../tmp"
+
 #include "../icmconf"
 

@@ -3,7 +3,7 @@
 int MultiBuf::overflow(int c)
 {
     if (c == EOF)
-        pSync();
+        sync();
     else 
         d_buffer += c;
 
