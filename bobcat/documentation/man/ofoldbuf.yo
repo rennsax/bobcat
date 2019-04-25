@@ -75,7 +75,7 @@ rowline()
 includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
-    FBB::OFilterBuf
+    tt(FBB::OFilterBuf)
 
 manpagesection(ENUMERATION)
     The enumeration tt(TabsOrBlanks) is used to select tabs or blanks when
@@ -139,7 +139,7 @@ and will then flush the destination stream.
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(FBB::OFilterBuf), in particular its tt(out()) and
-tt(open()) members are available, as bf(FBB::OFoldBuf) inherits from
+tt(reset) members are available, as bf(FBB::OFoldBuf) inherits from
 this class.
     itemization(
     itb(void setMargins(size_t leftMargin, size_t rightMargin))

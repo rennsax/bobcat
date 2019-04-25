@@ -26,8 +26,7 @@ inserted into the destination stream.
 includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
-    FBB::OFilterBuf
-
+    tt(FBB::OFilterBuf)
 
 manpagesection(CONSTRUCTOR)
     itemization(
@@ -49,7 +48,7 @@ original formatting flags of the receiving tt(ostream).
 
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(FBB::OFilterBuf), in particular its tt(out()) and
-tt(open()) members are available, as bf(FBB::OHexBuf) inherits from
+tt(reset) members are available, as bf(FBB::OHexBuf) inherits from
 this class.
     itemization(
     itb(void eoi())

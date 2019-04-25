@@ -32,7 +32,7 @@ is cleared.
 includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
-    bf(std::streambuf)
+    tt(FBB::EoiBuf) and thus from tt(std::streambuf)
 
 manpagesection(ENUMERATIONS)
 
@@ -106,15 +106,14 @@ bf(LOG_xxx) values used with bf(syslog)(3):
         UUCP subsystem
     )
 
-manpagesection(CONSTRUCTORS)
+manpagesection(CONSTRUCTOR)
     itemization(
     itb(SyslogBuf(string const &ident = "",
                 FBB::Priority priority = FBB::NOTICE, 
                 FBB::Facility facility = FBB::USER,
                 int option = 0))
-        This constructor initializes a bf(SyslogBuf) object.  The
-tt(ident) parameter is usually the name of the program. Its contents are
-prepended to syslog messages. 
+        The tt(ident) parameter is usually the name of the program. Its
+contents are prepended to syslog messages.
 
 The tt(priority) parameter determines the default importance of the message
 sent to the syslog daemon. By default messages are sent to the syslog daemon
@@ -129,7 +128,6 @@ set by the static member tt(setMask) (see below).
 
 The tt(facility) parameter determines the type of program doing the
 logging. By default bf(FBB::USER) is used.
-
 
     The tt(option) parameter may be used to specify various options (use the
 binary `tt(bitor)' (`tt(|)') operator to combine options):
@@ -156,13 +154,17 @@ manpagesection(MEMBER FUNCTIONS)
 inherits from this class.
 
     itemization(
-    itb(void close())
-       If the bf(SyslogStream)'s internal buffer is not empty it is flushed to
-        the syslog daemon. Thereafer bf(closelog)(3) is called.
     itb(Priority defaultPriority() const)
        Returns the current default priority. I.e., the priority that will be
         used for the messages after inserting tt(endl) or tt(flush).
-    itb(void open(string const &ident,
+    itb(void eoi())
+       If the bf(SyslogStream)'s internal buffer is not empty it is flushed to
+        the syslog daemon. Thereafer bf(closelog)(3) is called. Instead
+        of using this member the tt(eoi) manipulator can also be used.
+    itb(Priority priority() const)
+       Returns the next priority. I.e., the priority that will be used for
+        the next message that is sent to the syslog daemon.
+    itb(void reset(string const &ident,
                 FBB::Priority priority = FBB::NOTICE, 
                 FBB::Facility facility = FBB::USER,
                 int option = 0))
@@ -171,9 +173,6 @@ inherits from this class.
         bf(SyslogStream)'s internal buffer is not empty it is first flushed to
         the syslog daemon using the identifier, priority and options that were
         active just before calling tt(open).
-    itb(Priority priority() const)
-       Returns the next priority. I.e., the priority that will be used for
-        the next message that is sent to the syslog daemon.
     itb(Priority setDefaultPriority(Priority priority))
        Changes the default priority of the next message that is sent to the
         syslog daemon after inserting tt(std::eoln) or
@@ -185,6 +184,16 @@ inherits from this class.
         the default priority. The previously active priority setting is
         returned.
     )
+
+manpagesection(MANIPULATOR)
+    itemization(
+    itb(FBB::eoi)
+        The tt(eoi) manipulator can be inserted into the tt(ostream) instead
+of calling the tt(SyslogBuf::end) member. It performs the same actions as
+the tt(eoi) member.  If inserted into a plain tt(std::ostream) nothing
+happens.
+    )
+
 
 manpagesection(EXAMPLE)
     See also bf(syslogstream)(3bobcat)
