@@ -4,7 +4,12 @@ int Selector::wait()
 {
     timeval t = d_alarm;
 
-    if (isEmpty(d_read) and isEmpty(d_write) and isEmpty(d_except))
+    if (                                    // no fd available and no waiting
+                                            // time
+        isEmpty(d_read) and isEmpty(d_write) and isEmpty(d_except) 
+        &&
+        t.tv_sec == -1 && t.tv_usec == -1
+    )
         return 0;
 
     d_ret_read = d_read;

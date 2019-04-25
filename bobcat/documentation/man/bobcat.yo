@@ -84,6 +84,9 @@ The following classes and functions are available:
     bf(FBB::ConfigFile): Processing standard configuration files.nl() 
     Manpage(configfile)
 
+    bf(FBB::CryptBuf): Base class for DecryptBuf and EncryptBuf.nl()
+    Manpage(cryptbuf)
+
     bf(FBB::CSV4180): Objects of this class allow for easy handling of
     comma-separated values (implements RFC 4180).nl()  
     Manpage(csv4180)
@@ -666,6 +669,9 @@ END)
     bf(FBB::BigInt): Wrapper class around the openssl BN_ functions for
     unlimited integer precision arithmetic. nl()
     Manpage(bigint)
+
+    bf(FBB::CryptBuf): Base class for DecryptBuf and EncryptBuf.nl()
+    Manpage(cryptbuf)
 
     bf(FBB::DecryptBuf): Decrypting information.nl()
     Manpage(decryptbuf)

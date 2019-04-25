@@ -3,39 +3,44 @@ d: programs planned for Debian
 (): programs not maintained by me
 X: not actively maintained anymore
 
-bisonc++        D
-cidr
-countrymil
-edu/mailhandler
-flexc++         D
-git/cursist/*
-gpg-remailer    D
-guncat          D
-imgx
-ip2country
-logconvert
+  * New debian release depends on bobcat version 5
 
-natlog          D       updated
-nk
-oostum/*
-oxref           D
-pause                   updated
+    bisonc++        D
+    flexc++         D
+    gpg-remailer    D
+    guncat          D
+    natlog          D       updated
+    oxref           D
+    ssh-cron        D       updated
+        stealth         D       updated
+        xd              D       updated
 
-returned
-ssh-cron        D       updated
-spamgrep
-stealth         D       updated
-syslog
-xd D                    updated
-xpointer
+        cidr
+        countrymil
+        edu/mailhandler
+        git/cursist/*
+        imgx
+        ip2country
+        logconvert
+        
+        nk
+        oostum/*
+        pause                   updated
+        
+        returned
+        spamgrep
+        syslog
+    wifi
+        xpointer
 xrun
-zp
-3ppq/support            updated
-3ppq/form               updated
-3ppq/fsplot
-3ppq/psychrm
-3ppq/psychrecords
+        zp
+        3ppq/support            updated
+        3ppq/form               updated
+        3ppq/fsplot
+        3ppq/psychrm
+        3ppq/psychrecords
 
+----------------------------------
 
     (ccbuild)
     match2file      X

@@ -9,7 +9,7 @@ manpage(FBB::EoiBuf)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
 manpagename(FBB::EoiBuf)(std::streambuf class offering an eoi manipulator)
 
 manpagesynopsis()
-    bf(#include <bobcat/eoi>)nl()
+    bf(#include <bobcat/eoibuf>)nl()
     Linking option: tt(-lbobcat) 
 
 manpagedescription()
