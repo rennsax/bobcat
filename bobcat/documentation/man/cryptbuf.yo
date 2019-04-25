@@ -35,7 +35,7 @@ manpagesection(PROTECTED CONSTRUCTOR)
         method. E.g., tt(aes-128-cbc). For an overview see the
         bf(encryptbuf)(3bobcat) man-page. The tt(bufSize) parameter defines
         the initial size of the internally used buffer (defined by
-        tt(EoiBuf). 
+        tt(EoiBuf)). 
     )
 
     Copy and move constructors (and assignment operators) are not available.
