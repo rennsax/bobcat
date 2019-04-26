@@ -1,5 +1,5 @@
 D: programs in Debian
-d: programs planned for Debian
+d: local debian package
 (): programs not maintained by me
 X: not actively maintained anymore
 
@@ -12,33 +12,30 @@ X: not actively maintained anymore
     natlog          D       updated
     oxref           D
     ssh-cron        D       updated
-        stealth         D       updated
-        xd              D       updated
+    stealth         D       updated
+    xd              D       updated
 
-        cidr
-        countrymil
-        edu/mailhandler
-        git/cursist/*
-        imgx
-        ip2country
-        logconvert
-        
-        nk
-        oostum/*
-        pause                   updated
-        
-        returned
-        spamgrep
-        syslog
-    wifi
-        xpointer
+cidr
+countrymil          d
+edu/mailhandler
+git/cursist/cursist
+git/cursist/ids
+imgx
+ip2country
+logconvert
+nk
+oostum/*
+pause                   updated
+returned
+        soham               WIP, can't check yet
+spamgrep
+syslog
+wifi
+xpointer
 xrun
-        zp
-        3ppq/support            updated
-        3ppq/form               updated
-        3ppq/fsplot
-        3ppq/psychrm
-        3ppq/psychrecords
+zp
+3ppq/recomp -f
+(support updated, form updated)
 
 ----------------------------------
 

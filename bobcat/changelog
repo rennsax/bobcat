@@ -157,6 +157,14 @@ bobcat (5.00.00)
             must be a Process::IOMode value. The same applies to the function
             call operator previously accespting a size_t argument.
         - cerr() is replaced by childErrStream()
+        - the eoi() member calls eoi_(). Alternatively the eoi manipulator can
+            be inserted into Process objects to indicate the process's
+            end-of-information.
+        - the eoi manipulator, defined for Process only, is superfluous and is
+            discontinued. Existing code now uses the Eoi-manipulator after 
+            recompilation. Changes to the source code are not required.
+        - the std::ostream &operator<<(std::ostream &(*pf)(std::ostream &)) 
+            is superfluous and is discontinued. 
 
   * RandBuf:
         - expects a size_t seed (used to be: long seed);

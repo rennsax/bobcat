@@ -1,7 +1,11 @@
 #include "digestbuf.ih"
 
+#include <iostream>
+
 void DigestBuf::eoi_()
 {
+    cerr << __FILE__"\n";
+
     if (d_ctx == 0)
         return;
 

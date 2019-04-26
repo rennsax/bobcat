@@ -25,7 +25,7 @@ class DigestBuf: public EoiBuf
 
     private:
         int overflow(int c) override;
-        void eoi_();                                    // .cc
+        void eoi_() override;                                // .cc
 };
 
 #include "eoi.f"

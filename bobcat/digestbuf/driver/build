@@ -19,15 +19,15 @@ GPP="g++ --std=c++2a"
 CMD="$GPP -o driver -Wall *.cc -L../tmp -lhmacbuf -L /tmp -lbob -lcrypto -s"
 
 #   Using the library in ../tmp/
-# CMD="$GPP -o driver -Wall *.cc -L../tmp -lhmacbuf ${LIBS} -s"
+CMD="$GPP -o driver -Wall *.cc -L../tmp -ldigestbuf ${LIBS} -s"
 
-#   Using tmp libraries and bobcat
-CMD="$GPP -o driver -Wall -I../tmp driver.cc \
-    -L../tmp -ldigestbuf \
-    -L../../ohexbuf/tmp -lohexbuf \
-    -L../../eoibuf/tmp -leoibuf \
-    -L../../eoi/tmp -leoi \
-    ${LIBS} -s"
+# #   Using tmp libraries and bobcat
+# CMD="$GPP -o driver -Wall -I../tmp driver.cc \
+#     -L../tmp -ldigestbuf \
+#     -L../../ohexbuf/tmp -lohexbuf \
+#     -L../../eoibuf/tmp -leoibuf \
+#     -L../../eoi/tmp -leoi \
+#     ${LIBS} -s"
 
 echo ${CMD}
 ${CMD}

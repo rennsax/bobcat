@@ -93,7 +93,7 @@ includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
     bf(FBB::Fork)(3bobcat) (private), nl()
-    bf(FBB:IOStream)(3bobcat)
+    bf(FBB:IOStream)(3bobcat), and by implication: bf(FBB::Eoi), nl()
     bf(FBB:ProcessEnums)
 
 The tt(struct ProcessEnums) defines enumerations and support functions which
@@ -323,7 +323,6 @@ followed by tt(setCommand), followed by calling an appropriate overloaded
 version of the member tt(start) (tt(start()) uses the object's current
 tt(IOMode, ProcessType,) and time limit).
 
-    
     itb(Process &operator()(IOMode mode))
         This operator changes the the tt(Process) object's tt(IOMode)
 parameter. A reference to the tt(Process) object is returned, allowing
@@ -435,9 +434,6 @@ is actually running, then the value returned by this member may differ from
 the value that was actually used when starting the child process, as the
 default value may be altered by a function call operator just before starting
 the child process.
-
-    itb(std::istream &cerr())
-        This member should be avoided. Use tt(childErrStream) instead.nl()
 
     itb(std::istream &childErrStream())
         If tt(Process::CERR) was specified then this member interfaces

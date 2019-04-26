@@ -144,8 +144,6 @@ struct Process: private Fork, public IOStream, public ProcessEnums
         template <typename Type>
         Process &operator<<(Type const &value);                 // opinsert.f
 
-        Process &operator<<(std::ostream &(*pf)(std::ostream &));
-
         template <typename Type>
         Process &operator>>(Type &value);                       // opextract.f
 
@@ -187,6 +185,8 @@ struct Process: private Fork, public IOStream, public ProcessEnums
         void parentProcess() override;
         void parentRedirections() override;
 
+        void eoi_() override;
+
         void newPipe(Pipe &pipe);
         pid_t discontinue(RetPid &proc);
         ChildOutput whichStream();
@@ -210,7 +210,6 @@ struct Process: private Fork, public IOStream, public ProcessEnums
 };
 
 #include "childoutstream.f"
-#include "eoi.f"
 #include "iomode.f"
 #include "opaddis.f"
 #include "opextract.f"

@@ -1,0 +1,6 @@
+#define LIBRARY             "iostream"
+
+#define AUXFLAGS "-I../tmp"
+
+#include "../icmconf"
+

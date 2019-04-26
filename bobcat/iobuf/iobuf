@@ -2,12 +2,12 @@
 #define INCLUDED_BOBCAT_IOBUF_
 
 #include <fstream>
-#include <streambuf>
+#include <bobcat/eoi>
 
 namespace FBB
 {
 
-class IOBuf: public std::streambuf
+class IOBuf: public Eoi
 {
     char d_buf;
     std::istream *d_in;
