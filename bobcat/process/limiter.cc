@@ -7,9 +7,9 @@ void Process::limiter(Process *process)
     if (timeLimit == 0)                 // no timelimit: thread immediately 
         return;                         //               ends
 
-    unique_lock<mutex> lock(process->d_data->d_mutex);   // get the lock
+    unique_lock<mutex> lock(process->d_mutex);   // get the lock
 
-    volatile ChildAction &action = process->d_data->d_action;
+    volatile ChildAction &action = process->d_action;
 
     action = TIME_LIMIT;
 
@@ -22,7 +22,7 @@ void Process::limiter(Process *process)
                                         // When the time limit is reached
                                         // the loop breaks, and d_action is
                                         // TIME_LIMIT. 
-        if (process->d_data->d_condition.wait_for(
+        if (process->d_condition.wait_for(
                 lock, chrono::seconds(timeLimit)) == cv_status::timeout)
             break;
     }

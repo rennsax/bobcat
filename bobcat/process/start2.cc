@@ -18,7 +18,7 @@ void Process::start(IOMode mode, ProcessType type, size_t timeLimit,
     sanitizeIOMode(mode);
                                         // not yet using the time limit
                                         // thread
-    d_data->d_limit = thread(limiter, this);
+    d_limit = thread(limiter, this);
     forking();
 
     setBufSize(savedBufSize);

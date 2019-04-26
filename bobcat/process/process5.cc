@@ -16,8 +16,10 @@ Process::Process(IOMode mode, ProcessType processType,
     d_iChildOut(0),
     d_iChildErr(0),
 
-    d_data(new ProcessData(bufSize))
+    d_bufSize(bufSize == 0 ? 1 : bufSize)
 {
+    Signal::instance().add(SIGCHLD, *this);
+
     d_setMode = sanitizeIOMode(mode);
 
             // connect the input and output streams to Process

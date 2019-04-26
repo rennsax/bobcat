@@ -152,7 +152,13 @@ bobcat (5.00.00)
   * OMutexStream:
         new class offering mutex protected ostream operations.
 
+  * ProcessData:
+        Internal class previously used by Process to store the Pimpl-data. Now
+        discontinued. 
+
   * Process:
+        - The class was redesigned so the pimpl idiom (implemented in bobcat
+            3.19.00) is no longer required.
         - The mode parameter defined for the second through fourth constructor
             must be a Process::IOMode value. The same applies to the function
             call operator previously accespting a size_t argument.
@@ -185,6 +191,7 @@ bobcat (5.00.00)
 
   * Fixed flaw in Log's FBB::fnl handling
 
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 26 Apr 2019 15:30:50 +0200
 
 bobcat (4.09.00)
 

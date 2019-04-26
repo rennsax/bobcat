@@ -287,12 +287,13 @@ manpagesection(OVERLOADED OPERATORS)
 
     itemization(
     itb(Process &operator<<(Type value))
-        This operator inserts tt(value) into the child's standard
-input stream. I.e., the child process reads tt(value) from its standard
-input. A value of any type that can be inserted into an tt(ostream) can be
-inserted into a tt(Process) object. Nothing happens if the member is used when
-the child process has terminated. The behavior of this operator is undefined
-unless tt(IOMode CIN) was specified.
+        This operator inserts tt(value) into the child's standard input
+stream. I.e., the child process reads tt(value) from its standard input. A
+value of any type that can be inserted into an tt(ostream) can be inserted
+into a tt(Process) object. Nothing happens if the member is used when the
+child process has terminated. Manipulators like tt(std::endl) are also
+supported.  The behavior of this operator is undefined unless tt(IOMode CIN)
+was specified.
 
     itb(Process &operator>>(Type value))
         This operator extracts tt(value) from the child's standard output

@@ -1,5 +1,0 @@
-#define LIBRARY             "processdata"
-#define AUXFLAGS              "-pthread"
-
-#include "../icmconf"
-

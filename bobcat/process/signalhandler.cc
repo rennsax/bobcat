@@ -1,6 +1,6 @@
-#include "processdata.ih"
+#include "process.ih"
 
-void ProcessData::signalHandler(size_t signal)
+void Process::signalHandler(size_t signal)
 {
     if (d_action == TIME_LIMIT)
     {

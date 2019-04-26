@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "../../processenums/processenums"
-#include "../../processdata/processdata.decl"
 #include "../process"
 
 using namespace std;
@@ -22,7 +21,7 @@ int main()
         if (not getline(cin, line))
             return 0;
 
-        process << line << endl;        // to /bin/cat
+        process << line << endl;           // to /bin/cat
         line.clear();
 
         if (not getline(process, line))    // from /bin/cat

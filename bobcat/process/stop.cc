@@ -17,7 +17,7 @@ int Process::stop()
 
     discontinue(d_child);
 
-    d_data->d_limit.join();
+    d_limit.join();
 
     d_active = false;
 

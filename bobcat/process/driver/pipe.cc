@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "../../processenums/processenums"
-#include "../../processdata/processdata.decl"
 #include "../process"
 
 using namespace std;
@@ -19,9 +18,3 @@ int main()
 
     p3 << cin.rdbuf() << eoi;
 }
-    
-
-
-
-
-

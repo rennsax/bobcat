@@ -4,6 +4,9 @@
 #include <string>
 #include <ostream>
 #include <istream>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
 
 #include <bobcat/fork>
 #include <bobcat/string>
@@ -13,6 +16,7 @@
 #include <bobcat/ofdbuf>
 #include <bobcat/iostream>
 #include <bobcat/processenums>
+#include <bobcat/signal>
 
 #if defined(__FreeBSD_kernel__) || defined(__FreeBSD__)
     #ifndef BOBCAT_DIY_CLOEXEC_
@@ -23,9 +27,8 @@
 namespace FBB
 {
 
-struct ProcessData;
-
-struct Process: private Fork, public IOStream, public ProcessEnums
+struct Process: private Fork, private SignalHandler,
+                public IOStream, public ProcessEnums
 {
     friend Process &operator|(Process &lhs, Process &rhs);
 
@@ -74,8 +77,14 @@ struct Process: private Fork, public IOStream, public ProcessEnums
 
         RetPid d_child;
 
-        ProcessData *d_data;
-        char d_notUsed[sizeof(RetPid) - sizeof(ProcessData *)];
+        std::thread d_limit;
+        volatile ChildAction d_action = CHILD_ENDED;
+        std::mutex d_mutex;
+        std::condition_variable d_condition;
+        size_t d_bufSize;
+    
+        int d_exitStatus;
+
 
 #ifdef BOBCAT_DIY_CLOEXEC_
         int d_closedByChild = 0;        // DIY CLOSE_ON_EXEC
@@ -101,13 +110,13 @@ struct Process: private Fork, public IOStream, public ProcessEnums
 
         Process &operator=(Process const &other) = delete;
 
-        size_t bufSize() const;             // returns current buffer size
+        size_t bufSize() const;             // returns current buffer size  .f
         IOMode ioMode() const;              // returns default IOMode       .f
         ProcessType processType() const;    // returns default ProcessType  .f
         size_t timeLimit() const;           // returns default time limit   .f
 
-        void setBufSize(size_t bufSize);  
-        void setIOMode(IOMode mode);            // change IOMode        .f
+        void setBufSize(size_t bufSize);    //                              .f
+        void setIOMode(IOMode mode);        // change IOMode                .f
 
         void setProcessType(ProcessType type);                      //  .f
 
@@ -147,13 +156,14 @@ struct Process: private Fork, public IOStream, public ProcessEnums
         template <typename Type>
         Process &operator>>(Type &value);                       // opextract.f
 
+        Process &operator<<(std::ostream &(*pf)(std::ostream &));
 
         int stop();                     // terminate a running childprocess
         void close();                           // closes input to the child
         int eoi();                              // closes input and waits for
                                                 // the child to end
         using Fork::waitForChild;
-        int exitStatus() const;
+        int exitStatus() const;                                 //      .f
                                 
         bool active();
 
@@ -185,6 +195,8 @@ struct Process: private Fork, public IOStream, public ProcessEnums
         void parentProcess() override;
         void parentRedirections() override;
 
+        void signalHandler(size_t signum) override;
+
         void eoi_() override;
 
         void newPipe(Pipe &pipe);
@@ -209,7 +221,9 @@ struct Process: private Fork, public IOStream, public ProcessEnums
         static void limiter(Process *process);
 };
 
+#include "bufsize.f"
 #include "childoutstream.f"
+#include "exitstatus.f"
 #include "iomode.f"
 #include "opaddis.f"
 #include "opextract.f"
@@ -217,6 +231,7 @@ struct Process: private Fork, public IOStream, public ProcessEnums
 #include "opfun2.f"
 #include "opinsert.f"
 #include "processtype.f"
+#include "setbufsize.f"
 #include "setcommand.f"
 #include "setiomode.f"
 #include "setprocesstype.f"

@@ -5,7 +5,6 @@
 
 #include <fcntl.h>
 #include <algorithm>
-#include <signal.h>
 #include <unistd.h>
 
 #include <sys/types.h>
@@ -13,8 +12,6 @@
 
 #include "../redirector/redirector"
 #include "../exception/exception"
-
-#include "../processdata/processdata.decl"
 
 using namespace std;
 using namespace FBB;
