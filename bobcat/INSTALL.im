@@ -67,7 +67,7 @@
 
     // DOC is the directory in which development- related documentation is
     //     stored (various README files, examples, html-man-pages)
-#define DOC     "/usr/share/doc/libbobcat4-dev"
+#define DOC     "/usr/share/doc/libbobcat5-dev"
 
     // HDR is the directory in which the header files are stored
 #define HDR     "/usr/include/bobcat"

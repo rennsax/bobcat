@@ -1,3 +1,9 @@
+bobcat (5.00.01)
+
+  * Changed overlooked referrals to ...bobcat4 into ...bobcat5
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 01 May 2019 20:38:19 +0200
+
 bobcat (5.00.00)
 
   * All classes derived from std::streambuf are now called ...Buf:
