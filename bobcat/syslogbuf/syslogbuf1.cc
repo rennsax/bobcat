@@ -6,8 +6,8 @@ SyslogBuf::SyslogBuf(std::string const &ident,
     d_priority(priority),
     d_orgPriority(priority)
 {
-//    reset(ident, facility, option);
-//    setp();                             // no buffer yet
+    reset(ident, facility, option);
+    setp();                             // no buffer yet
 }
 
 

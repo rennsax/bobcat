@@ -1,3 +1,10 @@
+bobcat (5.00.02)
+
+  * Fixed an error in SyslogBuf's constructor: it now correctly defines the 
+    logged message head as SyslogBuf's first argument.
+
+
+
 bobcat (5.00.01)
 
   * Changed overlooked references to ...bobcat4 into ...bobcat5
