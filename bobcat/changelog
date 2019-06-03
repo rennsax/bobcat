@@ -3,7 +3,10 @@ bobcat (5.00.02)
   * Fixed an error in SyslogBuf's constructor: it now correctly defines the 
     logged message head as SyslogBuf's first argument.
 
+  * LogBuf's member `active' now (de)activates logging until another `active'
+    call. 
 
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 03 Jun 2019 16:35:26 +0200
 
 bobcat (5.00.01)
 
