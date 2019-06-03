@@ -18,6 +18,9 @@ int main()
 
     log.off();
     log << "This message is not shown\n";
+    log << "This message is not shown\n";
+    log << fnl;
+    log << "This message is not shown\n";
 
     log.setLevel(2);
     log << "This message is shown\n";

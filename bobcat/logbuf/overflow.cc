@@ -1,26 +1,26 @@
 #include "logbuf.ih"
 
-int LogBuf::overflow(int c)
+int LogBuf::overflow(int ch)
 {
-    if (c != 1 and not d_active)    // ignore the char if we're not active.
+    if (ch != 1 and not d_active)    // ignore the char if we're not active.
     {                               // and if the ch. is not fnl (forced \n)
-        if (c == '\n')
-        {
+        if (ch == '\n')
+//        {
             d_empty = true;
-            d_active = true;
-        }
-        return c;
+//            d_active = true;
+//        }
+        return ch;
     }
 
-    switch (c)
+    switch (ch)
     {
         case 0:             // write newline, without considering d_empty true
             d_empty = false;
-            c = '\n';       // also see logbuf/operatorinsert.cc
+            ch = '\n';       // also see logbuf/operatorinsert.cc
         break;
 
         case 1:             // at fnl (forced new line) (re)activate and
-            c = '\n';       // fallthrough (continue) as \n
+            ch = '\n';       // fallthrough (continue) as \n
         [[fallthrough]];
 
         case '\n':          // at '\n', set d_empty to true. This generates 
@@ -30,8 +30,8 @@ int LogBuf::overflow(int c)
     }
 
     return 
-        d_stream->write(reinterpret_cast<char const *>(&c), sizeof(char)) ?
-            c
+        d_stream->write(reinterpret_cast<char const *>(&ch), sizeof(char)) ?
+            ch
         :
             EOF;
 }
