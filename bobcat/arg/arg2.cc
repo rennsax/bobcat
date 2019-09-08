@@ -48,7 +48,7 @@ Arg__::Arg__(char const *optstring,
                 if (plainLongOption(begin[longOptionIndex]))
                     break;
 
-            [[fallthough]]
+            [[fallthough]];
             // FALLING THROUGH IF LONG OPTION IS ALSO SHORT CHAR OPTION
                 // in which case d_getOpt is set to the corresponding short
                 // char option

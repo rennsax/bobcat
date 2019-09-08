@@ -1,3 +1,11 @@
+bobcat (5.00.03)
+
+  * Suppressed SF cerr stmnt in digestbuf/eoi.cc
+
+  * Added missing ; to [[fallthrough]] attributes
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 08 Sep 2019 17:00:50 +0200
+
 bobcat (5.00.02)
 
   * Fixed an error in SyslogBuf's constructor: it now correctly defines the 
