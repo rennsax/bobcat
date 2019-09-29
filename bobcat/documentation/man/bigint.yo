@@ -24,6 +24,20 @@ than the object as-is is referred to.
 
 Various constructors accept tt(BIGNUM) arguments. Type tt(BIGNUM) is the type
 containing an integer of unlimited precision as defined by OpenSSL.
+tt(BIGNUM's) definition is
+        verb(
+    typedef struct bignum_st BIGNUM;
+
+    struct bignum_st
+    {
+        BN_ULONG *d;    // Pointer to an array of 'BN_BITS2' bit chunks.
+        int top;        // Index of last used d +1. 
+        // The next are internal book keeping for bn_expand.
+        int dmax;       // Size of the d array. 
+        int neg;        // one if the number is negative
+        int flags;
+    };
+        )
 
 Signs of tt(BigInt) are handled in a special way. Whether a tt(BigInt) is
 negative or positive is determined by its sign-flag, and not by a sign bit as
@@ -702,6 +716,9 @@ manpageseealso()
     bf(bobcat)(7), bf(diffiehellman)(3bobcat), 
     bf(RAND_add)(3ssl), bf(RAND_egd)(3ssl),
     bf(RAND_load_file)(3ssl), bf(RAND_seed)(3).
+
+    For tt(BIGNUM):
+    tt(https://www.openssl.org/docs/man1.0.2/man3/bn_sub_words.html)
 
 manpagebugs()
 

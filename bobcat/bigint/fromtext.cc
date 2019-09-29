@@ -7,8 +7,10 @@ BigInt BigInt::fromText(string const &text, int mode)
 {
     BigInt ret;
 
-    if ((not mode) & (ios::hex | ios::oct | ios::dec))  // (not mode) to keep
-        mode =                                          // the compiler happy
+                        // determine the mode from text unless the conversion
+                        // mode was explicitly specified
+    if ((mode & (ios::hex | ios::oct | ios::dec)) == 0)
+        mode =
             text.find_first_of("abcdefABCDEF") != string::npos ? ios::hex :
             text.find_first_of("89") == string::npos && 
                                                text[0] == '0'  ? ios::oct :

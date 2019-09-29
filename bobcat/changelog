@@ -1,3 +1,8 @@
+bobcat (5.00.04)
+
+  * Fixed a bug in the conversion mode recognition in BigInt::fromText
+
+
 bobcat (5.00.03)
 
   * Suppressed SF cerr stmnt in digestbuf/eoi.cc
