@@ -1,7 +1,14 @@
-bobcat (5.00.04)
+bobcat (5.01.00)
 
   * Fixed a bug in the conversion mode recognition in BigInt::fromText
 
+  * Added User(size_t uid) and User(string const &name) constructors to the
+    class User.
+
+  * Added the missing copy constructor and copy assignment operator to the
+    class User.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 30 Nov 2019 09:06:43 +0100
 
 bobcat (5.00.03)
 

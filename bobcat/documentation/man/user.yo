@@ -25,8 +25,16 @@ manpagesection(CONSTRUCTORS)
     itb(User())
         The default constructor determines the current user's data.  
         This constructor throws an tt(Exception) exception if it did not
-properly complete because the current user name could not be found in
-tt(/etc/passwd).
+        properly complete because the current user name could not be found in
+        tt(/etc/passwd).
+
+    itb(User(size_t uid))
+        The data of the user whose user-id is tt(uid) are determined.
+        If the data could not be found an tt(Exception) is thrown.
+
+    itb(User(std::string const &name))
+        The data of the user whose user-name is tt(name) are determined.
+        If the data could not be found an tt(Exception) is thrown.
     )
 
     Copy and move constructors (and assignment operators) are available.
