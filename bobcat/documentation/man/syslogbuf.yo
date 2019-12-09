@@ -63,7 +63,7 @@ bf(LOG_xxx) values used with bf(syslog)(3):
 
     bf(PriorityType):
 
-        This enumberation has two values fine-tuning the type of messages that
+        This enumeration has two values fine-tuning the type of messages that
 are actually processed by the syslog daemon:
     itemization(
     itb(SINGLE)
