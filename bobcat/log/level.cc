@@ -1,9 +1,9 @@
 #include "log.ih"
 
-ostream &Log::level(size_t activeLevel)
+ostream &Log::level(size_t msgLevel)
 {
-    d_activeLevel = activeLevel;
-    setActive(d_level <= d_activeLevel);
+    d_msgLevel = msgLevel;
+    setActive(d_level <= d_msgLevel);
 
     return *this;
 }

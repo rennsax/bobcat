@@ -22,8 +22,10 @@ class Log: private LogBuf, public std::ostream
         static std::unique_ptr<Log> s_stream;
 
         std::ofstream d_stream;
-        size_t d_level;
-        size_t d_activeLevel;
+        size_t d_level;         // defined by setLevel: the level messages 
+                                // must at least have to be inserted
+
+        size_t d_msgLevel;      // the level of inserted messages
 
     public:
         static Log &instance();
@@ -46,6 +48,7 @@ class Log: private LogBuf, public std::ostream
         void  setLevel(size_t newLevel);
         void  setTimestamp(TimeStamps timeStamp, char const *delim = " ");
         void  off();                                                    // .f
+        void  on(size_t logLevel = 0);                                  // .f
 
     private:
         void init();

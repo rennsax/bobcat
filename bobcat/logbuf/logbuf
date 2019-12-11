@@ -19,9 +19,17 @@ class LogBuf: public std::streambuf
 {
     std::ostream *d_stream; // the stream to insert info to
     TimeStamps d_timestamps;// what timestamp to use?
-    bool d_active;          // actually write information or not
+    uint8_t d_active;       // actually write information or not
     bool d_empty;           // set to true at the beginning, after writing \n
     std::string d_delim;    // delimiter following time stamps
+
+    protected:
+        enum Active
+        {
+            OFF,
+            NOT_ACTIVE,
+            ACTIVE,
+        };
 
     public:
         LogBuf(LogBuf const &other) = delete;
@@ -35,15 +43,18 @@ class LogBuf: public std::streambuf
                 bool active = true,
                 char const *delim = " ");
 
-        LogBuf &operator=(LogBuf const &other) = delete;
-
         void setStream(std::ostream &stream);               // .f
         bool empty() const;                                 // .f
 
-        void setActive(bool active);                        // .f
+        bool active() const;                                // .f
+
         void settimestamp(TimeStamps timestamps, char const *delim = " ");
 
         void setEmpty(bool empty);                          // .f
+
+    protected:
+        void setActive(bool active);                        // 1.f
+        void setActive(Active active);                      // 2.f
 
     private:
         int sync() override;
@@ -57,7 +68,9 @@ class LogBuf: public std::streambuf
 };
 
 #include "empty.f"
-#include "setactive.f"
+#include "setactive1.f"
+#include "setactive2.f"
+#include "active.f"
 #include "setempty.f"
 #include "setstream.f"
 

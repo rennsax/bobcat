@@ -1,8 +1,7 @@
 #include "log.ih"
 
-void Log::setLevel(size_t newLevel)
+void Log::setLevel(size_t logLevel)
 {
-    d_level = newLevel;
-    d_activeLevel = ~0U;
-    level(d_activeLevel);
+    d_level = logLevel;
+    level(~0U);
 }

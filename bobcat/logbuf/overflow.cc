@@ -2,13 +2,14 @@
 
 int LogBuf::overflow(int ch)
 {
-    if (ch != 1 and not d_active)    // ignore the char if we're not active.
-    {                               // and if the ch. is not fnl (forced \n)
+    if (d_active == OFF)            // ignore the char if we're not active 
+        return ch;
+                                    // if the ch. is not fnl (forced \n)
+    if (ch != 1 and d_active == NOT_ACTIVE) 
+    {                                   
         if (ch == '\n')
-//        {
             d_empty = true;
-//            d_active = true;
-//        }
+
         return ch;
     }
 

@@ -1,3 +1,5 @@
+bobcat (5.02.00)
+
 bobcat (5.01.00)
 
   * Fixed a bug in the conversion mode recognition in BigInt::fromText

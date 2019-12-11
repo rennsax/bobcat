@@ -2,7 +2,7 @@
 
 streamsize LogBuf::xsputn(char const *buffer, streamsize n) 
 {
-    if (not d_active)
+    if (d_active != ACTIVE)
         return n;
 
     streamsize begin = 0;

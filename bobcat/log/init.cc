@@ -2,6 +2,6 @@
 
 void Log::init()
 {
-    d_activeLevel = ~0U;
+    d_msgLevel = ~0U;
     setLevel(0);
 }

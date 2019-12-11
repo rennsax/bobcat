@@ -36,6 +36,22 @@ values:
         them.
     )
 
+manpagesection(PROTECTED ENUMERATION)
+    The enumeration tt(Active) is used to distinguish between suspending
+message insertion when a message's level does not exceed a minimum level and
+suspending all message insertions (e.g., when suspending inserting messages
+into bf(FBB::Log) objects after calling their tt(off) member:
+    itemization(
+    itb(OFF)
+        All insertions into the tt(LogBuf) object are suspended;
+    itb(NOT_ACTIVE)
+        Insertions of messages into the tt(LogBuf) object are suspended if
+        their levels are less than the a specified minimum (as set by, e.g.,
+        tt(Log::setLevel)). 
+    itb(ACTIVE)
+        Messages are inserted
+    )
+   
 manpagesection(CONSTRUCTORS)
     itemization(
     itb(LogBuf(TimeStamps timestamps = TIMESTAMPS,
@@ -68,19 +84,16 @@ tt(Aug 5 13:52:23).
 
     Copy and move constructors (and assignment operators) are not available.
 
-manpagesection(MEMBER FUNCTIONS)
+manpagesection(PUBLIC MEMBER FUNCTIONS)
      All members of bf(std::streambuf) are available, as bf(FBB::LogBuf)
 inherits from this class. 
     itemization(
-    itb(int overflow(int c))
-    This member em(overrides) the bf(std::streambuf) member. It is
-called by tt(std::ostream) objects using bf(OFdBuf). It calls
-tt(sync()), an then it puts the next available character into the buffer. It
-returns the inserted character.
+    itb(bool active() const)
+        Returns tt(true) if log-messages are currently processed;
 
-    itb(void setActive(bool active))
-        The member function (de)activates logging. The argument bf(true)
-activates logging, the argument bf(false) deactivates it.
+    itb(bool empty() const)
+        Returns tt(true) if the object's buffer is currently empty (initially
+or after a newline character has been inserted);
 
     itb(void setStream(std::ostream &stream))
         This member may be used to switch the stream to log to. It is the
@@ -103,12 +116,21 @@ FBB::NOTIMESTAMPS delim) is ignored.
 before the next insertion. It is called as bf(setEmpty(true)) when a newline
 character (tt(\n)) is inserted, ensuring that another timestamp is prepended
 before the next insertion.
-
-    itb(int sync())
-        This member em(overrides) the bf(std::streambuf) member. It writes
-the buffer to the device associated with the file descriptor, and returns 0.
     )
 
+manpagesection(PROTECTED MEMBER FUNCTIONS)
+    itemization(
+    itb(void setActive(bool active))
+        The member function (de)activates logging. The argument bf(true)
+activates logging, the argument bf(false) deactivates it. If the current
+tt(Active) status is tt(OFF) then this member will not change the object's
+activity status. It is normally called by bf(FBB::Log::level) members;
+
+    itb(void setActive(Active active))
+        The member function (de)activates logging. The argument bf(true)
+activates logging, the argument bf(false) deactivates it.
+    )
+    
 manpagesection(EXAMPLE)
     verbinclude(../../logbuf/driver/driver.cc)
 

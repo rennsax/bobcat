@@ -4,7 +4,7 @@ LogBuf::LogBuf(TimeStamps timestamps,
                     bool active, char const *delim)
 :
     d_stream(&cerr),
-    d_active(active),
+    d_active(active ? ACTIVE : NOT_ACTIVE),
     d_empty(true)
 {
     settimestamp(timestamps, delim);

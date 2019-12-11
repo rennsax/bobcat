@@ -136,18 +136,24 @@ at the latest tt(setLevel()) call). By default, the level is set to zero,
 meaning that all information is inserted into the log stream.
 
     itb(std::ostream &level(size_t useLevel))
-        This member defines a log-level. Messages will be inserted into
-the stream when tt(useLevel) is equal to or exceeds the level set by
-    tt(setLevel). The maximum level which can be selected is
+        This member defines the log-level of messages that are going to be
+inserted. Messages are inserted when tt(useLevel) is at least equal to the
+level specified by tt(setLevel). The maximum level is
 tt(std::numeric_limits<size_t>::max()). If not even such messages should be
 inserted into the tt(ostream), then the stream should be deactivated, using
-tt(off()), see below. The selected level remains active until
-redefined. Alternatively, the tt(FBB::level) manipulator may be inserted into
-an (empty) tt(Log) object (see bf(level)(3bobcat)).
+tt(off()) (see below). The level that is specified by this member remains 
+active until another tt(level) call changes it. Alternatively, the level of
+inserted messages may be specified by inserting a tt(FBB::level) manipulator
+into a tt(Log) object (see bf(level)(3bobcat)).
 
     itb(void off())
         Prevents log messages from being generated. It may be cancelled using
-tt(setLevel) (see below).
+tt(setLevel) or tt(on) (see below).
+
+    itb(void on(size_t logLevel = 0))
+        Reactivates logging (also if tt(off) was previously called) setting
+the level messages must at least have to tt(logLevel), and setting the current
+message level to tt(std::numeric_limits<size_t>::max()).
 
     itb(void open(std::string const &filename,
             std::ios::openmode mode = std::ios::out | std::ios::app, 
@@ -163,11 +169,12 @@ stamp.  If a delimiter should not be used an empty string or a 0-pointer may
 be specified.
 
     itb(void setLevel(size_t resistance))
-        Redefines the `resistance' against message insertions. Insertions are
-performed if their `force' are equal to or exceed the tt(Log) object's
-`resistance'. The `force' of insertions is specified using tt(FBB::level). If
-tt(setLevel) is called without an explicit argument, logging is suspended
-(comparable to using the member tt(off)).
+        Defines the `resistance' when inserting information into a tt(Log)
+object. Information is inserted if the level set by the tt(level) member (or
+by the tt(FBB::level) manipulator) is at least equal to tt(resistance). 
+Calling tt(setLevel) also sets the message level to
+tt(std::numeric_limits<size_t>::max()), i.e., all subsequent 
+messages are inserted until calling tt(level) changes the message level.
 
     itb(void setTimestamp(FBB::TimeStamps stamp, char const *delim = " "))
         The member function (de)activates time stamp prepending. Use the value
