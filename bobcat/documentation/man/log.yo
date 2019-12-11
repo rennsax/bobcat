@@ -17,12 +17,12 @@ std::streambuf). It is used to send log-messages to the (r)syslog stream or to
 a (configurable) file. Refer to the bf(logbuf)(3bobcat) man-page for
 details about tt(LogBuf).
 
-Which (part of) messages are actually logged can be configured using
+Which (parts of) messages are actually logged can be configured using
 bf(FBB::level) in combination with the tt(Log) member tt(setLevel). By default
 all information that is inserted into a tt(Log) object is logged, but
 tt(level) objects (bf(level)(3bobcat)) can be inserted specifying insertion
 `forces' of the information that is subsequently inserted into tt(Log)
-objects. These `forces' are compared to insertion `resistances' that may be
+objects. These `forces' are compared to insertion `resistances' that can be
 specified by tt(Log) objects through their tt(setLevel) members.
 
 If the tt(level's) `force' is equal to or exceeds the tt(Log)
@@ -34,6 +34,14 @@ following the tt(level) call.
 Information inserted into tt(Log) objects without inserting tt(level) objects
 (or before the first tt(level) object) is always logged (see also the
 bf(Examples) section).
+
+By default logged messages are prepended by time stamps. Following the time
+stamps a delimiter (by default a single space character) is
+inserted. Delimiters are immediately appended to time stamps and inserted
+messages are immediately appended to delimiters. When specifying text as
+delimiters consider starting and ending the delimiter's text with space
+characters to visually separate the delimiter from the time stamp and from the
+subsequently inserted information.
 
 includefile(include/namespace)
 
@@ -133,7 +141,7 @@ from this class.
     itb(size_t level())
         This member returns the currently set log level (i.e., the value set
 at the latest tt(setLevel()) call). By default, the level is set to zero,
-meaning that all information is inserted into the log stream.
+meaning that all information is inserted into the log stream;
 
     itb(std::ostream &level(size_t useLevel))
         This member defines the log-level of messages that are going to be
@@ -144,16 +152,17 @@ inserted into the tt(ostream), then the stream should be deactivated, using
 tt(off()) (see below). The level that is specified by this member remains 
 active until another tt(level) call changes it. Alternatively, the level of
 inserted messages may be specified by inserting a tt(FBB::level) manipulator
-into a tt(Log) object (see bf(level)(3bobcat)).
+into a tt(Log) object (see bf(level)(3bobcat));
 
     itb(void off())
-        Prevents log messages from being generated. It may be cancelled using
-tt(setLevel) or tt(on) (see below).
+        Prevents log messages from being generated. It is cancelled by
+calling tt(on) (see below);
 
     itb(void on(size_t logLevel = 0))
-        Reactivates logging (also if tt(off) was previously called) setting
-the level messages must at least have to tt(logLevel), and setting the current
-message level to tt(std::numeric_limits<size_t>::max()).
+        Reactivates logging (e.g., after tt(off) was previously called)
+setting the level that inserted information must at least have (to
+tt(logLevel)). Following tt(on) and unless specified otherwise (e.g., by using
+tt(level)) all inserted information is accpted by the tt(Log) object;
 
     itb(void open(std::string const &filename,
             std::ios::openmode mode = std::ios::out | std::ios::app, 
@@ -166,15 +175,15 @@ all messages are appended to the stream. Also by default all messages are
 preceded by time stamps (see the description of the member tt(setTimestamp)
 below).  The parameter tt(delim) is inserted immediately beyond the time
 stamp.  If a delimiter should not be used an empty string or a 0-pointer may
-be specified.
+be specified;
 
     itb(void setLevel(size_t resistance))
         Defines the `resistance' when inserting information into a tt(Log)
-object. Information is inserted if the level set by the tt(level) member (or
-by the tt(FBB::level) manipulator) is at least equal to tt(resistance). 
-Calling tt(setLevel) also sets the message level to
-tt(std::numeric_limits<size_t>::max()), i.e., all subsequent 
-messages are inserted until calling tt(level) changes the message level.
+object. Information is inserted if the level set by the tt(level) member is at
+least equal to tt(resistance).  Following tt(setLevel) and unless specified
+otherwise (e.g., by using tt(level)) all inserted information is accpted by
+the tt(Log) object. tt(setLevel) does not reactivate loggin after calling
+tt(off). To reactivate logging after calling tt(off on) must be called;
 
     itb(void setTimestamp(FBB::TimeStamps stamp, char const *delim = " "))
         The member function (de)activates time stamp prepending. Use the value
@@ -184,8 +193,8 @@ month's name, two-digits specifying the day number of the month, and the
 (local or UTC) time of the current message, as usually appearing in messages
 in tt(/var/log) files. E.g., tt(Aug 05 13:52:23). The parameter tt(delim) is
 inserted immediately beyond the time stamp. If a delimiter is inappropriate,
-an empty string or a 0-pointer may be specified. When specifying tt(stamps ==
-FBB::NOTIMESTAMPS delim) also is ignored.
+an empty string or a 0-pointer may be specified. When specifying tt(stamps) as
+tt(FBB::NOTIMESTAMPS delim) also is ignored.
     )
 
 manpagesection(STATIC MEMBERS)

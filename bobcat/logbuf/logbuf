@@ -23,7 +23,7 @@ class LogBuf: public std::streambuf
     bool d_empty;           // set to true at the beginning, after writing \n
     std::string d_delim;    // delimiter following time stamps
 
-    protected:
+    public:
         enum Active
         {
             OFF,
@@ -31,7 +31,6 @@ class LogBuf: public std::streambuf
             ACTIVE,
         };
 
-    public:
         LogBuf(LogBuf const &other) = delete;
 
         explicit LogBuf(         // output to cerr
@@ -52,7 +51,6 @@ class LogBuf: public std::streambuf
 
         void setEmpty(bool empty);                          // .f
 
-    protected:
         void setActive(bool active);                        // 1.f
         void setActive(Active active);                      // 2.f
 

@@ -22,7 +22,7 @@ int main()
     log << fnl;
     log << "This message is not shown\n";
 
-    log.setLevel(2);
+    log.on(2);
     log << "This message is shown\n";
 
     log << level(0) << "not shown" << level(2) << "shown at level 2\n";

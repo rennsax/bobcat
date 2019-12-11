@@ -1,5 +1,21 @@
 bobcat (5.02.00)
 
+  * Added the member 'on' to the class 'Log'.
+
+  * The member Log::off suppresses logging. Suppression can be undone by
+    calling 'on'. The member 'setLevel' cannot be used anymore to reactivate
+    logging.
+
+  * Added the enumeration 'Active' to 'LogBuf' allowing derived
+    classes to deactivate or suppress logging information.
+
+  * Added the member 'LogBuf::empty' returning 'true' if the object's buffer
+    is empty.
+
+  * Added the member 'LogBuf::setActive(Active)'.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 11 Dec 2019 11:06:34 +0100
+
 bobcat (5.01.00)
 
   * Fixed a bug in the conversion mode recognition in BigInt::fromText

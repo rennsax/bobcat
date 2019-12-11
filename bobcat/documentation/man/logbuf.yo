@@ -22,7 +22,7 @@ includefile(include/namespace)
 manpagesection(INHERITS FROM)
     bf(std::streambuf)
 
-manpagesection(ENUMERATION)
+manpagesection(ENUMERATIONS)
     The enumeration bf(TimeStamps) is defined in the namespace bf(FBB) to be
 used when initializing bf(FBB::LogBuf) objects. It has the following
 values:
@@ -36,7 +36,6 @@ values:
         them.
     )
 
-manpagesection(PROTECTED ENUMERATION)
     The enumeration tt(Active) is used to distinguish between suspending
 message insertion when a message's level does not exceed a minimum level and
 suspending all message insertions (e.g., when suspending inserting messages
@@ -65,7 +64,8 @@ immediately beyond the time stamp. If a delimiter is inappropriate, an empty
 string or a 0-pointer may be specified. When bf(stamps == FBB::NOTIMESTAMPS
 delim) is ignored. A time stamp consists of the month, the day number of the
 month and the (local) time of the current message, as usually appearing in
-messages in tt(/var/log) files. E.g., tt(Aug 5 13:52:23).
+messages in tt(/var/log) files. E.g., tt(Aug 5 13:52:23);
+
         itb(LogBuf(std::ostream &stream, 
                 TimeStamps timestamps = TIMESTAMPS,
                 bool active = true,
@@ -98,7 +98,7 @@ or after a newline character has been inserted);
     itb(void setStream(std::ostream &stream))
         This member may be used to switch the stream to log to. It is the
 responsibility of the programmer to ensure that the external stream remains
-available for as long as log-messages are inserted into it.
+available for as long as log-messages are inserted into it;
 
     itb(void settimestamp(FBB::TimeStamps timestamps,
                 char const *delim = " "))
@@ -109,7 +109,20 @@ and the (local) time of the current message, as usually appearing in messages
 in tt(/var/log) files. E.g., tt(Aug 5 13:52:23). The parameter bf(delim) is
 inserted immediately beyond the time stamp. If a delimiter is inappropriate,
 an empty string or a 0-pointer may be specified. When bf(stamps ==
-FBB::NOTIMESTAMPS delim) is ignored.
+FBB::NOTIMESTAMPS delim) is ignored;
+
+    itb(void setActive(bool active))
+        Unless the current object's tt(Active) state is tt(OFF) this member
+can be used to (de)activate logging. The argument bf(true) activates logging,
+the argument bf(false) deactivates it. If the current tt(Active) status is
+tt(OFF) then this member does not change the object's activity status. This
+member is normally called by bf(FBB::Log::level) members;
+
+    itb(void setActive(Active active))
+        The member function (de)activates logging. The argument bf(ACTIVE)
+activates logging, the argument bf(OFF) completely suppresses logging, the
+argument tt(NOT_ACTIVE) also suppresses logging, but here tt(setActive(true))
+can also be used reactivate logging;
 
     itb(void setEmpty(bool empty))
         This member may be called to ensure that a timestamp is inserted
@@ -118,19 +131,6 @@ character (tt(\n)) is inserted, ensuring that another timestamp is prepended
 before the next insertion.
     )
 
-manpagesection(PROTECTED MEMBER FUNCTIONS)
-    itemization(
-    itb(void setActive(bool active))
-        The member function (de)activates logging. The argument bf(true)
-activates logging, the argument bf(false) deactivates it. If the current
-tt(Active) status is tt(OFF) then this member will not change the object's
-activity status. It is normally called by bf(FBB::Log::level) members;
-
-    itb(void setActive(Active active))
-        The member function (de)activates logging. The argument bf(true)
-activates logging, the argument bf(false) deactivates it.
-    )
-    
 manpagesection(EXAMPLE)
     verbinclude(../../logbuf/driver/driver.cc)
 
