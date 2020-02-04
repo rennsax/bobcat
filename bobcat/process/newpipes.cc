@@ -11,9 +11,3 @@ void Process::newPipes()
     if (d_mode & CERR)
         newPipe(d_iChildErrPipe);
 }
-
-
-
-
-
-

@@ -40,13 +40,13 @@ class PerlSetFSA
         Start,
         Bs,
         Set,
-        NegatedSet,
+//        NegatedSet,
         SetBs,
-        NestedSet,
+//        NestedSet,
         InsideASet,
-        NegatedSetBs,
-        NegatedNestedSet,
-        InsideANegatedSet,
+//        NegatedSetBs,
+//        NegatedNestedSet,
+//        InsideANegatedSet,
 
         nStates_
     };

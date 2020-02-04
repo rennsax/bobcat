@@ -85,7 +85,6 @@ struct Process: private Fork, private SignalHandler,
     
         int d_exitStatus;
 
-
 #ifdef BOBCAT_DIY_CLOEXEC_
         int d_closedByChild = 0;        // DIY CLOSE_ON_EXEC
 #endif

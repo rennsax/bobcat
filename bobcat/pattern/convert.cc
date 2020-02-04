@@ -1,12 +1,28 @@
-//#include <iomanip>
+#include <iomanip>
 
 #include "pattern.ih"
+
+//namespace {
+//    char const *s_state[] = 
+//    {
+//        "Start",
+//        "Bs",
+//        "Set",
+//        "NegatedSet",
+//        "SetBs",
+//        "NestedSet",
+//        "InsideASet",
+//        "NegatedSetBs",
+//        "NegatedNestedSet",
+//        "InsideANegatedSet",
+//    };
+//}
 
 void PerlSetFSA::convert(string &pattern)
 {
     d_next = pattern.begin();
 
-//cerr << "Pattern: " << pattern << endl;
+//cerr << "Pattern: " << pattern << '\n';
 
     d_target.clear();
     
@@ -16,10 +32,11 @@ void PerlSetFSA::convert(string &pattern)
     {
         int  current = *d_next;
 
-//cerr << "state: " << setw(2) << state << ", input: " << current <<
+//cerr << "state: " << s_state[state] << ", input: " << current <<
 //    " (" << static_cast<char>(current) << ") " <<
 //    " from: " <<  (s_transition[state].first - s_stateTransitions) <<
-//    ", to: "  <<  (s_transition[state].second - s_stateTransitions) << endl;
+//    ", to: "  <<  (s_transition[state].second - s_stateTransitions)
+//    << '\n';
 
                                     // set the current char in the transition
                                     // matrix
@@ -29,11 +46,15 @@ void PerlSetFSA::convert(string &pattern)
         while (mp->d_input != current)
             mp++;           // find the appropriate state transition element
 
-//cerr << "next state: " << setw(2) << mp->d_next << endl;
+//cerr << "next state: " << s_state[mp->d_next] << '\n';
         
         (this->*mp->d_action)();  // do the appropriate action
         
         state = mp->d_next;
+//cerr << "target = " << d_target << "\n\n";
+
     }
     pattern = d_target;
 }
+
+

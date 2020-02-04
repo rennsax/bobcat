@@ -14,9 +14,10 @@ manpagesynopsis()
 
 manpagedescription()
     bf(Stat) is a wrapper around the bf(stat)(2) system function. In
-particular, it offers features to test directly for object
-characteristics offered by bf(stat)(2). To determine whether an object exists
-the tt(Stat bool) conversion operator can be used.
+particular, it offers features to test directly for object characteristics
+offered by bf(stat)(2). To determine whether an object could properly be
+constructed use the tt(Stat bool) conversion operator. If this operator
+returns tt(false) then no other member except for tt(error) should be used.
 
 includefile(include/namespace)
 
@@ -70,9 +71,12 @@ manpagesection(ENUMERATIONS)
 manpagesection(CONSTRUCTORS)
     itemization(
     itb(Stat())
-        The default constructor, creating an empty bf(Stat) object.
+       The default constructor, creating an empty bf(Stat) object. It's
+        mainly used as default object when defining, e.g., vectors of tt(Stat)
+        objects. As it doesn't refer to an existing file system entry its
+        tt(operator bool) returns false;
     itb(Stat(std::string const &fname))
-       Initializes a bf(Stat) with a given object name.
+       Initializes a bf(Stat) with a given object name;
     itb(Stat(std::string const &fname, std::string const &searchPath))
        Initializes a bf(Stat) with a given object name, where the object is
         searched in the tt(searchPath) directories, which is a colon-separated
@@ -88,7 +92,9 @@ manpagesection(OVERLOADED OPERATORS)
     itemization(
     itb(operator bool() const)
        This operator returns tt(true) if the tt(Stat) object holds information
-        about an existing object. Otherwise tt(false) is returned.
+        about an existing object. Otherwise tt(false) is returned. When
+        tt(false) is returned other members, except for tt(error), should not
+        be used.
     )
 
 manpagesection(MEMBER FUNCTIONS)
@@ -117,7 +123,9 @@ manpagesection(MEMBER FUNCTIONS)
     itb(size_t error() const)
        Returns the error number associated with an error, in cases where
         bf(operator bool()) returns bf(false). A returned value of 0 indicates
-        `no errors'.
+        `no errors'. To obtain a verbal transcription of returned error
+        numbers the tt(Exception::errnodescr) manipulator (cf. 
+        bf(exception)(3bobcat)) can be used.
     itb(bool isType(Stat::Type probe))
        Returns tt(true) if the object has the probed type otherwise tt(false)
         is returned.

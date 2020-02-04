@@ -147,14 +147,14 @@ tt(CIN | COUT | CERR) is used (see below).
            Information written by the child process to its standard output
             stream may be directly be extracted from the tt(Process) object,
             or from its tt(childOutStream) member.  If this is not required
-            then tt(CERR) should not be specified.
+            then tt(COUT) should not be specified.
         itb(DIRECT) 
            When starting a child process (see below at the member tt(start))
             the current process (i.e., the program defining the tt(Process)
             object) is replaced by the child process, inheriting the current
             process's standard input and output streams. If this mode is
             specified in combination with any other tt(IOMode) (except for
-            tt(STD), see below) an tt(std::invalid_argument) exception is
+            tt(NONE), see below) an tt(std::invalid_argument) exception is
             thrown.
         itb(IGNORE_CERR)
            Information written by the child process to its standard error
@@ -391,7 +391,7 @@ final process:
 
     Process p1(Process::CIN, "/bin/cat"); 
     Process p2("/bin/cat");
-    Process p3(Process::STD, "/bin/cat");
+    Process p3(Process::NONE, "/bin/cat");
 
     p1 | p2 | p3;
 
@@ -473,15 +473,11 @@ running child process; otherwise its behavior is undefined. Alternatively, the
 tt(close) member or tt(eoi) manipulator may be used. The exit-status of the
 called child process is returned.
 
-    itb(std::istream &errStream())
-        This member may be used to extract information written by the child
-process to its standard error stream.  This member should only be used when
-tt(IOMode CERR) was specified for the currently running child process;
-otherwise its behavior is undefined.nl()
-
     itb(int exitStatus() const)
         After calling tt(eoi) or inserting the tt(eoi) manipulator into the
-tt(Process) object this member returns the child process's exit status.
+tt(Process) object this member returns the child process's exit status. In
+other cases the value returned by tt(exitStatus) is not defined, and
+tt(waitForChild) should be used.
 
     itb(IOMode ioMode() const)
         This member returns the default tt(IOMode). If called while a child

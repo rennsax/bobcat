@@ -1,3 +1,11 @@
+bobcat (5.03.00)
+
+  * Fixed the  PerlSetFSA s_stateTransitions FSA used by Pattern: 
+
+  * Updated the Stat and Process man-pages
+
+
+
 bobcat (5.02.00)
 
   * Added the member 'on' to the class 'Log'.

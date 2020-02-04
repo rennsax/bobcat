@@ -19,7 +19,8 @@ void Process::start(IOMode mode, ProcessType type, size_t timeLimit,
                                         // not yet using the time limit
                                         // thread
     d_limit = thread(limiter, this);
-    forking();
+
+    forking();                          // execute the requested command
 
     setBufSize(savedBufSize);
     d_mode = d_setMode;                     // revert to the default process
