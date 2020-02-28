@@ -17,9 +17,8 @@ void Process::closeChildInputOnExec()
         };
 #endif
 
-    closeWriteFd(d_oChildInPipe);
                                     // OFdBuf set at parentRedirections
-    d_oChildInPipe = Pipe(writeDup);
+    d_oChildInPipe = Pipe{ writeDup };
 }
 
 

@@ -29,10 +29,14 @@ redirected to an existing stream whose file descriptor is known, like tt(cin)
     When a tt(Pipe) object goes out of scope, no bf(close)(2) operation is
 performed on the pipe's file descriptors. After setting up the pipe using the
 tt(Pipe's) member functions and passing the tt(Pipe's) file descriptors to
-code that uses the tt(Pipe's) descriptors, the tt(Pipe) object could in fact
-safely be destroyed. If the pipe should be closed at destruction time, a class
-could be derived from bf(Pipe)(3bobcat), whose destructor performs the
-required closing-operation.
+code that uses the tt(Pipe's) descriptors, the tt(Pipe) object might even be
+destroyed. The using code is responsible for closing the pipe. If the pipe
+should be closed at destruction time, then a class could be derived from
+bf(Pipe)(3bobcat), whose destructor may then close the pipe. Alternatively,
+tt(Pope's close) member can be called. 
+
+    The value -1 indicates that a file descriptor does not refer to a
+bf(pipe)(2) file descriptor.
 
 includefile(include/namespace)
 
@@ -42,7 +46,7 @@ manpagesection(INHERITS FROM)
 manpagesection(CONSTRUCTORS)
     itemization(
     itb(Pipe())
-        The default tt(Pipe) constructor constructs a basic pipe, calling
+        The default tt(Pipe) constructor constructs a pipe, calling
 bf(pipe)(2). 
 
     This constructor throws an tt(Exception) exception if the default tt(Pipe)
@@ -50,17 +54,41 @@ constructor did not properly complete.  The thrown bf(Exception) object's
 tt(which()) member shows the system's tt(errno) value set by the failing
 bf(pipe)(2) function.
 
+    itb(Pipe(Pipe &&tmp))
+        The move constructor moves the temporary object's file descriptors to
+the tt(Pipe) object being constructed.
+
     itb(Pipe(int const *fd))
-        This constructor expects two file descriptors, which already define a
-pipe, stored at tt(fd). Following the construction of the tt(Pipe) object 
-the array pointed at by tt(fd) is no longer used by the tt(Pipe) object.
+        This constructor expects two file descriptors, referring to the read
+and write file descriptors as returned by bf(pipe)(2).
+
+    itb(Pipe(bool initialize))
+        This constructor can be used when the tt(Pipe) object should not be
+associated with an existing pipe. Instead it initializes its read and write
+file descriptors to -1. This constructor may be used in classes that define
+tt(Pipe) data members that only after the object is constructed can open their
+pipes. Having constructing a tt(Pipe obj(false)) object it can be associated
+with an open pipe using tt(obj = Pipe{}). When passing the argument tt(true)
+it calls tt(Pipe()) to construct a pipe. 
     )
 
-    Copy and move constructors (and assignment operators) are available.
+    The move constructor and move assignment operator are available. Copy
+construction and copy assignment are not defined.
 
 manpagesection(MEMBER FUNCTIONS)
 
     itemization(
+    itb(void close())
+        Both file descriptors of the tt(Pipe) object are closed;
+
+    itb(void closeReadFd())
+        The file descriptor of the tt(Pipe) object that is associated with the
+reading end of the pipe is closed;
+
+    itb(void close WriteFd())
+        The file descriptor of the tt(Pipe) object that is associated with the
+writing end of the pipe is closed;
+
     itb(int readFd() const)
         Returns the pipe's file descriptor that is used for reading
 
@@ -82,6 +110,11 @@ reading from any of the bf(n) provided filedescriptors (experimental).
 descriptor. This member can be used, e.g., to construct an tt(IFdStream)
 object to extract the information that is inserted into the write-end of the
 pipe. 
+
+    itb(void swap(Pipe &other))
+        The current and other tt(Pipe) objects are swapped. Following this
+call the current tt(Pipe) objects refer to the other object's pipe file
+descriptors and vice versa.
 
     itb(int writeFd() const)
         Returns the pipe's file descriptor that is used for writing.
@@ -121,13 +154,15 @@ reading file descriptor;
 writing file descriptor
     )
 
-manpagesection(PROTECTED DATA)
+manpagesection(PROTECTED MEMBER FUNCTION)
+
     itemization(
-    itb(int d_fd[2]) 
-        The array holding the pipe's file descriptors. The bf(READ) element
-contains the pipe's reading file descriptor, the bf(WRITE) element
-contains the pipe's writing file descriptor,
+    itb(void close(RW rw))
+        When passing argument RW::READ to this member the reading end of the
+tt(Pipe) object's pipe is closed. When passing argument RW::WRITE the writing
+end of the tt(Pipe) object's pipe is closed.
     )
+
 
 manpagesection(EXAMPLE)
         verb(
@@ -190,6 +225,5 @@ manpagebugs()
 performed on the pipe's ends. If the pipe should be closed by the desctructor,
 derive a class from bf(Pipe)(3bobcat), whose destructor performs the required
 closing-operation.
-
 
 includefile(include/trailer)

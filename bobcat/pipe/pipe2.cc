@@ -1,7 +1,8 @@
 #include "pipe.ih"
 
-Pipe::Pipe(int const *fd)
+Pipe::Pipe(Pipe &&tmp)
+:
+    d_fd{ -1, -1}
 {
-    d_fd[READ] = fd[READ];
-    d_fd[WRITE] = fd[WRITE];
+    FBB::fswap(*this, tmp);
 }

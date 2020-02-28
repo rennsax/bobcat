@@ -11,9 +11,7 @@ int Process::stop()
     d_iChildOutbuf.reset(-1);
     d_iChildErrbuf.reset(-1);
 
-    closeWriteFd(d_oChildInPipe);
-    closeReadFd(d_iChildOutPipe);
-    closeReadFd(d_iChildErrPipe);
+    closePipes();
 
     discontinue(d_child);
 
@@ -23,10 +21,3 @@ int Process::stop()
 
     return d_child.ret;
 }
-
-
-
-
-
-
-

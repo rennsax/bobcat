@@ -7,7 +7,7 @@ void Process::childRedirections()
 
     if (d_mode & MERGE_COUT_CERR)             //  cout/cerr to 1 pipe
     {
-        int fd[] = {STDOUT_FILENO, STDERR_FILENO};
+        int fd[] = { STDOUT_FILENO, STDERR_FILENO };
         d_iChildOutPipe.writtenBy(fd, 2);
     }
     else
@@ -26,7 +26,7 @@ void Process::childRedirections()
                 throw Exception{} << "Process " << d_command << 
                                                     ": can't open /dev/null";
 
-            Redirector redirector(fd);
+            Redirector redirector{ fd };
   
             if (d_mode & IGNORE_COUT)                   //  ignores COUT
                 redirector.swallow(Redirector::STDOUT);

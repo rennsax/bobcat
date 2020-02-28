@@ -2,8 +2,6 @@
 
 void Process::newPipe(Pipe &pipe)
 {
-    closeReadFd(pipe);
-    closeWriteFd(pipe);
-
-    pipe = Pipe();
+    pipe.close();
+    pipe = Pipe{};
 }

@@ -2,13 +2,13 @@
 
 void Pipe::readFrom(int const *fd, size_t n)
 {
-    close(d_fd[WRITE]);
+    close(WRITE);
 
-    for (size_t idx = 0; idx < n; ++idx)
+    for (size_t idx = 0; idx != n; ++idx)
     {
-        Redirector r(d_fd[READ]);
-        r.swallow(fd[idx]);
+        Redirector redirector{ d_fd[READ] };
+        redirector.swallow(fd[idx]);
     }
 
-    close(d_fd[READ]);
+    close(READ);
 }

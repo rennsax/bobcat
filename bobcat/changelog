@@ -2,9 +2,15 @@ bobcat (5.03.00)
 
   * Fixed the  PerlSetFSA s_stateTransitions FSA used by Pattern: 
 
-  * Updated the Stat and Process man-pages
+  * Updated the Stat, Pipe, and Process man-pages
 
+  * Pipe has several new members (e.g., for closing pipes); its d_fd array of
+    file descriptors is now a private data member.
 
+  * Process defines its own 'waitForChild' instead of simply calling the
+    member inherited from 'Fork'
+
+  * Process avoids open pipes after completingchildprocesses
 
 bobcat (5.02.00)
 

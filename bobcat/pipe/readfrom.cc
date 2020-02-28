@@ -1,11 +1,12 @@
 #include "pipe.ih"
 
-void Pipe::readFrom(int fd)
-{
-    close(d_fd[WRITE]);
+void Pipe::readFrom(int fd)         // read from file descriptor fd 
+{                                   // instead of the pipe's fd
 
-    Redirector  d(d_fd[READ]);
-    d.swallow(fd);
+    close(WRITE);             // we're reading, not writing
 
-    close(d_fd[READ]);
+    Redirector  redirect{ d_fd[READ] }; // perform the redirection: 
+    redirect.swallow(fd);               // read from fd.
+
+    close(READ);              // don't need this anymore, as fd is used
 }

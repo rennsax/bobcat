@@ -22,7 +22,7 @@ class CinInserter: public IUO::CloseMode, private Exec,
                    private OFdBuf, public std::ostream
 {
     size_t d_bufSize;
-    Pipe d_oChildInPipe;           // cin read by the CHILD
+    Pipe d_oChildInPipe = Pipe{ false };    // cin to be read by the CHILD
     void (*d_modeFun)();
     bool d_stopped = true;
     

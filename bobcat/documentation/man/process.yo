@@ -40,10 +40,11 @@ object goes out of scope, if its tt(stop) or tt(eoi) (end-of-information)
 member is called, or if the tt(eoi) manipulator is inserted into the
 tt(Process) object.
 
-Programs to be called as child processes may be specified at tt(Process's)
-constructor-time or through tt(Process's setCommand) member. tt(Process)
-constructors (or tt(Process set)-members) never start child processes. Child
-processes are started through tt(start) members or the assignment operator.
+Programs called as child processes may be specified when constructing a
+tt(Process) object or by using  tt(Process's setCommand)
+member. tt(Process) constructors (or tt(Process set)-members) never start
+child processes. Child processes are started through tt(start) members or the
+assignment operator.
 
 Child processes may receive information at their standard input streams
 through information inserted into tt(Process) objects. In these cases the
@@ -88,6 +89,12 @@ process through the tt(Process's ostream) and tt(istream)
 facilities. Alternatively, unspecified amounts of information written by child
 processes may be processed by separate threads (cf. this manual page's
 bf(EXAMPLES) section).
+
+tt(Process) objects use tt(Pipe) objects (cf. bf(pipe)(3bobcat)) for
+communication with its child processes. To ensure that these pipes are
+properly closed the members tt(waitForChild, stop) or the tt(eoi) manipulator
+should be used. Once a tt(Process) object ceases to exist pipes to its child
+process are also closed.
 
 includefile(include/namespace)
 
@@ -375,12 +382,13 @@ tt(Process::CIN) for tt(p3). In fact, most tt(IOMode) flags of processes
 passed to tt(operator|) are ignored or modified. Acceptable tt(IOModes) are
 tt(Process::IGNORE_CERR) and tt(Process::CERR) (accepted for all processes),
 tt(Process::CIN) (accepted for the first process of the chain), and
-tt(Process::COUT) (for the last process of the chain). After connecting a
-series of processes using tt(operator|) all input and output (except for the
-standard error streams) is handled through the last process: if
-tt(Process::CIN) is specified for the first process then this mode is
-transferred to the last process, so information inserted into the last process
-enters the pipe through the first process's standard input.
+tt(Process::COUT) (for the last process of the chain). 
+
+bf(Note:) when connecting a series of processes using tt(operator|) all input
+and output (except for the standard error streams) is handled through the last
+process: if tt(Process::CIN) is specified for the first process then this mode
+is transferred to the last process, so information inserted into the last
+process enters the pipe through the first process's standard input.
 
     The next example illustrates how input can be inserted into the first
 process from a main process and sent to the standard output stream by the
@@ -399,10 +407,10 @@ final process:
 
     p3 << cin.rdbuf() << eoi;
         )    
-    Note that when specifying multiple commands using the piping operator
-(tt('|')), traditionally tt(USE_SHELL) had to be specified, as the traditional
-piping operator is a shell-feature. tt(Process's operator|) handles I/O piping
-itself, and thus avoids the additional shell process.
+    When joining multiple commands using the piping operator (tt('|')), the
+process type tt(USE_SHELL) is not required, even though process-piping is
+commonly used as a shell-feature. tt(Process's operator|) handles I/O piping
+itself, and thus can avoid the additional shell process.
     )
 
 manpagesection(MEMBERS)
@@ -618,12 +626,13 @@ call tt(stop) explicitly. Also, tt(stop) is called when the tt(Process) object
 goes out of scope.
 
     itb(int waitForChild())
-        This member is inherited from the class tt(FBB::Fork). It waits for a
+        This member calls the identically named member from the class
+tt(FBB::Fork), waiting for a 
 child process to end. It is called to prevent premature termination of a
 child process before calling tt(stop). It is not always necessary to call
 tt(waitForChild). E.g., when a process writes to its standard output stream
 and all output has been read then the child process can be stopped without
-calling tt(waitForChild).
+calling tt(waitForChild). 
     )
 
 manpagesection(MANIPULATOR)

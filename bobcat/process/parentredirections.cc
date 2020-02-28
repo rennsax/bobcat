@@ -2,7 +2,7 @@
 
 void Process::parentRedirections()
 {
-    d_selector = Selector();
+    d_selector = Selector{};
 
     if (d_setMode & CLOSE_ON_EXEC)
         closeChildInputOnExec();
@@ -30,7 +30,7 @@ void Process::parentRedirections()
         }
     }
     else
-        closeWriteFd(d_iChildOutPipe);
+        d_iChildOutPipe.closeWriteFd();
 
     if (d_mode & CERR)
     {

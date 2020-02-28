@@ -1,0 +1,6 @@
+#define LIBRARY             "pipe"
+
+#define AUXFLAGS              "-I../tmp -pthread"
+
+#include "../icmconf"
+

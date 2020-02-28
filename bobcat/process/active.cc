@@ -12,9 +12,3 @@ bool Process::active()
         
     return d_child.pid;
 }
-
-
-
-
-
-

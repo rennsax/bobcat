@@ -4,7 +4,6 @@ Process::~Process()
 {
     stop();
 
-//    delete d_data;      // delete additional data
     Signal::instance().remove(SIGCHLD, *this);  
 }
 

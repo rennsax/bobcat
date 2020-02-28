@@ -12,6 +12,10 @@ Process::Process(IOMode mode, ProcessType processType,
 
     d_command(command),
 
+    d_oChildInPipe(false),    // cin read by the CHILD
+    d_iChildOutPipe(false),   // cout written by the CHILD
+    d_iChildErrPipe(false),   // cerr written by the CHILD    
+
     d_oChildIn(0),          // initialize the streams with 0-buffers
     d_iChildOut(0),
     d_iChildErr(0),

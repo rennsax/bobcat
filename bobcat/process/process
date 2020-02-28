@@ -11,6 +11,8 @@
 #include <bobcat/fork>
 #include <bobcat/string>
 #include <bobcat/pipe>
+#include "../pipe/pipe"
+
 #include <bobcat/selector>
 #include <bobcat/ifdbuf>
 #include <bobcat/ofdbuf>
@@ -107,7 +109,7 @@ struct Process: private Fork, private SignalHandler,
 
         ~Process() override;                 // stop()s any ongoing process
 
-        Process &operator=(Process const &other) = delete;
+            Process &operator=(Process const &other) = delete;
 
         size_t bufSize() const;             // returns current buffer size  .f
         IOMode ioMode() const;              // returns default IOMode       .f
@@ -158,6 +160,7 @@ struct Process: private Fork, private SignalHandler,
         Process &operator<<(std::ostream &(*pf)(std::ostream &));
 
         int stop();                     // terminate a running childprocess
+
         void close();                           // closes input to the child
         int eoi();                              // closes input and waits for
                                                 // the child to end
@@ -185,33 +188,39 @@ struct Process: private Fork, private SignalHandler,
         size_t available();                     // returns ChildOutput bit_or
                                                 // (cf. manpage)
 
+        int waitForChild();
+
         void showMode(char const *lab) const;
 
     private:
 
-        void childProcess() override;
         void childRedirections() override;
-        void parentProcess() override;
+        void childProcess() override;
+
         void parentRedirections() override;
+        void parentProcess() override;
 
         void signalHandler(size_t signum) override;
 
         void eoi_() override;
 
-        void newPipe(Pipe &pipe);
+        void newPipe(Pipe &pipe);           // close and reopen pipe.
+        void newPipes();                    // close and reopen all necessary 
+                                            // pipes
+
         pid_t discontinue(RetPid &proc);
         ChildOutput whichStream();
+
         void close(int fd);
-        void closeWriteFd(Pipe &pipe);
-        void closeReadFd(Pipe &pipe);
+
+        void closePipes();
+
         void rmBackticks();
 
         void forking();
 
         IOMode sanitizeIOMode(IOMode mode);
-        void newPipes();
         void closeChildInputOnExec();
-
 
         typedef std::string::const_iterator ConstIter;
         struct ExecContext;

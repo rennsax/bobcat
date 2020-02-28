@@ -2,6 +2,6 @@
 
 int Pipe::writeOnly()
 {
-    close(d_fd[READ]);
+    close(READ);
     return d_fd[WRITE];
 }

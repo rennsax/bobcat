@@ -36,7 +36,8 @@ Process &operator|(Process &lhs, Process &rhs)
                                                 // to the 1st process
 #endif
 
-    rhs.d_oChildInPipe = lhs.d_iChildOutPipe; 
+    rhs.d_oChildInPipe.swap(lhs.d_iChildOutPipe); 
+
                             // copy the input fm the lhs's child to the rhs's
                             // output. lhs.iChildOutPipe only has an open
                             // read-pipe and will be available to the rhs's
