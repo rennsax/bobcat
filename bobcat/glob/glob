@@ -1,6 +1,7 @@
 #ifndef INCLUDED_BOBCAT_GLOB_
 #define INCLUDED_BOBCAT_GLOB_
 
+#include <unordered_set>
 #include <string>
 #include <glob.h>
 
@@ -45,6 +46,9 @@ class Glob: public GS__
                 int flags = PERIOD, Dots dots = FIRST);
         Glob(Glob &&tmp);                                           // 3
         Glob(Glob const &other);                                    // 4
+        Glob(std::unordered_set<Type> const &type,                  // 5
+                std::string const &pattern = "*",           
+                int flags = PERIOD, Dots dots = FIRST);
 
         ~Glob();
 
@@ -62,8 +66,9 @@ class Glob: public GS__
         char const **mbegin() const;                    // .f
         char const **mend() const;                      // .f
 
-        void accept(Type type);
+        void accept();
 
+        static std::unordered_set<Type> fillSet(Type type);
         static bool isDot(char const *cp);
 };
 

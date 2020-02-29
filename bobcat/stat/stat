@@ -57,12 +57,22 @@ class Stat: public GS__
            RWX =  0777,
         };
 
-        Stat();                                                         // 1
-        explicit Stat(std::string const &name);                         // 2
-        Stat(std::string const &name, std::string const &pathlist);     // 1.f
+        enum Lstat
+        {
+            LStat
+        };
+
+        Stat();                                                     // 1.cc
+        Stat(Lstat);                                                // 2.f
+        explicit Stat(std::string const &name);                     // 3.cc
+        Stat(Lstat, std::string const &name);                       // 4.f
+        Stat(std::string const &name, std::string const &pathlist); // 5.f
+        Stat(Lstat, std::string const &name,                        // 6.f
+             std::string const &pathlist); 
 
         Stat(Stat const &other) = default;
-        Stat(Stat &&tmp);                                               // 3
+        Stat(Stat &&tmp);                                           // 7.cc
+
 
         Stat &operator=(Stat const &other) = default;
         Stat &operator=(Stat &&tmp);
@@ -75,8 +85,15 @@ class Stat: public GS__
         Type type() const;                                              // .f
         bool isType(Type probe);                                        // .f
         bool mode(size_t mode, Combine combi = ALL) const;
-        bool set(std::string const &name);
-        bool set(std::string const &name, std::string const &pathlist);
+
+        bool set(std::string const &name);                              // 1.cc
+        bool set(Lstat, std::string const &name);                       // 2.f
+
+        bool set(std::string const &name, std::string const &pathlist); // 3.cc
+        bool set(Lstat, std::string const &name,                        // 4.f
+                 std::string const &pathlist);
+
+
         bool specialMode(size_t specialMode, Combine combi = ALL) const;
         off_t size() const;                                             // .f
         operator bool() const;                                          // .f
@@ -97,11 +114,17 @@ class Stat: public GS__
         std::string typeStr() const;
 
     private:
-        void init();
+        void init(int (*statFun)(char const *, stat *));
+        bool setPath(int (*statFun)(char const *, stat *),
+                     std::string const &name, std::string const &pathlist);
+        bool set(int (*statFun)(char const *, stat *),                  // 5.cc
+                 std::string const &name);
 };
 
-#include "stat1.f"
-
+#include "stat6.f"
+#include "stat2.f"
+#include "stat4.f"
+#include "stat5.f"
 #include "blocksize.f"
 #include "device.f"
 #include "devicetype.f"
@@ -117,6 +140,8 @@ class Stat: public GS__
 #include "nblocks.f"
 #include "nlinks.f"
 #include "opbool.f"
+#include "set2.f"
+#include "set4.f"
 #include "size.f"
 #include "statstruct.f"
 #include "type.f"

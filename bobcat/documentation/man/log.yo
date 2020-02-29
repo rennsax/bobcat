@@ -182,7 +182,7 @@ be specified;
 object. Information is inserted if the level set by the tt(level) member is at
 least equal to tt(resistance).  Following tt(setLevel) and unless specified
 otherwise (e.g., by using tt(level)) all inserted information is accpted by
-the tt(Log) object. tt(setLevel) does not reactivate loggin after calling
+the tt(Log) object. tt(setLevel) does not reactivate logging after calling
 tt(off). To reactivate logging after calling tt(off on) must be called;
 
     itb(void setTimestamp(FBB::TimeStamps stamp, char const *delim = " "))

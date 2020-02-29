@@ -1,9 +1,10 @@
 #include "stat.ih"
 
-bool Stat::set(string const &name, string const &pathlist)
+bool Stat::setPath(int (*statFun)(char const *, stat *),
+                   string const &name, string const &pathlist)
 {
     if (name[0] == '/')
-        return set(name);
+        return set(statFun, name);
 
     vector<string> element;
     String::split(&element, pathlist, ":");
@@ -15,7 +16,7 @@ bool Stat::set(string const &name, string const &pathlist)
                 ++it
     )
     {
-        if (set(*it + "/" + name))
+        if (set(statFun, *it + "/" + name))
             return true;
     }
 

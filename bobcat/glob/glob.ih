@@ -14,7 +14,7 @@ struct Glob::GlobShare
 {
     glob_t      globStruct;
     size_t      users;
-    size_t      gsType;
+    unordered_set<Type> gsType;
     char      **begin;
     char      **end;
     size_t      size;

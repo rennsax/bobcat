@@ -1,19 +1,24 @@
 #include "glob.ih"
 
-void Glob::accept(Type type)
+void Glob::accept()
 {
     auto begin = d_share->begin = new char *[d_share->globStruct.gl_pathc];
     auto dest = begin;
 
+    auto gsTypeEnd = d_share->gsType.end();
+
     for 
     (
         auto src = d_share->globStruct.gl_pathv, 
-                                    end = src + d_share->globStruct.gl_pathc;
+             end = src + d_share->globStruct.gl_pathc;
             src != end;
                 ++src
     )
     {
-        if (Stat(*src).type() & type)
+        if (d_share->gsType.find( 
+                static_cast<Type>(Stat(Stat::LStat, *src).type() & ANY)) 
+                     != gsTypeEnd
+        )
             *dest++ = *src;             // copy the pointer if type is OK
     }
 

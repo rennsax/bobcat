@@ -52,7 +52,7 @@ void install(string request, string dest)
         logInstall("tmp/manhtml", "", target);
     
         logInstall("documentation/man",  LIBRARY ".jpg", target);
-    
+  
         chdir(g_cwd + target);
         run("ln -sf " LIBRARY ".7.html index.html");
     

@@ -2,5 +2,5 @@
 
 Stat::Stat()
 {
-    init();
+    init(::stat);
 }

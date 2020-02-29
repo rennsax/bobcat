@@ -6,7 +6,7 @@ void logRecursive(string src, string dest)
     list dirs;
     string next;
     int idx;
-        
+
     chdir(g_cwd);
 
     if (!exists(src))
