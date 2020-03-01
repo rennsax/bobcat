@@ -63,15 +63,14 @@ class Stat: public GS__
         };
 
         Stat();                                                     // 1.cc
-        Stat(Lstat);                                                // 2.f
+        Stat(Stat const &other) = default;
+        Stat(Stat &&tmp);                                           // 2.cc
+
         explicit Stat(std::string const &name);                     // 3.cc
         Stat(Lstat, std::string const &name);                       // 4.f
         Stat(std::string const &name, std::string const &pathlist); // 5.f
         Stat(Lstat, std::string const &name,                        // 6.f
              std::string const &pathlist); 
-
-        Stat(Stat const &other) = default;
-        Stat(Stat &&tmp);                                           // 7.cc
 
 
         Stat &operator=(Stat const &other) = default;
@@ -92,7 +91,6 @@ class Stat: public GS__
         bool set(std::string const &name, std::string const &pathlist); // 3.cc
         bool set(Lstat, std::string const &name,                        // 4.f
                  std::string const &pathlist);
-
 
         bool specialMode(size_t specialMode, Combine combi = ALL) const;
         off_t size() const;                                             // .f
@@ -122,7 +120,6 @@ class Stat: public GS__
 };
 
 #include "stat6.f"
-#include "stat2.f"
 #include "stat4.f"
 #include "stat5.f"
 #include "blocksize.f"

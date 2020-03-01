@@ -13,11 +13,12 @@ manpagesynopsis()
     Linking option: tt(-lbobcat) 
 
 manpagedescription()
-    bf(Stat) is a wrapper around the bf(stat)(2) system function. In
-particular, it offers features to test directly for object characteristics
-offered by bf(stat)(2). To determine whether an object could properly be
-constructed use the tt(Stat bool) conversion operator. If this operator
-returns tt(false) then no other member except for tt(error) should be used.
+    bf(Stat) is a wrapper around the bf(stat)(2) and bf(lstat)(2) system
+functions. In particular, it offers features to test directly for object
+characteristics offered by these two functions. To determine whether an object
+could properly be constructed use the tt(Stat bool) conversion operator. If
+this operator returns tt(false) then no other member except for tt(error)
+should be used.
 
 includefile(include/namespace)
 
@@ -68,6 +69,26 @@ manpagesection(ENUMERATIONS)
             enumeration,  defines the following values:
         includefile(gs.inc)
 
+    bf(Stat::Lstat): nl()
+       This enumeration has one value: tt(LStat), which can be specified by
+        construtors and some members when the tt(Stat) object should
+        distinguish regular files and symbolic links (calling bf(lstat)(2))
+        instead of considering symbolic links as regular files (using
+        bf(stat)(2)). 
+
+        Constructors and members that define tt(Stat::Lstat) parameters call
+        bf(lstat)(2), thus distinguishing symbolic links from regular files,
+        while constructors and members that do not define tt(Stat::Lstat)
+        parameters use bf(stat)(2).
+
+        The return values of the members tt(statStruct) and tt(type) and
+        tt(typeStr) (see below) only distinguish symbolic links from regular
+        files when the tt(Stat::LStat) argument has been used.
+
+        The constructors and member functions listed below for which
+        tt([Stat::Lstat,]) is specified as first paramter may optionally
+        specify the tt(Stat::LStat) argument.
+
 manpagesection(CONSTRUCTORS)
     itemization(
     itb(Stat())
@@ -75,9 +96,10 @@ manpagesection(CONSTRUCTORS)
         mainly used as default object when defining, e.g., vectors of tt(Stat)
         objects. As it doesn't refer to an existing file system entry its
         tt(operator bool) returns false;
-    itb(Stat(std::string const &fname))
+    itb(Stat([Stat::Lstat,] std::string const &fname))
        Initializes a bf(Stat) with a given object name;
-    itb(Stat(std::string const &fname, std::string const &searchPath))
+    itb(Stat([Stat::Lstat,] std::string const &fname, std::string const
+        &searchPath)) 
        Initializes a bf(Stat) with a given object name, where the object is
         searched in the tt(searchPath) directories, which is a colon-separated
         string of directory names. The filenames are constructed by appending
@@ -134,13 +156,13 @@ manpagesection(MEMBER FUNCTIONS)
     itb(size_t gid() const)
         Returns the group ID of the object's owner (tt(st_gid)).
     itb(FBB::DateTime lastAccess() const)
-        Returns a bf(FBB::DateTime) object holding information about the
+        Returns an bf(FBB::DateTime) object holding information about the
         object's time of last access (tt(st_atime)) (using UTC).
     itb(FBB::DateTime lastChange() const)
-        Returns a bf(FBB::DateTime) object holding information about the
+        Returns an bf(FBB::DateTime) object holding information about the
         object's time of last status change (tt(st_ctime)) (using UTC).
     itb(FBB::DateTime lastModification() const)
-        Returns a bf(FBB::DateTime) object holding information about the
+        Returns an bf(FBB::DateTime) object holding information about the
         object's last modification time (tt(st_mtime)) (using UTC).
     itb(size_t mode() const)
        Returns the object's raw, uninterpreted mode (tt(st_mode & RWX)). Note
@@ -173,10 +195,11 @@ manpagesection(MEMBER FUNCTIONS)
     itb(std::string path() const)
         Returns the object's full pathname. If the full pathname could not be
         determined, an empty string is returned.
-    itb(bool set(std::string const &name))
+    itb(bool set([Stat::Lstat,] std::string const &name))
        Redefine the bf(Stat) object to represent the information about
         the indicated object name.
-    itb(bool set(std::string const &name, std::string const &pathlist))
+    itb(bool set([Stat::Lstat,] std::string const &name, std::string const
+        &pathlist)) 
        Redefine the bf(Stat) object to represent the information about the
         indicated object name, where the object is searched in the
         tt(pathlist) directories, which is a colon-separated string of
@@ -214,7 +237,7 @@ manpagefiles()
     em(bobcat/stat) - defines the class interface
 
 manpageseealso()
-    bf(bobcat)(7), bf(glob)(3bobcat), bf(stat)(2)
+    bf(bobcat)(7), bf(glob)(3bobcat), bf(stat)(2), bf(lstat)(2)
 
 manpagebugs()
     None Reported.

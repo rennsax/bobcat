@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-#include <bobcat/stat>
+#include "../stat"
 #include <bobcat/datetime>
 
 using namespace std;
@@ -15,15 +15,32 @@ int main(int argc, char **argv)
 {
     if (argc == 1)
     {
-        cout << "Usage: driver object [colon-separated searchpath]\n";
+        cout << "Usage: driver [-l] object [colon-separated searchpath]\n";
         return 1;
+    }
+
+    bool lstat = "-l"s == argv[1];
+    if (lstat)
+    {
+        ++argv;
+        --argc;
     }
 
     Stat st;
     if (argc == 2)
-        st.set(argv[1]);
+    {
+        if (lstat)
+            st.set(Stat::LStat, argv[1]);
+        else
+            st.set(argv[1]);
+    }
     else if (argc == 3)
-        st.set(argv[1], argv[2]);
+    {
+        if (lstat)
+            st.set(Stat::LStat, argv[1], argv[2]);
+        else
+            st.set(argv[1], argv[2]);
+    }
 
     if (!st)
     {

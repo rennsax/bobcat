@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GCC='g++ --std=c++14 -o driver'
+GCC='g++ `cat ../../c++std` -o driver'
 
 # Using the standard bobcat library
 # ${GCC} driver.cc -lbobcat

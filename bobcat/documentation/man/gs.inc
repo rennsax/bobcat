@@ -1,10 +1,11 @@
         itemization(
-        it() bf(BLOCK_DEVICE): the object represents a block device
-        it() bf(CHARACTER_DEVICE): the object represents a character device
-        it() bf(DIRECTORY): the object represents a directory
-        it() bf(FIFO): the object represents a named pipe (a queue)
-        it() bf(REGULAR_FILE): the object represents a regular file
-        it() bf(SOCKET): the object represents a socket
-        it() bf(SYMBOLIC_LINK): the object represents a symbolic link
-        it() bf(ANY): any of the above types
+        it() bf(BLOCK_DEVICE) (0060000): the object is a block device;
+        it() bf(CHARACTER_DEVICE) (0020000): the object is a character
+            device;
+        it() bf(DIRECTORY) (0040000): the object is a directory;
+        it() bf(FIFO) (0010000): the object is a named pipe (a queue);
+        it() bf(REGULAR_FILE) (0100000): the object is a regular file;
+        it() bf(SOCKET) (0140000): the object is a socket;
+        it() bf(SYMBOLIC_LINK) (0120000): the object is a symbolic link;
+        it() bf(ANY): any of the above types.
         )

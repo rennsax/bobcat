@@ -26,9 +26,13 @@ manpagesection(ENUMERATIONS)
     bf(Glob::Type): nl() 
         This enumeration, which is identical to the bf(stat)(3bobcat) tt(Type)
 enumeration, defines the following values:
-    includefile(gs.inc)
+   includefile(gs.inc)
+   These values are also used by bf(stat)(2). Although they can be combined
+    using the bit_or operator, they are not uniquely recognizable when
+    combined. E.g., the value of tt(CHARACTER_DEVICE | DIRECTORY) is equal to
+    the value of tt(BLOCK_DEVICE).
 
-    bf(Glob::Flags):
+   bf(Glob::Flags):
     itemization(
     itt(NO_FLAG):   Equals 0, and can be used to avoid having to specify 0. It
         has no further use.
@@ -65,13 +69,26 @@ manpagesection(CONSTRUCTORS)
     
         This constructor properly completes its task if only defined bf(Flag)
         values were specified and if the bf(glob)(3) function returned without
-        errors.
+        errors;
 
     itb(Glob(Type type, std::string const &pattern = "*", int flags = PERIOD,
              Dots dots = FIRST)) 
-       This constructor determines all elements of tt(pattern) matching
-        tt(Type). The specified tt(type) value may consist of any tt(bitor)-ed
-        combination of enum values defined by the tt(Type) enum.
+       This constructor determines all elements of tt(pattern) when their
+        types `tt(elementType)' are equal to the value of tt(elementType &
+        type). The specified tt(type) value may consist of any tt(bitor)-ed
+        combination of enum values defined by the tt(Type) enum. Note that
+        this may produce confusing results. E.g., when specifying
+        tt(DIRECTORY), elements that are tt(BLOCK_DEVICEs) or tt(SOCKETs) are
+        also accepted. The next constructor can be used to avoid this
+        confusion;
+        
+    itb(Glob(std::unordered_set<Type> const &typeSet, 
+            std::string const &pattern = "*", int flags = PERIOD,
+            Dots dots = FIRST)) 
+       This constructor determines all elements of tt(pattern) when their
+        types are found in tt(typeSet). Different from the previous
+        constructor, for an element to be accepted its type must exactly match
+        a type value in the tt(typeSet) set.
     )
 
     Copy and move constructors (and assignment operators) are available.
@@ -79,22 +96,22 @@ manpagesection(CONSTRUCTORS)
 manpagesection(OVERLOADED OPERATORS)
     itemization(
     itb(char const *operator[](size_t idx) const)
-        The element at index position tt(idx) is returns as a bf(C) string. It
-    returns an empty string if tt(idx) is or exceeds bf(size()).
+       The element at index position tt(idx) is returns as a bf(C) string. It
+        returns an empty string if tt(idx) is or exceeds bf(size()).
     )
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(
      itb(size_t size() const)
-        Returns the number of elements that were detected.
+        Returns the number of elements that were detected;
     itb(char const *const *begin() const)
-        Returns a pointer to the first element that was detected. This pointer
-    can be used in generic algorithms as an output-iterator supporting pointer
-    arithmetic. 
+       Returns a pointer to the first element that was detected. This pointer
+        can be used in generic algorithms as an output-iterator supporting
+        pointer arithmetic;
     itb(char const *const *end() const)
        Returns a pointer beyond the last element that was detected. This
-    pointer can be used in generic algorithms as an output-iterator supporting
-    pointer arithmetic.
+        pointer can be used in generic algorithms as an output-iterator
+        supporting pointer arithmetic;
     itb(void swap(Glob &other))
         Swaps the contents of the other object with the current object.
     )

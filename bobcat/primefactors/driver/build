@@ -3,7 +3,7 @@
 tput clear
 
 LIBS=" -lbobcat"
-GPP="g++ --std=c++14"
+GPP="g++ `cat ../../c++std`"
 
 # WHEN LINKING TO A STATIC LIBRARY DON'T FORGET TO LINK AGAINST 
 # ssl (-lssl)

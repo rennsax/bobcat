@@ -1,6 +1,6 @@
 #include "stat.ih"
 
 Stat::Stat()
-{
-    init(::stat);
-}
+:
+    d_errno(false)
+{}
