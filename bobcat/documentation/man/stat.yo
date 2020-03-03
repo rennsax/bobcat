@@ -86,7 +86,7 @@ manpagesection(ENUMERATIONS)
         files when the tt(Stat::LStat) argument has been used.
 
         The constructors and member functions listed below for which
-        tt([Stat::Lstat,]) is specified as first paramter may optionally
+        tt([Stat::Lstat,]) is specified as first parameter may optionally
         specify the tt(Stat::LStat) argument.
 
 manpagesection(CONSTRUCTORS)
