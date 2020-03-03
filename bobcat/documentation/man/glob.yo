@@ -27,10 +27,12 @@ manpagesection(ENUMERATIONS)
         This enumeration, which is identical to the bf(stat)(3bobcat) tt(Type)
 enumeration, defines the following values:
    includefile(gs.inc)
-   These values are also used by bf(stat)(2). Although they can be combined
-    using the bit_or operator, they are not uniquely recognizable when
-    combined. E.g., the value of tt(CHARACTER_DEVICE | DIRECTORY) is equal to
-    the value of tt(BLOCK_DEVICE).
+   These values are also used by bf(stat)(2) and bf(lstat)(2). Although they
+    can be combined using the tt(bitor) operator, they are not uniquely
+    recognizable when combined. E.g., the value of tt(CHARACTER_DEVICE |
+    DIRECTORY) is equal to the value of tt(BLOCK_DEVICE). It's also possible
+    to combine tt(Type) values in a tt(std::unordered_set), which avoids the
+    confusion that may result from using the tt(bitor) operator.
 
    bf(Glob::Flags):
     itemization(

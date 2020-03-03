@@ -1,3 +1,15 @@
+bobcat (5.04.00)
+
+  * The Stat and Glob classes received new members and constructors allowing
+    its objects to distinguish file types (like regular files and symbolic
+    links) that cannot be distinguished when merely applying the `bitor'
+    operator to their Type values. Their man-pages were updated accordingly.
+
+  * The build-scripts (in the <classname>/driver directories) use the C++
+    standard that is defined int the file ./c++std
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue, 03 Mar 2020 21:28:54 +0100
+
 bobcat (5.03.00)
 
   * Simplfied the  PerlSetFSA s_stateTransitions FSA used by Pattern to a mere

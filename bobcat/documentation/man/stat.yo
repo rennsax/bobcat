@@ -115,7 +115,8 @@ manpagesection(OVERLOADED OPERATORS)
     itb(operator bool() const)
        This operator returns tt(true) if the tt(Stat) object holds information
         about an existing object. Otherwise tt(false) is returned. When
-        tt(false) is returned other members, except for tt(error), should not
+        tt(false) is returned other members, except for the assignment
+        operators, the tt(error) member, and the tt(set) members should not
         be used.
     )
 
