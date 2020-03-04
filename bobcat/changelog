@@ -1,3 +1,10 @@
+bobcat (5.04.01)
+
+  * Stupid mistake: forgot to remove the Process header file included
+    ../pipe/pipe  
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 04 Mar 2020 14:39:28 +0100
+
 bobcat (5.04.00)
 
   * The Stat and Glob classes received new members and constructors allowing
