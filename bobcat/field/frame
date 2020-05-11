@@ -1,0 +1,6 @@
+//#define XERR
+#include "field.ih"
+
+Field::
+{
+}
