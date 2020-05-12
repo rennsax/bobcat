@@ -10,9 +10,9 @@ namespace FBB
 template <size_t base, size_t end, size_t begin>
 struct Field
 {
-    static_assert(base >= 2,    
+    static_assert(base >= 2,
                 "Field<base, end, begin>: 'base' must be >= 2");
-    static_assert(begin < end,  
+    static_assert(begin < end,
                 "Field<base, end, begin>: 'end' must be > 'begin'");
 
     static constexpr uint64_t set(uint64_t src, uint64_t value);
@@ -35,8 +35,6 @@ struct Field
 #include "set1.f"
 
 
-} // FBB        
+} // FBB
+
 #endif
-
-
-

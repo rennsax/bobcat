@@ -1,7 +1,7 @@
 template <size_t base, size_t pwr>
 struct exp1
 {
-    enum 
+    enum
     {
         value = base * exp1<base, pwr - 1>::value
     };
@@ -15,11 +15,3 @@ struct exp1<base, 0>
         value = 1
     };
 };
-
-
-
-
-
-
-
-

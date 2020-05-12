@@ -1,7 +1,7 @@
 template <size_t base>
 struct exp2
 {
-    enum 
+    enum
     {
         value = 1 + exp2<base / 2>::value
     };
@@ -15,11 +15,3 @@ struct exp2<1>
         value = 0
     };
 };
-
-
-
-
-
-
-
-
