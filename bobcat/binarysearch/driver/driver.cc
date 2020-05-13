@@ -3,7 +3,6 @@
 #include "../binarysearch"
 
 using namespace std;
-using namespace FBB;
 
 string words[] = 
 {
@@ -19,18 +18,6 @@ string words[] =
     "two"
 };
 
-class Comparator
-{
-    public:
-        bool operator()(string const &left, string const &right) const;
-};
-
-inline bool Comparator::operator()(string const &left, 
-                                   string const &right) const
-{
-    return left < right;
-}
-
 bool compFun(string const &left, string const &right)
 {
     return left < right;
@@ -38,21 +25,35 @@ bool compFun(string const &left, string const &right)
 
 int main()
 {
-    string *ret = binary_search(words, words + 10, "five");
+    string *ret = FBB::binary_search(words, words + 10, "five");
     if (ret != words + 10)
         cout << "five is at offset " << (ret - words) << endl;
 
-    ret = binary_search(words, words + 10, "grandpa");
+    ret = FBB::binary_search(words, words + 10, "grandpa");
     if (ret == words + 10)
         cout << "grandpa is not the name of a number\n";
 
-    ret = binary_search(words, words + 10, "five", Comparator());
+    ret = FBB::binary_search(words, words + 10, "five", 
+        [&](string const &element, string const &value)
+        {
+            return element < value;
+        }
+    );
+
     if (ret != words + 10)
         cout << "five is at offset " << (ret - words) << endl;
 
-    ret = binary_search(words, words + 10, "grandpa", compFun); 
+    ret = FBB::binary_search(words, words + 10, "grandpa", compFun); 
                                                    // or use: Comparator()
     if (ret == words + 10)
         cout << "grandpa is not the name of a number\n";
 }
+
+
+
+
+
+
+
+
 

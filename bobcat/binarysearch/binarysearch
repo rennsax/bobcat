@@ -1,6 +1,8 @@
 #ifndef INCLUDED_BOBCAT_BINARYSEARCH_
 #define INCLUDED_BOBCAT_BINARYSEARCH_
 
+#include <algorithm>
+
 namespace FBB
 {
 

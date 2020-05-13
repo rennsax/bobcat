@@ -1,3 +1,9 @@
+bobcat (5.05.00)
+
+  * Redefined FBB::binary_search, and updated its man-page
+
+
+
 bobcat (5.04.01)
 
   * Stupid mistake: forgot to remove the Process header file included

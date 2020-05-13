@@ -2,17 +2,9 @@ template <typename Iterator, typename Type, typename Comparator>
 Iterator binary_search(Iterator begin, Iterator end, Type const &value, 
                        Comparator comparator)
 {
-    Iterator ret = end;
+        // note: the comparator's lhs parameter is an element in
+        //       the begin..end range, its rhs parameter is 'value'
 
-    while (begin != end)
-    {
-        Iterator mid = begin + (end - begin >> 1);
-        if (comparator(value, *mid))        // left half
-            end = mid;
-        else if (comparator(*mid, value))   // right half
-            begin = mid + 1;
-        else
-            return mid;
-    }
-    return ret;
+    auto iter = std::lower_bound(begin, end, value, comparator);
+    return not (iter == end) and not (value < *iter) ? iter : end;
 }
