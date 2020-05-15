@@ -1,3 +1,5 @@
+// see also INSTALL.im for additional #defines
+
 #define USE_ECHO            ON
 #define CLS
 
