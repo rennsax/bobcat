@@ -132,7 +132,7 @@ current e-mail message.
 current e-mail message.
     itb(CHANGE_BODY)
         This flag indicates that the milter is allowed to modify the message's
-body contents.
+body content.
     itb(CHANGE_HEADERS)
         This flag indicates that the milter is allowed to change headers of
 the current e-mail message.
@@ -431,7 +431,7 @@ quarantines the message using the given reason.
     itb(bool replaceBody(std::string const &body))
         This member may only be called from tt(eom), and the flag
 tt(CHANGE_BODY) must have been specified or it will fail. It may be called
-multiple times in which case the various body contents are concatenated in the
+multiple times in which case the various body content are concatenated in the
 final message. Newlines should be coded as CRLF.
     itb(bool setBacklog(size_t backlog = 5))
         This member should be called before tt(start) is called.

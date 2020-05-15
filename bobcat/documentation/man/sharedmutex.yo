@@ -14,7 +14,7 @@ manpagedescription()
     Shared memory may be used by multiple processes. To synchronize access to
 shared memory an bf(FBB::SharedMutex) may be defined inside a shared memory
 segment. bf(SharedMutex) objects allows clients to lock a shared memory
-segment before reading or writing its contents. E.g., the Bobcat class
+segment before reading or writing its content. E.g., the Bobcat class
 tt(FBB::SharedSegment) defines a bf(SharedMutex) in its shared memory segment.
 
     The bf(SharedMutex) class uses the facilities offered by the

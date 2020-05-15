@@ -114,7 +114,7 @@ manpagesection(CONSTRUCTORS)
                 FBB::Facility facility = FBB::USER,
                 int option = 0))
         This constructor initializes a bf(SyslogStream) object.  The
-tt(ident) parameter is usually the name of the program. Its contents are
+tt(ident) parameter is usually the name of the program. Its content are
 prepended to syslog messages. 
 
 The tt(priority) parameter determines the default importance of the message

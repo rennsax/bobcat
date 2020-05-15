@@ -75,7 +75,7 @@ operator to specify the bf(CmdFinder) object's required mode of operation:
 separated series of characters) of a provided textual command should be used
 as the command to find. Both the command that is used and any trailing
 information that may be present can be obtained from the bf(CmdFinder)
-object. By default, the complete contents of the a provided command is used.
+object. By default, the complete content of the a provided command is used.
     itb(UNIQUE) 
         This value can be specified when any unique abbreviation of a command
 may be accepted. Assuming that the commands tt(help) and tt(version) are

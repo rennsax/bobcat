@@ -81,7 +81,7 @@ manpagesection(CONSTRUCTORS)
         tt(std::istream) and tt(std::ostream) that connects to a shared memory
         segment having ID tt(id). 
 
-        Specifying the tt(ios::trunc) flag immediately clears the contents of
+        Specifying the tt(ios::trunc) flag immediately clears the content of
         the shared memory.
 
         An tt(FBB::Exception) is thrown if construction fails (e.g., no shared
@@ -165,7 +165,7 @@ values tt(kB, MB), and tt(GB), defined by tt(FBB::SharedEnum__) are available.
         not exist and is not required. If opening succeeds the shared
         memory is ready for use. 
 
-        Specifying the tt(ios::trunc) flag immediately clears the contents of
+        Specifying the tt(ios::trunc) flag immediately clears the content of
         the shared memory.
 
         An tt(FBB::Exception) is thrown if opening fails (e.g., no shared

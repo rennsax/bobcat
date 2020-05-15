@@ -100,7 +100,7 @@ tt(IQuotedPrintableBuf<DECODE>) objects read quoted-printable encoded
 information from tt(std::istream) objects, decoding the information.
 
 The tt(std::istream din) object is initialized with the
-tt(IQuotedPrintableBuf<DECODE>) object, and its contents is sent to
+tt(IQuotedPrintableBuf<DECODE>) object, and its content is sent to
 tt(std::cout). The information that is presented at tt(std::cin) and that
 appears at tt(std::cout) should be identical.
 

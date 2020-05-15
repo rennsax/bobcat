@@ -17,7 +17,7 @@ manpagedescription()
 used as a base class of classes specializing tt(std::streambuf). It is
 particularly useful for classes implementing output operations, as it can be
 used to specify the `true end' of the generated output. E.g., an
-tt(std::istream in) object may insert its contents into a tt(std::ostream out)
+tt(std::istream in) object may insert its content into a tt(std::ostream out)
 object using the familiar tt(out << in.rdbuf()) expression, but that doesn't
 allow tt(out) to conclude that it has received all of its information.
 Sometimes additional actions are required to complete the output (this happens

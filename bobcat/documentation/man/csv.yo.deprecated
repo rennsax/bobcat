@@ -101,7 +101,7 @@ manpagesection(CONSTRUCTORS)
 manpagesection(OVERLOADED OPERATORS)
     itemization(
     itb(std::string const &operator[](size_t index) const)
-       The contents of the indicated field is returned as a
+       The content of the indicated field is returned as a
         tt(std::string).
 
     itb(std::istream &operator>>(std::istream &out, CSV const &csv))
@@ -164,7 +164,7 @@ manpagesection(MEMBER FUNCTIONS)
     itb(size_t count() const)
        The number of fields that could actually be converted to their
         indicated types is returned. E.g., an empty field or a supposedly 
-        numeric field whose contents cannot be converted to the indicated
+        numeric field whose content cannot be converted to the indicated
         numeric value won't be counted here.
 
     itb(std::vector<std::string> const &data() const)
@@ -175,7 +175,7 @@ manpagesection(MEMBER FUNCTIONS)
         just beyond the bf(CSV) object's last field.
 
     itb(Type field<Type = std::string>(size_t idx) const)
-       This is a template member returning the contents of field tt(idx) as a
+       This is a template member returning the content of field tt(idx) as a
         value of type tt(Type).  When tt(Type) equals tt(std::string) a
         tt(std::string const &) is returned. For tt(Type) all integral and
         floating types as well as tt(std::sting) are accepted. If field
@@ -183,7 +183,7 @@ manpagesection(MEMBER FUNCTIONS)
         thrown. 
 
     itb(Type get<Type = std::string>(size_t idx))
-       This is a template member returning the contents of field tt(idx) as a
+       This is a template member returning the content of field tt(idx) as a
         value of type tt(Type).  When tt(Type) equals tt(std::string) a
         tt(std::string const &) is returned. For tt(Type) all integral and
         floating types as well as tt(std::sting) are accepted. If field

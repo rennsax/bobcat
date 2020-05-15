@@ -38,18 +38,18 @@ manpagesection(INHERITS FROM)
 manpagesection(ENUMERATIONS)
     itemization(
     itb(Type)
-        This enumeration indicates the nature of the contents of an element in
+        This enumeration indicates the nature of the content of an element in
 the array returned by the overloaded tt(split) members (see below).
 
             bf(DQUOTE), a subset of the characters in the matching tt(string)
 element was delimited by double quotes in the in the string that was parsed by
 the tt(split) members.
 
-            bf(DQUOTE_UNTERMINATED), the contents of the string that was
+            bf(DQUOTE_UNTERMINATED), the content of the string that was
 parsed by the tt(split) members started at some point with a double quote, but
 the matching ending double quote was lacking.
 
-            bf(ESCAPED_END),  the contents of the string that was
+            bf(ESCAPED_END),  the content of the string that was
 parsed by the tt(split) members ended in a mere backslash.
 
             bf(NORMAL), a normal string; 
@@ -60,7 +60,7 @@ parsed by the tt(split) members ended in a mere backslash.
 element was delimited by quotes in the in the string that was parsed by
 the tt(split) members.
 
-            bf(SQUOTE_UNTERMINATED), the contents of the string that was
+            bf(SQUOTE_UNTERMINATED), the content of the string that was
 parsed by the tt(split) members started at some point with a quote, but
 the matching ending quote was lacking.
     itb(SplitType)
@@ -114,10 +114,10 @@ the bf(C)-strings to which the pointers point. The last element of the
 returned array is guaranteed to be a 0-pointer. 
 
     itb(int casecmp(std::string const &lhs, std::string const &rhs))
-        Performs a case-insensitive comparison of the contents of two
+        Performs a case-insensitive comparison of the content of two
 tt(std::string) objects. A negative value is returned if tt(lhs) should be
 ordered before tt(rhs); 0 is returned if the two strings have identical
-contents; a positive value is returned if the tt(lhs) object should be ordered
+content; a positive value is returned if the tt(lhs) object should be ordered
 beyond tt(rhs).
 
     itb(std::string escape(std::string const &str, 

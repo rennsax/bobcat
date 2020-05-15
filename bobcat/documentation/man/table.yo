@@ -140,10 +140,10 @@ manpagesection(MEMBER FUNCTIONS)
 added as additional elements to the bf(Table) object. Empty fields are ignored
 unless the parameter tt(addEmpty) is initialized to tt(true).
     itb(void clear())
-        The contents of the table are erased. All existing elements are
+        The content of the table are erased. All existing elements are
 removed, and the table will be empty.
     itb(void clearStr())
-        The contents of its tt(std::ostringstream) base class buffer are
+        The content of its tt(std::ostringstream) base class buffer are
 erased.
     itb(void fill(InputIterator begin, InputIterator end))
         This member is defined as a member template; tt(InputIterator) is a

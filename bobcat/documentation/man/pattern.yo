@@ -166,7 +166,7 @@ Options may be:
         Following a successful match, this function returns the matched text.
     itb(std::string const &pattern() const)
         This member function returns the pattern that is offered to
-bf(regcomp)(3). It returns the contents of a tt(static) string that is
+bf(regcomp)(3). It returns the content of a tt(static) string that is
 overwritten at each construction of a bf(Pattern) object and at each call of
 the tt(setPattern()) member function.
     itb(Pattern::Position position(size_t index) const) 
@@ -184,7 +184,7 @@ constructor's parameters. Refer to that constructor for details about the
 parameters. Like the constructor, an bf(FBB::Exception) exception is thrown if
 the new pattern could not be compiled.
     itb(void swap(Pattern &other))
-        The contents of the current object and the tt(other) object are
+        The content of the current object and the tt(other) object are
 swapped. 
     )
 

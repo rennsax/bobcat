@@ -113,7 +113,7 @@ manpagesection(CONSTRUCTOR)
                 FBB::Facility facility = FBB::USER,
                 int option = 0))
         The tt(ident) parameter is usually the name of the program. Its
-contents are prepended to syslog messages.
+content are prepended to syslog messages.
 
 The tt(priority) parameter determines the default importance of the message
 sent to the syslog daemon. By default messages are sent to the syslog daemon

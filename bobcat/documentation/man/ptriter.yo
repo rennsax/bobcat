@@ -16,7 +16,7 @@ tt(operator*) returns the address of the element the iterator refers to.
 Consider a tt(std::unordered_map<std::string, DataType>). Its tt(begin) member
 returns an iterator whose tt(operator*) returns a tt(std::pair<std::string,
 DataType> (const) &). This is usually what you want, but now assume we want to
-display the map's contents, sorted by its keys. Sorting can simply be
+display the map's content, sorted by its keys. Sorting can simply be
 performed by defining a support vector containing pointers to the elements in
 the map, and then sorting the strings the pointers point at.
 

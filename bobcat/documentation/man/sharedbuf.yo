@@ -66,7 +66,7 @@ manpagesection(CONSTRUCTORS)
        This constructor connects to a shared memory segment having ID
         tt(id). 
 
-        Specifying the tt(ios::trunc) flag immediately clears the contents of
+        Specifying the tt(ios::trunc) flag immediately clears the content of
         the shared memory.
 
         An tt(FBB::Exception) is thrown if construction fails (e.g., no shared

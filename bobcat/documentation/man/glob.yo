@@ -115,7 +115,7 @@ manpagesection(MEMBER FUNCTIONS)
         pointer can be used in generic algorithms as an output-iterator
         supporting pointer arithmetic;
     itb(void swap(Glob &other))
-        Swaps the contents of the other object with the current object.
+        Swaps the content of the other object with the current object.
     )
 
 manpagesection(EXAMPLES)

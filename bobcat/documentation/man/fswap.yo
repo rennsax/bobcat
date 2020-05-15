@@ -22,7 +22,7 @@ assignment operator is:
         return *this;
     }
         )
-    The swap functionality merely swaps the contents of the current object and
+    The swap functionality merely swaps the content of the current object and
 another object. The standard tt(std::swap) function calls the class's
 tt(operator=) function to swap objects. Newer implementations might use
 move-operations to increase the speed of the swapping operation, but in both
@@ -78,7 +78,7 @@ manpagesection(SWAP FUNCTIONS)
 
     itemization(
     itb(fswap(Type &lhs, Type &rhs))
-        This template function swaps the contents of two objects. It can
+        This template function swaps the content of two objects. It can
 be used with classes having const data members, reference members, pointer
 members or standard value-typed data members;
 

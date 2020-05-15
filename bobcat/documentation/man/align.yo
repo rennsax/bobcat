@@ -31,7 +31,7 @@ manpagesection(ADDITIONAL TYPEDEF)
 manpagesection(CONSTRUCTORS)
     itemization(
     itb(Align(size_t column = 0, Manipulator manip = std::right))
-        This constructor defines how the contents of column `tt(column)' of a
+        This constructor defines how the content of column `tt(column)' of a
 bf(Table) object are aligned. When used, it is the responsibility of the
 programmer to ensure that the table's column exists. This
 constructor can also be used as a default constructor, by default using

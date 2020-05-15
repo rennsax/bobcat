@@ -31,7 +31,7 @@ non-singleton bf(ReadLineHistory) class).
 
 The bf(ReadLineHistory) class encapsulates history access. It offers limited
 facilities: either forward or backward iterations over the history are offered
-as well as reading and writing the history from/to streams. The contents of
+as well as reading and writing the history from/to streams. The content of
 the history lines and --if defined-- the timestamps of the lines in the
 history can be obtained using iterators defined by bf(ReadLineHistory).
 
@@ -53,7 +53,7 @@ objects.
 
 The class bf(HistoryElement) has but two members:
     itemization(
-    itt(char const *line() const) returns the contents of the 
+    itt(char const *line() const) returns the content of the 
 history line to which a bf(ReadLineHistory) iterator refers;
     itt(char const *timestamp() const) returns the timestamp (if defined) of
 the history line to which a bf(ReadLineHistory) iterator refers;
@@ -96,7 +96,7 @@ written to a stream. When specifying tt(true) the history inserted into a
 stream will include timestamps (which may be empty if no timestamps were
 recorded). Likewise, when extracting the history timestamps are extracted too
 (which may also be empty). When specifying tt(false) no timestamps are read
-or written. A mismatch between the actual contents of the stream from which
+or written. A mismatch between the actual content of the stream from which
 the history is extracted and the tt(useTimestamps) parameter will 
 results in unexpected behavior.
     )
@@ -144,7 +144,7 @@ manpagesection(OVERLOADED OPERATORS)
         The history available at the tt(in) stream is extracted as the current
         history. The existing history is removed first. The tt(useTimestamp) 
         status determines whether timestams are extracted (if tt(true)) or not
-        (if tt(false)). A mismatch between the actual contents of the stream
+        (if tt(false)). A mismatch between the actual content of the stream
         and the tt(useTimestamp) status will result in unexpected behavior.
     itb(std::ostream &operator<<(std::ostream &out, 
             ReadLineHistory &his))

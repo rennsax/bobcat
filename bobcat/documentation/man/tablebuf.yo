@@ -146,7 +146,7 @@ cell-alignment.
 manpagesection(MEMBER FUNCTIONS)
     itemization(
     itb(void clear())
-        The contents of the table are erased. All existing elements are
+        The content of the table are erased. All existing elements are
 removed, and the table will be empty.
     itb(size_t nRows())
         The currently available number of rows in the table is returned. Its

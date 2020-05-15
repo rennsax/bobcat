@@ -82,8 +82,8 @@ the value returned by this member.
 requesting a particular alias, the requested index should be less than the
 value returned by this member.
     itb(void swap(Hostent &other))
-        The current tt(Hostent) object's contents are swapped with the other
-    object's contents.
+        The current tt(Hostent) object's content are swapped with the other
+    object's content.
     )
 
 manpagesection(EXAMPLE)

@@ -344,7 +344,7 @@ The following classes and functions are available:
     Manpage(ranger)
 
     bf(FBB::ReadLineBuf): implements a tt(streambuf) using the Gnu
-    tt(readline) library to allow editing an tt(std::istream)'s contents. nl()
+    tt(readline) library to allow editing an tt(std::istream)'s content. nl()
     Manpage(readlinebuf)
 
     bf(FBB::ReadLineHistory): provides access to the history of lines read
@@ -843,7 +843,7 @@ END)
     Manpage(randbuf)
 
     bf(FBB::ReadLineBuf): implements a tt(streambuf) using the Gnu
-    tt(readline) library to allow editing an tt(std::istream)'s contents. nl()
+    tt(readline) library to allow editing an tt(std::istream)'s content. nl()
     Manpage(readlinebuf)
 
     bf(FBB::ReadLineHistory): provides access to the history of lines read

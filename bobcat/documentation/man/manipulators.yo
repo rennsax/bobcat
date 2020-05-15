@@ -15,7 +15,7 @@ manpagesection(MANIPULATORS)
     itemization(
     itb(FBB::center) defined in tt(bobcat/align)
         This manipulator can be specified when constructing an bf(FBB::Align)
-        object to indicate that a table column should center its contents.
+        object to indicate that a table column should center its content.
 
     itb(FBB::decindent) defined in tt(bobcat/indent)
         This manipulator reduces the indentation level.

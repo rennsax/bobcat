@@ -28,7 +28,7 @@ Arguments passed to child processes may be surrounded by double or single
 quotes. Arguments surrounded by double quotes have their double quotes
 removed, while interpreting any escape-sequences that may have been used
 within. Arguments surrounded by single quotes have their single quotes
-removed, while accepting their contents as-is. In addition unquoted
+removed, while accepting their content as-is. In addition unquoted
 escape-sequences may be specified: those escape sequences are evaluated and
 replaced by their intended characters (e.g., tt(\100) is converted to tt(@)).
 

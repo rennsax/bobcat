@@ -75,7 +75,7 @@ tt(IBase64Buf<DECRYPT>) objects (tt(decode) reads base64 encoded
 information from tt(std::istream) objects and decodes it again). 
 
 The tt(std::istream din) object is initialized with the
-tt(IBase64Buf<DECRYPT>) object, and its contents is sent to
+tt(IBase64Buf<DECRYPT>) object, and its content is sent to
 tt(std::cout). The information that is presented at tt(std::cin) and that
 appears at tt(std::cout) should be identical.
 

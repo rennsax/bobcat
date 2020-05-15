@@ -56,7 +56,7 @@ conversion result is inspected.
 manpagesection(MEMBER FUNCTIONS)
      All members of bf(std::ostringstream) are
 available, as bf(FBB::X2a) inherits from this class. In particular
-tt(ostringstream::str()) can be used to obtain the contents of an tt(X2a)
+tt(ostringstream::str()) can be used to obtain the content of an tt(X2a)
 object's text buffer.
 
 manpagesection(OVERLOADED OPERATORS)
