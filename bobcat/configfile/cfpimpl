@@ -49,6 +49,7 @@ class CF_Pimpl: public CF_Types
                               const_iterator const &from) const;
 
         RE_iteratorPair beginEndRE(std::string const &re);             // 2.cc
+        RE_iteratorPair beginEndID(std::string const &id);             // 2.cc
 
         std::string const &operator[](size_t idx) const;               // 2.f
 
@@ -64,6 +65,13 @@ class CF_Pimpl: public CF_Types
 
         const_iterator findRE(const_iterator const &from) const;       // 3.cc
 
+        RE_iteratorPair beginEnd(
+                            std::string const &re,
+                            const_iterator (CF_Pimpl::*find)(
+                                                std::string const &,
+                                                const_iterator const &) const
+                        );
+
         static void trimLeft(std::string &line);
         static void trimRight(std::string &line, bool appendNext);
         static bool idChar(int ch);                                    // .f
@@ -76,6 +84,8 @@ class CF_Pimpl: public CF_Types
 };
 
 #include "begin.f"
+#include "beginendid2.f"
+#include "beginendre2.f"
 #include "end.f"
 #include "idchar.f"
 #include "opindex2.f"

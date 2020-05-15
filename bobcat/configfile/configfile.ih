@@ -1,7 +1,5 @@
 #include "configfile"
 
-#include <iostream>             // TMP
-
 #include <algorithm>
 #include <fstream>
 

@@ -72,6 +72,7 @@ class ConfigFile: public CF_Types
                                 const_iterator const &from) const;
 
         RE_iteratorPair beginEndRE(std::string const &re) const;    // 1
+        RE_iteratorPair beginEndID(std::string const &id) const;    // 1.f
 
         size_t size() const;                                        // 1.cc
 
@@ -98,6 +99,7 @@ class ConfigFile: public CF_Types
         size_t index(const_iterator const &iterator) const;     // obs..2.cc
 };
 
+#include "beginendid1.f"
 #include "findid1.f"
 #include "findkey1.f"
 #include "findre1.f"

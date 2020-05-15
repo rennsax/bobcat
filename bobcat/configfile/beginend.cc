@@ -1,8 +1,11 @@
 //#define XERR
 #include "configfile.ih"
 
-ConfigFile::RE_iteratorPair CF_Pimpl::beginEndRE(
-                                            std::string const &re)
+CF_Types::RE_iteratorPair CF_Pimpl::beginEnd(
+                    std::string const &re,
+                    const_iterator (CF_Pimpl::*find)(std::string const &,
+                                          const_iterator const &) const
+)
 {
     d_CIvect.clear();
 
@@ -11,7 +14,7 @@ ConfigFile::RE_iteratorPair CF_Pimpl::beginEndRE(
 
     while (true)
     {
-        from = findRE(re, from);
+        from = (this->*find)(re, from);
 
         if (from == beyond)
             break;

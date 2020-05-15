@@ -102,7 +102,33 @@ try
     cout.put('\n');
 #endif
 
-#if 1    
+#if 1
+    while (true)
+    {
+        cout << "Finding all lines matching an ID.\n"
+                "Enter the ID (or just Enter): ";
+        string param;
+        if (!getline(cin, param) || !param.length())
+            return 0;
+    
+        auto [begin, end] = cf.beginEndID(param);
+    
+        cout << "Counting: " << (end - begin) << " matches\n";
+        while (begin != end)
+        {
+            auto it = *begin++;
+
+            cout << *it << ": at index " << cf.index(it) << "\n"
+                    "parts:\n" 
+                    "   line nr: " << it->lineNr() << "\n" 
+                    "   key:     " << it->key() << "\n"
+                    "   value:   " << it->value() << "\n"
+                    "   tail:    " << it->tail() << "\n";
+        }
+    }
+#endif
+
+#if 0
     while (true)
     {
         cout << "Finding all lines matching a RE.\n"
