@@ -1,6 +1,0 @@
-//#define XERR
-#include "configfile.ih"
-
-CF_Pimpl::
-{
-}

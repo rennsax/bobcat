@@ -1,4 +1,4 @@
-inline CF_Pimpl::const_iterator CF_Pimpl::end() const
+inline ConfigFile_::const_iterator ConfigFile_::end() const
 {
     return d_line.end();
 }

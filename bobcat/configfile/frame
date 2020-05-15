@@ -1,4 +1,3 @@
-//#define XERR
 #include "configfile.ih"
 
 ConfigFile::
