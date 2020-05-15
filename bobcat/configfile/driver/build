@@ -5,17 +5,17 @@ ln -sf .. configdir
 case $1 in
     (b)
         rm configfile configfile.ih
-        g++ -DBOBCAT --static --std=c++2a -I../../tmp -o driver driver.cc \
+        g++ -DBOBCAT --static --std=c++2a -I../../tmp driver.cc \
             -L../../tmp/lib  -lbobcat -s
     ;;
     (o)
-        g++ --std=c++2a -o driver *.cc ../tmp/o/*.o -lbobcat -s
+        g++ --std=c++2a *.cc ../tmp/o/*.o -lbobcat -s
     ;;
     (c)
-        g++ --std=c++2a -o driver *.cc -lbobcat -s
+        g++ --std=c++2a *.cc -lbobcat -s
     ;;
     (l)
-        g++ --std=c++2a -o driver -Iconfigdir *.cc \
+        g++ --std=c++2a -Iconfigdir *.cc \
                             -L../tmp -lconfigfile -lbobcat  -s
     ;;
     (*)

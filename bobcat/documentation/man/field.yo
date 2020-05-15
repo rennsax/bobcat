@@ -11,16 +11,24 @@ manpagesynopsis()
 
 manpagedescription()
 
-Numbers may consist of position-based sub-fields. E.g., a value like 12345
+Numbers may contain position-based sub-fields. E.g., a value like 12345
 might consist of fields 12 and 345. Such fields are position based, using end-
 and begin offsets in the number representations. In this example 345 begins at
 digit position 0 (indicating the least significant digit of 12345) and at
 digit position 3 the next field starts. Likewise, the field 12 begins at digit
-position 3 and has ended at digit position 5. The family of tt(Field) class
-templates provides facilities to retrieve and to assign position based values
-of existing numeric constants or variables. 
+position 3 and has ended at digit position 5. 
 
-To represent those fields the following format can be used:
+The tt(Field) class template provides facilities for retrieving and assigning
+position based values of existing numeric values of (currently) at most 64
+bits. 
+
+To represent such fields the following format is used:
+        verb(
+    Field<base, end, begin>::function(argument(s))
+        )
+    where tt(base) specifies the number system's base value, tt(end) specifies
+the (0-based) index position where the number field ends, and tt(begin)
+specifies the index position where the number field begins. 
         verb(
     Field10<3, 0>::get(12345)    // returns 345
     Field10<5, 3>::get(12345)    // returns  12

@@ -1,31 +1,23 @@
 #include "configfile.ih"
 
-void ConfigFile_::open(string const &fname)
+void CF_Pimpl::open(string const &fname)
 {
-    ifstream stream;
-    Exception::open(stream, fname);
+    ifstream stream{ Exception::factory<ifstream>(fname) };
 
     d_line.clear();                 // clear the vector
-    d_index.clear();                // clear the line indices
-    d_vsIter.clear();               // clear iterators to matching lines
-    d_re.clear();                   // clear a previously set search RE
+    d_CIvect.clear();               // clear iterators to matching lines
 
-    d_rawIndex = 0;                 // re-initialize the line-index of the
-                                    // original file
+//    d_re.clear();                   // clear a previously set search RE
 
-    
+    d_rawNumber = 0;                // re-initialize the line-number count
+                                    // of the original file
+
     string line;
     while (nextLine(stream, line))  // add the lines to d_line
-    {
-        (this->*d_rawIndices)();    // maybe update the raw indices    
-        d_line.push_back(line);
-    }
+        d_line.push_back({ d_rawNumber, std::move(line) });
 }
 
 void ConfigFile::open(string const &fname)
 {
     d_ptr->open(fname);
 }
-
-
-

@@ -1,18 +1,17 @@
 #include "configfile.ih"
 
-ConfigFile_::ConfigFile_(string const &fname, Comment cType, 
-                            SearchCasing sType, Indices iType)
+CF_Pimpl::CF_Pimpl(string const &fname, Comment cType, Casing sType)
 :
-    ConfigFile_(cType, sType, iType)
+    CF_Pimpl(cType, sType)
 {
     open(fname);
 }
 
 
 ConfigFile::ConfigFile(string const &fname, Comment cType, 
-                       SearchCasing sType, Indices iType)
+                       Casing sType)
 :
-    d_ptr(new ConfigFile_(fname, cType, sType, iType))
+    d_ptr(new CF_Pimpl(fname, cType, sType))
 {}
 
 

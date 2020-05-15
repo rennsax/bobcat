@@ -20,6 +20,8 @@ line: this one is
     line: what about this one? \
         it's extending over multiple lines
 
+    indent: indented content.
+
 and there may, of course, be more lines in this file
 
 

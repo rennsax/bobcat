@@ -133,6 +133,10 @@ The following classes and functions are available:
     maybe producing standard output. nl()
     Manpage(coutextractor)
 
+    bf(FBB::Field): class template retrieving and modifying position based
+    fields in numbers using configurable number systems. nl()
+    Manpage(field)
+
     bf(FBB::Fork): Defines bf(fork)(2) as part of a Template Algorithm Design
     Pattern. nl()
     Manpage(fork)
@@ -941,6 +945,10 @@ END)
     implement swap members and members implementing the basic binary operation
     on objects of their class types themselves. nl()
     Manpage(binopsbase)
+
+    bf(FBB::Field): class template retrieving and modifying position based
+    fields in numbers using configurable number systems. nl()
+    Manpage(field)
 
     bf(FBB::fswap): templates implementing memory bytes based swap
         functionality nl()

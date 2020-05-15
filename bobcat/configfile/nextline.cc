@@ -1,13 +1,13 @@
 #include "configfile.ih"
 
-bool ConfigFile_::nextLine(istream &inStream, string &dest)
+bool CF_Pimpl::nextLine(istream &inStream, string &dest)
 {
     dest.erase();
     string line;
 
     while (getline(inStream, line))
     {
-        ++d_rawIndex;                               // at the next line
+        ++d_rawNumber;                               // at the next line
 
         trimLeft(line);
 

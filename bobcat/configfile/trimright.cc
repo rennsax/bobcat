@@ -1,6 +1,6 @@
 #include "configfile.ih"
 
-void ConfigFile_::trimRight(string &line, bool appendNext)
+void CF_Pimpl::trimRight(string &line, bool appendNext)
 {
     if (appendNext)
         return;

@@ -1,7 +1,11 @@
-bobcat (5.05.00)
+bobcat (5.05.00) (WIP)
 
   * Redefined FBB::binary_search, and updated its man-page
 
+  * Redefined FBB::ConfigFile, and updated its man-page
+
+  * Added the class template FBB::Field allowing retrieval and modifications 
+    of offset-based fields in numeric values of configurable number systems.
 
 
 bobcat (5.04.01)

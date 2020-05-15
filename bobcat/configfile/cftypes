@@ -1,0 +1,63 @@
+class CF_Line
+{
+    uint16_t d_nr = 0;
+    std::string d_line;
+
+    public:
+        CF_Line() = default;
+        CF_Line(uint16_t lineNr, std::string const &line);
+
+        std::string const &line() const;
+        std::string key() const;
+        std::string value() const;
+        std::string tail() const;
+        uint16_t lineNr() const;
+
+    private:
+        size_t next(size_t pos) const;                  // .f
+        size_t tailPos() const;
+};
+
+#include "cfline1.f"
+#include "line.f"
+#include "linenr.f"
+#include "next.f"
+#include "cflineopinsert.f"
+
+struct CF_Types
+{
+    enum Comment
+    {
+        KeepComment,
+        NoComment,
+        RemoveComment = NoComment,          // obsolete
+    };
+    enum Casing
+    {
+        UseCase,
+        NoCase,
+        SearchCaseSensitive = UseCase,      // obsolete
+        SearchCaseInsensitive = NoCase      // obsolete
+    };
+    typedef Casing SearchCasing;            // obsolte
+
+    enum Indices                            // obsolete
+    {
+        IgnoreIndices,
+        StoreIndices
+    };
+
+    typedef std::vector<CF_Line> LineVect;
+    typedef std::vector<CF_Line>::const_iterator const_iterator;//ConstIter;
+
+    typedef std::vector<const_iterator  //ConstIter
+                        > ConstIterVect;
+
+    typedef ConstIterVect::const_iterator RE_iterator;
+    typedef std::pair<RE_iterator, RE_iterator> RE_iteratorPair;
+};
+
+
+
+
+

@@ -1,18 +1,14 @@
 #include "configfile.ih"
 
-ConfigFile_::ConfigFile_(Comment cType, SearchCasing sType,
-                       Indices iType)
+CF_Pimpl::CF_Pimpl(Comment cType, Casing sType)
 :
-    d_rmComment(cType == RemoveComment),
-    d_caseSensitive(sType == SearchCaseSensitive),
-    d_rawIndices(iType == StoreIndices ? 
-                            &ConfigFile_::storeIndex 
-                        :
-                            &ConfigFile_::ignoreIndex)
-{}
+    d_rmComment(cType == NoComment)
+{
+    setCasing(sType);
+}
 
-ConfigFile::ConfigFile(Comment cType, SearchCasing sType, Indices iType)
+ConfigFile::ConfigFile(Comment cType, Casing sType)
 :
-    d_ptr(new ConfigFile_(cType, sType, iType))
+    d_ptr(new CF_Pimpl(cType, sType))
 {}
 

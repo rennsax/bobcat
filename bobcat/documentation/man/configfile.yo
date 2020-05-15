@@ -12,33 +12,32 @@ manpagesynopsis()
     Linking option: tt(-lbobcat) 
 
 manpagedescription()
-    bf(ConfigFile) objects read standard tt(unix)-style configuration
-files.  Lines are stored with initial white-space (blanks and tabs) removed.
-If a line ends in \, then the next line (initial white-space removed) is
-appended to the current line.
+    bf(ConfigFile) objects process standard tt(unix)-style configuration
+files.  Initial white-space (blanks and tabs) are removed from processed
+lines.  If a line ends in a backslash (\), then the backslash is removed and
+the next line (initial white-space removed) is appended to the current line.
 
-    If the tt(rmComment) flag is set to tt(true) blanks lines and 
-information on lines from the first tt(#) are removed. If the comment 
-character (tt(#)) is
-prefixed by a backslash (i.e., tt(\#)) it is not considered comment, but
-replaced by a single tt(#) character. Likewise, if the tt(rmComment) flag was
+    If the tt(rmComment) flag is set to tt(true) blanks lines and information
+on lines from the first tt(#) are removed. If a backslash precedes the comment
+character (i.e., tt(\#)) then this is not considered comment, but it is
+replaced by a single tt(#) character. Similarly, if the tt(rmComment) flag was
 set two consecutive backslash characters are replaced by a single backslash
-character, In the retrieved configuration information it
-appears as a single tt(#) character. If the configuration file should contain
-tt(\#) write tt(\\#), this results in replacing tt(\#) by tt(#), leaving
-tt(\#).
+character.
 
-All non-empty lines of the configuration file (when comment is ignored comment
-is not considered to be line-content) are stored in the bf(ConfigFile) object.
-When line indices should be stored the (0-based) line indices of lines are
-available as well.
+All lines of the configuration file (optionally without comment) are stored in
+the bf(ConfigFile) object. When line numbers should be stored the numbers of
+stored lines can also be retrieved. 
 
 At construction time comment handling (keep comment / remove comment),
-case-sensitive searching (sensitive / insensitive) and index storage (store /
-don't store) can be specified.
+case-sensitive searching (sensitive / insensitive) and line number storage
+(store / don't store) can be specified. 
 
-It can't be modified using the tt(open) member, but overloaded assignment is
-supported and comment and letter case handling can be modified by set-members.
+In addition to one of the constructors, the tt(open) member processes a
+configuration file, replacing the object's current contents by the contents of
+another configuration file. The tt(open) member cannot be used to change the
+configuration file's processing parameters, but overloaded assignment is
+supported and comment- and letter-case handling can be modified by
+set-members.
 
 includefile(include/namespace)
 
@@ -50,42 +49,54 @@ manpagesection(ENUMERATIONS)
     itemization(
     itb(Comment)
         This enumeration has two values: nl()
-        bf(ConfigFile::KeepComment) is used to indicate that comment on
-lines must be kept; nl()
-        bf(ConfigFile::RemoveComment) is used to indicate that comment on
-lines must be removed;
-    itb(SearchCasing)
+        bf(ConfigFile::KeepComment) specifies that comment on lines must be
+            kept; nl()
+        bf(ConfigFile::NoComment) specifies that comment on lines must be
+            removed;
+
+    itb(Casing)
         This enumeration also has two values:nl() 
-        bf(ConfigFile::SearchCaseSensitive) is used to do case sensitive
-searches for targets;nl()
-        bf(ConfigFile::SearchCaseInsensitive) is used to do case
-insensitive searches for targets.
-    itb(Indices)
+        bf(ConfigFile::UseCase) specifies that specified targets must match
+            case-sensitively;nl()
+        bf(ConfigFile::NoCase) specifies that specified targets are matched
+            case-insensitively;nl()
+
+    itb(Lines)
         This enumeration also has two values:nl() 
-        bf(ConfigFile::IgnoreIndices) when used, the line numbers of the
-original configuration file are not available;nl()
-        bf(ConfigFile::StoreIndices) when used, the line numbers of the
-original configuration file are also available;nl()
+        bf(ConfigFile::KeepNumbers) specifies that the line numbers of the
+            original configuration file remain available;nl()
+        bf(ConfigFile::NoNumbers) specifies that the line numbers of the
+            original configuration file are not available;nl()
     )
 
 manpagesection(TYPES)
     The following types are defined by the class tt(ConfigFile):
     itemization(
-    itb(const_iterator) 
-        a tt(const_iterator) is an iterator pointing to a
-line (tt(std::string)) of the configuration file;
-    itb(const_RE_iterator) a tt(const_RE_iterator) is an iterator pointing to
-lines matching a regular expression. It supports the following operations:
+    itb(const_iterator): an iterator referring to a line (tt(std::string))
+        read from the configuration file;
+
+    itb(const_RE_iterator): an iterator referring to
+       lines matching regular expressions. The following operations are
+        supported:  
+
         itemization(
         itt(const_RE_iterator &operator++()): the prefix increment operator
-increments the iterator to point to the next line in the configuration file
-matching the iterator's regular expression;
+            increments the iterator to refer to the next line in the
+            configuration file matching the iterator's regular expression;
+
         itt(std::string const &operator*()): the dereferencing operator
-returns the line of the configuration file the iterator refers to;
-        itt(std::string const *operator->()): the pointer operator returns the
-address of the line of the configuration file the iterator refers to;
+            returns the line of the configuration file the iterator refers to;
+
+        itt(std::string const *operator->()): the pointer operator returns a
+            pointer to the line of the configuration file the iterator refers
+            to;
+
+        itt(ConfigFile::const_iterator const &const_iterator()): returns the
+            tt(const_iterator) referring to the same line as the
+            tt(const_RE_iterator) object refers to.
         )
-    tt(const_RE_iterator)s can be compared for (in)equality and they can be
+
+    tt(const_RE_iterators) can be compared for (in)equality and they can be
 copy-constructed; tt(const_RE_iterator) objects are returned by the
 tt(ConfigFile::beginEndRE) member and cannot otherwise be constructed.
 
@@ -102,169 +113,194 @@ below for a description of the functions used in the next example):
 expression. The provided example illustrates how this is realized using
 tt(beginEndRE).
 
-    tt(FBB::Pattern) is used to perform the regular expression pattern
+    tt(FBB::Pattern) is used for handling the regular expression pattern
 matching.
     )
 
 manpagesection(CONSTRUCTORS)
     itemization(
-    itb(ConfigFile(Comment cType = KeepComment, SearchCasing sType =
-            SearchCaseSensitive, Indices iType = IgnoreIndices))
-        This constructor is used to create an empty bf(ConfigFile)
-object. It is not associated with an input stream: the tt(open) member can
-be used for that. The parameters can be used to specify specific handling of
-comment, letter-casing and storage of line numbers in the original
-configuration file.
+    itb(ConfigFile(Comment cType = KeepComment, Casing sType =
+            UseCase, Indices iType = NoNumbers))
+       Creates an empty bf(ConfigFile) object. It is not associated with a
+        configuration file: the tt(open) member can be used for that. The
+        parameters can be used to specify specific handling of comment,
+        letter-casing and storage of line numbers;
+
     itb(ConfigFile(std::string const &fname, Comment cType = KeepComment,
-            SearchCasing sType = SearchCaseSensitive, 
-            Indices iType = IgnoreIndices))
-        This constructor is used to create a bf(ConfigFile) object, which
-is filled with the information from a file whose name is provided as the
-constructor's first argument. The other parameters are used as described with
-the first constructor. It throws an tt(FBB::Exception) exception if the file
-could not be opened.
+            Casing sType = UseCase, Indices iType = NoNumbers))
+       Creates a bf(ConfigFile) object, containing the information from the
+        configuration file tt(fname). The other parameters are used as
+        described with the first constructor. If the file cannot be opened an
+        tt(FBB::Exception) exception is thrown.
     )
 
+    Copy and move constructors (as well as assignment operators) are
+    available.
 
 manpagesection(OVERLOADED OPERATORS)
     itemization(
     itb(std::string const &operator[](size_t idx) const)
-        This member returns the (0-based) tt(idx)-th line of the configuration
-    file. 
+       This member returns the (0-based) tt(idx)-th line of the configuration
+        file. 
     )
 
-    Copy and move constructors (and assignment operators) are available.
-
 manpagesection(MEMBER FUNCTIONS)
+    Below tt(ConfigFile) iteration types are specified without their
+        tt(ConfigFile::) scopes.
+
     itemization(
-    itb(ConfigFile::const_iterator begin() const)
-        This member returns a tt(const_iterator) to the first line of the
-configuration file.
+    itb(const_iterator begin() const)
+       This member returns a tt(const_iterator) to the first line of the
+        configuration file;
 
-    itb(ConfigFile::const_iterator end() const)
-        This member returns a tt(const_iterator) pointing beyond the last line
-of the configuration file.
+    itb(const_iterator end() const)
+       This member returns a tt(const_iterator) pointing beyond the last line
+        of the configuration file;
 
-    itb(std::pair<ConfigFile::const_RE_iterator, ConfigFile::const_RE_iterator>
-         beginEndRE(std::string const &target) const)
-        A pair of tt(const_RE_iterators) is returned. The tt(first)
-field of the pair is a tt(const) iterator to the first element (i.e.,
-line) of the bf(ConfigFile) object in which the regular expression tt(target)
-is found. 
+    itb(std::pair<const_RE_iterator, const_RE_iterator>
+         beginEndRE(std::string const &regex) const)
+       A pair of tt(const_RE_iterators) is returned. The tt(first) field is a
+        tt(const) iterator to the first line of the
+        bf(ConfigFile) object in which the regular expression tt(target) is
+        found.
 
-        The tt(second) field is a tt(const) iterator marking the end of the
-series of lines started at the the first line matching the regular expression
-specified by tt(target).
+       The tt(second) field is a tt(const) iterator marking the end of the
+        series of lines matching the regular expression specified by
+        tt(regex).
 
-If the tt(RemoveComment) flag was specified, then comment-text is not
-searched.  The iterator returned in the pair's tt(first) field can be
-incremented until the iteratr returned in the pair's tt(second) field is
-reached; all iterators (unequal the iterator in tt(second)) point to lines
-matching the specified regular expression.  
+       Although the difference between two tt(const_RE_iterators) can be
+        computed it is a relatively expensive operation. The difference is
+        obtained by performing repeated regular expression matchings rather
+        than the mere algebraic subtraction of pointer values. If the
+        difference cannot be computed tt(std::numeric_limits<size_t>::max())
+        is returned;
 
-    The iterator's increment operator searches the next line matching the
-specified regular expression.
+    itb(const_iterator find(std::string const &target) const) 
+       Returns an iterator to the first line of the tt(ConfigFile) object in
+        which tt(target) is found, starting the search at tt(begin()). Note
+        that tt(target) may appear anywhere within a line;
 
-    Although the difference between two tt(const_RE_iterators) can be computed
-it is a relatively expensive operation. The difference is obtained by
-performing repeated regular expression matchings rather than the mere
-algebraic subtraction of pointer values. If the difference cannot be computed
-tt(std::numeric_limits<size_t>::max()) is returned.
+    itb(const_iterator find(std::string const &target, const_iterator from) 
+        const) 
+       Same functionality as the previous member, but searching starts at
+        tt(from);
 
-        This member also interprets the tt(SearchCasing) flag.
+    itb(const_iterator findID(std::string const &id) const) 
+       This member retrieves information from the first line having the
+        general pattern `tt(id<SEP> value)', where tt(id) is a bf(C++)
+        identifier, and tt(<SEP> a sequence of at least one non-identifier and
+        non white-space character, and tt(value) is the first sequence of non
+        white-space characters following tt(id<SEP>). At least one white space
+        character must appear between tt(id<SEP>) and tt(value).
 
-    itb(std::pair<ConfigFile::const_RE_iterator, ConfigFile::const_RE_iterator>
-         beginEndRE() const)
-        A pair of tt(const_RE_iterators) is returned, both marking the end of
-a regular expression search.
+        It returns tt(end()) if no such line was found.
 
-    itb(ConfigFile::const_iterator find(std::string const &target) const)
-        This member returns an iterator to the first element (i.e., line) of
-the tt(FBB::ConfigFile) object in which tt(target) is found. Note that
-tt(target) may appear anywhere within a line. If the tt(RemoveComment) flag
-was specified, then comment-text is not searched. Use the tt(end) member to
-determine the end-iterator. It is not guaranteed that all lines between the
-returned iterator and tt(end) contain tt(target).  This member also
-interprets the tt(SearchCasing) flag.
+        Note that tt(value) is just the first space-delimited `word' following
+        tt(id<SEP>). If the content of the full line beyond tt(id<SEP>)
+        is required, use the member tt(findIDTail);
 
-    itb(std::string findKey(std::string const &keyPattern, 
-                                                     size_t count = 1) const)
-        This member can be used to retrieve information from lines having the
-general pattern `tt(keyPattern value)'. Initial and trailing white space on
-lines are ignored. tt(keyPattern) itself should not contain initial or
-trailing white space. At least one white space character must appear between
-tt(keyPattern) and tt(value). If at least tt(count) lines were found matching
-tt(keyPattern value) then this member returns the first sequence of non white
-space characters following tt(keyPattern) after matching tt(count) lines
-matching tt(keyPattern value) (i.e., `tt(value)' is returned). If tt(value) is
-empty or if fewer than tt(count) lines match tt(keyPattern) an empty string is
-returned. An tt(FBB::Exception) exception is thrown if tt(count) equals 0.
+    itb(const_iterator findID(std::string const &id, const_iterator from) 
+       const) 
+       Same functionality as the previous member, but searching starts at
+        tt(from);
 
-    itb(std::string findKeyTail(std::string const &keyPattern, 
-                                                    size_t count = 1) const)
-        This member can be used to retrieve information from lines having the
-general pattern `tt(keyPattern value)', merely followed by white
-space. Initial and trailing white space on lines are ignored. tt(keyPattern)
-itself should not contain initial or trailing white space. At least one white
-space character must appear between tt(keyPattern) and tt(value).  If at least
-tt(count) lines were found matching tt(keyPattern value) then this member
-returns the information beyond tt(keyPattern) after matching tt(count) lines
-matching tt(keyPattern) (i.e., `tt(value)' is returned). This function differs
-from tt(findKey) in that all information trailing tt(keyPattern) is returned
-in tt(value).  If tt(value) is empty or if fewer than tt(count) lines match
-tt(keyPattern) an empty string is returned. An tt(FBB::Exception) exception is
-thrown if tt(count) equals 0.
+    itb(std::pair<const_iterator, std::string> findKey(std::string const
+        &keyPattern) const)  
+       This member retrieves information from lines having the general pattern
+        `tt(keyPattern value)', where tt(keyPattern) is specified as a regular
+        expression, which should not specify initial or trailing white space,
+        and tt(value) is the first sequence of non white-space characters
+        following tt(keyPattern). At least one white space character must
+        appear between tt(keyPattern) and tt(value).
 
-    itb(ConfigFile::const_iterator findRE(std::string const &target) const)
-        This member returns an iterator to the first line of the
-bf(ConfigFile) object matching the regular expression tt(target). After
-calling this function tt(beginEndRE) returns an iterator pair whose tt(first)
-field is an iterator to the same line and whose tt(second) field is the
-end-iterator for lines matching tt(target). If the tt(RemoveComment) flag was
-specified, then comment-text is not searched.  The inherited tt(end) member
-can be used to determine the end-iterator. It is not guaranteed that all lines
-between the returned iterator and tt(end) also contain tt(target).
+        It returns as the return value's tt(first) field an iterator to the
+        first line matching tt(keyPattern) or tt(end()) if no such line was
+        found. At a successful match the return value's tt(second) field
+        contains `value' (which may be an empty string).
 
-    itb(size_t index(size_t idx))
-        This function should only be used when the parameter tt(StoreIndices)
-was specified at construction time. In that case it returns the original
-0-based line index in the configuration file associated with the
-tt(idx)sups(th) (0-based) index in the current tt(Configuration) object.
+        Note that tt(value) is just the first space-delimited `word' following
+        tt(keyPattern). If the full content of the information beyond
+        tt(keyPattern) is required, use the member tt(findKeyTail);
 
-    itb(size_t index(const_iterator const &iter))
-        This function should only be used when the parameter tt(StoreIndices)
-was specified at construction time. In that case it returns the original
-0-based line index in the configuration file associated with the configuration
-line in the current tt(Configuration) object pointed to by tt(iter). This may
-also be an (incremented version of the) iterator returned by the member
-tt(findRE).
+    itb(std::pair<const_iterator, std::string> findKey(std::string const
+        &keyPattern, const_iterator from) const)  
+       Same functionality as the previous member, but searching starts at
+        tt(from);
+
+    itb(std::pair<const_iterator, std::string> findKeyTail(std::string const
+        &keyPattern) const)
+       This member retrieves information from lines having the general pattern
+        `tt(keyPattern tail)', where tt(keyPattern) is specified as a regular
+        expression, which should not specify initial or trailing white space,
+        and tt(tail) is the line's content starting at the first non
+        white-space character beyond tt(keyPattern). At least one white space
+        character must appear between tt(keyPattern) and tt(tail).
+
+        It returns as the return value's tt(first) field an iterator to the
+        first line matching tt(keyPattern) or tt(end()) if no such line was
+        found. At a successful match the return value's tt(second) field
+        contains `tail' (which may be an empty string);
+
+    itb(std::pair<const_iterator, std::string> findKeyTail(std::string const
+        &keyPattern, const_iterator from) const)  
+       Same functionality as the previous member, but searching starts at
+        tt(from);
+
+    itb(const_iterator findRE(std::string const &regex) const)
+       An iterator is returned to the first line of the bf(ConfigFile) object
+        matching the regular expression tt(regex), or tt(end()) is returned
+        if no such line was found. 
+
+       Following a successful match tt(beginEndRE) may be called to obtain an
+        iterator pair defining the range of lines matching tt(regex) or the
+        next member can be used to obtain the next line;
+
+    itb(const_iterator findRE(std::string const &regex, const_iterator from)
+        const)   
+       Same functionality as the previous member, but searching starts at
+        tt(from);
+
+     itb(string key(const_iterator const &iter))
+       The first series of non white-space characters on the line to which
+        tt(iter) refers is returned.  An empty string is returned if the line
+        is empty;
+
+     itb(size_t lineNr(const_iterator const &iter))
+       The (1-based) line number in the configuration file corresponding to
+        the line to which tt(iter) refers is returned;
 
     itb(void open(std::string const &fname))
-        This member reads the configuration file having name tt(fname).
-It redefines the current contents of the bf(ConfigFile) object,
-destroying any information previously stored in it. The configuration file is
-read according to the latest setting of the comment-flag. It throws an
-tt(FBB::Exception) exception if the file cannot be opened.
+       This member processes the configuration file having name tt(fname).  It
+        redefines the current content of the bf(ConfigFile) object. The
+        configuration file is read according to the latest setting of the
+        tt(Comment) and tt(Casing) flags. If the file cannot be opened an
+        tt(FBB::Exception) exception is thrown;
 
-This member clears previously available information and reinitializes the
-object with information read from the new file.
+    itb(void setComment(Comment type))
+       This member changes the comment-handling type to tt('type'). It doesn't
+        affect the current content of the bf(ConfigFile) object, but when
+        calling tt(open) the configuration file is processed according to
+        tt(type's) value;
 
-    itb(void setCommentHandling(Comment type))
-        This member can be used to change the comment-handling type originally
-set by the constructor, or set by earlier calls of this function. When called
-it won't affect the current contents of the bf(ConfigFile) object, but
-new calls of its tt(open) member reads the configuration file according
-to the last setting of the comment flag.
-
-    itb(void setSearchCasing(SearchCasing type))
-        This member can be used to change the handling of the letter-casing
-originally set by the constructor, or set by earlier calls of this
-function. When called it won't affect the current contents of the
-bf(ConfigFile) object, but new calls of its tt(open) member reads the
-configuration file according to the last setting of the letter-casing flag.
+    itb(void setCasing(Casing type))
+       This member changes the letter case handling type to tt('type'). It
+        doesn't affect the current content of the bf(ConfigFile) object, but
+        when calling tt(open) the configuration file is processed according to
+        tt(type's) value;
 
     itb(size_t size() const)
-        This member returns the number of lines in the configuration file.
+        The number of lines of the configuration file is returned;
+
+    itb(string tail(const_iterator const &iter))
+       The content of the line tt(iter) refers to starting at the first non
+        white-space character beyond the first series of non white-space
+        characters is returned. If no such character(s) exist an empty string
+        is returned;
+
+    itb(string value(const_iterator const &iter))
+       The second series of non white-space characters on the line to which
+        tt(iter) refers is returned.  An empty string is returned if the line
+        does not contain a second series of non-white-space characters;
     )
 
 manpagesection(EXAMPLE)
@@ -280,7 +316,7 @@ noline: this one too
 
 line: this is found
 
-this is not a line containing line: at the beginning \
+this is not a line containing line: at the beginning \ 
                                     of the line
 
 line: this one is
@@ -331,6 +367,89 @@ manpageseealso()
     bf(pattern)(3bobcat)
 
 manpagebugs()
+
+    itb(Comment)
+        This enumeration has two values: nl()
+        bf(ConfigFile::KeepComment) specifies that comment on lines must be
+kept; nl()
+        bf(ConfigFile::RemoveComment) specifies that comment on lines must be
+removed;
+    itb(SearchCasing)
+        This enumeration also has two values:nl() 
+        bf(ConfigFile::SearchCaseSensitive) is used to do case sensitive
+searches for targets;nl()
+        bf(ConfigFile::SearchCaseInsensitive) is used to do case
+insensitive searches for targets.
+    itb(Indices)
+        This enumeration also has two values:nl() 
+        bf(ConfigFile::IgnoreIndices) when used, the line numbers of the
+original configuration file are not available;nl()
+        bf(ConfigFile::StoreIndices) when used, the line numbers of the
+original configuration file are also available;nl()
+
+    setSearchCasing -> setCasing
+    findKey(std::string const &keyPattern, size_t count) ->
+             findKey(std::string const &keyPattern)
+             findKey(std::string const &keyPattern, const_iterator)
+
+    itb(std::string findKey(std::string const &keyPattern, size_t count = 1)
+        const) 
+       This member retrieves information from lines having the general pattern
+        `tt(keyPattern value)', where tt(keyPattern) is specified as a regular
+        expression, which should not specify initial or trailing white space,
+        and tt(value) is the first sequence of non white-space characters
+        following tt(keyPattern). At least one white space character must
+        appear between tt(keyPattern) and tt(value).
+
+        It returns the `value' of the `count-th' line matching tt(keyPattern).
+
+        Note that tt(value) is just the first space-delimited `word' following
+        tt(keyPattern). If the content of the full line beyond tt(keyPattern)
+        is required, use the member tt(findKeyTail).
+
+       If tt(value) is empty or if fewer than tt(count) lines matched
+        tt(keyPattern) an empty string is returned. An tt(FBB::Exception)
+        exception is thrown if tt(count) equals 0.
+
+
+    itb(std::string findKeyTail(std::string const &keyPattern, 
+                                                    size_t count = 1) const)
+        -> 
+
+    itb(ConfigFile::const_iterator findRE(std::string const &target) const)
+        This member returns an iterator to the first line of the
+bf(ConfigFile) object matching the regular expression tt(target). After
+calling this function tt(beginEndRE) 
+
+        => Or use findRE with a from-iterator
+
+returns an iterator pair whose tt(first)
+field is an iterator to the same line and whose tt(second) field is the
+end-iterator for lines matching tt(target). If the tt(RemoveComment) flag was
+specified, then comment-text is not searched.  The inherited tt(end) member
+can be used to determine the end-iterator. It is not guaranteed that all lines
+between the returned iterator and tt(end) also contain tt(target).
+
+    itb(size_t index(size_t idx))
+        This function should only be used when the parameter tt(StoreIndices)
+was specified at construction time. It returns the 
+(1-based ) line number in the configuration file associated with the
+(0-based) index tt(idx) in the current tt(Configuration) object.
+
+    itb(index(const_iterator const &iter))
+        This function should only be used when the parameter tt(StoreIndices)
+was specified at construction time. It returns the
+1-based line number in the configuration file corresponding to the
+line to which tt(iter) refers.
+
+    itb(std::pair<const_RE_iterator, const_RE_iterator> beginEndRE() const)
+       A pair of tt(const_RE_iterators) is returned, both marking the end of a
+        regular expression search;
+
+
+
+
     None Reported.
 
 includefile(include/trailer)
+

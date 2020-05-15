@@ -10,134 +10,103 @@
 
 #include <vector>
 #include <string>
-#include <iterator>
+#include <cstring>
+//#include <iterator>
+
+#include <bobcat/string>
+#include <bobcat/pattern>
+#include "../iuo/iuo"
 
 namespace FBB
 {
 
-class RE_iterator: public std::iterator<std::input_iterator_tag, std::string>
+#include "cftypes"
+#include "cfpimpl"
+
+class ConfigFile: public CF_Types
 {
-    friend class ConfigFile_;
-
-    friend int operator-(RE_iterator const &lhs,        // opneg.f
-                         RE_iterator const &rhs);
-
-    friend bool operator==(RE_iterator const &lhs, RE_iterator const &rhs);
-
-                            // contains iterators to lines matching REs
-    typedef std::vector<std::string>::const_iterator VsIterator;
-    typedef std::vector<VsIterator> VsIterVector;
-
-    VsIterVector const &d_vsIter;
-    size_t d_idx;
+    CF_Pimpl *d_ptr;
 
     public:
-        RE_iterator &operator++();
+//        typedef //ConstIter const_iterator;
 
-        std::string const &operator*() const;           // opstar.f
-        std::string const *operator->() const;          // oparrow.f
+        explicit ConfigFile(Comment cType = KeepComment,            // 1
+                            Casing sType = UseCase);
 
-    private:
-        RE_iterator(VsIterVector const &vsIter, size_t idx);
-};
+        explicit ConfigFile(std::string const &fname,               // 2
+                            Comment cType = KeepComment, 
+                            Casing sType = UseCase);
 
-struct CFEnums_
-{
-        typedef RE_iterator const_RE_iterator;
-        typedef std::vector<std::string>::const_iterator const_iterator;
-        typedef std::pair<const_RE_iterator, const_RE_iterator> 
-                                                        RE_iteratorPair;
+        ConfigFile(ConfigFile &&tmp);                               // 3
+        ConfigFile(ConfigFile const &rhs);                          // 4
 
-        enum Comment
-        {
-            KeepComment,
-            RemoveComment
-        };
-        enum SearchCasing
-        {
-            SearchCaseSensitive,
-            SearchCaseInsensitive
-        };
+        ~ConfigFile();
 
-        enum Indices
-        {
-            IgnoreIndices,
-            StoreIndices
-        };
-};
+        ConfigFile &operator=(ConfigFile &&tmp);                    // 1
+        ConfigFile &operator=(ConfigFile const &rhs);               // 2
 
-class ConfigFile_;
-class ConfigFile: public CFEnums_
-{
-    ConfigFile_ *d_ptr;
-
-    public:
-        explicit ConfigFile(Comment cType = KeepComment,        // 1
-                   SearchCasing sType = SearchCaseSensitive,
-                   Indices iType = IgnoreIndices);
-                                                        // 2
-        explicit ConfigFile(std::string const &fname,   // config file name
-                    Comment cType = KeepComment, 
-                    SearchCasing sType = SearchCaseSensitive,
-                    Indices iType = IgnoreIndices);
-
-        ConfigFile(ConfigFile &&tmp);                   // 3
-        ConfigFile(ConfigFile const &rhs);              // 4
-
-        ~ConfigFile();                          
-
-        ConfigFile &operator=(ConfigFile &&tmp);
-        ConfigFile &operator=(ConfigFile const &rhs);   // 2
-
+        std::string const &operator[](size_t idx) const;            // 1.cc
+ 
+         void setCasing(Casing type);                                // .f
+         void setComment(Comment type);                              // .f
+ 
         void open(std::string const &fname);
 
-        void setCommentHandling(Comment type);
-        void setSearchCasing(SearchCasing type);
+        const_iterator begin() const;                               // .cc
+        const_iterator end() const;                                 // .cc
 
-        const_iterator begin() const;
-        const_iterator end() const;
+        const_iterator find(std::string const &target) const;       // 1
+        const_iterator find(std::string const &target,              // 2
+                            const_iterator const &from) const;
+
+        const_iterator findID(std::string const &id) const;         // 1.f
+        const_iterator findID(std::string const &id,                // 1.f
+                              const_iterator from) const;
+
+        const_iterator findKey(std::string const &key) const;       // 1.f
+        const_iterator findKey(std::string const &key,              // 1.f
+                               const_iterator const &from) const;
+
+        const_iterator findRE(std::string const &re) const;         // 1.f
+        const_iterator findRE(std::string const &re,                // 1.f
+                                const_iterator const &from) const;
 
         RE_iteratorPair beginEndRE(std::string const &re) const;    // 1
-        RE_iteratorPair beginEndRE() const;                         // 2
 
-        const_iterator find(std::string const &target) const;
-        const_iterator findRE(std::string const &re) const;
+        size_t size() const;                                        // 1.cc
 
-        std::string findKey(std::string const &key, size_t count = 1) const;
 
-        std::string findKeyTail(std::string const &key, 
-                                size_t count = 1) const;
+            // deprecated members (removed in a subsequent release)
+            // all filenames start with obs
 
-        size_t index(size_t lineNr);                        // 1
-        size_t index(const_iterator const &iterator);       // 2
+        ConfigFile(Comment cType, Casing sType, Indices);       // obs..1.cc
+        ConfigFile(std::string const &fname,                    // obs..2.cc
+                   Comment cType, Casing sType, Indices);
 
-        std::string const &operator[](size_t idx) const;
+        RE_iteratorPair beginEndRE() const;                     // obs...cc
 
-        size_t size() const;
+        void setCommentHandling(Comment type);                  // obs.f
+        void setSearchCasing(Casing type);                      // obs.f
+
+        const_iterator obsFind(std::string const &key, size_t count) const;
+        std::string findKey(std::string const &key,             // obs...cc
+                            size_t count) const;
+        std::string findKeyTail(std::string const &key,         // obs...cc
+                            size_t count) const;
+
+        size_t index(size_t idx) const;                         // obs..1.cc
+        size_t index(const_iterator const &iterator) const;     // obs..2.cc
 };
 
-#include "opstar.f"
-#include "oparrow.f"
+#include "findid1.f"
+#include "findkey1.f"
+#include "findre1.f"
+#include "setcasing.f"
+#include "setcomment.f"
 
-    // Free members:
+#include "obs.f"
 
-bool operator==(RE_iterator const &lhs, RE_iterator const &rhs);
-
-#include "opneq.f"                  // RE_iterator != RE_iterator
-#include "opsub.f"                  // RE_iterator - RE_iterator
-
-
-} // FBB
-
+} // FBB        
 #endif
-
-
-
-
-
-
-
-
-
 
 
