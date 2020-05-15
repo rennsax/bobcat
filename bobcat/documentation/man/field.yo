@@ -4,19 +4,19 @@ COMMENT(manpage, section, releasedate, archive, short name)
 manpage(FBB::Field)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
                     (Number fields)
 
-manpagename(FBB::Field)(sets and retrieves position based number fields)
+manpagename(FBB::Field)(sets and retrieves offset based number fields)
 
 manpagesynopsis()
     bf(#include <bobcat/field>)nl()
 
 manpagedescription()
 
-Numbers may contain position-based sub-fields. E.g., a value like 12345
-might consist of fields 12 and 345. Such fields are position based, using end-
-and begin offsets in the number representations. In this example 345 begins at
-digit position 0 (indicating the least significant digit of 12345) and at
-digit position 3 the next field starts. Likewise, the field 12 begins at digit
-position 3 and has ended at digit position 5. 
+Numbers may contain offset-based sub-fields. E.g., a value like 12345 might
+consist of fields 12 and 345. Such fields can be considered offset-based,
+using end- and begin offsets in the number representations. In this example
+345 begins at digit position 0 (indicating the least significant digit of
+12345) and at digit position 3 the next field starts. Likewise, the field 12
+begins at digit position 3 and has ended at digit position 5.
 
 The tt(Field) class template provides facilities for retrieving and assigning
 position based values of existing numeric values of (currently) at most 64
@@ -28,29 +28,32 @@ To represent such fields the following format is used:
         )
     where tt(base) specifies the number system's base value, tt(end) specifies
 the (0-based) index position where the number field ends, and tt(begin)
-specifies the index position where the number field begins. 
+specifies the index position where the number field begins. Here are two
+examples, using the decimal number system:
         verb(
-    Field10<3, 0>::get(12345)    // returns 345
-    Field10<5, 3>::get(12345)    // returns  12
+    Field<10, 3, 0>::get(12345)    // returns 345
+    Field<10, 5, 3>::get(12345)    // returns  12
         )
 
-Corresponding to the standard way of indicating digit positions in numbers,
-the left-hand side digit position is specified first, and the right-hand side
-digit position is specified next. Fields can be retrieved, but they can also
-be set: to set a field's value the following format could be used:
-        verb(
-    Field10<3, 1>::set(12345, 99)   // returns 12995
-    Field10<1, 0>::set(12345, 0)    // returns 12450
-        )
+The decision to specify the tt(end) offset before (i.e., left of) the
+tt(begin) offset is based on the consideration that this corresponds to the
+standard way of looking at digit positions in numbers, where the end offset is
+found to the left of the begin offset.
 
-The class template tt(Field10) interprets positions as positions in decimal
-numbers. The class template tt(Field2) uses binary number representations, and
-the generic tt(Field<base, end, begin>) class template can be used to indicate
-fields using other number bases. E.g.,
+Values of fields can be retrieved, but they can also
+be set: to set a field's value the following format is used:
         verb(
-    Field<16, 1, 0>::set(0xdeaf, 0xd) 
+    Field<10, 3, 1>::set(12345, 99)   // returns 12995
+    Field<10, 1, 0>::set(12345, 0)    // returns 12450
         )
-    returns the hexadecimal value tt(0xdead'). 
+    When values are assigned to fields the maximum width of the destination
+field is taken into account. When specifying 9999 instead of 99 in 
+the above example the returned value will still be 12995, as the destination
+field has a width of two digit positions. Likewise, specifying a smaller value
+sets the remaining (more significant) digits to 0:
+        verb(
+    Field<10, 3, 1>::set(12345, 9)    // returns 12095
+        )
 
 The class templates themselves are unaware of bases of number systems. Since
 0xdeaf equals the decimal value 57007 and 0xd equals 13, calling the above
@@ -58,9 +61,9 @@ function as
         verb(
     Field<16, 1, 0>::set(76007, 13) 
         )
-    also returns the hexadecimal value tt(0xdead'). 
+    returns the hexadecimal value tt(0xdead'). 
 
-The generic tt(Field) class template requires three non-type parameters:
+The tt(Field) class template requires three non-type numeric arguments:
     itemization(
     itt(base), specifying the base of the number system;
     itt(end), specifying the 0-based offset of the digit position where the
@@ -69,114 +72,34 @@ The generic tt(Field) class template requires three non-type parameters:
         field begins;
     )
 
-To further illustrate the elements of a field in a number consider the
-following subdivision of a number tt(value):
-        verb(
-    |   C   |   B   |   A   |
-    -------------------------
-           ^       ^       ^
-           end     begin   0
-        )
-    In general, a value consists of the fields A, B and C. B begins at digit
-offset tt(begin) and its most significant digit is at digit offset tt(end -
-1). 
-
-Using tt(pow(exp)) to represent tt(pow(base, exp)), where tt(base) is the
-specified number system's base value, then the fields A, B, and C,
-are obtained as follows:
-        verb(
-    A:  value % pow(begin)              // remove values from 'begin' and up
-
-    B:  value % pow(end)   / pow(begin) // remove beyond 'end', then 
-                                        // cut off values below 'begin'
-
-    C:  value / pow(end)                // cut off values below 'end'
-        )
-    These are the mere A, B and C values. Those value can be replaced by other
-values: 
-
-        verb(
-    replace A:  value - value % pow(begin)  // add to plain A 
-                + X % pow(begin)            // X's value not exceeding 'begin'
-
-    replace B:  value - value % pow(end) / pow(begin) * pow(begin)
-                       + X % pow(end - begin) * pow(begin)
-    ->
-
-    replace B:  value (
-                        X % pow(end - begin) -
-                        value % pow(end) / pow(begin)
-                      )
-                      * pow(begin)
-
-
-    replace C:  value / pow(end) + X * pow(end)
-        )
-
-If base 2 is used bit shifts can be used:
-
-To access the values of the fields:
-        verb(
-    A:  value & ((1 << begin) - 1)
-    B:  value >> (1 >> begin) & (1 << (end - begin) - 1)
-    C:  value >> (1 >> end)
-        )
-
-    To replace these values use:
-
-        verb(
-    replace A:  value & ~((1 << begin) - 1) | X & ~((1 << begin) - 1)
-
-    replace B:  (value & 
-                    (~( (1 << (end - begin)) - 1) << begin )) 
-                |
-                    ((X & ((1 << (end - begin) - 1))) << begin);
-
-    replace C:  (value >> end << end) 
-                |
-                (
-                    ((X & (
-                            (1 << (end - begin) - 1))
-                      )
-                    ) 
-                    << end
-                );
-        )
-
+The class template is specialized for situations where tt(base) is a mere
+power of 2 (like 2, 4, 8, 16, ...) because in those cases bit-operations can
+be used which are faster than multiplications, divisions and modulo
+computation which are required when other number system bases are used.
 
 includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
-    The specialized classes tt(Field2) and tt(Field10) are derived from tt(the
-generic class template tt(Field). 
-
-
-manpagesection(CONSTRUCTORS)
-    itemization(
-    itb(Field())
-    )
-
-    Copy and move constructors (and assignment operators) are not available.
-
-manpagesection(OVERLOADED OPERATORS)
-    itemization(
-    itb()
-    )
+    -
 
 manpagesection(MEMBER FUNCTIONS)
-     All members of bf(std::ostringstream) and bf(  std::exception) are
-available, as bf(FBB::Field) inherits from these classes.
     itemization(
-    itb()
-    )
+    itb(uint64_t Field<base, end, begin>::get(uint64_t value))
+        tt(value) is interpreted as a value in the tt(base) number system, and
+using digit positions in that number system the value of the digits from
+offset tt(begin) to (but not including) offset tt(end) is returned;
 
-manpagesection(MANIPULATORS)
-    itemization(
-    itb(FBB::) 
+    itb(uint64_t Field<base, end, begin>::set(uint64_t value, uint64_t field))
+        tt(value) is interpreted as a value in the tt(base) number system, and
+using digit positions in that number system the digits from
+offset tt(begin) to (but not including) offset tt(end) are replaced by
+tt(field's) value. When the number of tt(fields's) digits (also using number
+system tt(base)) exceeds tt(end - begin) then those excess digits are
+ignored. 
     )
 
 manpagesection(EXAMPLE)
-    To do
+    See the examples in the bf(DESCRIPTION) section
 
 manpagefiles()
     em(bobcat/field) - defines the class interface

@@ -1,4 +1,4 @@
-bobcat (5.05.00) (WIP)
+bobcat (5.05.00)
 
   * Redefined FBB::binary_search, and updated its man-page
 
@@ -7,6 +7,7 @@ bobcat (5.05.00) (WIP)
   * Added the class template FBB::Field allowing retrieval and modifications 
     of offset-based fields in numeric values of configurable number systems.
 
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 15 May 2020 16:05:31 +0200
 
 bobcat (5.04.01)
 
