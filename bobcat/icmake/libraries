@@ -109,7 +109,7 @@ void static_library(string library)
 
         run("ar cr " + library + " */oa/*.o");
         run("ranlib " + library);
-        run("rm */oa/*.o");
+        // run("rm */oa/*.o");
     }
 }
 
@@ -151,7 +151,7 @@ void _shared_library(string libso, string libsoshared,
         run("ln -sf " + libsomajor  + " " + libso);
     
         chdir(g_cwd);
-        run("rm -f */os/*");
+        // run("rm -f */os/*");
     }
 }
 
@@ -194,8 +194,8 @@ void libraries(int keepPch, string libname, int all, int strip, int select,
     _shared_library(libso, libsoshared, strip);
 #endif
 
-    if (!keepPch)
-        run("rm -rf */*.ih.gch");
+    // if (!keepPch)
+    //     run("rm -rf */*.ih.gch");
 
     exit(0);
 }

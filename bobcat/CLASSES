@@ -15,6 +15,7 @@ cidr
 clientsocket
 cmdfinder
 cmdfinderbase
+config
 configfile
 csv4180
 datetime

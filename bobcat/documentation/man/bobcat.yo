@@ -81,7 +81,11 @@ The following classes and functions are available:
     bf(FBB::CmdFinderBase): Base class for tt(CmdFinder).nl() 
     Manpage(cmdfinderbase)
 
-    bf(FBB::ConfigFile): Processing standard configuration files.nl() 
+    bf(FBB::Config): Processing standard configuration files.nl() 
+    Manpage(configfile)
+
+    bf(FBB::ConfigFile): Processing standard configuration files (deprecated,
+    use bf(Config)).nl() 
     Manpage(configfile)
 
     bf(FBB::CryptBuf): Base class for DecryptBuf and EncryptBuf.nl()
@@ -519,9 +523,12 @@ COMMENT(    it() bf(DEPRECATED CLASSES))
     bf(FBB::CmdFinderBase): Base class for tt(CmdFinder).nl() 
     Manpage(cmdfinderbase)
 
-    bf(FBB::ConfigFile): Processing standard configuration files.nl() 
+    bf(FBB::Config): Processing standard configuration files.nl() 
     Manpage(configfile)
 
+    bf(FBB::ConfigFile): Processing standard configuration files (deprecated,
+    use bf(Config)).nl() 
+    Manpage(configfile)
 
     it() bf(CONVERSIONS)
 

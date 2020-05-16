@@ -12,6 +12,9 @@ manpagesynopsis()
     Linking option: tt(-lbobcat) 
 
 manpagedescription()
+    This class is deprecated: the class bf(FBB::Config)
+(cf. bf(config)(3bobcat)) should be used instead.
+
     bf(ConfigFile) objects read standard tt(unix)-style configuration
 files.  Lines are stored with initial white-space (blanks and tabs) removed.
 If a line ends in \, then the next line (initial white-space removed) is
@@ -327,8 +330,8 @@ manpagefiles()
     em(bobcat/configfile) - defines the class interface
 
 manpageseealso()
-    bf(argconfig)(3bobcat), bf(bobcat)(7), bf(exception)(3bobcat), 
-    bf(pattern)(3bobcat)
+    bf(argconfig)(3bobcat), bf(bobcat)(7), bf(config)(3bobcat) 
+    bf(exception)(3bobcat), bf(pattern)(3bobcat)
 
 manpagebugs()
     None Reported.
