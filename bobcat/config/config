@@ -196,6 +196,7 @@ class Config: public CF_Types
 #include "beginendid.f"
 #include "beginendre.f"
 #include "end.f"
+#include "find1.f"
 #include "findid1.f"
 #include "findkey1.f"
 #include "findre1.f"
