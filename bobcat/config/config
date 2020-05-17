@@ -13,7 +13,7 @@
 #include <string>
 #include <cstring>
 
-#include "../exception/exception"
+#include <bobcat/exception>
 #include <bobcat/string>
 #include <bobcat/pattern>
 
