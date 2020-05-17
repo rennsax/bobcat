@@ -192,6 +192,10 @@ manpagesection(MEMBER FUNCTIONS)
        returns a tt(const_iterator) pointing beyond the last line of the
         configuration file;
 
+    itb(void clear())
+       clears the current content of the tt(Config) object. This member is
+        automatically called by the tt(open) members;
+
     itb(const_iterator find(std::string const &target) const) 
        returns an iterator to the first line containing tt(target), starting
         the search at tt(begin()). Note that tt(target) may appear anywhere
