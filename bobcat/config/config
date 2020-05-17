@@ -8,10 +8,12 @@
 //    if the rmComment flag is set to true
 //    Then, lines containing only blanks and tabs are not stored
 
+#include <fstream>
 #include <vector>
 #include <string>
 #include <cstring>
 
+#include "../exception/exception"
 #include <bobcat/string>
 #include <bobcat/pattern>
 
@@ -80,14 +82,15 @@ class CF_Pimpl: public CF_Types
     public:
         explicit CF_Pimpl(Casing sType, Comment cType);                 // 1
                    
-                                                // Name of the config file
-        explicit CF_Pimpl(std::string const &fname,                     // 2
+        explicit CF_Pimpl(std::istream &stream,                         // 2
                           Casing sType, Comment cType);
 
         void setCasing(Casing type);                                    // .f
         void setComment(Comment type);                                  // .f
 
-        void open(std::string const &fname);
+        void open(std::istream &stream);                                // 4
+
+        void clear();                                                   // 2
 
         const_iterator begin() const;                                   // .f
         const_iterator end() const;                                     // .f
@@ -144,16 +147,23 @@ class Config: public CF_Types
     CF_Pimpl *d_ptr;
 
     public:
-        explicit Config(Casing sType = UseCase,
-                          Comment cType = NoComment);                   // 1
+        explicit Config(Casing sType = UseCase,                         // 1.f
+                          Comment cType = NoComment);
 
-        explicit Config(std::string const &fname,                       // 2
+        explicit Config(std::string const &fname,                       // 2.f
                     Casing sType = UseCase,
                     Comment cType = NoComment);
 
+        explicit Config(std::istream &stream,                           // 3.f
+                    Casing sType = UseCase,
+                    Comment cType = NoComment);
 
-        Config(Config &&tmp);                                           // 3
-        Config(Config const &rhs);                                      // 4
+        explicit Config(std::istream &&stream,                          // 4.f
+                    Casing sType = UseCase,
+                    Comment cType = NoComment);
+
+        Config(Config &&tmp);                                           // 5.f
+        Config(Config const &rhs);                                      // 6.f
 
         ~Config();
 
@@ -165,7 +175,11 @@ class Config: public CF_Types
          void setCasing(Casing type);                                   // .f
          void setComment(Comment type);                                 // .f
  
-        void open(std::string const &fname);
+        void open(std::string const &fname);                            // 1.f
+        void open(std::istream &stream);                                // 2.f
+        void open(std::istream &&stream);                               // 3.f
+
+        void clear();                                                   // 1.f
 
         const_iterator begin() const;                                   // .f
         const_iterator end() const;                                     // .f
@@ -195,11 +209,20 @@ class Config: public CF_Types
 #include "begin.f"
 #include "beginendid.f"
 #include "beginendre.f"
+#include "config1.f"
+#include "config2.f"
+#include "config3.f"
+#include "config4.f"
+#include "config5.f"
+#include "config6.f"
+#include "clear1.f"
 #include "end.f"
 #include "find1.f"
 #include "findid1.f"
 #include "findkey1.f"
 #include "findre1.f"
+#include "open2.f"
+#include "open3.f"
 #include "opindex.f"
 #include "setcasing.f"
 #include "setcomment.f"

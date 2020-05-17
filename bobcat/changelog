@@ -7,7 +7,7 @@ bobcat (5.05.00)
   * Added the class template FBB::Field allowing retrieval and modifications 
     of offset-based fields in numeric values of configurable number systems.
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 16 May 2020 22:26:49 +0200
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 17 May 2020 11:38:32 +0200
 
 bobcat (5.04.01)
 

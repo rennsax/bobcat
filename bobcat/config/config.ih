@@ -1,9 +1,6 @@
 #include "config"
 
 #include <algorithm>
-#include <fstream>
-
-#include "../exception/exception"
 
 using namespace std;
 using namespace FBB;

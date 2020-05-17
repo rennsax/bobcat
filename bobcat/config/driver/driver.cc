@@ -20,8 +20,7 @@ try
         return 1;
     }
 
-    Config cf(argv[1], Config::NoComment, 
-                    Config::NoCase);
+    Config cf(argv[1], Config::NoCase, Config::NoComment);
 
     cout << "opened: " << argv[1] << '\n';
 
