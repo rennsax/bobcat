@@ -4,15 +4,18 @@ bobcat (5.05.00)
 
   * Added the class FBB::Config, deprecating FBB::ConfigFile.
 
-  * Added the class template FBB::Field allowing retrieval and modifications 
+  * Added the class template FBB::Field allowing retrieval and modifications
     of offset-based fields in numeric values of configurable number systems.
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 17 May 2020 13:25:27 +0200
+  * Added descriptions of the members Arg::LongOption::longName and
+    Arg::LongOption::optionChar to the FBB::Arg man-page
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 18 May 2020 16:05:54 +0200
 
 bobcat (5.04.01)
 
   * Stupid mistake: forgot to remove the Process header file included
-    ../pipe/pipe  
+    ../pipe/pipe
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 04 Mar 2020 14:39:28 +0100
 
@@ -85,11 +88,11 @@ bobcat (5.00.03)
 
 bobcat (5.00.02)
 
-  * Fixed an error in SyslogBuf's constructor: it now correctly defines the 
+  * Fixed an error in SyslogBuf's constructor: it now correctly defines the
     logged message head as SyslogBuf's first argument.
 
   * LogBuf's member `active' now (de)activates logging until another `active'
-    call. 
+    call.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 03 Jun 2019 16:35:26 +0200
 
@@ -135,30 +138,30 @@ bobcat (5.00.00)
       - The TriVal type is not used anymore. Instead, `true' (DST is used for
             the object's time) and `false' (DST is not used) are used.
       - DateTime(int zoneMinutes) is replaced by
-            DateTime(std::chrono::minutes zoneMinutes) 
+            DateTime(std::chrono::minutes zoneMinutes)
 
         operator@(DateTime const &obj, time_t seconds) is replaced by
             operator@(DateTime const &obj, std::chrono::seconds seconds)
             (where @ is + or -)
         operator@(time_t seconds) is replaced by
-            operator@(std::chrono::seconds seconds) 
+            operator@(std::chrono::seconds seconds)
             (where @ is += or -=)
       - setTime() is replaced by setUTCseconds()
       - time() is replaced by utcSeconds()
-      - setFields(tm const &ts, int fields) is replaced by 
-            setFields(tm const &ts, TimeFields fields) 
-            
+      - setFields(tm const &ts, int fields) is replaced by
+            setFields(tm const &ts, TimeFields fields)
+
       - Members expecting or returning size_t values now expect or return
             unsigned values
       - Members returning bool values are now void members
       - Discontinued:
             The TriVal enum
-            DateTime(int zoneMinutes, DSTSpec const &dstSpec) 
+            DateTime(int zoneMinutes, DSTSpec const &dstSpec)
             DateTime(time_t time, int zoneMinutes, DSTSpec const &dstSpec)
             DateTime(tm const &ts, int zoneMinutes)
             DateTime(tm const &ts, int zoneMinutes, DSTSpec const &dstSpec)
             DateTime(std::string const &timeStr, int zoneMinutes)
-            DateTime(std::string const &timeStr, int zoneMinutes, 
+            DateTime(std::string const &timeStr, int zoneMinutes,
                      DSTSpec const &dstSpec)
             DateTime(std::istream &in, int zoneMinutes)
             DateTime(std::istream &in, int zoneMinutes, DSTSpec const
@@ -171,7 +174,7 @@ bobcat (5.00.00)
             error()
             setValid()
        - Discontinued static members:
-            zoneMinutes, 
+            zoneMinutes,
             addZone,
             defaultZoneMinutes,
             minutes,
@@ -222,7 +225,7 @@ bobcat (5.00.00)
   * OFdBuf:
         - open() is replaced by reset()
         - close() is replaced by eoi(), alternatively the eoi manipulator can
-            be inserted into OFdStreambuf's std::ostream 
+            be inserted into OFdStreambuf's std::ostream
 
   * OFilterBuf:
         - open() is replaced by reset()
@@ -242,9 +245,9 @@ bobcat (5.00.00)
         - added an extra parameter to its constructor: std::string const
             &separator, by default initialized to an empty string. It
             defines the separator inserted between hexadecimal character
-            values. 
+            values.
         - added members `separator' to redefine or reset the currently used
-            separator. 
+            separator.
         - added member `setWidth' to modify the maximum width of lines written
             to the ostream initialized with an OHexStreambuf object.
         - close() is replaced by eoi(), alternatively the eoi manipulator can
@@ -255,7 +258,7 @@ bobcat (5.00.00)
 
   * ProcessData:
         Internal class previously used by Process to store the Pimpl-data. Now
-        discontinued. 
+        discontinued.
 
   * Process:
         - The class was redesigned so the pimpl idiom (implemented in bobcat
@@ -268,10 +271,10 @@ bobcat (5.00.00)
             be inserted into Process objects to indicate the process's
             end-of-information.
         - the eoi manipulator, defined for Process only, is superfluous and is
-            discontinued. Existing code now uses the Eoi-manipulator after 
+            discontinued. Existing code now uses the Eoi-manipulator after
             recompilation. Changes to the source code are not required.
-        - the std::ostream &operator<<(std::ostream &(*pf)(std::ostream &)) 
-            is superfluous and is discontinued. 
+        - the std::ostream &operator<<(std::ostream &(*pf)(std::ostream &))
+            is superfluous and is discontinued.
 
   * RandBuf:
         - expects a size_t seed (used to be: long seed);
@@ -311,7 +314,7 @@ bobcat (4.09.00)
     major bobcat release. Man-pages were updated accordingly.
 
   * The member `std::streamsize pXsputn(...)' defined in IOStreambuf is
-    superfluous. 
+    superfluous.
 
   * Overridding members declared as 'virtual' are now declared as 'override'.
 
@@ -332,7 +335,7 @@ bobcat (4.08.06)
   * Repaired flaws in man-pages.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 17 Dec 2018 09:44:20 +0100
- 
+
 bobcat (4.08.05)
 
   * [[fallthrough]] requires a final semicolon (cf. C++ std 20, 10.6.5).
@@ -342,10 +345,10 @@ bobcat (4.08.05)
     defined as static members.
 
   * Stat declares a default copy constructor, as it defines a move
-    constructor. 
+    constructor.
 
   * Superfluous 'return 0;' statements removed from source files and
-    man-pages. 
+    man-pages.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 26 Sep 2018 13:33:52 +0200
 
@@ -380,7 +383,7 @@ bobcat (4.08.02)
   * Added new member 'release()' to the class CSV4180.
 
   * CSV4180's member clear by default resets the number of required fields to
-    0. 
+    0.
 
   * Members in ConfigFile received const modifiers according to the ConfigFile
     man-page.
@@ -429,7 +432,7 @@ bobcat (4.07.00)
 bobcat (4.06.01)
 
   * The class BinopsBase was simplified. Operator-specifications must now be
-    provided to make the requested overloaded operators available. 
+    provided to make the requested overloaded operators available.
 
   * The class BinopsBase now also accepts operator specifications 'i'
     (implementing the insertion operator) and 'e' (implementing the extraction
@@ -475,7 +478,7 @@ bobcat (4.05.00)
   * -lpthread was removed from INSTALL.im: it is already available for
     required classes (see icmake/special), and causes problems on some
     operating systems/distributions when it is additionally specified in
-    INSTALL.im. 
+    INSTALL.im.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 17 Dec 2016 11:17:00 +0100
 
@@ -485,7 +488,7 @@ bobcat (4.04.00)
     class Binops can also be used, but sometimes causes namespace problems
     which do not occur when using BinopsBase.
 
-  * Added missing 'inline' declarations to the definitions in 
+  * Added missing 'inline' declarations to the definitions in
     ibase64streabuf1.f and ibase64streabuf2.f.
 
   * Replaced return *gptr() by return static_cast<unsigned char>(*gptr())
@@ -500,7 +503,7 @@ bobcat (4.04.00)
   * GetHostent was rebuilt using getaddrinfo and getnameinfo.
 
   * Glob received two new flags: NO_FLAG and NOMATCH (refer to its man-page
-    for details). 
+    for details).
 
   * Added member Arg::help() calling the usage function that was passed to
     Arg::versionHelp (refer to its man-page for details).
@@ -523,7 +526,7 @@ bobcat (4.03.00)
   * Programs using DiffieHellman should be recompiled.
 
   * The class Signal now uses 'sigaction' instead of the (deprecated) function
-    'signal' 
+    'signal'
 
   * IRandStream uses type 'long' for its seed argument to match time(0)'s
     return type
@@ -533,10 +536,10 @@ bobcat (4.03.00)
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 17 Aug 2016 07:56:10 +0200
 
-    
+
 bobcat (4.02.00)
 
-  * Added the member template 
+  * Added the member template
         template <typename Fun, typename ...Args>
         void wait(Fun fun, Args &&...args);        // wait # available
     to the class Semaphore. See 'man -e bobcat semaphore' for details.
@@ -564,7 +567,7 @@ bobcat (4.01.03)
   * Kevin Brodsky observed that the installation scripts used 'chdir' rather
     than 'cd'. Fixed in this release.
 
-  * Kevin Brodsky also observed that the combined size of all precompiled 
+  * Kevin Brodsky also observed that the combined size of all precompiled
     headers might exceed some disks capacities. The option -P was added to the
     ./build script to prevent the use of precompiled headers.
 
@@ -588,7 +591,7 @@ bobcat (4.01.01)
 
 bobcat (4.01.00)
 
-  * Moved primefactors from CLASSES to SSLCLASSES as the class PrimeFactors 
+  * Moved primefactors from CLASSES to SSLCLASSES as the class PrimeFactors
     depends on BigInt, which in turn depends on the SSL library.
 
   * Added 'build uninstall'. This command only works if, when calling one of
@@ -599,7 +602,7 @@ bobcat (4.01.00)
     BOBCAT environment variable, unless that file happpens to be in a
     directory removed by 'build (dist)clean'. See also the file INSTALL.
     Defining the BOBCAT environment variable as ~/.bobcat usually works
-    well. 
+    well.
 
   * In addition to the classes mentioned at 4.00.00 the struct LC (bobcat/lc)
     was also removed, as it is now superfluous because of the availability of
@@ -610,7 +613,7 @@ bobcat (4.01.00)
     autimatically recognize them as header files, so they could be converted
     to precompiled headers, following a suggestion by Bram Neijt. The build
     script now creates the precompiled headers. They are removed again at the
-    end of the library construction process unless the option -p is provided 
+    end of the library construction process unless the option -p is provided
     with 'build libraries'. They are also removed by './build distclean'.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 23 Sep 2015 12:11:09 +0200
@@ -634,7 +637,7 @@ bobcat (4.00.00)
 
 bobcat (3.25.02)
 
-  * Added the missing implementation of the member function BigInt::ulong() 
+  * Added the missing implementation of the member function BigInt::ulong()
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 11 Jun 2015 11:45:05 +0200
 
@@ -654,10 +657,10 @@ bobcat (3.25.00)
   * Cosmetic changes to several man-pages
 
   * Fixed compilation errors that emerged with g++-5, reported by Matthias
-    Klose. 
+    Klose.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 12 Feb 2015 17:00:57 +0100
-  
+
 bobcat (3.24.01)
 
   * Added missing 'throw' clause to log/open.cc
@@ -667,7 +670,7 @@ bobcat (3.24.01)
 bobcat (3.24.00)
 
   * Added new class Semaphore, implementing Dijkstra's (1962) Semaphore data
-    type. 
+    type.
 
   * Added the file 'required' to the source distribution summarizing the
     required software for building bobcat.
@@ -681,7 +684,7 @@ bobcat (3.23.01)
   * Using (s)random instead of (s)rand in Randbuffer
 
   * Log(Buffer) now also supports FBB::UTCTIMESTAMPS to show timestamps in
-    UTC. 
+    UTC.
 
   * Fixed several flaws in man-pages
 
@@ -702,8 +705,8 @@ bobcat (3.23.00)
     an explicit argument may be confused with the constructor expecting a
     std::string as its first argument.
 
-  * Added new member 
-    `prepareDaemon(string const &out, string const &err, mode_t mode) const' 
+  * Added new member
+    `prepareDaemon(string const &out, string const &err, mode_t mode) const'
     to the class Fork, allowing automatic redirection of stdandard output and
     standard error messages to files.
 
@@ -774,7 +777,7 @@ bobcat (3.20.01)
 bobcat (3.20.00)
 
   * Added the class template LinearMap implementing an associative array using
-    linear searching.    
+    linear searching.
 
   * Fixed a bug in ArgConfig's option(string *dest, char const *key). The
     current version conforms to ArgConfig's man-page, stating that a key's
@@ -784,19 +787,19 @@ bobcat (3.20.00)
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 18 Jan 2014 12:40:13 +0100
 
 bobcat (3.19.01)
-    
+
   * Fixed Process's d_closedByChild initialization (used by FreeBSD systems).
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 30 Dec 2013 11:17:50 +0100
 
 bobcat (3.19.00)
-    
+
   * Added Signal::remove, removing a previously added signal handling object.
 
   * Redesigned Process so that it (partially) uses the pimpl idiom. Also added
     the eoi manipulator and several new member functions.
 
-  * Updated man-pages for Pipe, Redirector, Process, and Signal, 
+  * Updated man-pages for Pipe, Redirector, Process, and Signal,
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 28 Dec 2013 11:16:20 +0100
 
@@ -836,29 +839,29 @@ bobcat (3.17.00)
         - nWords() returning the number of Words used by the current BigInt
           value;
           new at() member;
-        - Word at(size_t index) returns the Word at 'index'. 
+        - Word at(size_t index) returns the Word at 'index'.
 
   * The source header file of classes defining function templates and
     inline-members now have their template definitions in .f files, one .f
     file per function.
     This change was implemented to simplify function template and inline
-    function maintenance, and to have source clas header files representing 
+    function maintenance, and to have source clas header files representing
     class interfaces as cleanly as possible.
 
   * Removed the man-page of the deprecated class Errno
 
   * All class-specific icmconf files were standardized (and cleaned)
 
-  * NOTE: 
+  * NOTE:
         the way the linker handles required libraries has changed
-        See, e.g., 
+        See, e.g.,
 
             http://fedoraproject.org/wiki/UnderstandingDSOLinkChange
 
         Due to this change programs depending on the bobcat may now require
         explicit specifications of libraries. Most likely the linke will come
         with a suggestion. The library libcrypto is a likely candidate for
-        explicit inclusion. If so, use -lcrypto when linking such 
+        explicit inclusion. If so, use -lcrypto when linking such
         depending programs.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 09 Oct 2013 17:50:04 +0200
@@ -873,7 +876,7 @@ bobcat (3.16.00)
   * Added the static member Exception::protection to the Exception class.
 
   * Gzipped files in the provided documentation no longer contain internal
-    time-stamps. 
+    time-stamps.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 13 Sep 2013 15:53:51 +0200
 
@@ -882,24 +885,24 @@ bobcat (3.15.00)
   * Added class IFilterStreambuf, implementing filtering like, e.g., openSSL
     BIOs.
 
-  * Added class ISymCryptStreambuf and its base class 
+  * Added class ISymCryptStreambuf and its base class
     SymCryptStreambufBase, implementing SSL-provided symmetric encryption and
     decryption using the IFilterStreambuf design pattern.
 
   * Added class IBase64Streambuf and its base class Base64StreambufBase,
     implementing base64 encoding and decoding, using the IFilterStreambuf
-    design pattern. 
+    design pattern.
 
   * Added class IBase64Stream, using a IBase64Streambuf for its
-    std::streambuf. 
+    std::streambuf.
 
   * Added class ISymCryptStream, using a ISymCryptStreambuf for its
-    std::streambuf. 
+    std::streambuf.
 
   * Added class DiffieHellman, implementing Diffie-Hellman shared key
     computations.
 
-  * Added the internal use only class FBB, to contain structs, enums, etc. 
+  * Added the internal use only class FBB, to contain structs, enums, etc.
     that are used by other Bobcat classes.
 
   * Added new constructors to BigInt initializing BigInt values from a series
@@ -910,7 +913,7 @@ bobcat (3.15.00)
 bobcat (3.14.00)
 
   * Syslogbuf and SyslogStream received an overhaul, adding several new
-    members. 
+    members.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 10 May 2013 11:30:50 +0200
 
@@ -924,12 +927,12 @@ bobcat (3.13.00)
 
 bobcat (3.12.00)
 
-  * Added class Exception, obsoleting class Errno. 
+  * Added class Exception, obsoleting class Errno.
 
   * All occurrences of Errno in Bobcat were replaced by Exception
 
   * The class tt(BigInt) received several new member diophantus (for long long
-    values and BigInt values). See the bigint(3bobcat) man page for details. 
+    values and BigInt values). See the bigint(3bobcat) man page for details.
 
   * Added new class PrimeFactors, factorizing BigInt values.
 
@@ -947,7 +950,7 @@ bobcat (3.11.00)
 
   * Added OFdStreambuf constructor and open member expecting a std::string
     const & defining the name of the stream to receive the filtered
-    information. 
+    information.
 
   * Glob offers an additional constructor allowing users to specify the type
     of directory entries they are interested in (e.g., DIRECTORY,
@@ -968,9 +971,9 @@ bobcat (3.10.01)
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 22 Jul 2012 13:58:01 +0200
 
 bobcat (3.10.00)
-    
+
   * Added class Signal, allowing context to be used by programs receiving
-    signals. 
+    signals.
 
   * Added to the class User members (egroupid, euserid) to retrieve the
     effective group and user-ids and a member (inGroup) to determine whether
@@ -989,18 +992,18 @@ bobcat (3.01.00)
 
   * According to the man-page localtime_r does not assume that tzset(3) has
     been called, but leaves this to the calling program. Localtime_r's
-    man-page states: 
+    man-page states:
         For  portable  code  tzset  should  be  called before localtime_r().
     DateTime::dstCorrection(bool *) now calls tzset before calling
-    localtime_r. 
+    localtime_r.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 14 May 2012 11:43:08 +0200
 
 bobcat (3.00.02)
 
   * Cosmetic split of configile/beginre.cc into two sources, one holding the
-    deprecated member ConfigFile::begin, the other one holding 
-    ConfigFile__::begin. 
+    deprecated member ConfigFile::begin, the other one holding
+    ConfigFile__::begin.
 
   * All classes that may throw Bobcat's Errno exceptions now include
     bobcat/errno in their class-level header files.
@@ -1012,7 +1015,7 @@ bobcat (3.00.01)
   * Re-added deprecated classes and members that were removed in 3.00.00
 
   * Old references to ...bobcat2 in icmake files replaced by references to
-    ...bobcat3  
+    ...bobcat3
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 07 May 2012 17:08:51 +0200
 
@@ -1030,7 +1033,7 @@ bobcat (3.00.00)
   * Added member int Arg::beyondDashes() returning the index of the first
     argument beyond a -- argument (or -1)
 
-  * The 'repeat' function template was improved, now perfectly forwarding 
+  * The 'repeat' function template was improved, now perfectly forwarding
     arguments to (member) functions repeatedly called by `repeat'.
 
   * Replaced climits constants by limits const-expressions
@@ -1121,7 +1124,7 @@ bobcat (2.19.00)
 
 bobcat (2.18.00)
 
-  * Added missing Stat::operator=(Stat const &other) member. 
+  * Added missing Stat::operator=(Stat const &other) member.
 
   * FnWrap* calls removed from the bobcat library: they are now superfluous as
     compilers support lambda functions. The FnWrap* classes remain available.
@@ -1187,7 +1190,7 @@ bobcat (2.15.02)
     nonetheless called when the program ends, causing a segfault.  Static
     object initialization is a known protential source of problems, see, e.g.,
     to cause problem. See also
-        http://www.parashift.com/c++-faq-lite/ctors.html#faq-10.15 
+        http://www.parashift.com/c++-faq-lite/ctors.html#faq-10.15
     In the case of Cidr the problem was easily solved. Each of the two static
     Pattern members is only used in a single Cidr-member. Removing the static
     data members from the interface and defining them as static local objects
@@ -1197,7 +1200,7 @@ bobcat (2.15.02)
 
 bobcat (2.15.01)
 
-  * Repaired flaw in fnwrap, emerging while compiling bisonc++ 
+  * Repaired flaw in fnwrap, emerging while compiling bisonc++
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 05 May 2011 09:35:15 +0200
 
@@ -1209,7 +1212,7 @@ bobcat (2.15.00)
     FnWrap::binary act identically and are now in fact superseded by the
     function  FBB::context().
 
-  * Added README.fnwrap to the set of README files, explaining the FnWrap's 
+  * Added README.fnwrap to the set of README files, explaining the FnWrap's
     inner workings
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 02 May 2011 19:53:04 +0200
@@ -1247,7 +1250,7 @@ bobcat (2.12.00)
   * FreeBSD flavors lack the fntl flag F_DUPFD_CLOEXEC, so Process::operator|
     must use a work-around for that flag. The work-around is compiled into
     Process objects/code when the BOBCAT_DIY_CLOEXEC_ identifier has been
-    defined. It is defined by default in process/process when the identifiers 
+    defined. It is defined by default in process/process when the identifiers
     __FreeBSD_kernel__ or __FreeBSD__ are defined.
     As F_DUPFD_CLOEXEC has been defined by POSIX since 2008 it is possible
     that it will soon be defined by FreeBSD systems as well. The work-around
@@ -1255,7 +1258,7 @@ bobcat (2.12.00)
     is the last data member of Process objects it can easily be removed at a
     later stage when F_DUPFD_CLOEXEX becomes available for FreeBSD systems.
 
-  * Lacking descriptions of some FBB::CGI members were added to the 
+  * Lacking descriptions of some FBB::CGI members were added to the
     cgi(3bobcat) man-page.
 
   * The CGI class now uses a std::unordered_map, rather than a std::map
@@ -1310,7 +1313,7 @@ bobcat (2.10.01)
     were accidentally put in the private section of their class. Now public.
 
   * Configfile's overloaded assignment operator used non const &
-    argument. Repaired. 
+    argument. Repaired.
 
   * CmdFinderBase's overloaded assignment operator cannot be defaulted as it
     lives in the class's protected section. Added explicit implementation of
@@ -1345,21 +1348,21 @@ bobcat (2.10.00)
   * The class Milter now uses an unordered_map instead of a map.
 
   * The -O3 compilation optimization flag is changed to -O2. G++ for the armel
-    architecture produces an incomplete symbol table when -O3 is used. 
+    architecture produces an incomplete symbol table when -O3 is used.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 17 Dec 2010 14:18:33 +0100
 
 bobcat (2.09.04)
 
   * Repaired ArgConfig::option(string *value, ...) members which didn't check
-    for 0-pointers to the string receiving the option's value. 
+    for 0-pointers to the string receiving the option's value.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 06 Dec 2010 23:38:44 +0100
 
 bobcat (2.09.03)
 
   * Repaired Arg::firstNonEmpty which didn't check for 0-pointers to the
-    string receiving the option's value. 
+    string receiving the option's value.
 
   * Reorganized man-pages to comply with include requirements of Yodl 3.00.0
 
@@ -1396,7 +1399,7 @@ bobcat (2.09.00)
   * The 'sync' members of classes derived from std::streambuf can be called
     from derived classes using a protected 'pSync' member. The IOStreambuf
     class offers comparable protected 'pSeekoff' and 'pSeekpos' and 'pXsputn',
-    allowing the seek and put operations to be performed on request 
+    allowing the seek and put operations to be performed on request
     by classes derived from IOStreambuf.
 
   * NOTE: Errno's virtual member what() will be moved to Errno's private
@@ -1406,7 +1409,7 @@ bobcat (2.09.00)
   * The class Msg is now deprecated. Classes Mstream (Message stream) and Mbuf
     (Message buf) have replaced Msg, and Msg's open members have moved to
     Errno. Msg will remain in Bobcat for a while, but will eventualy be
-    removed. An error message is displayed (once) if Msg::msg() and 
+    removed. An error message is displayed (once) if Msg::msg() and
     Msg::open() are used.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 28 Oct 2010 20:17:50 +0200
@@ -1427,7 +1430,7 @@ bobcat (2.08.00)
   * Added new class TableBuf. A streambuf class allowing table constructions
     using std::ostream objects
 
-  * Added new class (only used internally by Bobcat): TableBase, containing 
+  * Added new class (only used internally by Bobcat): TableBase, containing
     the common to TableBuf and Table
 
   * Added new class TableLines derived from TableSupport setting separating
@@ -1448,7 +1451,7 @@ bobcat (2.07.04)
 
   * fnwrap/fnwrap needs std::move calls where lvalue references are passed to
     rvalue references, as templates do not automatically perform the
-    conversion from lvalue refs to rvalue refs. 
+    conversion from lvalue refs to rvalue refs.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 09 Apr 2010 08:58:49 +0200
 
@@ -1464,7 +1467,7 @@ bobcat (2.07.03)
 
   * Added missing #include<cstring> to localsocketbase/localsocketbase.ih
 
-  * Pattern now defines the default end pattern (pattern/pattern0.cc) as 
+  * Pattern now defines the default end pattern (pattern/pattern0.cc) as
     "\\b" for the benefit of MAC users who otherwise suffer from the `empty
     sub-expression' error. This affects ConfigFile and (by implication)
     programs like XD. It has no known effect on Debian systems.
@@ -1502,14 +1505,14 @@ bobcat (2.07.00)
     template.
   * Repaired cgi/push.cc and cgi/accept.cc
   * New class: FBB::FnWrap, easier to use than and providing all the features
-    of FnWrap[12]c?. See its man-page for details. 
+    of FnWrap[12]c?. See its man-page for details.
   * Not-implemented constructors and functions, previously flagged with the
-    // NI comment, are now using '= delete'. Likewise, implementaitions of 
+    // NI comment, are now using '= delete'. Likewise, implementaitions of
     explicitly implemented empty default constructors were removed and
     replaced by '= default'. Some con- and destructors were kept due to
     non-public access. The added destructors were defined in source files, and
     not in-line to localize the class's Vtables with the destructor's source
-    files. 
+    files.
   * Compilation of, e.g., Glob::operatorassign.cc produces a warning in
     g++-4.4. This warning disappears with g++-4.5 and is therefore ignored.
   * Sources also compile fine with g++-4.5
@@ -1518,7 +1521,7 @@ bobcat (2.07.00)
 
 bobcat (2.06.00)
 
-  * Added BigInt::isqrt (integral sqrt computation) 
+  * Added BigInt::isqrt (integral sqrt computation)
   * Added BigInt::swap (swapping the current BigInt object's value with
     another BigInt object's value
   * BigInt's members not modifying the current object are now const-correct.
@@ -1526,24 +1529,24 @@ bobcat (2.06.00)
     not modifying the current object but returning a temporary BigInt const
     object holding the result of the computation. All members returning a
     BigInt const object have an additional c added to their names (e.g. `div'
-    modifies the current object, `divc' does not). 
+    modifies the current object, `divc' does not).
     As a result of this name standardization the names of several members were
-    modified: 
+    modified:
         `gcd' now modifies the current object, `gcdc' returns a BigInt const.
-        `inverseMod' now modifies the current object, `inverseModc' returns 
+        `inverseMod' now modifies the current object, `inverseModc' returns
                                                                a BigInt const.
   * Added template function fswap, performing fast swapping operations.
-  * The class Glob is now move-aware (offers move constructor and move 
+  * The class Glob is now move-aware (offers move constructor and move
     assignment operator. In addition it offers a swap member.
   * Move members in Pattern expect 'Pattern const &&', Pattern offers swap.
-  * Hostent now is now move-aware and offers a member swap. 
-    Included Hostent in the namespace FBB. 
+  * Hostent now is now move-aware and offers a member swap.
+    Included Hostent in the namespace FBB.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 27 Nov 2009 08:49:24 +0100
 
 bobcat (2.05.00)
 
-  * BigInt values inserted into streams do not show leading zeroes anymore, 
+  * BigInt values inserted into streams do not show leading zeroes anymore,
     except for octal values.
   * BigInt values can be assigned a value from a textual representation
   * BigInt values can be extracted from std::istream objects.
@@ -1577,20 +1580,20 @@ bobcat (2.04.01)
 
 bobcat (2.04.00)
 
-  * BigInt has been enhanced and extended. Many members have received new 
+  * BigInt has been enhanced and extended. Many members have received new
     prototypes.
   * New Class: OHexStreambuf, streambuf derived class writing characters
     received by it as hex numbers to a specified std::ostream.
   * New Class: DigestBuf, streambuf derived class computing various types of
     message digests of the characters received by it.
-  * New Class: HMacBuf, streambuf derived class computing a HMAC hashvalue 
+  * New Class: HMacBuf, streambuf derived class computing a HMAC hashvalue
     of the characters received by it.
   * New Class: EncryptBuf, streambuf derived class encrypting the characters
     received by it, writing the encrypted information to a specified
-    std::ostream. 
+    std::ostream.
   * New Class: DecryptBuf, streambuf derived class decrypting the encrypted
     information received by it, writing the decrypted information to a
-    specified std::ostream. 
+    specified std::ostream.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 02 Sep 2009 20:41:06 +0200
 
@@ -1601,12 +1604,12 @@ bobcat (2.03.00)
   * Removed deprecated getPid() member from Fork
   * Removed deprecated get...Fd() members from Pipe
   * Removed deprecated get...Fd() members from Selector
-  * Selector's setAlarm() member performs a validity check on the specified 
-    alarm time 
-  * Selector's wait() member handles no-alarm specifications correctly (i.e., 
+  * Selector's setAlarm() member performs a validity check on the specified
+    alarm time
+  * Selector's wait() member handles no-alarm specifications correctly (i.e.,
     according to the description in the select(2) man-page.
   * Redirector has a new member: through()
-  * IFdStreambuf::xsgetn() was reimplemented to allow unformated reads from 
+  * IFdStreambuf::xsgetn() was reimplemented to allow unformated reads from
     std::istream (and IFdStream) objects without referring to underflow.
   * InetAddress has new members sockaddr_inPtr() returning pointers to its
     sockaddr_in data member.
@@ -1614,13 +1617,13 @@ bobcat (2.03.00)
     of DateTime's functionality, see its man page.
   * (Almost) all unary argument constructors now `explicit'
   * Constructors that can safely throw exceptions, rather than using `verify'
-    do so from now on. The `verify' member remains, albeit empty,  available 
-    in the class interfaces. 
+    do so from now on. The `verify' member remains, albeit empty,  available
+    in the class interfaces.
     Affected classes: Glob, OneKey, User, Pipe, SocketBase, XPointer
   * Classes for which a move constructor is useful received a move
     constructor. Currently: AutoPtr, Glob, Pattern,
   * insert and extraction operators (operator<<, operator>>) are now defined
-    within the namespace FBB and no longer in the std namespace (except for 
+    within the namespace FBB and no longer in the std namespace (except for
     operator<< defined int msg/msg which is in std::)
   * Added BigInt as the first (optionally added) class depending on OpenSSL.
     The plan is to add more openssl-based classes in the (near) future. BigInt
@@ -1647,7 +1650,7 @@ bobcat (2.02.02)
   * OFoldStreambuf's inheritance tree now places the OFilterStreambuf ahead of
     the std::ostream class to prevent strange run-time problems on Macs.
 
-  * New (static) members: OFoldStream(buf)::leftMargin(), 
+  * New (static) members: OFoldStream(buf)::leftMargin(),
     OFoldStream(buf)::rightMargin()
 
   * OFoldStream::open() members do not close the foldstream (actually,
@@ -1657,7 +1660,7 @@ bobcat (2.02.02)
   * Cosmetic changes to INSTALL, INSTALL.im and icmake/install
 
   * Replaces and extends intermediate release 2.02.01 only made available at
-    SourceForge 
+    SourceForge
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 03 Apr 2009 16:29:47 +0200
 
@@ -1670,19 +1673,19 @@ bobcat (2.01.1)
 bobcat (2.01.0)
 
   * Included  cstdio in all .ih files of classes using EOF (required for g++
-    4.4) 
+    4.4)
 
   * Moved Table::Element's constructor back to the <table> header file
     (required for Table::push_back()).
 
-  * Added Log member level() retrieving the currently set loglevel. 
+  * Added Log member level() retrieving the currently set loglevel.
 
   * Added Log member instance() as a (preferred) alternative for
-    getInstance(). 
+    getInstance().
 
   * LogBuffer::overflow() now has protected access rights.
 
-  * Stat's lastAccess(), lastChange(), and lastModification() members now 
+  * Stat's lastAccess(), lastChange(), and lastModification() members now
     return DateTime objects representing the times in UTC.
 
   * New class: LC, template class to define and/or declare Local Context
@@ -1719,12 +1722,12 @@ bobcat (2.00.1)
 bobcat (2.00.0)
 
   * Upgrading to version 2.00.0 as many classes have over time received API
-    and ABI changes. 
+    and ABI changes.
 
   * Repaired flaws in and extended/rebuilt the class DateTime. Consult its
     man-page for the current API.
 
-  * Deprecated members from other classes (see bobcat's 1.21.1 changelog) 
+  * Deprecated members from other classes (see bobcat's 1.21.1 changelog)
     were removed.
 
   * `build install' no longer zip-compresses the html versions of the man
@@ -1737,13 +1740,13 @@ bobcat (1.21.1)
 
   * Several man-pages were updated/modified (Config, Log, Process, User, X2a)
 
-  * ConfigFile: 
+  * ConfigFile:
         added `std::string const &operator[](size_t idx) const' to the
     interface offering a basic protection against accidentally modifying
-    the configuration file's lines by clients; 
+    the configuration file's lines by clients;
        added member std::string findKeyTail(std::string key, size_t idx = 1)
     returning the contents beyond key of the idx-th line containing key.
- 
+
   * Process: this class received an extensive overhaul resulting in multiple
     new members. See the Process man-page for details. Several of its former
     constructors and members are now deprecated and will be removed in a
@@ -1797,12 +1800,12 @@ bobcat (1.20.0)
                       of objects of these classes has changed. Xpointer's data
                       organization was not altered.
     To find all source (text) files using the above classes the script
-    scripts/check1.20.0 could be used. 
+    scripts/check1.20.0 could be used.
 
   * Added missing namespace declarations to glob/driver/driver.cc
 
   * Repaired reporting the argv-argument before an undefined option instead of
-    the undefined option itself as in, e.g., 
+    the undefined option itself as in, e.g.,
         tmp/bin/xd --verbose -tm
         ArgData::ArgData(): unknown option: --verbose
     or:
@@ -1834,7 +1837,7 @@ bobcat (1.19.0)
     control over the way child processes are started and the Process man-page
     was updated accordingly
 
-  * The description of the member `header()' in the man-page of the class 
+  * The description of the member `header()' in the man-page of the class
     Milter was improved
 
   * CGI's man-page now contains a common organization of a program using
@@ -1846,30 +1849,30 @@ bobcat (1.18.1)
     a failure to initialize the Finite State Automaton processing Perl-like
     character-set abbreviations. Also the HANDLING OF BACKSLASHES by Pattern
     objects was modified: to specify a literal backslash is must now be
-    specified twice. 
+    specified twice.
     NOTE that this change *may* require some maintenance of patterns that were
     hard-coded in programs already using the Pattern class. See the `pattern'
     man-page for details.
 
   * Removed all left-over redundant include guards
-  
+
   * Renamed all identifiers (macro defines, etc.) that started with _ into
     names not starting with _. This only affects include-guard identifiers and
     symbols used internally, so programs using Bobcat should not be affected
     by this modification.
 
-  * Added the files README.X11 and README.milter 
+  * Added the files README.X11 and README.milter
 
   * Several members of FBB::State were not documented in the bobcat/stat
     man-page: missing documentation is now included (TODO).
 
   * Added the class CGI processing forms submitted using the Common Gateway
-    Interface 
+    Interface
 
   * Added for_each() and repeat() function templates (and their man-pages)
 
   * Reorganized the main bobcat man-page, adding a categorization of Bobcat's
-    classes 
+    classes
 
 bobcat (1.17.2)
 
@@ -1889,7 +1892,7 @@ bobcat (1.17.1)
   * Added member rfc2822() to DateTime returning the time according to
     RFC 2822 (e.g., as displayed by the `date -R' command.
 
-  * Partial construction and installation of the Bobcat library is now 
+  * Partial construction and installation of the Bobcat library is now
     supported via #defines in INSTALL.im
 
   * Minor modifications to satify g++4-3's #include requirements
@@ -1902,7 +1905,7 @@ bobcat (1.17.1)
 bobcat (1.17.0)
 
   * Repaired double free bug in Pattern
-  
+
   * Changed the implementation and interface of MailHeaders. See 'man -e
     bobcat mailheaders' for details
 
@@ -1910,7 +1913,7 @@ bobcat (1.17.0)
     longer call the process start() member. They shouldn't as start() forks,
     and forking an object that isn't constructed yet seems to be
     inappropriate. The open() call in init() is now placed in
-    start(). Therefore the correct sequence becomes: 
+    start(). Therefore the correct sequence becomes:
     Process(), start(), ...(insert/extract)..., stop(). Process::operator=()
     now performs: stop(), setCommand(), start(). Multiple stops() could be
     given, so ... stop(), operator=(), ... is acceptable.
@@ -1926,12 +1929,12 @@ bobcat (1.17.0)
     individual DateTime components.
 
   * Implemented lastFail() members in A2x and X2a. See the respective
-    man-pages. 
+    man-pages.
 
 bobcat (1.16.1)
 
-  * The `build' script `library' command bow has an additional optional 
-    argument `strip' to strip the shared library. By default the library is 
+  * The `build' script `library' command bow has an additional optional
+    argument `strip' to strip the shared library. By default the library is
     not stripped.
 
 bobcat (1.16.0)
@@ -1939,7 +1942,7 @@ bobcat (1.16.0)
   * Leftover `String' in string/unescape replaced by `std::string'.
 
   * Added missing A2x.to<Type>() member template to A2x (cf. C++ Annotations).
-    
+
 bobcat (1.15.0)
 
   * The Glob constructor no longer requires a static_cast when multiple flags
@@ -1951,7 +1954,7 @@ bobcat (1.15.0)
     a newline character. This is a more natural default behavior of
     TableSupport.
 
-  * The Milter class interface  was adapted to libmilter-dev 8.14.1-2, 
+  * The Milter class interface  was adapted to libmilter-dev 8.14.1-2,
     affecting milter/milter and milter/initialize.cc.
 
 bobcat (1.14.2)
@@ -1997,7 +2000,7 @@ bobcat (1.13.1)
 
   * Added template class `AutoPtr'
 
-  * Added template classes FnWrap1, FnWrap1c, FnWrap2, FnWrap2c, obsoleting 
+  * Added template classes FnWrap1, FnWrap1c, FnWrap2, FnWrap2c, obsoleting
     Wrap1, Wrap1c, Wrap2, Wrap2c. Classes previously depending on the Wrap*
     classes were modified accordingly: they now use FnWrap*
 
@@ -2020,13 +2023,13 @@ bobcat (1.12.0)
     was never implemented).
 
     Table's functionality has been enlarged. Consult its manpage for details
-    
+
     Redirector's `accessVia' member is now deprecated. Instead `swallow'
     should be used.
 
     The String class's object member functions are now deprecated. Instead
     static member functions have been defined offering the same
-    functionality. 
+    functionality.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 15 Nov 2006 19:25:49 +0100
 
@@ -2041,7 +2044,7 @@ bobcat (1.11.0)
     library hasn't changed, and all programes previously compiled against
     libbobcat1 should continue to run without any required maintenance.
 
-    The man-pages were updated accordingly. 
+    The man-pages were updated accordingly.
 
     The icmake-script was updated so that it runs on both icmake 6.xx and the
     upcoming icmake 7.xx release.
@@ -2056,14 +2059,14 @@ bobcat (1.10.2)
   *  Andreas Jochens noted a build-problem for xpointer/get.cc on amd
     architectures and kindly provided a patch changing the definition
         size_t keys
-    into 
+    into
         unsigned int keys.
     His patch was applied to this bobcat version.
 
   *  Added the file README.optimization describing why the compiler option
     -O3 is used.
 
-  *  INSTALL.im redefines default DOC and DEVDOC locations to, resp. 
+  *  INSTALL.im redefines default DOC and DEVDOC locations to, resp.
 
         BASE  = "/usr";
         DOC  =      BASE + "/share/doc/libbobcat1";
@@ -2076,7 +2079,7 @@ bobcat (1.10.2)
 bobcat (1.10.1)
 
   *  Some leftover Academic Free License references were replaced by GPL
-     references. 
+     references.
 
     The previously used scripts below make/ are obsolete and were removed from
     this and future distributions. Icmake should be used instead, for which a
@@ -2088,7 +2091,7 @@ bobcat (1.10.1)
     Various source adaptations were realized (SF: superfluous):
         All plain `unsigned' variables were changed to `size_t'
         datetime: changed include time.h into include ctime
-              removed SF include iostream from 
+              removed SF include iostream from
                     datetime/operatorminusis2.cc
                     datetime/operatorminusis3.cc
                     datetime/operatorminusis.cc
@@ -2096,7 +2099,7 @@ bobcat (1.10.1)
                     datetime/operatorplusis3.cc
         fork: changed int d_pid into pid_t pid, various files, manpage adapted
         gethostent: changed `hostent *' into `struct hostent *' in
-                    gethostent.cc 
+                    gethostent.cc
         iostream: removed SF #include iostream from clear1.cc
         localclientsocket/localclientsocket: datamember SF
         localclientsocket/localclientsocket.ih: added includes for connect(2)
@@ -2113,7 +2116,7 @@ bobcat (1.10.1)
 bobcat (1.10.0-1) unstable; urgency=low
 
   *  License changed to the GNU GENERAL PUBLIC LICENSE. See the file
-    `copyright'. 
+    `copyright'.
 
     Introduced George Danchev <danchev@spnet.net> as uploader
 
@@ -2156,7 +2159,7 @@ bobcat (1.8.0) unstable; urgency=low
                 requiring `Enter' to be pressed.
         * RefCount: Base class allowing its derived classes to share their
                 memory, using reference counting.
-    Modified the layout and contents of the file README.class-setup to improve 
+    Modified the layout and contents of the file README.class-setup to improve
     the current class organization's representation.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 26 Jun 2006 08:42:18 +0200
@@ -2177,26 +2180,26 @@ bobcat (1.7.0) unstable; urgency=low
 
     New class Indent and associated manipulators implementing indentation
     defined.
-    
+
     ofdstreambuf and ifdstreambuf constructors have additional parameters to
     either close or keep open the file descriptor that is passed to the
     constructor. The default situation is for ofdstreambuf to close the file
     descriptor and for ifdstreambuf to keep de file descriptor open. Thus the
     new implementation is backward compatible with earlier bobcat versions.
-    
+
     Msg has a new free function msgstream() returning the not-cleared msg()
     stream. This allows certain STL algorithms to be used, see `man -e bobcat
-    msg' 
-    
+    msg'
+
     wrap1c and wrap2c now also accept const contexts; see, e.g., `man -e
     bobcat wrap1c'. Errors in wrap2c's template definition repaired.
-    
+
     ConfigFile now has additional members beginRE() and endRE(), allowing
     iterators to produce all lines matching a RE.
-    Repaired ConfigFile in accordance with the man-page: 
-        initial ws are now removed from the stored lines, 
+    Repaired ConfigFile in accordance with the man-page:
+        initial ws are now removed from the stored lines,
         find(target): `target' may be found anywhere within a configuration
-                      line. 
+                      line.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue,  2 May 2006 19:31:02 +0200
 
@@ -2213,26 +2216,26 @@ bobcat (1.6.0) unstable; urgency=low
     redesigned Arg: same functionality as before, but allows for multiple
     specifications of options, also those having arguments. When multiple
     options having arguments are specified, each individual argument is
-    retrievable. 
+    retrievable.
 
     added string::escape()
-    
+
     `get...' accessors removed from all classes, (Arg, Fork and Pipe)
     Old names are kept for the time being.
-    
+
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 26 Dec 2005 19:04:24 +0100
 
 bobcat (1.5.0) unstable; urgency=low
 
-  * The general bobcat manpage did not have links to wrap1c and wrap2c. Now 
-    Repaired. 
+  * The general bobcat manpage did not have links to wrap1c and wrap2c. Now
+    Repaired.
 
     The Log-class interface is modified. See the man -e bobcat log manpage for
     details. The main difference is that a static initialize() member is now
     used to define the static Log-object. Also, logs may be written to stdout
     using a simpler specification than before. The Log class also supports an
     open() member, allowing you to open a local Log object after its
-    construction. 
+    construction.
 
     Added the class Milter, offering a C++ interface to the (sendmail)
     libmilter API. This class uses the `virtual constructor' Design Pattern to
@@ -2241,7 +2244,7 @@ bobcat (1.5.0) unstable; urgency=low
     bobcat milter' for details.
 
     Added the class Xpointer, setting and retrieving the X-windows pointer
-    coordinates. 
+    coordinates.
 
     With the shared object library, functions from both libmilter and libX11
     must be available before a program can be fully linked. To prevent
@@ -2265,10 +2268,10 @@ bobcat (1.2.1) unstable; urgency=low
 
   * added missing constructor description in the Pattern manpage
     removed leftover cerr insertion from localserversocket::listen()
-    
+
     defined default localsocketbase constructor.
     added /bobcat/localsocketbase/open.cc
-    
+
     defined default localserversocket constructor.
     removed /bobcat/localserversocket/localserversocket1.cc
     added /bobcat/localserversocket/open.cc
@@ -2345,7 +2348,7 @@ bobcat (1.1.0) unstable; urgency=low
        FBB::User:   Determines the current user's parameters from /etc/passwd.
 
     Added an examples directory under /usr/share/doc/bobcat-dev
-    Added a contrib directory under /usr/share/doc/bobcat-dev, currently 
+    Added a contrib directory under /usr/share/doc/bobcat-dev, currently
           containing the `solib' script making shared libraries
 
     o   The minor release number will be incremented when new information
@@ -2360,4 +2363,3 @@ bobcat (1.0.0-1) unstable; urgency=low
   * Initial Release.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 15 Aug 2005 11:32:09 +0200
-

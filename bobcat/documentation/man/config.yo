@@ -145,18 +145,28 @@ manpagesection(CONSTRUCTORS)
        creates a bf(Config) object, containing the information from the
         configuration file tt(fname). The other parameters are used as
         described with the abovementioned constructor. If the file cannot be
-        opened an tt(FBB::Exception) exception is thrown.
+        opened an tt(FBB::Exception) exception is thrown;
 
     itb(Config(std::istream &stream, Casing sType = UseCase, 
                Comment cType = NoComment)) 
        same functionality as the previous constructor, but reading the
-        configuration information from the tt(std::istream stream).
+        configuration information from the tt(std::istream stream);
+
+    itb(Config(std::istream &stream, uint16_t lineNr, Casing sType = UseCase, 
+               Comment cType = NoComment)) 
+       same functionality as the previous constructor, but the line number of
+        the first line read from tt(stream) is set to tt(lineNr);
 
     itb(Config(std::istream &&tmp, Casing sType = UseCase, 
                Comment cType = NoComment)) 
-       same functionality as the previous constructor, but reading the
-        configuration information from the tt(std::istream) rvalue reference
-        tt(tmp).
+       same functionality as the constructor expecting an tt(istream)
+        reference, but this time the configuration information is read from
+        the tt(std::istream) rvalue reference tt(tmp);
+
+    itb(Config(std::istream &&tmp, uint16_t lineNr, Casing sType = UseCase, 
+               Comment cType = NoComment)) 
+       same functionality as the previous constructor, but the line number of
+        the first line read from tt(stream) is set to tt(lineNr).
     )
 
     Copy- and move-constructors and -assignment operators are available.
@@ -237,10 +247,16 @@ manpagesection(MEMBER FUNCTIONS)
         flags. If the file cannot be opened an tt(FBB::Exception) exception is
         thrown;
 
-    itb(void open(std::istream &&tmp))
+    itb(void open(std::istream &stream, uint16_t lineNr = 1))
+       same functionality as the previous member, but reading the
+        configuration information from the tt(std::istream) reference
+        tt(stream). The tt(lineNr) value specifies the line number of the
+        first read line;
+
+    itb(void open(std::istream &&tmp, uint16_t lineNr = 1))
        same functionality as the previous member, but reading the
         configuration information from the tt(std::istream) rvalue reference
-        tt(tmp).
+        tt(tmp);
 
     itb(void setComment(Comment type))
        the object's comment-handling type is set to tt('type') (ether

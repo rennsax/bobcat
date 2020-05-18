@@ -36,9 +36,9 @@ These values are used when constructing objects of the following (nested)
 class bf(FBB::Arg::LongOption).
 
 manpagesection(THE NESTED CLASS FBB::Arg::LongOption)
-    Long options are defined using objects of the nested class
-bf(FBB::Arg::LongOption). This class provides the following constructors:
-    itemization(
+   Long options are defined using objects of the nested class
+    bf(FBB::Arg::LongOption). This class provides the following constructors:
+   itemization(
     itb(FBB::Arg::LongOption(char const *name, FBB::Arg::Type type =
         FBB::Arg::None)) 
        This constructor is used to define a long option for which no
@@ -65,6 +65,17 @@ bf(FBB::Arg::LongOption). This class provides the following constructors:
                 as 2nd and 3rd arguments to bf(Arg's) member bf(initialize())
     )
 
+    The class tt(LongOptions) is primarily used internally by the tt(Arg)
+object, but it can also be used outside of the tt(Arg) object. For that
+situation the following members are provided:
+    itemization(
+    itb(std::string const &longName() const)
+       returns the tt(LongOption's) long option name;
+    itb(int optionChar() const)
+       returns the tt(LongOption's) option character (or one of the
+        tt(Arg::Type) enumeration values if there is no option character
+        associated with the tt(LongOption)).
+    )
 
 manpagesection(CONSTRUCTORS)
     Since the class is a em(Singleton) there are no public

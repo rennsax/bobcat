@@ -5,7 +5,7 @@ ArgConfig__::ArgConfig__(LongOption__ const *begin,
 {
     while (begin != end)
     {
-        d_longOption[begin->optionChar()] = begin->getName();
+        d_longOption[begin->optionChar()] = begin->longName();
         ++begin;
     }
 }

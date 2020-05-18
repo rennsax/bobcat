@@ -43,7 +43,7 @@ class LongOption__: public ArgTypes__
         LongOption__(char const *name, Type type);
         LongOption__(char const *name, int optionChar);
 
-        std::string const &getName() const;     // .f
+        std::string const &longName() const;    // .f
         int optionChar() const;                 // .f
 };
 
@@ -112,7 +112,7 @@ class Arg: public ArgTypes__
             int argc, char **argv);
 };
 
-#include "getname.f"
+#include "longname.f"
 #include "optionchar.f"
 #include "option1.f"
 #include "option2.f"
