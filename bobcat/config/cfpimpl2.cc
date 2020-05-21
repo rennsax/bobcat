@@ -5,5 +5,5 @@ CF_Pimpl::CF_Pimpl(istream &stream, uint16_t lineNr,
 :
     CF_Pimpl(sType, cType)
 {
-    open(stream, lineNr);
+    load(stream, lineNr);
 }

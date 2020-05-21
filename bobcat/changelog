@@ -9,8 +9,8 @@ bobcat (5.05.00)
 
   * Added descriptions of the members Arg::LongOption::longName and
     Arg::LongOption::optionChar to the FBB::Arg man-page
-
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 18 May 2020 16:05:54 +0200
+    
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 21 May 2020 13:08:51 +0200
 
 bobcat (5.04.01)
 

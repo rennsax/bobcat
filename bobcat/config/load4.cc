@@ -1,6 +1,6 @@
 #include "config.ih"
 
-void CF_Pimpl::open(istream &stream, uint16_t lineNr)
+void CF_Pimpl::load(istream &stream, uint16_t lineNr)
 {
     clear();
 

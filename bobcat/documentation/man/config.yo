@@ -30,9 +30,9 @@ the bf(Config) object. Their line numbers can also be retrieved.
 At construction time comment handling (keep comment / remove comment) and type
 of searching (case sensitive / insensitive) can be specified. 
 
-In addition to one of the constructors, the tt(open) member can be used to
+In addition to one of the constructors, the tt(load) member can be used to
 processes a configuration file, replacing the object's current content by the
-content of another configuration file. The tt(open) member cannot be used to
+content of another configuration file. The tt(load) member cannot be used to
 alter the configuration file's processing parameters, but overloaded
 assignment is supported and comment- and letter-case handling can be modified
 by set-members.
@@ -137,7 +137,7 @@ manpagesection(CONSTRUCTORS)
     itemization(
     itb(Config(Casing sType = UseCase, Comment cType = NoComment))
        creates an empty object. It is not associated with a configuration
-        file; the tt(open) member can be used for that. The parameters
+        file; the tt(load) member can be used for that. The parameters
         specify specific handling of comment, and letter-casing;
 
     itb(Config(std::string const &fname, Casing sType = UseCase, 
@@ -204,7 +204,7 @@ manpagesection(MEMBER FUNCTIONS)
 
     itb(void clear())
        clears the current content of the tt(Config) object. This member is
-        automatically called by the tt(open) members;
+        automatically called by the tt(load) members;
 
     itb(const_iterator find(std::string const &target) const) 
        returns an iterator to the first line containing tt(target), starting
@@ -240,20 +240,20 @@ manpagesection(MEMBER FUNCTIONS)
         expression tt(regex).
        It returns tt(end()) if no such line was found;
 
-    itb(void open(std::string const &fname))
+    itb(void load(std::string const &fname))
        the content of the file named tt(fname) is stored in the tt(Config)
         object, replacing any previously stored content. The file is read
         according to the latest setting of the tt(Comment) and tt(Casing)
         flags. If the file cannot be opened an tt(FBB::Exception) exception is
         thrown;
 
-    itb(void open(std::istream &stream, uint16_t lineNr = 1))
+    itb(void load(std::istream &stream, uint16_t lineNr = 1))
        same functionality as the previous member, but reading the
         configuration information from the tt(std::istream) reference
         tt(stream). The tt(lineNr) value specifies the line number of the
         first read line;
 
-    itb(void open(std::istream &&tmp, uint16_t lineNr = 1))
+    itb(void load(std::istream &&tmp, uint16_t lineNr = 1))
        same functionality as the previous member, but reading the
         configuration information from the tt(std::istream) rvalue reference
         tt(tmp);
@@ -261,7 +261,7 @@ manpagesection(MEMBER FUNCTIONS)
     itb(void setComment(Comment type))
        the object's comment-handling type is set to tt('type') (ether
         tt(KeepComment) or tt(NoComment)). It doesn't affect the current
-        content of the bf(Config) object, but when calling tt(open) the
+        content of the bf(Config) object, but when calling tt(load) the
         configuration file is processed according to tt(type's) value;
 
     itb(void setCasing(Casing type))
