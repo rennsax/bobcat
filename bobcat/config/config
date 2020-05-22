@@ -227,6 +227,7 @@ class Config: public CF_Types
 #include "findid1.f"
 #include "findkey1.f"
 #include "findre1.f"
+#include "load1.f"
 #include "load2.f"
 #include "load3.f"
 #include "opindex.f"
