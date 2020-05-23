@@ -1,7 +1,7 @@
 #include "datetime.ih"
 
 //  time: time in seconds since the epoch
-//      UTC: merely time, zone = 0,         supportsDST = false
+//      UTC: merely time, zone = 0,             supportsDST = false
 //      LOCALTIME: sets  d_thisZone (zone()),   supportsDST, d_dst: standard
 
 DateTime::DateTime(time_t time, TimeType type)
