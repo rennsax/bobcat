@@ -82,7 +82,7 @@ The following classes and functions are available:
     Manpage(cmdfinderbase)
 
     bf(FBB::Config): Processing standard configuration files.nl() 
-    Manpage(configfile)
+    Manpage(config)
 
     bf(FBB::ConfigFile): Processing standard configuration files (deprecated,
     use bf(Config)).nl() 
