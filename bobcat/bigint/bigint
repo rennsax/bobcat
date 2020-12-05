@@ -42,24 +42,28 @@ class BigInt
             SAFE = true
         };
 
-        BigInt();                               // 1
-        BigInt(BigInt const &other);            // 3
+        BigInt();                               //                  1
+        BigInt(BigInt const &other);            //                  2
+        BigInt(BigInt &&tmp);                   //                  3
                                                 
-        template<typename Type>                 // promotion OK
+        template<typename Type>                 // promotion OK     4.f
         BigInt(Type value);              
                                                 
-        explicit BigInt(BIGNUM const &bignum);  // 2 
-        explicit BigInt(BIGNUM const *bignum);  // 4
+        explicit BigInt(BIGNUM const &bignum);  //                  5
+        explicit BigInt(BIGNUM const *bignum);  //                  6
+
+                                                //                  7.f
         explicit BigInt(BIGNUM *bignum);        // .f   (avoids selection of
                                                 //       the template)
 
         BigInt(char const *bigEndian, size_t length, bool negative = false);
-                                                            // 5
+                                                            //      8
         explicit BigInt(std::string const &bigEndian, bool negative = false);
-                                                            // 6
+                                                            //      9
         ~BigInt();
 
-        BigInt &operator=(BigInt const &other);
+        BigInt &operator=(BigInt const &other); // opis.cc
+        BigInt &operator=(BigInt &&tmp);        // opmovis.cc
 
         BigInt operator-() const;
         BigInt &negate();
@@ -268,20 +272,9 @@ class BigInt
                                                    int (*pConv)(int));
 };
 
-template<typename Type>
-BigInt::BigInt(Type value)
-:
-    d_bn(BN_new())
-{
-    bool negative = value < 0;
-    if (negative)
-        value = -value;
+#include "bigint4.f"
+#include "bigint7.f"
 
-    BN_set_word(d_bn, static_cast<unsigned long>(value));
-
-    if (negative)
-        negate();
-}    
 
 #include "nwords.f"
 #include "addmod.f"
@@ -330,14 +323,17 @@ std::istream &operator>>(std::istream &out, BigInt &bn);
 
 int isoctdigit(int ch);
 
-#include "opgreater.f"              // >
-#include "opgreaterequal.f"         // >=
-#include "opinsert.f"               // ostream <<
+    // convert to spaceship operator use?
+
 #include "opisequal.f"              // ==
 #include "opisunequal.f"            // !=
+
+#include "opgreater.f"              // >
+#include "opgreaterequal.f"         // >=
 #include "opless.f"                 // <
 #include "oplessequal.f"            // <=
 
+#include "opinsert.f"               // ostream <<
 
 }   // namespace FBB
 

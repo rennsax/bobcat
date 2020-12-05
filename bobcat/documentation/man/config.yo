@@ -43,11 +43,11 @@ Often lines in configuration show the following structure:
         )
     If tt(id) is a bf(C++) identifier it is called an tt(ID) in this
 man-page. When looking for tt(IDs) all non white-space characters immediately
-following the tt(ID) are ignored. A tt(Key) is defined as the first
-white-space delimited entry  on lines. In the example the key is tt(id:).
-The first space-delimited entry following the key is called the line's
-em(value), whereas all of the line's content starting at tt(value) is called
-the line's tt(tail). 
+following the tt(ID) are ignored (in the example the ID is tt(id)). A tt(Key)
+is defined as the first white-space delimited entry on lines. In the example
+the key is tt(id:).  The first space-delimited entry following the key is
+called the line's em(value), whereas all of the line's content starting at
+tt(value) is called the line's tt(tail).
 
 tt(Config) objects offer various members to process configuration file
 lines that are structured this way. However, lines do not have to be
@@ -124,9 +124,10 @@ file and its line number. The class offers the following facilities:
     itb(uint16_t lineNr() const)
        returns the line's line number;
     itb(std::string tail() const)
-       returns the line's em(tail) field;
+       returns the line's em(tail) field (i.e., the info beyond the tt(key));
     itb(std::string value() const)
-       returns the line's em(value) field;
+       returns the line's em(value) field (i.e., the first white-space
+       delimited entry following the line's ID);
     )
     tt(CF_Line) objects may be inserted into tt(std::ostream) objects,
 inserting their lines into the streams.

@@ -1,11 +1,9 @@
 #include "bigint.ih"
 
-BigInt::BigInt(char const *bigEndian, size_t length, bool negative)
+BigInt::BigInt(BIGNUM const &bignum)
 :
     d_bn(BN_new())
 {
-    BN_bin2bn(reinterpret_cast<unsigned char const *>(bigEndian), length,
-                d_bn);
-
-    setNegative(negative);
+//    BN_init(d_bn);
+    copy(d_bn, bignum);
 }

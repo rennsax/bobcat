@@ -1,9 +1,8 @@
 #include "bigint.ih"
 
-BigInt::BigInt(BigInt const &other)
+BigInt::BigInt(BigInt &&tmp)
 :
-    d_bn(BN_new())
+    d_bn(tmp.d_bn)
 {
-//    BN_init(d_bn);
-    copy(d_bn, *other.d_bn);
+    tmp.d_bn = BN_new();
 }

@@ -1,6 +1,8 @@
 #include "bigint.ih"
 
-BigInt::BigInt(string const &bigEndian, bool negative)
+BigInt::BigInt(BIGNUM const *bignum)
 :
-    BigInt(bigEndian.data(), bigEndian.length(), negative)
-{}
+    d_bn(BN_new())
+{
+    copy(d_bn, *bignum);
+}
