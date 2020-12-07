@@ -128,9 +128,7 @@ that is stored in tt(bigEndian) represents a negative value, then provide a
 second argument tt(true).
     )
 
-    The copy constructor and assignment operator is available, move operations
-are not available.
-
+    Copy and move constructors (and assignment operators) are available.
 
 manpagesection(MEMBER FUNCTIONS)
     itemization(

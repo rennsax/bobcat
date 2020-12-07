@@ -1,4 +1,10 @@
+bobcat (5.06.00)
+
+  * Added the class CSVTable constructing tables row-by-row
+
   * Added the move constructor and the move assignment operator to BigInt
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 07 Dec 2020 20:10:31 +0100
 
 bobcat (5.05.00)
 
