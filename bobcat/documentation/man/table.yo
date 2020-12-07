@@ -197,9 +197,9 @@ manpagesection(EXAMPLE)
 manpagefiles()
     em(bobcat/table) - defines the class interface;nl()
 
-manpageseealso()
-    bf(bobcat)(7), bf(align)(3bobcat), bf(manipulator)(3bobcat),
-    bf(tablebuf)(3bobcat), bf(tablelines)(3bobcat), 
+manpageseealso() 
+    bf(bobcat)(7), bf(align)(3bobcat), bf(csvtable)(3bobcat),
+    bf(manipulator)(3bobcat), bf(tablebuf)(3bobcat), bf(tablelines)(3bobcat),
     bf(tablesupport)(3bobcat)
     
 manpagebugs()

@@ -1,0 +1,2 @@
+#define LIBRARY           "fmt"
+#include "../icmconf.lib"

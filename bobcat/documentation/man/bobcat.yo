@@ -91,6 +91,9 @@ The following classes and functions are available:
     bf(FBB::CryptBuf): Base class for DecryptBuf and EncryptBuf.nl()
     Manpage(cryptbuf)
 
+    bf(FBB::CSVTable): Construct tables row-by-row.nl()
+    Manpage(csvtable)
+
     bf(FBB::CSV4180): Objects of this class allow for easy handling of
     comma-separated values (implements RFC 4180).nl()  
     Manpage(csv4180)
@@ -922,6 +925,9 @@ END)
     bf(FBB::Align): Specifies tt(Table(Buf)) column and element
     alignments.nl()
     Manpage(align)
+
+    bf(FBB::CSVTable): Construct tables row-by-row.nl()
+    Manpage(csvtable)
 
     bf(FBB::Table): Display tables row- or column-wise.nl()
     Manpage(CHAR(t)able)

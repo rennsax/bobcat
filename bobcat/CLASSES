@@ -17,6 +17,9 @@ cmdfinder
 cmdfinderbase
 config
 configfile
+csvtabdef
+csvtabins
+csvtable
 csv4180
 datetime
 exception
@@ -24,6 +27,7 @@ exec
 extractorbase
 fbb
 field
+fmt
 fork
 fswap
 gethostent
@@ -80,6 +84,7 @@ repeat
 selector
 semaphore
 serversocket
+sep
 sharedblock
 sharedcondition
 sharedmemory

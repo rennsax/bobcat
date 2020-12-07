@@ -1,0 +1,2 @@
+#define LIBRARY           "csvtabdef"
+#include "../icmconf.lib"
