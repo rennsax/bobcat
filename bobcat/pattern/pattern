@@ -70,7 +70,7 @@ class Pattern
         //
         //  REG_EXTENDED
         //      Use POSIX Extended Regular Expression  syntax  when
-        //      interpreting  regex.  If not set, POSIX Basic Regu­
+        //      interpreting  regex.  If not set, POSIX Basic Regu-
         //      lar Expression syntax is used.
         //
         //  REG_NOSUB
@@ -80,15 +80,14 @@ class Pattern
         //      was compiled with this flag set.
         //
         //  REG_NEWLINE
-        //      Match-any-character  operators  don't  match a new­
-        //      line.
+        //      Match-any-character  operators  don't  match a newline.
         //
-        //      A non-matching list ([^...])  not containing a new­
-        //      line does not match a newline.
+        //      A non-matching list ([^...])  not containing a newline 
+        //      does not match a newline.
         //
         //      Match-beginning-of-line  operator  (^)  matches the
-        //      empty string immediately after a  newline,  regard­
-        //      less  of  whether  eflags,  the  execution flags of
+        //      empty string immediately after a  newline,  regardless
+        //      of  whether  eflags,  the  execution flags of
         //      regexec, contains REG_NOTBOL.
         //
         //      Match-end-of-line operator ($)  matches  the  empty
@@ -123,8 +122,8 @@ class Pattern
         //  REG_NOTBOL
         //      The  match-beginning-of-line  operator always fails
         //      to match (but see the compilation flag  REG_NEWLINE
-        //      above)  This  flag  may be used when different por­
-        //      tions of a string are passed  to  regexec  and  the
+        //      above)  This  flag  may be used when different portions 
+        //      of a string are passed  to  regexec  and  the
         //      beginning  of  the string should not be interpreted
         //      as the beginning of the line.
         //

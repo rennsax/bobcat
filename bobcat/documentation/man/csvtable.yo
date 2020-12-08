@@ -505,7 +505,7 @@ int main()
 }
     )
 
-    This program writes the folllowing table to tt(std::cout):
+    This program writes the following table to tt(std::cout):
     verb(
 ------------------------------------
                   Gender            
