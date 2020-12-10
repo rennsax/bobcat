@@ -2,12 +2,17 @@
 #define INCLUDED_BOBCAT_CSVTABLE_
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
+#include <memory>
 
 #include <bobcat/fmt>
-#include <bobcat/csvtabins>
-#include <bobcat/csvtabdef>
+//#include <bobcat/csvtabins>
+#include "../csvtabins/csvtabins"
+
+//#include <bobcat/csvtabdef>
+#include "../csvtabdef/csvtabdef"
 
 // save the stream's original formatting values.  column values are formatted
 // by width and position, all other formatting flags (like hex, setfill) are
@@ -24,6 +29,9 @@ class CSVTable
 {
     std::vector<FMT> d_format;          // column format specifications
 
+                                        // stream used by the 2nd constructor
+    std::unique_ptr<std::ofstream> d_strPtr;
+
     std::ostream *d_out;                // stream to write to
     std::string d_sep;                  // separator between columns
 
@@ -31,19 +39,42 @@ class CSVTable
     unsigned d_precision;
     char d_fillChar;
 
+    unsigned d_idx;                     // start/continue at d_idx
+
     public:
-        CSVTable(std::ostream &out = std::cout, 
+        CSVTable(std::ostream &out = std::cout,     //                  1.cc
                  std::string const &sep = ", ");
+        CSVTable(std::string const &fname,          //                  2.cc
+                 std::string const &sep = ", ",
+                 std::ios::openmode mode = std::ios::out);
+
         CSVTable(CSVTable const &other) = delete;
+        CSVTable(CSVTable &&tmp);                   //                  3.cc
+
+        CSVTable &operator=(CSVTable &&tmp) = default;
 
         ~CSVTable();
 
-        void fmt(std::string const &fields);        // define fields      1.cc
-                                                    // using ,-separated
+
+        std::vector<FMT> const &columns() const;    //                      .f
+
+
+                                // fmt(...) requires 
+                                // idx <= d_format.size()
+        CSVTabDef fmt(unsigned idx = 0);            // define fields      1.cc
+                                                    // using insertions
+
+
+        void fmt(std::string const &fields,         // define fields      2.cc
+                 unsigned idx = 0);                 // using ,-separated
                                                     // trimmed fields
 
-        CSVTabDef fmt();                            // define fields      2.f
-                                                    // using insertions
+        unsigned idx() const;                       //                     .f
+
+        CSVTabIns more(unsigned idx = ~0U);         //                    1.cc
+
+        void more(std::string const &text, unsigned idx = ~0U);   //      2.cc
+
 
                                                     // insert trimmed comma-
                                                     // separated text elements
@@ -53,30 +84,59 @@ class CSVTable
                                                     // columns fields using 
         void operator()(std::string const &text);   // the default formats.
 
-        operator CSVTabIns();
+                                                    // insert one line, 
+                                                    // starting at idx (or
+        CSVTabIns row(unsigned idx = ~0U);          // at d_idx if ~0U)   1.cc
 
+                                                    // same, continuing at idx
+                                                    // if idx < d_idx then
+                                                    // missing columns remain
+                                                    // empty
+        void row(std::string const &text, unsigned idx = ~0U);  //        2.cc
 
-        void stream(std::ostream &out);             // switch stream
+                                                    
+        operator CSVTabIns();                       // row();              .f
+
+        void stream(std::ostream &out);             // switch stream      1.cc
+
+        void stream(std::string const &fname,       // switch stream by name
+                    std::ios::openmode mode = std::ios::out);              
 
         unsigned size() const;                      // #table columns       .f
         FMT const &operator[](unsigned idx) const;              //   opindex.f
 
-        std::vector<FMT> const &columns() const;    //                      .f
-
         void sep(std::string const &separator);     //                     1.f
         std::string const &sep() const;             //                     2.f
 
+        std::ostream &stream();                     // returns d_out       3.f
+
     private:
+
+                                                    // retrieve the stream's
+        void streamFlags();                         // current flags
+
                                                     // reset the stream's 
         void streamReset();                         // original settings
 
+                                                    // reset at the begin of
+        void rowStreamReset();                      // rows
+
+        void check(unsigned idx) const;             // check valid initial idx
+
+                                                    // limit idx to 
+        unsigned limit(unsigned idx) const;         // d_format.size()     .f
+
+                                                    // check/update column idx
+        unsigned checkInsertIdx(unsigned idx);      // (calls rowStreamReset)
 };
 
-#include "fmt2.f"
-
 #include "columns.f"
+#include "idx.f"
+#include "opcsvtabins.f"
 #include "opindex.f"
+#include "opfun.f"
 #include "size.f"
+#include "stream3.f"
 
 #include "sep1.f"
 #include "sep2.f"
@@ -84,14 +144,3 @@ class CSVTable
 } // FBB        
 
 #endif
-
-
-
-
-
-
-
-
-
-
-

@@ -1,8 +1,8 @@
 //#define XERR
 #include "csvtable.ih"
 
-void CSVTable::fmt(string const &fields)
+CSVTabDef CSVTable::fmt(unsigned idx)
 {
-    CSVTabDef tabDef{ d_format };
-    tabDef.split(fields);
+    check(idx);
+    return CSVTabDef{ d_format, idx };
 }

@@ -29,7 +29,7 @@ class CSVTabDef
         ~CSVTabDef();
 
     private:
-        CSVTabDef(std::vector<FMT> &format);
+CSVTabDef(std::vector<FMT> &format, unsigned idx);
 
                                                     // split the string into
                                                     // words, add their  

@@ -3,17 +3,16 @@
 
 void CSVTable::stream(std::ostream &out)
 {
-    char fillChar = d_out->fill();          // use fillChar for out
+    if (d_idx != 0)                 // not at the beginning of a row
+        row();                      // then end the current row
+
+    char fillChar = d_out->fill();          // keep the current fillChar
 
     streamReset();                          // reset *d_out to its original
                                             // settings
 
-    d_flags = out.flags();                  // obtain the stream's flags,
-    d_precision = out.precision();          // precision, and fill char
-    d_fillChar = out.fill();
-
     d_out = &out;                           // switch stream
+    streamFlags();
 
-    out.setf(ios::fixed, ios::floatfield);
     out.fill(fillChar);
 }

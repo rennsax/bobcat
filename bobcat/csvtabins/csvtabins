@@ -50,14 +50,17 @@ class CSVTabIns
 
     FMT  d_extraFMT;
     bool d_useExtraFMT;                 // use d_extraFMT instead of d_format
+    bool d_more;
+    unsigned *d_tabIdx;
 
     public:
         CSVTabIns(CSVTabIns const &other) = delete;
         ~CSVTabIns();
 
     private:
-        CSVTabIns(std::ostream &out, std::vector<FMT> const &format, 
-                  std::string const &sep);
+        CSVTabIns(unsigned *idx, std::ostream &out, 
+                  std::vector<FMT> const &format, 
+                  unsigned startIdx, std::string const &sep, bool more);
        
                                                     // inserts 1 row, via 
         void operator()(std::string const &text);   // CSVTable.operator()

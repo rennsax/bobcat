@@ -1,8 +1,8 @@
 //#define XERR
 #include "csvtabdef.ih"
 
-CSVTabDef::CSVTabDef(std::vector<FMT> &format)
+CSVTabDef::CSVTabDef(std::vector<FMT> &format, unsigned idx)
 :
-    d_idx(0),
+    d_idx(idx),
     d_format(format)
 {}
