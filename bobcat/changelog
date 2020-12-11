@@ -1,3 +1,9 @@
+bobcat (5.06.01)
+
+  * Extended the facilities of CSVTable
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 11 Dec 2020 15:16:31 +0100
+
 bobcat (5.06.00)
 
   * Added the class CSVTable constructing tables row-by-row
