@@ -119,7 +119,7 @@ manpagesection(CONSTRUCTORS)
         using the tt(stream) members, and the separator can be changed using
         the tt(sep) member, but the separator can also be changed while
         filling the table's elements (see below). When the bf(CSVTable) object
-        goes out of scope the stream's original configuration is restored.
+        goes out of scope the stream's original configuration is restored;
 
     itb(CSVTable(std::string const &fname, 
                  std::string const &sep = ", "), 
@@ -128,7 +128,8 @@ manpagesection(CONSTRUCTORS)
         column's elements as the previous constructor, but writes the table to
         the file having (path)name tt(fname), by default (re)writing the
         file. If the file already exists and tt(CSVTable) should start writing
-        at the file's end use, e.g., tt(ios::ate | ios::in).
+        at the file's end use, e.g., tt(ios::ate | ios::in). An exception is
+        thrown if the specified file cannot be opened.
     )
 
 The move constructor and assignment operator are available; the copy
@@ -154,9 +155,10 @@ characteristics of the table's columns.
        This insertion operator defines the characteristics of the next table
         column. bf(FMT) objects inserted into bf(CSVTabDef) objects must have
         been returned by bf(center, left) or bf(right) (see section bf(FREE
-        FUNCTIONS), below). When redefining column specifications (e.g., when
-        inserting bf(FMT) objects for previously defined columns) then the
-        width of the wider column is used. Example:
+        FUNCTIONS), below), or an exception will be thrown. When redefining
+        column specifications (e.g., when inserting bf(FMT) objects for
+        previously defined columns) then the width of the wider column is
+        used. Example:
     verb(
                 // left align using 10 char. positions:
     tab.fmt() << FBB::left(10); 
@@ -295,21 +297,20 @@ manpagesection(MEMBER FUNCTIONS)
        The elements inserted into the bf(CSVTabDef) object returned by
         bf(fmt()) define the specifications of the table's columns.
         Specifications start at column offset tt(idx), using 0 if not
-        specified (its argument value may not exceed the number of
-        defined column specifications or an exception is thrown). When
-        called repeatedly for already specified columns then the
-        widths of existing columns are kept if they exceed the widths of the
-        corresponding inserted bf(FMT) elements. Repeated bf(fmt) calls may
-        specify more columns than previous calls, in which case new columns
-        are added to the table.
+        specified (its argument may not exceed the offset of the table's last
+        column or an exception is thrown). When called repeatedly for already
+        specified columns then the widths of existing columns are kept if they
+        exceed the widths of the corresponding inserted bf(FMT)
+        elements. Repeated bf(fmt) calls may specify more columns than
+        previous calls, in which case new columns are added to the table.
 
     itb(void fmt(std::string const &colSpecs, unsigned idx = 0))
        The comma-separated space-trimmed words of tt(colSpecs) define the
         widths of right-aligned table columns, starting at column index
-        tt(idx), using 0 if not specified (its argument value may not exceed
-        the number of defined column specifications or an exception is thrown.
-        When called repeatedly for already specified columns then the widths
-        of existing columns are kept if they exceed the lengths of the
+        tt(idx), using 0 if not specified (its tt(idx) argument may not exceed
+        the offset of the table's last column or an exception is thrown). When
+        called repeatedly for already specified columns then the widths of
+        existing columns are kept if they exceed the lengths of the
         corresponding trimmed words. Repeated calls may specify more columns
         than previous calls, in which case additional columns are added to the
         table. Example:
@@ -322,9 +323,9 @@ manpagesection(MEMBER FUNCTIONS)
        )
 
     itb(unsigned idx() const)
-       The column index used at the next insertion is returned. When inserting
-        more values than the number of defined table columns then the return
-        value of the member tt(size) is returned;
+       The index of the column that will be used at the next insertion is
+        returned. When inserting more values than the number of defined table
+        columns then the return value of the member tt(size) is returned;
 
     itb(CSVTabIns more(unsigned idx = ~0U))
        When the default tt(idx) argument is used then values that are inserted
@@ -397,7 +398,8 @@ manpagesection(MEMBER FUNCTIONS)
        After calling this member the table's construction continues at the
         next row using the (path)name tt(fname), by default (re)writing the
         file. If the file already exists and tt(CSVTable) should start writing
-        at the file's end use, e.g., tt(ios::ate | ios::in);
+        at the file's end use, e.g., tt(ios::ate | ios::in). An exception is
+        thrown if the specified file cannot be opened;
 
     itb(std::string const &sep() const)
        Returns the currently used default column separator;

@@ -8,11 +8,8 @@
 #include <memory>
 
 #include <bobcat/fmt>
-//#include <bobcat/csvtabins>
-#include "../csvtabins/csvtabins"
-
-//#include <bobcat/csvtabdef>
-#include "../csvtabdef/csvtabdef"
+#include <bobcat/csvtabins>
+#include <bobcat/csvtabdef>
 
 // save the stream's original formatting values.  column values are formatted
 // by width and position, all other formatting flags (like hex, setfill) are
