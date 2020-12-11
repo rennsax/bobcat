@@ -43,6 +43,7 @@ class CSVTabIns
     friend CSVTabIns &operator<<(CSVTabIns &tab,                        // 6.f
                                 std::ios_base &(*func)(std::ios_base &));
 
+    unsigned *d_tabIdx;
     unsigned d_idx;
     std::ostream *d_out;
     std::vector<FMT> const &d_format;
@@ -51,7 +52,6 @@ class CSVTabIns
     FMT  d_extraFMT;
     bool d_useExtraFMT;                 // use d_extraFMT instead of d_format
     bool d_more;
-    unsigned *d_tabIdx;
 
     public:
         CSVTabIns(CSVTabIns const &other) = delete;

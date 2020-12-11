@@ -4,14 +4,14 @@
 CSVTabIns::~CSVTabIns()
 {
     if (d_more)
-        return;
-
-    if (*d_idx != 0)             // something has been inserted
     {
-        for (; *d_idx != d_format.size(); )  // fill remaining columns with 
-            insert(' ');                    // spaces
-
-        *d_out << '\n';         // then end the line
-        *d_idx = 0;             // and back to column 0
+        *d_tabIdx = d_idx;
+        return;
     }
+
+    for (; d_idx != d_format.size(); )  // fill remaining columns with 
+        insert(' ');                    // spaces
+
+    *d_out << '\n';                     // then end the row
+    *d_tabIdx = 0;                      // and back to column 0
 }

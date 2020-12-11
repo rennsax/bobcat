@@ -1,4 +1,4 @@
-//#define LIBRARY             "csvtable"
+#define LIBRARY             "csvtable"
 
 #include "../icmconf.lib"
 
