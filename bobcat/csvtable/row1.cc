@@ -1,4 +1,4 @@
-//#define XERR
+#define XERR
 #include "csvtable.ih"
 
 CSVTabIns CSVTable::row(unsigned idx)
