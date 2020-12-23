@@ -29,8 +29,7 @@ child processes may be extracted from tt(Process) objects.
 
 When using (output) redirection with the tt(USE_SHELL) path specification (see
 below for the path and IOMode specifications), the tt(IGNORE_COUT IOMode) (and
-possibly tt(IGNORE_CERR)) should normally be specified (see also this
-man-page's bf(PIPING) section).
+possibly tt(IGNORE_CERR)) should normally be specified.
 
 tt(Process) objects may repeatedly be used to execute the same or different
 child processes. Before the next child process is started, the tt(Process)

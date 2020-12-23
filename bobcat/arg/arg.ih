@@ -27,7 +27,7 @@ class Arg__: public ArgTypes__
     typedef StringStringVectorMap::const_iterator   SSVMapIterator;
 
     std::string                     d_base;
-    char const                      **d_argPointer;
+    mutable char const              **d_argPointer;
     
     std::vector<std::string>        d_argv;     // remaining arguments
                                                 // after removing the 
@@ -85,7 +85,8 @@ class Arg__: public ArgTypes__
             char const *version, size_t minArgs, int helpFlag = 'h', 
             int versionFlag = 'v') const;
 
-        char const **argPointers();
+        char const **argPointers() const;
+
     private:
         Arg__(Arg__ const &other) = delete;
         Arg__ &operator=(Arg const &other) = delete;

@@ -75,6 +75,9 @@ it calls tt(Pipe()) to construct a pipe.
     The move constructor and move assignment operator are available. Copy
 construction and copy assignment are not defined.
 
+    Note that tt(Pipe's) destructor does not close the pipe's file
+descriptors. To close the pipes tt(close) must be called.
+
 manpagesection(MEMBER FUNCTIONS)
 
     itemization(
@@ -85,7 +88,7 @@ manpagesection(MEMBER FUNCTIONS)
         The file descriptor of the tt(Pipe) object that is associated with the
 reading end of the pipe is closed;
 
-    itb(void close WriteFd())
+    itb(void closeWriteFd())
         The file descriptor of the tt(Pipe) object that is associated with the
 writing end of the pipe is closed;
 
@@ -180,8 +183,8 @@ manpagesection(EXAMPLE)
     {
         Pipe p;                         // construct a pipe
     
-        cout << "Read file descriptor: " << p.getReadFd() << endl;
-        cout << "Write file descriptor: " << p.getWriteFd() << endl;
+        cout << "Read file descriptor: " << p.readFd() << "\n"
+                "Write file descriptor: " << p.writeFd() << endl;
     
         int pid = fork();
     
@@ -195,18 +198,18 @@ manpagesection(EXAMPLE)
             string s;
 
             getline(cin, s);
-            cout << "CHILD: Got `" << s << "'" << endl;    
+            cout << "CHILD: Got `" << s << "'\n";
     
             getline(cin, s);
-            cout << "CHILD: Got `" << s << "'" << endl;    
+            cout << "CHILD: Got `" << s << "'\n";
     
             return 0;
         }
     
         p.writtenBy(STDOUT_FILENO);      // write to the pipe via cout
     
-        cout << "first line" << endl;
-        cout << "second line" << endl;
+        cout << "first line" << "\n"
+                "second line" << '\n';
     
         waitpid(pid, 0, 0);
     }

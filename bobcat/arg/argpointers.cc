@@ -1,6 +1,6 @@
 #include "arg.ih"
 
-char const **Arg__::argPointers()
+char const **Arg__::argPointers() const
 {
     if (!d_argPointer)
         d_argPointer = String::argv(d_argv);
@@ -8,7 +8,7 @@ char const **Arg__::argPointers()
     return d_argPointer;
 }
 
-char const **Arg::argPointers()
+char const **Arg::argPointers() const
 {
     return d_ptr->argPointers();
 }

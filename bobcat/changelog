@@ -1,3 +1,15 @@
+bobcat (5.06.02)
+
+  * Arg::argPointers() is now a const member function
+  
+  * Updated the Arg man-page's description of Arg::argPointers() and
+    Arg::versionHelp() (thows 0 when the help or version flags are specified,
+    and throws 1 if fewer than the required number of arguments are
+    specified).
+
+  * Updated the Process and Pipe man-pages
+
+
 bobcat (5.06.01)
 
   * Extended the facilities of CSVTable

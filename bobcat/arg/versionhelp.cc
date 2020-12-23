@@ -6,13 +6,19 @@ void Arg__::versionHelp(void (*usage)(string const &progname),
 {
     d_usage = usage;
 
-    if (option(versionFlag) && !option(helpFlag))
+    if (option(helpFlag))
     {
-        cout << basename() << " V" << version << '\n';
-        throw 1;
+        usage(basename());
+        throw 0;
     }
 
-    if (nArgs() < minArgs || option(helpFlag))
+    if (option(versionFlag))
+    {
+        cout << basename() << " V" << version << '\n';
+        throw 0;
+    }
+
+    if (nArgs() < minArgs)
     {
         usage(basename());
         throw 1;
