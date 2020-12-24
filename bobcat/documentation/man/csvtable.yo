@@ -401,6 +401,9 @@ manpagesection(MEMBER FUNCTIONS)
         at the file's end use, e.g., tt(ios::ate | ios::in). An exception is
         thrown if the specified file cannot be opened;
 
+    itb(std::ostream &stream())
+       A reference to the currently used stream is returned;
+
     itb(std::string const &sep() const)
        Returns the currently used default column separator;
 
