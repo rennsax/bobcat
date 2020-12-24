@@ -85,7 +85,7 @@ class Arg__: public ArgTypes__
             char const *version, size_t minArgs, int helpFlag = 'h', 
             int versionFlag = 'v') const;
 
-        char const **argPointers() const;
+        char const **argPointers() const;                       // 3.cc
 
     private:
         Arg__(Arg__ const &other) = delete;

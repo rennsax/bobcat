@@ -121,11 +121,16 @@ manpagesection(CONSTRUCTORS)
         filling the table's elements (see below). When the bf(CSVTable) object
         goes out of scope the stream's original configuration is restored;
 
+    itb(CSVTable(std::ofstream &&tmp, std::string const &sep = ", "))
+       This constructor by default uses the same separator to separate the
+        column's elements as the first constructor, but writes the table to
+        the tt(ofstream tmp), which is grabbed by tt(CSVTable);
+
     itb(CSVTable(std::string const &fname, 
                  std::string const &sep = ", "), 
                  std::ios::openmode mode = ios::out)
        This constructor by default uses the same separator to separate the
-        column's elements as the previous constructor, but writes the table to
+        column's elements as the first constructor, but writes the table to
         the file having (path)name tt(fname), by default (re)writing the
         file. If the file already exists and tt(CSVTable) should start writing
         at the file's end use, e.g., tt(ios::ate | ios::in). An exception is
@@ -191,7 +196,7 @@ specifications other than those provided by the standard I/O manipulators are
 ignored when used beyond the table's last column.
 
 The return types and left-hand side operands of the following insertion
-operators use bf(CSVTabIns) objects. bf(CAVTable's) conversion operator
+operators use bf(CSVTabIns) objects. bf(CSVTable's) conversion operator
 tt(operator CSVTabIns()) described below returns a bf(CSVTabIns) object which
 is used by the following insertion operators to insert values into the table.
 
@@ -271,7 +276,7 @@ is used by the following insertion operators to insert values into the table.
         is added to the table. Insertions beyond the table's last column are
         processed, but bf(CSVTabIns's) insertion operators are ignored,
         inserting values as-is. However, in that case the standard
-        tt(std::ostream) manipulators can also be used;
+        tt(std::ostream) manipulators can also be used.
 
     itb(void operator()(std::string const &text))
        Calls bf(row(text, 0)) to insert the trimmed comma-separated elements
@@ -297,8 +302,8 @@ manpagesection(MEMBER FUNCTIONS)
        The elements inserted into the bf(CSVTabDef) object returned by
         bf(fmt()) define the specifications of the table's columns.
         Specifications start at column offset tt(idx), using 0 if not
-        specified (its argument may not exceed the offset of the table's last
-        column or an exception is thrown). When called repeatedly for already
+        specified (its argument may not exceed the number of already defined
+        columns or an exception is thrown). When called repeatedly for already
         specified columns then the widths of existing columns are kept if they
         exceed the widths of the corresponding inserted bf(FMT)
         elements. Repeated bf(fmt) calls may specify more columns than
@@ -307,8 +312,8 @@ manpagesection(MEMBER FUNCTIONS)
     itb(void fmt(std::string const &colSpecs, unsigned idx = 0))
        The comma-separated space-trimmed words of tt(colSpecs) define the
         widths of right-aligned table columns, starting at column index
-        tt(idx), using 0 if not specified (its tt(idx) argument may not exceed
-        the offset of the table's last column or an exception is thrown). When
+        tt(idx), using 0 if not specified (its argument may not exceed the
+        number of already defined columns or an exception is thrown). When
         called repeatedly for already specified columns then the widths of
         existing columns are kept if they exceed the lengths of the
         corresponding trimmed words. Repeated calls may specify more columns
@@ -360,6 +365,10 @@ manpagesection(MEMBER FUNCTIONS)
     tab << 5;
        )
 
+       Following tt(more) calls the current row ends at the next tt(tab.row)
+        call. If following tt(more) calls the current row should merely end 
+        then simply use tt(tab.row+nop()());
+
     itb(void more(std::string const &text, unsigned idx = ~0U))
        This member's tt(idx) parameter is handled as described at the previous
         member. 
@@ -367,8 +376,7 @@ manpagesection(MEMBER FUNCTIONS)
        The trimmed comma-separated elements of tt(text) are inserted into the
         current row, without ending the current row;
 
-
-    itb(CSVTabIns row(unsigned idx = ~0U))
+    itb(CSVTabIns row+nop()(unsigned idx = ~0U))
        This member's tt(idx) parameter and insertions into the returned
         bf(CSVTabIns) object are handled as described at the first tt(more)
         member, but the current row ends at the end of the statement. Example:
@@ -382,7 +390,7 @@ manpagesection(MEMBER FUNCTIONS)
     tab.row(3) << 4;
        )
 
-    itb(void row(std::string const &text, unsigned idx = ~0U))
+    itb(void row+nop()(std::string const &text, unsigned idx = ~0U))
        This member's tt(idx) parameter is handled as described at the first
         tt(more) member. 
 
@@ -392,6 +400,10 @@ manpagesection(MEMBER FUNCTIONS)
     itb(void  stream(std::ostream &out))
        After calling tt(tab.stream(out)) the table's construction continues
         at the next row using the stream tt(out);
+
+    itb(void stream(std::ofstream &&tmp))
+       After calling this member the table's construction continues at the
+        next row using the tt(ofstream tmp), whih is grabbed by tt(CSVTable);
 
     itb(void stream(std::string const &fname, 
                     std::ios::openmode mode = std::ios::out))

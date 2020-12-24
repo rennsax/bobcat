@@ -148,7 +148,11 @@ manpagesection(NON-STATIC MEMBER FUNCTIONS)
 
        The caller is responsible for returning the array of pointers to the
         common pool, but should not delete the C-strings to which the pointers
-        point.
+        point. The following two statements illustrate this:
+      verb(
+    char const **ptr = Arg::instance().argPointers();
+    delete[] ptr;
+      )
 
     itb(std::string const &basename() const)
         Returns the program's basename.

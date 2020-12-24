@@ -1,22 +1,13 @@
 //#define XERR
-
 #include "csvtable.ih"
 
-CSVTable::CSVTable(CSVTable &&tmp)
+CSVTable::CSVTable(string const &fname, string const &sep, ios::openmode mode)
 :
-    d_format   (move(tmp.d_format)),
+    d_strPtr(new ofstream(Exception::factory<ofstream>(fname, mode))),
+    d_out(d_strPtr.get()),
+    d_sep(sep),
 
-    d_strPtr   (move(tmp.d_strPtr)),
-    d_out      (tmp.d_out),
-    d_sep      (move(tmp.d_sep)),
-
-    d_flags    (tmp.d_flags),               // original stream flags
-    d_precision(tmp.d_precision),
-    d_fillChar(tmp.d_fillChar),
-
-    d_idx      (tmp.d_idx)
+    d_idx(0)
 {
-    tmp.d_idx = 0;
-    tmp.d_out = &cout;                      // moving associates tmp with cout
-    tmp.streamFlags();
+    streamFlags();
 }

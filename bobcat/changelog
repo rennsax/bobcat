@@ -1,6 +1,6 @@
-bobcat (5.06.02)
+bobcat (5.07.00)
 
-  * Arg::argPointers() is now a const member function.
+  * Arg::argPointers() can also be used with Arg const & reference variables.
   
   * Updated the Arg man-page's description of Arg::argPointers() and
     Arg::versionHelp() (thows 0 when the help or version flags are specified,
@@ -12,7 +12,10 @@ bobcat (5.06.02)
   * Added a description of the member `ostream &stream()' to CSVTable's
     man-page.
 
+  * Added  constructor CSVTable(std::ofstream &&tmp, std::string const &sep)
+    and member void stream(std::ofstream &&tmp) to CSVTable.
 
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 24 Dec 2020 14:38:06 +0100
 
 bobcat (5.06.01)
 

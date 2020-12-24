@@ -1,9 +1,9 @@
 //#define XERR
 #include "csvtable.ih"
 
-CSVTable::CSVTable(string const &fname, string const &sep, ios::openmode mode)
+CSVTable::CSVTable(ofstream &&tmp, string const &sep)
 :
-    d_strPtr(new ofstream(Exception::factory<ofstream>(fname, mode))),
+    d_strPtr(new ofstream(move(tmp))),
     d_out(d_strPtr.get()),
     d_sep(sep),
 

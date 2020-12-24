@@ -26,8 +26,8 @@ class CSVTable
 {
     std::vector<FMT> d_format;          // column format specifications
 
-                                        // stream used by the 2nd constructor
-    std::unique_ptr<std::ofstream> d_strPtr;
+                                                // stream used by the 2nd/3rd 
+    std::unique_ptr<std::ofstream> d_strPtr;    // constructors
 
     std::ostream *d_out;                // stream to write to
     std::string d_sep;                  // separator between columns
@@ -41,12 +41,14 @@ class CSVTable
     public:
         CSVTable(std::ostream &out = std::cout,     //                  1.cc
                  std::string const &sep = ", ");
-        CSVTable(std::string const &fname,          //                  2.cc
+        CSVTable(std::ofstream &&tmp,               //                  2.cc
+                 std::string const &sep = ", ");
+        CSVTable(std::string const &fname,          //                  3.cc
                  std::string const &sep = ", ",
                  std::ios::openmode mode = std::ios::out);
 
         CSVTable(CSVTable const &other) = delete;
-        CSVTable(CSVTable &&tmp);                   //                  3.cc
+        CSVTable(CSVTable &&tmp);                   //                  4.cc
 
         CSVTable &operator=(CSVTable &&tmp) = default;
 
@@ -96,8 +98,10 @@ class CSVTable
 
         void stream(std::ostream &out);             // switch stream      1.cc
 
+        void stream(std::ofstream &&tmp);           // switch stream      2.cc
+
         void stream(std::string const &fname,       // switch stream by name
-                    std::ios::openmode mode = std::ios::out);              
+                    std::ios::openmode mode = std::ios::out);       //    3.cc
 
         unsigned size() const;                      // #table columns       .f
         FMT const &operator[](unsigned idx) const;              //   opindex.f
@@ -125,6 +129,9 @@ class CSVTable
 
                                                     // check/update column idx
         unsigned checkInsertIdx(unsigned idx);      // (calls rowStreamReset)
+
+        int preStreamSwitch();                      // called by stream(...)
+        void postStreamSwitch(int fillChar);
 };
 
 #include "columns.f"
@@ -133,7 +140,7 @@ class CSVTable
 #include "opindex.f"
 #include "opfun.f"
 #include "size.f"
-#include "stream3.f"
+#include "stream4.f"
 
 #include "sep1.f"
 #include "sep2.f"

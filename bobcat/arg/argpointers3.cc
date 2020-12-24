@@ -8,7 +8,3 @@ char const **Arg__::argPointers() const
     return d_argPointer;
 }
 
-char const **Arg::argPointers() const
-{
-    return d_ptr->argPointers();
-}
