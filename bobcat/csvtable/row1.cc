@@ -3,7 +3,6 @@
 
 CSVTabIns CSVTable::row(unsigned idx)
 {
-    idx = checkInsertIdx(idx);
-
-    return CSVTabIns{ &d_idx, *d_out, d_format, idx, d_sep, false};
+    return CSVTabIns{ &d_idx, *d_out, d_format, checkInsertIdx(idx), 
+                      d_sep, false};
 }
