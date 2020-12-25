@@ -2,7 +2,7 @@ includefile(include/header)
 
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::LinearMap)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+manpage(FBB::LinearMap)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
                     (Linear-search based mapping container)
 
 manpagename(FBB::LinearMap)(A mapping container using linear searching)

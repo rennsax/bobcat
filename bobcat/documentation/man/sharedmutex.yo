@@ -1,7 +1,7 @@
 includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::SharedMutex)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+manpage(FBB::SharedMutex)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
                     (Shared Memory Mutex)
 
 manpagename(FBB::SharedMutex)(Mutex for shared memory)

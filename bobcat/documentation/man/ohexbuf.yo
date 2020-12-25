@@ -2,7 +2,7 @@ includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
 manpage(FBB::OHexBuf)(3bobcat)(_CurYrs_)
-    (libbobcat-dev__CurVers_-x.tar.gz)(Write hex values)
+    (libbobcat-dev__CurVers_)(Write hex values)
 
 manpagename(FBB::OHexBuf)(Writes characters written to an ostream as hex
 values)

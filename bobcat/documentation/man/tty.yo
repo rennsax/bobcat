@@ -1,7 +1,7 @@
 includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::Tty)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+manpage(FBB::Tty)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
                     (Controls echoing of characters)
 
 manpagename(FBB::Tty)(Controls echoing of characters entered at the terminal)

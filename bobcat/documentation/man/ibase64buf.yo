@@ -2,7 +2,7 @@ includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
 manpage(FBB::IBase64Buf)(3bobcat)(_CurYrs_)
-        (libbobcat-dev__CurVers_-x.tar.gz)
+        (libbobcat-dev__CurVers_)
         (Base64 converting Stream Buffer)
 
 manpagename(FBB::IBase64Buf)

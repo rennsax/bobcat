@@ -2,7 +2,7 @@ includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
 manpage(FBB::ISymCryptStreambuf)(3bobcat)(_CurYrs_)
-        (libbobcat-dev__CurVers_-x.tar.gz)
+        (libbobcat-dev__CurVers_)
         (Symmetric Encryption Stream Buffer)
 
 manpagename(FBB::ISymCryptStreambuf)

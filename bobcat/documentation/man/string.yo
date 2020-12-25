@@ -1,7 +1,7 @@
 includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::String)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+manpage(FBB::String)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
                     (Operations on std::string objects)
 
 manpagename(FBB::String)(Several operations on bf(std::string) objects)

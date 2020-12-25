@@ -3,7 +3,7 @@ includefile(include/header)
 COMMENT(replace 'classname' by the name of the new class)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::OMutexStream)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+manpage(FBB::OMutexStream)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
                     (Mutex protected std::ostream)
 
 manpagename(FBB::OMutexStream)(Offers mutex protected std::ostream facilities)

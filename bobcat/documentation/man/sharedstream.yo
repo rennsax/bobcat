@@ -1,7 +1,7 @@
 includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::SharedStream)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+manpage(FBB::SharedStream)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
                     (I/O on shared memory)
 
 manpagename(FBB::SharedStream)(I/O operations on shared memory)

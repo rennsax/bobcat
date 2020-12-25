@@ -3,7 +3,7 @@ includefile(include/header)
 COMMENT(replace 'classname' by the name of the new class)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::CryptBuf)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+manpage(FBB::CryptBuf)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
                     (Base class for DecryptBuf and EncryptBuf)
 
 manpagename(FBB::CryptBuf)(std::streambuf derived base class for DecryptBuf

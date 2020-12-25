@@ -2,7 +2,7 @@ includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
 manpage(FBB::SharedCondition)(3bobcat)(_CurYrs_)
-        (libbobcat-dev__CurVers_-x.tar.gz)(Shared Memory Cond. Var.)
+        (libbobcat-dev__CurVers_)(Shared Memory Cond. Var.)
 
 manpagename(FBB::SharedCondition)(Shared Memory Condition Variable)
 

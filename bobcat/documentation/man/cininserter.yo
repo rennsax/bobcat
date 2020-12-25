@@ -1,7 +1,7 @@
 includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::CinInserter)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+manpage(FBB::CinInserter)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
                     (Executing Child Processes)
 
 manpagename(FBB::CinInserter)(Runs external programs reading standard input)

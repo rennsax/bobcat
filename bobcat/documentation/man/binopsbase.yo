@@ -1,7 +1,7 @@
 includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(binopsbase)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+manpage(binopsbase)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
                     (Binary Operators)
 
 manpagename(BinopsBase)(Class template offering class-type binary operators)

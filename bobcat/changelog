@@ -15,6 +15,8 @@ bobcat (5.07.00)
   * Added  constructor CSVTable(std::ofstream &&tmp, std::string const &sep)
     and member void stream(std::ofstream &&tmp) to CSVTable.
 
+  * Removed -x.tar.gz from the last lines of the man-pages
+
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 24 Dec 2020 14:38:06 +0100
 
 bobcat (5.06.01)

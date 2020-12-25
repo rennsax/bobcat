@@ -3,7 +3,7 @@ includefile(include/header)
 COMMENT(replace 'classname' by the name of the new class)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::CSVTable)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+manpage(FBB::CSVTable)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
                     (Table Construction)
 
 manpagename(FBB::CSVTable)(sequentially fills tables row-wise)

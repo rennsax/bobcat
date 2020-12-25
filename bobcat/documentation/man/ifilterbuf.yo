@@ -2,7 +2,7 @@ includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
 manpage(FBB::IFilterBuf)(3bobcat)(_CurYrs_)
-        (libbobcat-dev__CurVers_-x.tar.gz)(Filtering Input Stream Buffer)
+        (libbobcat-dev__CurVers_)(Filtering Input Stream Buffer)
 
 manpagename(FBB::IFilterBuf)
             (Filtering stream buffer initialized by a std::istream object)

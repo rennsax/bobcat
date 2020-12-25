@@ -2,7 +2,7 @@ includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
 manpage(FBB::SharedBuf)(3bobcat)(_CurYrs_)
-        (libbobcat-dev__CurVers_-x.tar.gz)
+        (libbobcat-dev__CurVers_)
         (Error handler)
 
 manpagename(FBB::SharedBuf)(streambuf interfacing to shared memory)

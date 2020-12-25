@@ -4,7 +4,7 @@ includefile(include/header)
 COMMENT(replace 'classname' by the name of the new class)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::CSV4180)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+manpage(FBB::CSV4180)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
                     (CSV4180 convertor)
 
 manpagename(FBB::CSV4180)(Converter for comma separated values)

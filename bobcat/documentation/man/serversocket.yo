@@ -2,7 +2,7 @@ includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
 manpage(FBB::ServerSocket)(3bobcat)
-    (_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+    (_CurYrs_)(libbobcat-dev__CurVers_)
                     (Server Socket)
 
 manpagename(FBB::ServerSocket)

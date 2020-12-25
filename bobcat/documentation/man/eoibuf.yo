@@ -3,7 +3,7 @@ includefile(include/header)
 COMMENT(replace 'classname' by the name of the new class)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::EoiBuf)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+manpage(FBB::EoiBuf)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
                     (End-Of-Information Base class)
 
 manpagename(FBB::EoiBuf)(std::streambuf class offering an eoi manipulator)

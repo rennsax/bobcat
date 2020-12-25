@@ -3,7 +3,7 @@ includefile(include/header)
 COMMENT(replace 'classname' by the name of the new class)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::DiffieHellman)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+manpage(FBB::DiffieHellman)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
                     (Diffie Hellman key computations)
 
 manpagename(FBB::DiffieHellman)(Diffie-Hellman PKI, computing shared keys)

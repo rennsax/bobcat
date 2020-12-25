@@ -2,7 +2,7 @@ NOUSERMACRO(Iterator ReverseIterator last max min)
 includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::Iterator)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+manpage(FBB::Iterator)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
                     (Iterator returning plain values)
 
 manpagename(FBB::Iterator)(Iterator returning plain values when dereferenced)
