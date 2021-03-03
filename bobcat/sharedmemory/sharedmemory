@@ -27,7 +27,7 @@ class SharedMemory: public virtual SharedEnum__
     friend std::ostream &operator<<(std::ostream &out, 
                                     SharedMemory const &mem);
 
-    enum { PAGESIZE = 1 << 12 };
+    static size_t const s_pageSize = 1 << 12;
 
         // updated by the non-default constructors.
     int d_id = -1;                      // id of SharedSegment

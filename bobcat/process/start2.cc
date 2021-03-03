@@ -23,7 +23,9 @@ void Process::start(IOMode mode, ProcessType type, size_t timeLimit,
     forking();                          // execute the requested command
 
     setBufSize(savedBufSize);
-    d_mode = d_setMode;                     // revert to the default process
+    d_mode = static_cast<IOMode>(d_setMode);    // revert to the default
+                                                // process 
+
     d_processType = d_setProcessType;       // parameters for a next run
     d_timeLimit = d_setTimeLimit;
 }

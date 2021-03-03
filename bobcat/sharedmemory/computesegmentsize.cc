@@ -28,10 +28,11 @@ size_t SharedMemory::computeSegmentSize(
 
     maxMemory <<= sizeUnit;
 
-    double a = static_cast<double>(PAGESIZE) * PAGESIZE / sizeof(Entry);
+    double a = static_cast<double>(s_pageSize) * 
+                    s_pageSize / sizeof(Entry);
     
     double b = -static_cast<double>(sizeof(SharedSegment) - sizeof(Entry)) 
-                * PAGESIZE / sizeof(Entry);
+                * s_pageSize / sizeof(Entry);
 
     double c = -maxMemory;
     
@@ -39,7 +40,7 @@ size_t SharedMemory::computeSegmentSize(
                         ceil((-b + sqrt(b * b - 4 * a * c)) / (2 * a))
                     );
 
-    size_t segmentSize = factor * PAGESIZE;
+    size_t segmentSize = factor * s_pageSize;
 
     *nBlocks = (segmentSize - (sizeof(SharedSegment) - sizeof(Entry))) 
                     / sizeof(Entry);

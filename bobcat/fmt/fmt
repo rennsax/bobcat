@@ -1,6 +1,7 @@
 #ifndef INCLUDED_BOBCAT_FMT_
 #define INCLUDED_BOBCAT_FMT_
 
+
 #include <ostream>
 #include <string>
 
@@ -11,7 +12,7 @@ template <typename Type>
 concept Insertable = 
     requires(std::ostream out, Type value)
     {
-        out << value;
+        std::operator<<(out, value);
     };
 
 struct FMT

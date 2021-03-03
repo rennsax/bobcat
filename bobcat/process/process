@@ -46,7 +46,7 @@ struct Process: private Fork, private SignalHandler,
         size_t          d_timeLimit;      // seconds allowed to child-process
         ProcessType     d_processType;
 
-        IOMode          d_setMode;          // these values are set by the 
+        size_t          d_setMode;          // these values are set by the 
         size_t          d_setTimeLimit;   // set members and used as 
         ProcessType     d_setProcessType;   // defaults unless overridden by
                                             // actual values
