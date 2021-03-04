@@ -16,7 +16,8 @@ class CSVTabDef
 {
     friend class CSVTable;
 
-    template <Insertable Type>
+    // template <Insertable Type>
+    template <typename Type>
     friend CSVTabDef &operator<<(CSVTabDef &tab, Type const &value);    // 1.f
 
     friend CSVTabDef &operator<<(CSVTabDef &tab, FMT const &fmt);       // 2.f
@@ -29,7 +30,7 @@ class CSVTabDef
         ~CSVTabDef();
 
     private:
-CSVTabDef(std::vector<FMT> &format, unsigned idx);
+        CSVTabDef(std::vector<FMT> &format, unsigned idx);
 
                                                     // split the string into
                                                     // words, add their  
@@ -41,7 +42,8 @@ CSVTabDef(std::vector<FMT> &format, unsigned idx);
                                                     // add R-aligned col,
         void add(unsigned width);                   // width characters  2.cc
 
-        template <Insertable Type>
+        //template <Insertable Type>
+        template <typename Type>
         CSVTabDef &insert(Type const &value);       //                    1.f
 
         CSVTabDef &insert(FMT const &fmt);          //                    2.cc

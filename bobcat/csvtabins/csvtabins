@@ -24,7 +24,8 @@ class CSVTabIns
     friend class CSVTable;
 
             // insert values of insertable types
-    template <Insertable Type>
+    //template <Insertable Type>
+    template <typename Type>
     friend CSVTabIns &operator<<(CSVTabIns &tab, Type const &value);    // 1.f
 
             // insert FMTs specifying LEFT, RIGHT, or CENTER

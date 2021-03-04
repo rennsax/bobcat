@@ -1,3 +1,12 @@
+bobcat (5.07.02)
+
+  * The concept Insertable, defined in fmt/fmt, is temporarily not used:
+    g++-11's version 11.0.0 doesn't handle it correctly, but the next release
+    (g++ 11.0.1, cf. https://godbolt.org/z/P6hxcv) does (Thanks, Wiebe-Marten
+    Wijnja, you saved my day ;-)
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 04 Mar 2021 13:42:38 +0100
+
 bobcat (5.07.01)
 
   * Cosmetic changes required by g++-11, among which a redefinition of

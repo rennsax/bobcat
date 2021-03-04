@@ -8,12 +8,12 @@
 namespace FBB
 {
 
-template <typename Type>
-concept Insertable = 
-    requires(std::ostream out, Type value)
-    {
-        std::operator<<(out, value);
-    };
+// template <typename Type>
+// concept Insertable = 
+//     requires(std::ostream out, Type value)
+//     {
+//         std::operator<<(out, value);
+//     };
 
 struct FMT
 {

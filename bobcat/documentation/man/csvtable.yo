@@ -172,9 +172,22 @@ characteristics of the table's columns.
     tab.fmr() << FBB::right(4); 
     )
 
+COMMENT(
     itb(CSVTabDef &operator<<(CSVTabDef &tab, Insertable const &value))
        This operator is defined for the template type tt(Insertable) parameter
         tt(value), where tt(value's) type must be insertable in
+        tt(std::ostreams). The (trimmed) width of tt(value) when inserted into
+        an tt(ostream) defines the width of the next column, which is
+        right-aligned. As width the previous insertion operator: if a previous
+        definition specified a larger width, then that width is kept. Example:
+       verb(
+                // 2 columns, having widths 2 and 5:
+    tab.fmt() << 12 << "hello"; 
+       )
+END)
+    itb(CSVTabDef &operator<<(CSVTabDef &tab, Type const &value))
+       This operator is defined for the template type tt(Type) parameter
+        tt(value), where tt(Type) values must be insertable in
         tt(std::ostreams). The (trimmed) width of tt(value) when inserted into
         an tt(ostream) defines the width of the next column, which is
         right-aligned. As width the previous insertion operator: if a previous
@@ -216,9 +229,19 @@ is used by the following insertion operators to insert values into the table.
         line is used instead. The horizontal line is never written beyond the
         table's last column.
 
+COMMENT(
     itb(CSVTabIns &operator<<(CSVTabIns &tab, Insertable const &value))
        This operator is defined for the template type tt(Insertable) parameter
         tt(value), where tt(value's) type must be insertable in
+        tt(std::ostreams). The value is inserted into the next table column,
+        using the format specification that's active for that column. However,
+        the specifications may be altered just before inserting the
+        value. Values inserted beyond the table's last column are inserted
+        as-is (although standard tt(I/O) manipulators can still be used);
+END)
+    itb(CSVTabIns &operator<<(CSVTabIns &tab, Type const &value))
+       This operator is defined for the template type tt(Type) parameter
+        tt(value), where tt(Type) values must be insertable in
         tt(std::ostreams). The value is inserted into the next table column,
         using the format specification that's active for that column. However,
         the specifications may be altered just before inserting the
