@@ -1,19 +1,11 @@
 #ifndef INCLUDED_BOBCAT_FMT_
 #define INCLUDED_BOBCAT_FMT_
 
-
 #include <ostream>
 #include <string>
 
 namespace FBB
 {
-
-// template <typename Type>
-// concept Insertable = 
-//     requires(std::ostream out, Type value)
-//     {
-//         std::operator<<(out, value);
-//     };
 
 struct FMT
 {

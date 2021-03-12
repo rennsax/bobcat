@@ -130,7 +130,7 @@ void _shared_library(string libso, string libsoshared,
 
         run(gxx +  
                     " " + setOpt(LDFLAGS, "LDFLAGS") +
-                    " -shared -Wl,--as-needed,"
+                    " -pthread -shared -Wl,--as-needed,"
                     "-z,defs,-soname," + 
                     libsomajor +
                     " -o " + g_tmplibso + "/" + libsoshared +

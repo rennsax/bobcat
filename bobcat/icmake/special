@@ -37,7 +37,7 @@ void checkSSL()
         elem = strtok(class[0], " \t\n")[0];
         if (elem != "#" && listfind(g_classes, elem) != -1)
         {
-            g_sharedLibReq += " -lssl -lcrypto -lpthread";
+            g_sharedLibReq += " -lssl -lcrypto";
             return;
         }
     }
@@ -124,7 +124,7 @@ void askOpenSSL(int all)
 
     if (all || gets() == "y")
     {
-        g_sharedLibReq += " -lssl -lcrypto -lpthread";
+        g_sharedLibReq += " -lssl -lcrypto";
         addClasses("SSLCLASSES");
     }    
 }

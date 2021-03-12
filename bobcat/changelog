@@ -1,3 +1,13 @@
+bobcat (5.07.03)
+
+  * The 'build light' command failed to complete because of a missing 
+    -pthread compiler flag: fixed in this release.
+
+  * The concept Insertable in fmt/fmt still causes issues, and is for the time
+    being no longer used.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 12 Mar 2021 10:48:16 +0100
+
 bobcat (5.07.02)
 
   * The concept Insertable, defined in fmt/fmt, is temporarily not used:

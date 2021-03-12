@@ -1,4 +1,3 @@
-//template <Insertable Type>
 template <typename Type>
 CSVTabDef &CSVTabDef::insert(Type const &value)
 {

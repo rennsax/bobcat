@@ -16,7 +16,6 @@ class CSVTabDef
 {
     friend class CSVTable;
 
-    // template <Insertable Type>
     template <typename Type>
     friend CSVTabDef &operator<<(CSVTabDef &tab, Type const &value);    // 1.f
 
@@ -42,7 +41,6 @@ class CSVTabDef
                                                     // add R-aligned col,
         void add(unsigned width);                   // width characters  2.cc
 
-        //template <Insertable Type>
         template <typename Type>
         CSVTabDef &insert(Type const &value);       //                    1.f
 

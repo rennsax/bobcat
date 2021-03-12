@@ -24,7 +24,6 @@ class CSVTabIns
     friend class CSVTable;
 
             // insert values of insertable types
-    //template <Insertable Type>
     template <typename Type>
     friend CSVTabIns &operator<<(CSVTabIns &tab, Type const &value);    // 1.f
 
@@ -75,7 +74,7 @@ class CSVTabIns
         unsigned width(unsigned begin, unsigned end) const;     //      1.cc
         unsigned width(FMT const &fmt) const;       // see README       2.cc
         
-        template <typename Type>                    // also updates d_idx
+        template <typename Type>                  // also updates d_idx
         void insertFormatted(FMT const &fmt,        //                     .f
                              Type const &value);    
         
