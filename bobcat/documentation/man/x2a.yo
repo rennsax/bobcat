@@ -14,6 +14,11 @@ manpagedescription()
     bf(FBB:X2a) objects convert values of any (insertable) type to text. The
 returned text is automatically made available as a standard bf(C++) string.
 
+tt(X2a) was developed well before the tt(std::to_string) function became
+available. In many cases that latter function can often be used instead of
+using tt(X2a): it is available for standard types. However, if another type
+must be used then tt(X2a) may still come in handy.
+
 includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
@@ -93,7 +98,6 @@ manpageseealso()
     bf(bobcat)(7), bf(a2x)(3bobcat)
 
 manpagebugs()
-    The functionality of this class is to a large extent also offered by the
-    bf(C++) function tt(std::to_string).
+    none reported
 
 includefile(include/trailer)

@@ -5,9 +5,9 @@
 #include <unistd.h>
 
 #include <iostream>
+#include <string>
 #include <exception>
 
-#include <bobcat/a2x>
 #include <bobcat/serversocket>
 #include <bobcat/ifdstream>
 
@@ -24,7 +24,7 @@ try
         return 1;
     }        
 
-    size_t portnr = A2x(argv[1]);
+    size_t portnr = stoul(argv[1]);
     ServerSocket server(portnr);
 
     server.listen();                        // plain blocking listen-mode

@@ -1,6 +1,18 @@
+bobcat (5.07.04)    ISN
+
+  * The member DateTime::Zone::thisZoneShift was not implemented: added to
+    this release.
+
+  * Minor changes to the DateTime man-page.
+
+  * Changed A2x calls to corresponding std::string calls, updated man-pages
+    accordingly.
+
+
+
 bobcat (5.07.03)
 
-  * The 'build light' command failed to complete because of a missing 
+  * The 'build light' command failed to complete because of a missing
     -pthread compiler flag: fixed in this release.
 
   * The concept Insertable in fmt/fmt still causes issues, and is for the time
@@ -27,7 +39,7 @@ bobcat (5.07.01)
 bobcat (5.07.00)
 
   * Arg::argPointers() can also be used with Arg const & reference variables.
-  
+
   * Updated the Arg man-page's description of Arg::argPointers() and
     Arg::versionHelp() (thows 0 when the help or version flags are specified,
     and throws 1 if fewer than the required number of arguments are
@@ -70,9 +82,9 @@ bobcat (5.05.00)
 
   * Added descriptions of the members Arg::LongOption::longName and
     Arg::LongOption::optionChar to the FBB::Arg man-page
-    
+
   * Fixed a bug in DateTime that broke rfc2822() and rfc3329() when DST was
-    acitve. 
+    acitve.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 23 May 2020 15:25:17 +0200
 

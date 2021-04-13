@@ -1,11 +1,10 @@
 #include <iostream>
+#include <string>
 
 #include <sys/types.h>
 #include <sys/wait.h>
 
 #include <bobcat/process>
-#include <bobcat/a2x>
-
 
 pid_t discontinue(pid_t procId);
 
@@ -39,7 +38,7 @@ int main(int argc, char **argv)
 //        cout << "Child 1 failed\n";
 //        return 1;
 
-        size_t sleepTime = A2x(argv[1]);
+        size_t sleepTime = stoul(argv[1]);
         cout << "Child 1 sleeps for " << sleepTime << "secs\n";
         sleep(sleepTime);
         cout << "Child 1 wakes up\n";
@@ -60,7 +59,7 @@ int main(int argc, char **argv)
 
     if (p2 == 0)        // child runs the process
     {
-        size_t sleepTime = A2x(argv[2]);
+        size_t sleepTime = stoul(argv[2]);
         cout << "Child 2 sleeps for " << sleepTime << "secs\n";
         sleep(sleepTime);
         cout << "Child 2 wakes up\n";

@@ -1,9 +1,9 @@
 #include <iostream>
+#include <string>
 #include <exception>
 
 #include <bobcat/clientsocket>
 #include <bobcat/ofdstream>
-#include <bobcat/a2x>
 
 using namespace std;
 using namespace FBB;
@@ -17,7 +17,7 @@ try
         return 1;
     }
 
-    size_t     port = A2x(argv[2]);
+    size_t     port = stoul(argv[2]);
     ClientSocket client(argv[1], port);
     int fd = client.connect();
     string line;

@@ -45,7 +45,7 @@ try
     cgi << arg[1];
 
     if (arg.option(&line, 'm'))
-        cgi.setMaxUploadSize(A2x(line), *line.rbegin());
+        cgi.setMaxUploadSize(stoul(line), *line.rbegin());
 
     cout << "Max upload size (b): " << cgi.maxUploadSize() << '\n';
 

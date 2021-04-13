@@ -34,7 +34,7 @@ try
 
     signal(SIGCHLD, sigchld_handler);       // handle terminating children
 
-    size_t portnr = A2x(argv[1]);
+    size_t portnr = stoul(argv[1]);
     ServerSocket server(portnr);
 
     server.listen();                        // plain blocking listen-mode

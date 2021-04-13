@@ -15,7 +15,7 @@ Cidr::MaskPair Cidr::parse(string const &cidr)
     if (pos != string::npos)
     try
     {
-        ret.second = stoul(cidr.substr(pos + 1));   // A2x(...)
+        ret.second = stoul(cidr.substr(pos + 1));
         ret.first = ret.first >> (32 - ret.second) << (32 - ret.second);
     }
     catch (...)

@@ -581,7 +581,9 @@ at 1.
 
     itb(unsigned seconds() const)
        Returns the number of seconds represented by the current object's time
-        (0-59, but 60 and 61 may occur at leap seconds);
+        (0-59, but 60 and 61 may occur at leap seconds). Note that this member
+        does not return the current UTC time in seconds (since the epoch): if
+        that's required use the member tt(utcSeconds);
 
     itb(void setDay(int dayNr))
        Assigns tt(dayNr) to the day number of the object's current

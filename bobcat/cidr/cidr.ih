@@ -8,7 +8,6 @@
 #include "../stringline/stringline"
 #include "../pattern/pattern"
 #include "../fswap/fswap"
-// #include "../a2x/a2x"
 #include "../ranger/ranger"
 #include "../exception/exception"
 

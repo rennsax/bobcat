@@ -135,7 +135,8 @@ class DateTime
                 static void read(std::string const &fname); // read zone specs
                                                             // from file
 
-                static time_t thisZoneShift();              // this computer's
+                static time_t thisZoneShift();                          // .f
+                                                            // this computer's
                                                             // zone shift in 
                                                             // seconds
 
@@ -387,6 +388,7 @@ class DateTime
 #include "zonedstseconds.f"
 #include "zonedefaulttz.f"
 #include "zoneseconds.f"
+#include "thiszoneshift.f"
 
 }   // FBB
 

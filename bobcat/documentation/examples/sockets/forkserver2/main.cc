@@ -3,11 +3,11 @@
 */
 
 #include <iostream>
+#include <string>
 #include <signal.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 
-#include <bobcat/a2x>
 #include <bobcat/serversocket>
 #include <bobcat/exception>
 
@@ -50,7 +50,7 @@ try
 
     signal(SIGCHLD, sigchld_handler);       // handle terminating children
 
-    size_t portnr = A2x(argv[1]);
+    size_t portnr = stoul(argv[1]);
     ServerSocket server(portnr);
 
     server.listen();                        // plain blocking listen-mode
