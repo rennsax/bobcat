@@ -107,19 +107,19 @@ try
 
         arg.versionHelp(usage, "0.00", 1);
 
-//        for_each("abcdefg", "abcdefg" + 7, optcheck)
-//            ;
+        for_each("abcdefg", "abcdefg" + 7, optcheck)
+            ;
 
         for (size_t idx = 0; idx < arg.nArgs(); idx++)
             cout << "Argument " << idx << " = " << arg[idx] << '\n';
         cout << '\n';
 
-//        cout << "Long options:\n" << dec;
-//        longopt("optional");
-//        longopt("extra");
-//        longopt("file");
-//        longopt("add");
-//        longopt("none");
+        cout << "Long options:\n" << dec;
+        longopt("optional");
+        longopt("extra");
+        longopt("file");
+        longopt("add");
+        longopt("none");
     }
     catch (exception const &e)
     {
