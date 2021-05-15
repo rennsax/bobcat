@@ -90,32 +90,36 @@ try
     {
         {"optional", Arg::Optional},
         {"extra", Arg::Required},
+        {"none", Arg::None},
         {"file", 'f'},
         {"version", 'v'},
         {"add", 'a'}
     };
     try
     {    
-        Arg::initialize("abcd:e:f:hv", 
-                lo, lo + 5,
+        Arg::initialize('t', "+abcd:e:f:hvt", 
+                lo, lo + 6,
                 argc, argv);
 
         Arg &arg = Arg::instance();
 
+        cout << "dashed options start at index " << arg.beyondDashes() << endl;
+
         arg.versionHelp(usage, "0.00", 1);
 
-        for_each("abcdefg", "abcdefg" + 7, optcheck)
-            ;
+//        for_each("abcdefg", "abcdefg" + 7, optcheck)
+//            ;
 
         for (size_t idx = 0; idx < arg.nArgs(); idx++)
             cout << "Argument " << idx << " = " << arg[idx] << '\n';
         cout << '\n';
 
-        cout << "Long options:\n" << dec;
-        longopt("optional");
-        longopt("extra");
-        longopt("file");
-        longopt("add");
+//        cout << "Long options:\n" << dec;
+//        longopt("optional");
+//        longopt("extra");
+//        longopt("file");
+//        longopt("add");
+//        longopt("none");
     }
     catch (exception const &e)
     {
@@ -123,7 +127,6 @@ try
     }
 
 }
-
 catch (int x)
 {
     cout << "int exception caught, value = " << x << '\n';

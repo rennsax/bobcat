@@ -1,7 +1,7 @@
 #include "arg.ih"
 
-int Arg::beyondDashes() const
+size_t Arg::beyondDashes() const
 {
-    return d_ptr->beyondDashes();
+    return d_ptr->d_dashes;
 }
 

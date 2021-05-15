@@ -54,23 +54,44 @@ class Arg: public ArgTypes__
                                     // longOption()
 
     Arg__ *d_ptr;                   // pointer to the implementation
+
     static Arg *s_arg;              // points to Singleton Arg
+    static char const s_alreadyInitialized[];
 
     public:
-        typedef FBB::LongOption__ LongOption;
+        Arg(Arg const &other) = delete;
 
+        typedef FBB::LongOption__ LongOption;
+        typedef std::vector<std::pair<int, std::string>> OptVect;
+
+                                                                        // 1
         static Arg &initialize(char const *optstring, int argc, char **argv);
-        static Arg &initialize(char const *optstring,
-                                LongOption const * const begin,
-                                LongOption const * const end,
+
+        static Arg &initialize(int accept,                        // 2
+                               char const *optstring, int argc, char **argv);
+
+        static Arg &initialize(char const *optstring,                   // 3
+                                LongOption const *const begin,
+                                LongOption const *const end,
                                 int argc, char **argv);
+
+        static Arg &initialize(int accept, char const *optstring, // 4
+                                LongOption const *const begin,
+                                LongOption const *const end,
+                                int argc, char **argv);
+
         static Arg &instance();        
 
-        int beyondDashes() const;
-
+        std::string const &argv0() const;
         std::string const &basename() const;
         void help() const;
+
         size_t nArgs() const;
+        size_t beyondDashes() const;
+
+        std::vector<std::string> const &args() const;
+        std::vector<std::string>::const_iterator begin() const;
+        std::vector<std::string>::const_iterator end() const;
 
             // total number of specified short (and combined long) options
         size_t nOptions() const;
@@ -101,15 +122,9 @@ class Arg: public ArgTypes__
         char const **argPointers();                             // 1.cc
         char const **argPointers() const;                       // 2.cc
 
-    private:
-        Arg(Arg const &other) = delete;
-        Arg &operator=(Arg const &other) = delete;
-
-        Arg(char const *optstring, int argc, char **argv);      // 1
-
-        Arg(char const *optstring,                              // 2
-            LongOption const * const begin,
-            LongOption const * const end,
+    protected:
+        Arg(int accept, char const *optstring,            // 1
+            LongOption const *const begin, LongOption const *const end,
             int argc, char **argv);
 };
 

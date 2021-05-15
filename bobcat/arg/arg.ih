@@ -26,7 +26,9 @@ class Arg__: public ArgTypes__
                                                     StringStringVectorMap;
     typedef StringStringVectorMap::const_iterator   SSVMapIterator;
 
+    std::string                     d_argv0;
     std::string                     d_base;
+
     mutable char const              **d_argPointer;
     
     std::vector<std::string>        d_argv;     // remaining arguments
@@ -47,7 +49,8 @@ class Arg__: public ArgTypes__
 
     char const          *d_msg;                 // info about erroneous opt.
     int                  d_getOpt;              // value returned by getopt()
-    int                  d_beyondDashes;        // idx of 1st arg beyond --
+    int                  d_dashes;              // idx of the -- or
+                                                // d_argv.size() 
 
     mutable void (*d_usage)(std::string const &) = 0;
 
@@ -55,6 +58,10 @@ class Arg__: public ArgTypes__
     static char           s_optChar[];          // used by the constructors
         
     public:
+        std::vector<std::string> const &argv() const;   // remaining arguments
+                                                        // after removing the 
+                                                        // options
+
         int beyondDashes() const;               // .i
         std::string const &basename() const;    // .i
         void help() const;
@@ -93,10 +100,8 @@ class Arg__: public ArgTypes__
 
         friend class ArgConfig;     // accesses the constructors and
                                     // longOption()
-                                                            // 1
-        Arg__(char const *optstring, int argc, char **argv);
 
-        Arg__(char const *optstring,                          // 2
+        Arg__(int accept, char const *optstring,                  // 2
             LongOption const * const begin,
             LongOption const * const end,
             int argc, char **argv);
@@ -112,7 +117,7 @@ class Arg__: public ArgTypes__
         size_t firstNonEmpty(size_t *idx, std::string *value, 
                         StringVector const &sv) const;
 
-        void setBasename(std::string const &argv0);
+        void setBasename();
         void fillLongOptions(
                         OptStruct *optStructs,
                         std::string const &optString,
@@ -123,7 +128,7 @@ class Arg__: public ArgTypes__
                         LongOption const &longOption);
 };
 
-#include "beyonddashes.f"
+//#include "beyonddashes.f"
 #include "basename.f"
 #include "nargs.f"
 #include "nlongoptions.f"

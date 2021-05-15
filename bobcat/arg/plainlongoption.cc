@@ -2,7 +2,7 @@
 
 bool Arg__::plainLongOption(Arg__::LongOption const &longOption)
 {
-    addLongOption(longOption.d_name);
+    addLongOption(longOption.d_name);       // calls 1.cc
 
     if (!longOption.d_optionChar)           // it's a plain long option.
         return true;

@@ -1,4 +1,5 @@
-inline int Arg__::beyondDashes() const
-{
-    return d_beyondDashes;
-}
+//inline int Arg__::beyondDashes() const
+//{
+//    return d_beyondDashes;
+//}
+//

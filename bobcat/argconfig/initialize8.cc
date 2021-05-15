@@ -1,9 +1,9 @@
 #include "argconfig.ih"
 
-// no accept, long options, file, 
+// accept, long options, file, 
 // static 
 
-ArgConfig &ArgConfig::initialize(char const *optstring,
+ArgConfig &ArgConfig::initialize(int accept, char const *optstring,
             LongOption const *begin, LongOption const *const end,
             int argc, char **argv, 
             string const &fname,    
@@ -12,7 +12,7 @@ ArgConfig &ArgConfig::initialize(char const *optstring,
     if (s_argconfig)
         throw Exception{} << s_alreadyInitialized;
 
-    s_argconfig = new ArgConfig(0, optstring, 
+    s_argconfig = new ArgConfig(accept, optstring, 
                             begin, end,
                             argc, argv, 
                             fname,

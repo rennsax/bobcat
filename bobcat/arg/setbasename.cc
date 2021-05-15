@@ -1,8 +1,8 @@
 #include "arg.ih"
 
-void Arg__::setBasename(string const &argv0)
+void Arg__::setBasename()
 {
-    string::size_type idx = argv0.rfind(s_dirsep);
+    string::size_type idx = d_argv0.rfind(s_dirsep);
 
-    d_base = idx == string::npos ? argv0 : argv0.substr(idx + 1);
+    d_base = idx == string::npos ? d_argv0 : d_argv0.substr(idx + 1);
 }

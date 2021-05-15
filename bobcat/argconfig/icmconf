@@ -1,3 +1,4 @@
 #define LIBRARY             "argconfig"
+#define EXTRAFLAGS          "-I../tmp"
 
-#include "../icmconf"
+#include "../icmconf.lib"

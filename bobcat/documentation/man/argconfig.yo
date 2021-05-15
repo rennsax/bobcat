@@ -11,29 +11,28 @@ manpagesynopsis()
     Linking option: tt(-lbobcat) 
 
 manpagedescription()
-    Singleton class (see Gamma em(et al.), 1995) built around bf(getopt)(3)
-and bf(getopt_long)(3). The class handles short- and long command-line
-options as well as configuration files.
+    Singleton class (see Gamma em(et al.), 1995) built around
+bf(getopt_long())(3). The class handles short- and long command-line options,
+as well as configuration files.
 
-    In addition to the standard command-line options, configuration files
-containing long options as their keys, optionally followed by a colon are also
-recognized by the various tt(option) members. E.g., an option tt(--input
-filename) can be specified in the configuration file like 
-    verb(
-input: filename
-    )
+    In addition to the standard command-line options the various tt(option)
+members also recognize long options as keys, optionally followed by a colon
+and an option value are also recognized. E.g., an option tt(--input filename)
+can be specified in the configuration file like
+        verb(
+    input: filename
+        )
 or
-    verb(
-input filename
-    )
+        verb(
+    input filename
+        )
     Options without arguments should probably not use the colon, although it
 is accepted by tt(ConfigArg). E.g., for the option tt(--verbose) both forms 
-are OK:
+are accepted:
     verb(
 verbose
 verbose:
     )
-
 
 includefile(include/namespace)
 
@@ -41,58 +40,197 @@ manpagesection(INHERITS FROM)
     bf(FBB::Arg),nl()
     bf(FBB::ConfigFile)
 
+manpagesection(ENUMERATION)
+
+    The bf(FBB::ArgConfig::Type) enumeration is inherited from the
+bf(FBB::Arg) class. It is used to specify whether or not long options require
+arguments. It defines the following values: bf(None, Required, Optional).
+    itemization(
+    it() bf(None): the long option does not use an argument;
+    it() bf(Required): the long option requires an argument value;
+    it() bf(Optional): the long option may optionally be provided with  an
+        argument value; 
+    )
+
+These values are used when defining long options (like tt(--version)), which
+are defined as objects of the (nested inherited) class
+bf(FBB::Arg::LongOption) (in the context of tt(ArgConfig) this is identical to
+bf(FBB::ArgConfig::LongOption).
+
+manpagesection(THE NESTED INHERITED CLASS FBB::Arg::LongOption)
+   Long options are defined using objects of the nested class
+    bf(FBB::Arg::LongOption). This class provides the following constructors:
+   itemization(
+    itb(FBB::Arg::LongOption(char const *name, FBB::Arg::Type type =
+        FBB::Arg::None)) 
+       This constructor is used to define a long option for which no
+        corresponding short option is defined. The parameter tt(name) is the
+        name of the long option (without specifying the -- characters which
+        are only required when specifying a long option when calling a
+        program).
+
+    itb(FBB::Arg::LongOption(char const *name, int optionChar))
+       This constructor is used to define a long option for which a
+        corresponding short option is defined. The parameter tt(name) is the
+        name of the long option (without specifying the -- characters which
+        are only required when specifying a long option when calling a
+        program).
+    )
+
+    To define long options use the following procedure:
+    itemization(
+    it() First, construct an array 
+        verb(
+    FBB::Arg::LongOption longOptions[] = { c1, c2, ..., cn };
+        )
+    Where tt(c1, c2, ..., cn) are tt(n) constructor invocations of 
+        bf(FBB::Arg::LongOption()) constructors
+
+    it() Next, pass tt(longOptions, LongOptions + n) as arguments to an
+        tt(Arg::initialize) member that supports long options.
+    )
+
+    Objects of the class tt(LongOptions) are normally used internally by the
+tt(ArgConfig) object, but they can also be used outside of the tt(ArgConfig)
+object. For that situation the following members are available:
+    itemization(
+    itb(std::string const &longName() const)
+       returns the tt(LongOption's) long option name;
+    itb(int optionChar() const)
+       returns the tt(LongOption's) option character (or one of the
+        tt(Arg::Type) enumeration values if there is no option character
+        associated with the tt(LongOption)).
+    )
+
 manpagesection(CONSTRUCTORS)
     Since the class is a em(Singleton), no public constructors are
 available. Instead, static members are offered to initialize and access the
-single bf(ArgConfig) object. See below.
+single bf(ArgConfig) object.
 
 manpagesection(STATIC MEMBERS)
+
+    All tt(initialize) members initialize the bf(FBB::ArgConfig) singleton,
+and can only be called once. An exception is thrown when called multiple
+times. All tt(initialize) members return a reference to the initialized
+tt(ArgConfig) singleton object.
+
+    All tt(initialize) members define the parameters tt(argc) and tt(argv)
+which are interpreted as tt(main's) tt(argc) and tt(argv) parameters.  When an
+tt(argv) element points to two consecutive dashes (tt(--)) then that element
+is ignored, and all of tt(argv's) subsequent elements are considered arguments
+instead of options.
+
     itemization(
-    itb(FBB::ArgConfig &initialize(char const *optstring, 
-        int argc, char **argv, [std::string const &fname,]
-            Comment cType = KeepComment, 
-            SearchCasing sType = SearchCaseSensitive,
-            Indices iType = IgnoreIndices))
-        Initializes the bf(FBB::ArgConfig) singleton. Must be called only
-once.  Throws an bf(FBB::Exception) exception if called repeatedly or if called
-with tt(argv) not containing a defined option (which is shown by the
-bf(FBB::Exception)'s tt(what) member). The tt(fname) argument is optional. If
-provided, a configuration file by the specified name is opened (and must
-exist); if omitted the tt(ArgConfig) is created without using a configuration
-file. In the latter case a configuration file may be specified later using the
-tt(open) member inherited from tt(ConfigFile). The final three parameters are
-tt(ConfigFile) parameters, receiving the shown default values. This
-constructor returns a reference to the singleton object, allowing code
-initializing bf(ArgConfig) to use the initialized object immediately.
+    itb(FBB::ArgConfig &ArgConfig::initialize(char const *optstring, int argc,
+        char **argv, [std::string const &fname,] Comment cType = KeepComment,
+        SearchCasing sType = SearchCaseSensitive, Indices iType =
+        IgnoreIndices))
+       The parameter tt(optstring) is a null-terminated byte string (NTBS)
+        optionally starting with a + character, but otherwise containing
+        option characters. One or two colons may be postfixed to option
+        characters:
+       quote(
+       itemization(
+        it() a single colon (:) indicates that the option requires an
+            option value.
+        it() a double colon (::) indicates that the option has an optional
+            argument. With short options the option value is considered absent
+            unless it is attached to the short option (e.g.,
+            tt(-tvalue)). Long options optionally accepting arguments should
+            always immediately be followed by an assignment character (=),
+            immediately followed by the option's value (which must start with
+            a non-blank character). E.g., tt(--value=) indicates an absent
+            option value, tt(--value=text) indicates the option's value equals
+            tt(text).  If an option value itself contains blanks, it must be
+            surrounded by single or double quotes (e.g., tt(-t'this value'),
+            or tt(--text='this value')). The surrounding quotes are not part
+            of the option's value.
+        ))
 
-    itb(FBB::ArgConfig &initialize(char const *optstring,
-                                LongOption const * const begin,
-                                LongOption const * const end,
-                                int argc, char **argv,    
-             [std::string const &fname,]
-            Comment cType = KeepComment, 
-            SearchCasing sType = SearchCaseSensitive,
-            Indices iType = IgnoreIndices))
-       Initializes the bf(FBB::ArgConfig) singleton. Accepts two iterators of
-        an array of bf(Arg::LongOption) objects, holding long-options. Must be
-        called only once. Throws an bf(FBB::Exception) exception if called
-        repeatedly or if called with tt(argv) not containing a defined option
-        (which is shown by the bf(FBB::Exception)'s tt(what) member).  Refer to
-        bf(arg)(3bobcat) for the description of bf(Arg::LongOption).  The
-        constructor's final six parameters are identical to the previous
-        constructor's final six arguments. This constructor returns a
-        reference to the singleton object, allowing code initializing
-        bf(ArgConfig) to use the initialized object immediately.
+        When tt(optstring's) first character is + then all non-specified
+        options are considered arguments, appearing in the final arguments
+        list at their current argument positions. E.g., when tt(optstring)
+        is tt(+ab) and no long options are defined, then calling 
+    verb(
+    prog -a -z -b -yvalue --long arg1 arg2
+    ) 
+       results in the member tt(argv) returning a vector containing the
+        elements tt(-z, -yvalue, --long, arg1,) and tt(arg2). If
+        tt(optstring's) first character isn't + and an undefined option is
+        encountered then an exception is thrown.
 
-       The argument
-        tt(optstring) should consist of letters, possibly postfixed by:
-        itemization(
-        it() a colon (tt(:)), indicating that the option has a required
-            argument;
-        it() a double colon (tt(::)), indicating that the option itself 
-            has an optional argument (in that case, the option's value 
-            will be empty, unless specified).
-        )
+       The tt(fname) argument is optional. If provided, a configuration file
+        by the specified name is opened (and must exist); if omitted the
+        tt(ArgConfig) is created without using a configuration file. In the
+        latter case a configuration file may be specified later using the
+        tt(open) member inherited from tt(ConfigFile). 
+
+       The final three parameters are tt(ConfigFile) parameters, receiving the
+        shown default values. This constructor returns a reference to the
+        singleton object, allowing code initializing bf(ArgConfig) to use the
+        initialized object immediately.
+
+    itb(FBB::ArgConfig &ArgConfig::initialize(int accept. char const
+        *optstring, int argc, char **argv, [std::string const &fname,] Comment
+        cType = KeepComment, SearchCasing sType = SearchCaseSensitive, Indices
+        iType = IgnoreIndices))
+       Acts like the previous member, but in addition defines the
+        parameter tt(accept) specifying an option character from where all
+        subsequent arguments and options are considered arguments. To ignore
+        tt(accept) the value 0 (not the character '0') can be specified or an
+        tt(initialize) members can be used that does not define an
+        tt(accept) parameter.
+
+        When arguments contain both an tt(accept) option and two consecutive
+        dashes then the first one is interpreted, resulting in all remaining
+        tt(argv) elements being interpreted as mere arguments. For example,
+        when specifying tt(initialize('t', ...)) and calling
+    verb(
+    prog one -ttwo -c -- three
+    )
+       then the member tt(argv) returns a vector containing the elements
+        tt(one, -tttwo, -c, --), and tt(three) (see also the member
+        tt(beyondDashes) below).
+
+    itb(FBB::ArgConfig &ArgConfig::initialize(char const *optstring,
+        ArgConfig::LongOption const *const begin, ArgConfig::LongOption const
+        *const end, int argc, char **argv, [std::string const &fname,] Comment
+        cType = KeepComment, SearchCasing sType = SearchCaseSensitive, Indices
+        iType = IgnoreIndices))
+      Acts like the first tt(ArgConfig::initialize) member, but in addition
+        defines two parameters specifying the range of elements of an array of
+        tt(ArgConfig::LongOption) objects specifying long options. The
+        parameter tt(begin) points to the first element of the range, the
+        parameter tt(end) points just beyond the last element of the
+        range. E.g., after defining
+    verb(
+    FBB::ArgConfig::LongOption longOptions[] = { c1, c2, ..., cn };
+    )
+       the arguments passed to tt(begin) and tt(end) could be specified as
+    verb(
+    initialize(..., longOptions, longOptions + size(longOptions), ...);
+    )
+
+    itb(FBB::ArgConfig &ArgConfig::initialize(char accept, char const
+        *optstring, LongOption const *const begin, LongOption const *const
+        end, int argc, char **argv, [std::string const &fname,] Comment cType
+        = KeepComment, SearchCasing sType = SearchCaseSensitive, Indices iType
+        = IgnoreIndices))
+
+      Acts like the previous tt(ArgConfig::initialize) member, but in addition
+        defines an tt(accept) parameter as defined by the second
+        tt(ArgConfig::initialize) member.
+
+    itb(FBB::ArgConfig &ArgConfig::instance()) 
+       Once an tt(ArgConfig::initialize) member has been called this member
+        can be called from anywhere in the program (and it can be called
+        multiple times), returning a reference to the initialized
+        bf(ArgConfig) object.
+
+       If it is called before an tt(ArgConfig::initialize) member has been
+        called an exception is thrown.
+    )
+
     itb(FBB::ArgConfig &instance()) 
        Returns the instance of the bf(ArgConfig) object, available after
         calling one of the bf(ArgConfig::initialize) members.  If called
@@ -101,8 +239,8 @@ initializing bf(ArgConfig) to use the initialized object immediately.
 
 manpagesection(NON-STATIC MEMBER FUNCTIONS)
     All public members of the tt(Arg) and tt(ConfigFile) classes are also
-offered by the tt(ArgConfig) class. As several  tt(option) members were
-reimplemented by this class all tt(option) members are discussed below. All
+offered by the tt(ArgConfig) class. As several  tt(Arg::option) members were
+reimplemented by tt(ArgConfig) all tt(option) members are discussed below. All
 other members inherit straight from the classes tt(Arg) and
 tt(ConfigFile). Consult their man pages for details.
     itemization(

@@ -1,4 +1,8 @@
-bobcat (5.07.04)    ISN
+bobcat (5.08.00) 
+
+  * Added new members to Arg and ArgConfig, optionally handling non-options as
+    arguments and accessors returning arguments as iterators or as vectors of
+    strings.
 
   * The member DateTime::Zone::thisZoneShift was not implemented: added to
     this release.
@@ -8,7 +12,7 @@ bobcat (5.07.04)    ISN
   * Changed A2x calls to corresponding std::string calls, updated man-pages
     accordingly.
 
-
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 15 May 2021 12:10:47 +0200
 
 bobcat (5.07.03)
 

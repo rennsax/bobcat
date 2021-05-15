@@ -17,9 +17,14 @@ case $1 in
     (c)
         g++ `cat ../../c++std` -o driver *.cc -lbobcat -s
     ;;
+    (w)
+        rm arg arg.ih
+        g++ `cat ../../c++std` -I.. -o driver *.cc -L../tmp -larg -lbobcat -s
+    ;;
     (*)
     echo $0 b links to bobcat built by 'build libraries all'
     echo $0 o links to the files in ../tmp/o
     echo $0 c links to the files in the current dir only
+    echo $0 w links to libarg.a and the existing bobcat library
     ;;
 esac

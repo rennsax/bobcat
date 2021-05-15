@@ -14,35 +14,78 @@ class ArgConfig__;
 
 class ArgConfig: public Arg, public ConfigFile
 {
-    static ArgConfig            *s_argconfig; // points to Singleton ArgConfig
+    static ArgConfig *s_argconfig;          // points to Singleton ArgConfig
+    static char const s_alreadyInitialized[];
 
     ArgConfig__ *d_ptr;
 
     public:
+        ArgConfig(ArgConfig const &other) = delete;
+
+// no accept, no long options, no file
         static ArgConfig &initialize(char const *optstring,             // 1
             int argc, char **argv,
             Comment cType = KeepComment, 
             SearchCasing sType = SearchCaseSensitive,
             Indices iType = IgnoreIndices);
 
+// no accept, no long options, file, 
         static ArgConfig &initialize(char const *optstring,             // 2
-            int argc, char **argv, std::string const &fname,    
+            int argc, char **argv,
+            std::string const &fname,
             Comment cType = KeepComment, 
             SearchCasing sType = SearchCaseSensitive,
             Indices iType = IgnoreIndices);
 
+// no accept, long options, no file, 
         static ArgConfig &initialize(char const *optstring,             // 3
-            LongOption const *const begin, LongOption const *const end,
-            int argc, char **argv, Comment cType = KeepComment, 
-            SearchCasing sType = SearchCaseSensitive,
-            Indices iType = IgnoreIndices);
-
-        static ArgConfig &initialize(char const *optstring,             // 4
-            LongOption const *const begin, LongOption const *const end,
-            int argc, char **argv, std::string const &fname,
+            LongOption const *begin, LongOption const *const end,
+            int argc, char **argv, 
             Comment cType = KeepComment, 
             SearchCasing sType = SearchCaseSensitive,
             Indices iType = IgnoreIndices);
+
+// no accept, long options, file, 
+        static ArgConfig &initialize(char const *optstring,             // 4
+            LongOption const *begin, LongOption const *const end,
+            int argc, char **argv, 
+            std::string const &fname,    
+            Comment cType = KeepComment, 
+            SearchCasing sType = SearchCaseSensitive,
+            Indices iType = IgnoreIndices);
+
+// accept, no long options, no file
+        static ArgConfig &initialize(int accept, char const *optstring, // 5
+            int argc, char **argv,
+            Comment cType = KeepComment, 
+            SearchCasing sType = SearchCaseSensitive,
+            Indices iType = IgnoreIndices);
+
+// accept, no long options, file, 
+        static ArgConfig &initialize(int accept, char const *optstring, // 6
+            int argc, char **argv,
+            std::string const &fname,
+            Comment cType = KeepComment, 
+            SearchCasing sType = SearchCaseSensitive,
+            Indices iType = IgnoreIndices);
+
+// accept, long options no file, 
+        static ArgConfig &initialize(int accept, char const *optstring, // 7
+            LongOption const *begin, LongOption const *const end,
+            int argc, char **argv, 
+            Comment cType = KeepComment, 
+            SearchCasing sType = SearchCaseSensitive,
+            Indices iType = IgnoreIndices);
+
+// accept, long options, file, 
+        static ArgConfig &initialize(int accept, char const *optstring, // 8
+            LongOption const *begin, LongOption const *const end,
+            int argc, char **argv, 
+            std::string const &fname,    
+            Comment cType = KeepComment, 
+            SearchCasing sType = SearchCaseSensitive,
+            Indices iType = IgnoreIndices);
+
 
         static ArgConfig &instance();        
 
@@ -64,34 +107,16 @@ class ArgConfig: public Arg, public ConfigFile
         std::string const &line(size_t idx) const;  // ConfigFile's []  .f
 
     private:
-        ArgConfig(ArgConfig const &other) = delete;
-        ArgConfig &operator=(ArgConfig const &other) = delete;
-
-                                                                
-        ArgConfig(char const *optstring,                        // 1
-            int argc, char **argv,
-            Comment cType = KeepComment, 
-            SearchCasing sType = SearchCaseSensitive,
-            Indices iType = IgnoreIndices);
-
-        ArgConfig(char const *optstring,                        // 2
-            int argc, char **argv, std::string const &fname,    
-            Comment cType = KeepComment, 
-            SearchCasing sType = SearchCaseSensitive,
-            Indices iType = IgnoreIndices);
-
-        ArgConfig(char const *optstring,                        // 3
+        ArgConfig(int accept, char const *optstring,                    // 1
             LongOption const *begin, LongOption const *const end,
-            int argc, char **argv, Comment cType = KeepComment, 
-            SearchCasing sType = SearchCaseSensitive,
-            Indices iType = IgnoreIndices);
+            int argc, char **argv, 
+            Comment cType, SearchCasing sType, Indices iType);
 
-        ArgConfig(char const *optstring,                        // 4
+        ArgConfig(int accept, char const *optstring,                    // 2
             LongOption const *begin, LongOption const *const end,
-            int argc, char **argv, std::string const &fname,
-            Comment cType = KeepComment, 
-            SearchCasing sType = SearchCaseSensitive,
-            Indices iType = IgnoreIndices);
+            int argc, char **argv, 
+            std::string const &fname,
+            Comment cType, SearchCasing sType, Indices iType);
 
         RE_iteratorPair findLongOption(int optChar);
         RE_iteratorPair longConfigOpt(std::string const &longOpt);
