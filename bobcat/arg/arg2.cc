@@ -12,6 +12,7 @@ Arg__::Arg__(int accept, char const *optstring,
          LongOption const *const begin, LongOption const *const end,
          int argc, char **argv)
 :
+    d_argv0(argv[0]),
     d_argPointer(0)
 {
     string dashesArg;
