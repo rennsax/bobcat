@@ -1,3 +1,16 @@
+bobcat (5.09.00) 
+
+  * DateTime::Zone::initialize was called to initialize a static data member
+    which is used by DateTime constructors. When the DateTime object is
+    statically constructed initialize may not yet have been called. Fixed in
+    this release
+
+  * The -q option was removed from the 'build' script.
+
+  * Leftover .tar.gz extensions were removed from the man-pages
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 28 Jun 2021 15:32:14 +0200
+
 bobcat (5.08.01) 
 
   * Fixed missing assignment of argv[0] to Arg__'s d_argv0 data member

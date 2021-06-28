@@ -3,7 +3,11 @@
 // static
 DateTime::Zone const &DateTime::Zone::get(std::string const &name)
 {
+    if (s_zone.empty())
+        s_thisZoneShift = initialize();
+
     s_mutex.lock();
+
     auto iter = s_zone.find(name);
 
     if (iter == s_zone.end())

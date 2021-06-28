@@ -10,7 +10,7 @@ time_t DateTime::Zone::initialize()
     char *tz = getenv("TZ");            // save the current TZ info
     if (tz)
         s_defaultTZ = tz;
-    
+
     return ret;
 }
 

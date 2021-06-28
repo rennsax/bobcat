@@ -1,4 +1,4 @@
-#!/usr/bin/icmake -qt/tmp/bobcat
+#!/usr/bin/icmake -t.
 
 #include "INSTALL.im"
 

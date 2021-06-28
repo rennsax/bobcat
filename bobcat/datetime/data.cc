@@ -34,7 +34,7 @@ mutex DateTime::Zone::s_mutex;
 
 unordered_map<string, unique_ptr<DateTime::Zone>> DateTime::Zone::s_zone;
 
-time_t DateTime::Zone::s_thisZoneShift = DateTime::Zone::initialize();
+time_t DateTime::Zone::s_thisZoneShift;
 
 string DateTime::Zone::s_defaultTZ;
 

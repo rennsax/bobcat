@@ -226,7 +226,8 @@ class DateTime
         TimeType    d_type;     // current type of info in d_tm member
                                 // (LOCALTIME (implied when using displayZone)
                                 // or UTC)
-        time_t      d_utcSec;   // UTC time in seconds
+        time_t      d_utcSec;   // UTC time in seconds (since the epoch: 
+                                //                      time(0) )
 
         Zone        d_zone;     // the object's current zone info
 
