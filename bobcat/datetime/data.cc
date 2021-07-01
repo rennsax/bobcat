@@ -32,7 +32,7 @@ char const *DateTime::s_day[] =
 
 mutex DateTime::Zone::s_mutex;
 
-unordered_map<string, unique_ptr<DateTime::Zone>> DateTime::Zone::s_zone;
+unordered_map<string, unique_ptr<DateTime::Zone>> *DateTime::Zone::s_zone = 0;
 
 time_t DateTime::Zone::s_thisZoneShift;
 

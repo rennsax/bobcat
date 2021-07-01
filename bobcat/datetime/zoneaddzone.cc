@@ -26,7 +26,9 @@ try
         vs[0].pop_back();
 
                                 // check whether the zone name is redefined
-    bool redefining = s_zone.find(vs[0]) != s_zone.end();
+    s_mutex.lock();
+    bool redefining = s_zone->find(vs[0]) != s_zone->end();
+    s_mutex.unlock();
 
     auto [dstBegin, dstEnd] = dstFromVector(vs);
 
@@ -45,3 +47,5 @@ catch (...)
     cerr << fname << " line " << lineNr <<
             ": format error in line `" << line << "'\n";    
 }
+
+

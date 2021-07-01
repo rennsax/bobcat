@@ -95,8 +95,10 @@ class DateTime
             };
             Data d_data;
 
-            static std::unordered_map<std::string, 
-                                        std::unique_ptr<Zone>> s_zone;
+            typedef std::unordered_map<std::string, 
+                                        std::unique_ptr<Zone>> ZoneMap;
+            static ZoneMap *s_zone;
+
             static time_t s_thisZoneShift;
             static std::string s_defaultTZ;
             static std::mutex s_mutex;

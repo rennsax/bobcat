@@ -1,3 +1,5 @@
 #define LIBRARY             "datetime"
 
+#define AUXFLAGS            "-pthread"
+
 #include "../icmconf"

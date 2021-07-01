@@ -7,9 +7,7 @@ DateTime::Zone const &DateTime::Zone::storeIUO(
 {
     Zone *ret = new Zone{ data(name, shift, dstSpec, dstBegin, dstEnd) };
 
-    s_mutex.lock();
-    s_zone[name] = unique_ptr<Zone>{ret};   // store the pointer in the map.
-    s_mutex.unlock();
-
+    (*s_zone)[name] = unique_ptr<Zone>{ret};    // store the pointer 
+                                                // in the map.
     return *ret;
 }

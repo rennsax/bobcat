@@ -1,7 +1,7 @@
 oxref by Frank B. Brokken (f.b.brokken@rug.nl)
 oxref V2.00.00 2012-2019
 
-CREATED Sun, 27 Jun 2021 13:21:58 +0000
+CREATED Thu, 01 Jul 2021 06:30:53 +0000
 CROSS REFERENCE FOR: -r replace -fxs tmp/libdatetime.a 
 
 ----------------------------------------------------------------------
@@ -135,7 +135,7 @@ initialize()
   Full name: FBB::DateTime::Zone::initialize()
   Source:    zoneinitialize.cc 
   Used By:
-    data.cc: GLOBALS data.cc 0data.o
+    zoneget.cc: FBB::DateTime::Zone::get(std::string const&)
 
 negate(std::string&)
   Full name: FBB::DateTime::Zone::negate(std::string&)
@@ -182,7 +182,6 @@ s_defaultTZ
   Full name: FBB::DateTime::Zone::s_defaultTZ
   Source:    data.cc 
   Used By:
-    resettz.cc: FBB::DateTime::resetTZ()
     zoneinitialize.cc: FBB::DateTime::Zone::initialize()
 
 s_month
@@ -198,7 +197,7 @@ s_mutex
   Source:    data.cc 
   Used By:
     zoneget.cc: FBB::DateTime::Zone::get(std::string const&)
-    zonestoreiuo.cc: FBB::DateTime::Zone::storeIUO(std::string const&, std::string const&, std::string const&, std::string const&, std::string const&)
+    zonestore.cc: FBB::DateTime::Zone::store(std::string const&, std::string const&, std::string const&, std::string const&, std::string const&)
 
 s_this
   Full name: FBB::DateTime::Zone::s_this
@@ -206,15 +205,25 @@ s_this
   Used By:
     zonethiszone.cc: FBB::DateTime::Zone::thisZone()
 
+s_thisZoneShift
+  Full name: FBB::DateTime::Zone::s_thisZoneShift
+  Source:    data.cc 
+  Used By:
+    zoneget.cc: FBB::DateTime::Zone::get(std::string const&)
+
+s_utc
+  Full name: FBB::DateTime::Zone::s_utc
+  Source:    data.cc 
+  Used By:
+    zoneinitialize.cc: FBB::DateTime::Zone::initialize()
+
 s_zone
   Full name: FBB::DateTime::Zone::s_zone
   Source:    data.cc 
   Used By:
     zoneaddzone.cc: FBB::DateTime::Zone::addZone(std::string const&, std::string const&, unsigned int)
     zoneget.cc: FBB::DateTime::Zone::get(std::string const&)
-    zoneinitialize.cc: FBB::DateTime::Zone::initialize()
     zonestoreiuo.cc: FBB::DateTime::Zone::storeIUO(std::string const&, std::string const&, std::string const&, std::string const&, std::string const&)
-    zonethiszone.cc: FBB::DateTime::Zone::thisZone()
 
 seconds(std::string const&)
   Full name: FBB::DateTime::Zone::seconds(std::string const&)
@@ -292,8 +301,15 @@ storeIUO(std::string const&, std::string const&, std::string const&, std::string
   Full name: FBB::DateTime::Zone::storeIUO(std::string const&, std::string const&, std::string const&, std::string const&, std::string const&)
   Source:    zonestoreiuo.cc 
   Used By:
+    zoneinitialize.cc: FBB::DateTime::Zone::initialize()
     zonestore.cc: FBB::DateTime::Zone::store(std::string const&, std::string const&, std::string const&, std::string const&, std::string const&)
     zonethiszone.cc: FBB::DateTime::Zone::thisZone()
+
+thisZone()
+  Full name: FBB::DateTime::Zone::thisZone()
+  Source:    zonethiszone.cc 
+  Used By:
+    zoneinitialize.cc: FBB::DateTime::Zone::initialize()
 
 timeException()
   Full name: FBB::DateTime::timeException()

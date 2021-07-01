@@ -1,5 +1,7 @@
 #include "datetime.ih"
 
+    // called from zoneinitialize.cc
+
 // static
 time_t DateTime::Zone::thisZone()
 {

@@ -3,19 +3,18 @@
 // static
 DateTime::Zone const &DateTime::Zone::get(std::string const &name)
 {
-    if (s_zone.empty())
-        s_thisZoneShift = initialize();
+    lock_guard<mutex> lg{ s_mutex };
 
-    s_mutex.lock();
+    if (s_zone == 0)
+    {
+        s_zone = new ZoneMap;           // 1st time: allocate s_zone
+        s_thisZoneShift = initialize(); // and initialize
+    }
 
-    auto iter = s_zone.find(name);
+    auto iter = s_zone->find(name);
 
-    if (iter == s_zone.end())
+    if (iter == s_zone->end())
         throw Exception{ 1 } << "Unknown Zone `" << name << '\'';
-
-    s_mutex.unlock();                   // iter.second holds the pointer,
-                                        // which doesn't change if now
-                                        // another zone is added
 
     return *(iter->second);    
 }
