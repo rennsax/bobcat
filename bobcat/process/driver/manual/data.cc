@@ -1,7 +1,7 @@
 #include "main.ih"
 
-auto_ptr<Pipe> d_child_inp;          // cin read by the CHILD
-auto_ptr<Pipe> d_child_outp;         // cout written by the CHILD
+unique_ptr<Pipe> d_child_inp;          // cin read by the CHILD
+unique_ptr<Pipe> d_child_outp;         // cout written by the CHILD
 
 OFdBuf    d_childCinbuf; 
 IFdBuf    d_childCoutbuf;
