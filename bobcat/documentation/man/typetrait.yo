@@ -2,9 +2,9 @@ includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
 manpage(FBB::TypeTrait)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
-                    (Error handler)
+                    (Type traits)
 
-manpagename(FBB::TypeTrait)(shortdesc)
+manpagename(FBB::TypeTrait)(Type trait class)
 
 manpagesynopsis()
     bf(#include <bobcat/typetrait>)nl()

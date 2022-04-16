@@ -58,8 +58,14 @@ class Arg: public ArgTypes__
     static Arg *s_arg;              // points to Singleton Arg
     static char const s_alreadyInitialized[];
 
+    struct Deleter
+    {
+        ~Deleter();
+    };
+
     public:
         Arg(Arg const &other) = delete;
+        ~Arg();
 
         typedef FBB::LongOption__ LongOption;
         typedef std::vector<std::pair<int, std::string>> OptVect;
@@ -80,7 +86,9 @@ class Arg: public ArgTypes__
                                 LongOption const *const end,
                                 int argc, char **argv);
 
-        static Arg &instance();        
+        static Arg &instance();
+
+        void deleter();
 
         std::string const &argv0() const;
         std::string const &basename() const;

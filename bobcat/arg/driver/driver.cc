@@ -80,9 +80,6 @@ void usage(string  const  &progname)
         "    --version (as -v), --add (as -a)\n";
 }
 
-namespace {
-}
-
 int main(int argc, char **argv)
 try
 {
@@ -95,13 +92,21 @@ try
         {"version", 'v'},
         {"add", 'a'}
     };
+
     try
     {    
         Arg::initialize('t', "+abcd:e:f:hvt", 
                 lo, lo + 6,
-                argc, argv);
+                argc, argv).deleter();          // call deleter() to delete
+                                                // s_arg (and the memory
+                                                // allocated by the Arg 
+                                                // object to which s_arg
+                                                // points. 
 
         Arg &arg = Arg::instance();
+
+
+    return 0;
 
         cout << "dashed options start at index " << arg.beyondDashes() << endl;
 

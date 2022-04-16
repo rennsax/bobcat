@@ -3,7 +3,7 @@
 ln -sf ../arg .
 ln -sf ../arg.ih .
 
-tput clear
+#tput clear
 
 case $1 in
     (b)

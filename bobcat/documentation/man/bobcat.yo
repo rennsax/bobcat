@@ -369,9 +369,8 @@ The following classes and functions are available:
     tt(for_each) generic algorithm. nl()
     Manpage(repeat)
 
-    bf(FBB::ReverseIterator): a class template creating a bidirectional
-    reverse iterator returning values of a specified type.nl()
-    Manpage(reverseiterator)
+    bf(FBB::Reverse): a class template creating a reverse iterator
+    returning values of a specified type.nl() Manpage(reverse)
 
     bf(FBB::Selector): Offers timed delays and multiple file I/O. nl()
     Manpage(selector)
@@ -992,9 +991,8 @@ END)
     tt(for_each) generic algorithm. nl()
     Manpage(repeat)
 
-    bf(FBB::ReverseIterator): a class template creating a bidirectional
-    reverse iterator returning values of a specified type.nl()
-    Manpage(reverseiterator)
+    bf(FBB::Reverse): a class template creating a reverse iterator
+    returning values of a specified type.nl() Manpage(reverse)
 
     bf(FBB::TypeTrait): Traits class template to determine various
     characteristics of types.nl()

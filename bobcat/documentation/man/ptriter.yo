@@ -2,7 +2,7 @@ includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
 manpage(FBB::PtrIter)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
-                    (Error handler)
+                    (Iterator pointing to pointers)
 
 manpagename(FBB::PtrIter)(Iterator returning pointer when dereferenced )
 

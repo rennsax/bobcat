@@ -1,7 +1,6 @@
 #include "arg"
 
 #include <iostream>
-#include <functional>
 #include <algorithm>
 #include <unordered_map>
 #include <unistd.h>

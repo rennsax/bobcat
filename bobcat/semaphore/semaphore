@@ -10,7 +10,9 @@ namespace FBB
 
 class Semaphore
 {
-    mutable std::mutex d_mutex;
+    mutable std::mutex d_mutex;     // mutable so it can also be used
+                                    // by const-members
+
     std::condition_variable d_condition;
     size_t d_nAvailable;
 

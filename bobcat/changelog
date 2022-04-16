@@ -1,3 +1,12 @@
+bobcat (5.10.00)
+
+  * Added new class Reverse (and 'reverse' support functions) having members
+    begin() and end(), returning reverse iterators for arrays, for classes
+    offering begin() and end() members returning iterators, and for
+    initializer_lists.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 16 Apr 2022 13:10:00 +0200
+
 bobcat (5.09.01) 
 
   * DateTime::Zone::initialize was called to initialize a static data member

@@ -2,7 +2,7 @@ includefile(include/header)
 
 COMMENT(manpage, section, releasedate, archive, short name)
 manpage(FBB::Ranger)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
-                    (Error handler)
+                    (for-loop iterators)
 
 manpagename(FBB::Ranger)(generalizes ranges for range-based for-loops)
 
@@ -92,7 +92,7 @@ manpagefiles()
     em(bobcat/ranger) - defines the class interface
 
 manpageseealso()
-    bf(bobcat)(7)
+    bf(bobcat)(7), bf(reverse)(3bobcat)
 
 manpagebugs()
     None Reported.
