@@ -1,0 +1,4 @@
+#!/bin/bash
+
+g++ -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wall --std=c++2a -D_FORTIFY_SOURCE=2 -isystem tmp -c $1
+
