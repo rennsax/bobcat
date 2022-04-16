@@ -24,7 +24,8 @@ std::string CGI::unPercent(std::string const &text)
             if (convert >> hex >> value)    // successfully converted
             {
                 replacement[0] = value;
-                ret.replace(pos, 3, replacement);
+                if (pos < ret.length())
+                    ret.replace(pos, 3, replacement);
             }
         }
         ++pos;                          // next char
