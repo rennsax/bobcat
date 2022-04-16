@@ -47,10 +47,15 @@ class MailHeaders
         Match                   d_match;
 
     public:
-        class const_hdr_iterator:
-            public std::iterator<std::input_iterator_tag, 
-                                std::string const>
+        struct const_hdr_iterator
         {
+            using iterator_category = std::input_iterator_tag;
+            using difference_type   = std::ptrdiff_t;
+            using value_type        = std::string const;
+            using pointer           = value_type *;
+            using reference         = value_type &;
+
+
             friend MailHeaders;
             typedef bool(*Comparator)(std::string const &header, 
                                       std::string const &key);

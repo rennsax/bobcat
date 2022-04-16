@@ -5,6 +5,10 @@ bobcat (5.10.00)
     offering begin() and end() members returning iterators, and for
     initializer_lists.
 
+  * The const_iterators of ConfigFile, Iterator, MailHeaders, PtrIter,
+    ReadlineHistory and TableSupport are not inheriting from std::iterator
+    anymore as inheriting from std::iterator is deprecated.
+
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 16 Apr 2022 13:10:00 +0200
 
 bobcat (5.09.01) 

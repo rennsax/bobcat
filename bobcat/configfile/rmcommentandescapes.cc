@@ -12,7 +12,7 @@ bool ConfigFile_::rmCommentAndEscapes(string &line)
                                             // change \\ to one backslash
         if ((hit = line.find("\\\\", pos)) != string::npos)
             line.erase(lastBackslash = hit, 1);
-        else if ((hit = line.find("\\#", pos)) != string::npos)
+        else if ((hit = line.find("\\#", pos)) < line.length())
             line.replace(hit, 2, "#");      // replace by #
         else 
         {

@@ -2,3 +2,5 @@ frame
 icmconf
 *.isn
 BRAM
+poller
+compdeb

@@ -15,7 +15,7 @@
 namespace FBB
 {
 
-class RE_iterator: public std::iterator<std::input_iterator_tag, std::string>
+struct RE_iterator 
 {
     friend class ConfigFile_;
 
@@ -23,14 +23,21 @@ class RE_iterator: public std::iterator<std::input_iterator_tag, std::string>
                          RE_iterator const &rhs);
 
     friend bool operator==(RE_iterator const &lhs, RE_iterator const &rhs);
+    
+    using iterator_category = std::input_iterator_tag;
+    using difference_type   = std::ptrdiff_t;
+    using value_type        = std::string const;
+    using pointer           = value_type *;
+    using reference         = value_type &;
 
-                            // contains iterators to lines matching REs
-    typedef std::vector<std::string>::const_iterator VsIterator;
-    typedef std::vector<VsIterator> VsIterVector;
-
-    VsIterVector const &d_vsIter;
-    size_t d_idx;
-
+    private:
+                                // contains iterators to lines matching REs
+        typedef std::vector<std::string>::const_iterator VsIterator;
+        typedef std::vector<VsIterator> VsIterVector;
+    
+        VsIterVector const &d_vsIter;
+        size_t d_idx;
+    
     public:
         RE_iterator &operator++();
 

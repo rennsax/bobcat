@@ -38,15 +38,20 @@ class ReadLineHistory
                 HistoryElement const &set(HIST_ENTRY const *element);
         };
 
-        class const_iterator: public 
-                                std::iterator<std::input_iterator_tag, 
-                                              HistoryElement const>
+        struct const_iterator
         {
-            friend ReadLineHistory;
-            friend std::reverse_iterator<const_iterator>;
+            using iterator_category = std::input_iterator_tag;
+            using difference_type   = std::ptrdiff_t;
+            using value_type        = HistoryElement const;
+            using pointer           = value_type *;
+            using reference         = value_type &;
 
-            size_t d_idx;
-            mutable HistoryElement d_element;
+            private:
+                friend ReadLineHistory;
+                friend std::reverse_iterator<const_iterator>;
+    
+                size_t d_idx;
+                mutable HistoryElement d_element;
 
             public:
                 const_iterator &operator++();                   //     opinc.f
