@@ -17,7 +17,7 @@ int main()
         cout << value << ' ';
     cout << '\n';
 
-    int const constArr[] = { 1, 2, 3, 4, 5};// arrays having const elements
+    int const constArr[] = { 1, 2, 3, 4, 5};// arrays with const elements
     for (int value: reverse(constArr))
         cout << value << ' ';
     cout << '\n';
@@ -44,8 +44,7 @@ int main()
     for (int value: reverse(initializer_list<int>{ 1, 2, 4, 8 }))
         cout << value << ' ';
     cout.put('\n');
-
-                                            // handle named constant objects
+                                            // named constant objects
     auto ilist = initializer_list<int>{ 1, 2, 4, 8 };
     for (int value: reverse(ilist))
         cout << value << ' ';

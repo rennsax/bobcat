@@ -3,15 +3,16 @@ includefile(include/header)
 COMMENT(replace 'classname' by the name of the new class)
 
 COMMENT(manpage, section, releasedate, archive, short name)
-manpage(FBB::Reverse)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_-x.tar.gz)
+manpage(FBB::Reverse)(3bobcat)(_CurYrs_)(libbobcat-dev__CurVers_)
                     (for-loop reverse iterators)
 
 manpagename(FBB::Reverse)(A class template offering reverse iterators)
 
 manpagesynopsis()
-    bf(#include <bobcat/classname>)nl()
+    bf(#include <bobcat/reverse>)nl()
 
-manpagedescription(
+manpagedescription()
+
     Not all data types offering (or implicitly providing) iterators also offer
 tt(reverse_iterators). Arrays don't, and neither do
 tt(initalizer_lists). Pointers to array elements can be used instead of
@@ -33,8 +34,6 @@ includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
     -
-
-manpagesection(TYPEDEFS AND ENUMS)
 
 manpagesection(REVERSE FUNCTIONS)
     itemization(
