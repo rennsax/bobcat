@@ -28,7 +28,6 @@ support functions. These three classes offer two members tt(begin), returning
 a tt(reverse_iterator) to the end of the data range of the object passed to
 tt(reverse) and tt(end) returning a tt(reverse_iterator) to the beginning of
 the data range of the object passed to tt(reverse).
-)
 
 includefile(include/namespace)
 
