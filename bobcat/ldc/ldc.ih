@@ -1,0 +1,17 @@
+#include "ldc.h"
+
+#include <iomanip>
+#include <algorithm>
+
+#include <bobcat/exception>
+#include <bobcat/fswap>
+
+using namespace std;
+using namespace FBB;
+
+inline int LDC::idx(CHAR *ptr, bool bufIdx) const
+{
+    return ptr - d_buffer[bufIdx];
+}
+
+
