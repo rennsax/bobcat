@@ -47,7 +47,8 @@ try
     cout << "radix = " << radix << "\n"
             "value = " << value << "\n"
             "\n"
-            "   LDC: " << ldc << '\n';
+            "   LDC: " << ldc << '\n' <<
+            "        " << ldc(3, '.') << '\n';
 
     BigInt bigInt = BigInt::fromText(value, ios::hex);
     cout << "BigInt: " << bigInt << '\n';

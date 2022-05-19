@@ -74,6 +74,8 @@ class LDC
         LDC &operator=(LDC &&tmp);                                      // 2
         LDC &operator=(std::string const &hexNr);  // uses radix 10        3
 
+        std::string operator()(size_t power, char sep) const;
+
         void set(std::string const &hexNr, size_t radix = 10);
         void set(size_t nBytes, char const *bytes, size_t radix = 10);
 
