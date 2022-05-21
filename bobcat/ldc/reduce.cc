@@ -4,7 +4,7 @@ void LDC::reduce()
 {
     while (true)
     {                                       // store value / 10 at d_divEnd
-        installDiv10(*d_begin.valuePtr / d_radix);   
+        installDiv(*d_begin.valuePtr / d_radix);   
 
         *d_begin.valuePtr %= d_radix;     // compute the radix value
 
@@ -18,11 +18,8 @@ void LDC::reduce()
                                             // ensure that d_begin.ptr points
         guardBegin();                       // at or beyond the value's LSB
     }
-                                            // the remainder is always < 10:
+                                            // remainder: always < d_modulo:
                                             // add the remainder as the next
-    CHAR ch = *d_begin.ptr;
-
-    ch += ch < 10 ? '0' : 'a' - 10;
-    d_converted += ch;                      // digit to 'd_converted'
+    d_converted += d_digits[*d_begin.ptr];  // digit to 'd_converted'
 }
 

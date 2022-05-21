@@ -1,11 +1,14 @@
 #include "ldc.ih"
 
-#include <iostream>
-
-LDC::LDC(LDC &&tmp)
+LDC::LDC(string const &hexStr, string const &digits) // e.g., deadbeef, no 0x
 {
-    swap(tmp);
-
-    tmp.d_buffer[0] = 0;
-    tmp.d_buffer[1] = 0;
+    setRadix(digits);
+    init(hexStr);
 }
+
+
+
+
+
+
+

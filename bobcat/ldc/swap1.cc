@@ -2,5 +2,5 @@
 
 void LDC::swap(LDC &other)
 {
-    fswap(*this, other, d_converted);
+    fswap(*this, other, d_converted, d_digits);
 }

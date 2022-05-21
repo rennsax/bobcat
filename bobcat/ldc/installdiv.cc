@@ -1,6 +1,6 @@
 #include "ldc.ih"
 
-void LDC::installDiv10(VALUE div10Value)
+void LDC::installDiv(VALUE div10Value)
 {
     size_t nBytes = d_end - d_begin.ptr;        // # bytes in th current value
 

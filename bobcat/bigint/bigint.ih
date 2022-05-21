@@ -5,8 +5,10 @@
 #include <algorithm>
 
 #include <openssl/ui.h>
+
 #include "../exception/exception"
 #include "../fswap/fswap"
+
 
 #if  OPENSSL_VERSION_NUMBER < 0x10100000L
 inline BIGNUM *BN_generate_prime_ex(BIGNUM *ret, int num, int safe, 

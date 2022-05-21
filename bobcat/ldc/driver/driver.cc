@@ -6,7 +6,7 @@
 
 #include <bobcat/bigint>
 
-#include "../ldc.h"
+#include "../ldc"
 
 using namespace std;
 using namespace FBB;
@@ -42,12 +42,14 @@ try
             iterations = stoull(argv[2] + 1);
     }
 
-    LDC ldc(value, radix);
+    LDC digits{ value, "0123456789ABCDEF" };
+
+    LDC ldc{ value, radix };
 
     cout << "radix = " << radix << "\n"
             "value = " << value << "\n"
-            "\n"
-            "   LDC: " << ldc << '\n' <<
+            "digits: " << digits << "\n"
+            "   LDC: " << ldc << "\n"
             "        " << ldc(3, '.') << '\n';
 
     BigInt bigInt = BigInt::fromText(value, ios::hex);
@@ -56,8 +58,11 @@ try
     char *bytes = bigInt.bigEndian();
     LDC ldc2(bigInt.sizeInBytes(), bytes);
     delete[] bytes;
-    cout << "  LDC2: " << ldc2.str() << '\n';
+
     cout << "  LDC2: " << ldc2 << '\n';
+
+    LDC ldc3(bigInt);
+    cout << "  LDC3: " << ldc2 << '\n';
 
     if (iterations == 0)                // no timing
         return 0;

@@ -42,6 +42,9 @@ class BigInt
             SAFE = true
         };
 
+        enum Little
+        {};
+
         BigInt();                               //                  1
         BigInt(BigInt const &other);            //                  2
         BigInt(BigInt &&tmp);                   //                  3
@@ -60,6 +63,14 @@ class BigInt
                                                             //      8
         explicit BigInt(std::string const &bigEndian, bool negative = false);
                                                             //      9
+
+        BigInt(size_t length, char const *littleEndian, bool negative = false);
+                                                            //      10
+
+        BigInt(Little endian,  std::string littleEndian, 
+                       bool negative = false);              //      11
+                                                            
+
         ~BigInt();
 
         BigInt &operator=(BigInt const &other); // opis.cc
@@ -117,6 +128,7 @@ class BigInt
         };
 
         char *bigEndian() const;
+        char *littleEndian() const;
         
         BigInt &operator+=(BigInt const &rhs);                  // opaddis.f
         BigInt &addMod(BigInt const &rhs, BigInt const &mod);   // .f

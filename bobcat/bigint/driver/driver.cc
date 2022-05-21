@@ -16,28 +16,29 @@ void binary(BigInt const &bi)
     cerr << '\n';
 }
 
+#include <sstream>
+
 int main(int argc, char **argv)
 try
 {   
     if (argc == 1)
         throw Exception(1) << "Provide h (hex), o (oct), or d (dec) argument";
 
-//    BigInt value;
-//
-//    int mode = argv[1][0];
-//
-//    cin >>
-//        (mode == 'h' ? hex : mode == 'o' ? oct : dec) >>
-//        value;
-//
-//    if (cin.fail())
-//        cerr << "Input failed\n";
-//    else
-//        cerr << '\n' <<
-//                   value << '\n' <<
-//            oct << value << '\n' <<
-//            hex << value << '\n';
+    BigInt value;
 
+    int mode = argv[1][0];
+
+    cin >>
+        (mode == 'h' ? hex : mode == 'o' ? oct : dec) >>
+        value;
+
+    if (cin.fail())
+        cerr << "Input failed\n";
+    else
+        cerr << '\n' <<
+                   value << '\n' <<
+            oct << value << '\n' <<
+            hex << value << '\n';
 
     BigInt zero;        // default construction of a BigInt
     cerr << "Defaults to zero: " << zero << '\n';

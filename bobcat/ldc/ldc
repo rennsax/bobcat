@@ -6,6 +6,12 @@
 
     // in the sources:  MSB means most significant byte
     //                  LSB: least significant byte. See the README file
+
+namespace FBB
+{
+
+class BigInt;
+
 class LDC
 {
     using CHAR = unsigned char;
@@ -52,7 +58,9 @@ class LDC
                                         // VALUE values fit. 
 
     std::string d_converted;
+    std::string d_digits;
 
+    
     public:
         LDC();                                                          // 1
 
@@ -65,8 +73,22 @@ class LDC
                                         // the number using nBytes 
         LDC(size_t nBytes, char const *bytes, size_t radix = 10);       // 3
 
-        LDC(LDC const &other);                                          // 4
-        LDC(LDC &&tmp);                                                 // 5
+        LDC(BigInt const &bigInt, size_t radix = 10);                   // 4
+
+        LDC(std::string const &hexNr,   // input is a hex number in a      5
+            std::string const &digits); // string e.g., deadbeef 
+                                        // (no 0x prefix)
+
+                                        // bytes contains the
+                                        // binary big endian representation of
+                                        // the number using nBytes 
+        LDC(size_t nBytes, char const *bytes,                           // 6
+                           std::string const &digits);
+
+        LDC(BigInt const &bigInt, std::string const &digits);           // 7
+
+        LDC(LDC const &other);                                          // 8
+        LDC(LDC &&tmp);                                                 // 9
 
        ~LDC();
 
@@ -74,10 +96,14 @@ class LDC
         LDC &operator=(LDC &&tmp);                                      // 2
         LDC &operator=(std::string const &hexNr);  // uses radix 10        3
 
-        std::string operator()(size_t power, char sep) const;
+        std::string operator()(size_t power, char sep = '\'') const;
 
         void set(std::string const &hexNr, size_t radix = 10);
         void set(size_t nBytes, char const *bytes, size_t radix = 10);
+
+        void set(std::string const &hexNr, std::string const &digits);  // 3
+        void set(size_t nBytes, char const *bytes,                      // 4
+                                std::string const &digits);  
 
         std::string const &str() const;
 
@@ -100,8 +126,14 @@ class LDC
                                                 // buffer indices into out
         std::ostream &indices(std::ostream &out) const;
 
+                    // called by LDC(string const &hexStr, ...)
+        void init(std::string const &hexStr);                           // 1
+
+                    // called by LDC(size_t nBytes, char const *bytes, ...)
+        void init(size_t nBytes, char const *bytes);                    // 2
+
                                                 // install div_10 in 
-        void installDiv10(VALUE div10Value); // d_begin[not d_cpt]
+        void installDiv(VALUE div10Value);      // d_begin[not d_cpt]
 
         void prepareBuffers();
 
@@ -109,7 +141,8 @@ class LDC
 
         void setDivPtrs();                      // initialize the div-ptrs
 
-        void setRadix(size_t radix);
+        void setRadix(size_t radix);                                    // 1
+        void setRadix(std::string const &digits);                       // 2
 
         static std::ostream &show(std::ostream &out,
                                   std::string const &digits);
@@ -121,5 +154,7 @@ class LDC
 };
 
 #include "ldc.f"
+
+}   // namespace FBB
     
 #endif

@@ -1,11 +1,11 @@
 #include "ldc.ih"
 
-LDC::LDC(BigInt const &bigInt, size_t radix)    
+LDC::LDC(BigInt const &bigInt, string const &digits)    
 :
     LDC()
 {
     char *bytes = bigInt.bigEndian();
-    LDC tmp{ bigInt.sizeInBytes(), bytes, radix };
+    LDC tmp{ bigInt.sizeInBytes(), bytes, digits };
     delete[] bytes;
 
     swap(tmp);

@@ -1,3 +1,15 @@
+bobcat (5.11.00)
+
+  * Added members and constructors to BigInt for processing little-endian
+    coded values;
+
+  * Added class LDC (Large Digital Converter) to convert large digital values
+    (as, e.g., handled by BigInt) to character representations using number
+    systems from 2 through 36 or using number characters in a std::string
+    using the string's length as number system.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 21 May 2022 15:37:31 +0200
+
 bobcat (5.10.01)
 
   * The reverse(3bobcat) manpage was incomplete. Fixed in this release.
