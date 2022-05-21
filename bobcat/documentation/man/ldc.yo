@@ -13,25 +13,25 @@ manpagesynopsis()
     Linking option: tt(-lbobcat) 
 
 manpagedescription()
-    Objects of the class tt(LDC) convert (large) digital values (like values
-handled by the class tt(BigInt) (cf. bf(bigint)(3bobcat)) to character
-representations using radices from 2 through 36. For radices larger than 10
-letters are used, using tt(a) through tt(z) to represent the (decimal) values
-10 through 36. When specifying radices outside of this range an exception is
-thrown.
+    Objects of the class tt(LDC) (Large Digital Converter) convert (large)
+digital values (like values handled by the class tt(BigInt)
+(cf. bf(bigint)(3bobcat)) to character representations using radices from 2
+through 36. For radices larger than 10 letters are used, using tt(a) through
+tt(z) to represent the (decimal) values 10 through 36. When specifying radices
+outside of this range an exception is thrown.
 
 Alternatively, the digits of the converted number can be provided in a
 tt(std::string) argument, where the string's first character (at index 0) is
-used for value 0, the next charater for value 1, etc., until the string's last
-character. In that case the string's length defines the number system that is
-used for converting the (large) digital value. Usually the first 10 characters
-will be tt("0123456789"), but LDC doesn't enforce that. Instead, any series of
-characters can be specified, in which case the character at index tt(idx) is
-used to represent value tt(idx) in the converted value string. E.g., when
-specifying tt("abcdefghij") the hexadecimal value tt("deadbeef") is converted
-to tt("dhdfjciffj") instead of tt("3735928559"), which is the normally used
-decimal digit representation. Digit strings must at least contain two
-characters or an exception is thrown.
+used for value 0, the next character for value 1, etc., until the string's
+last character. In that case the string's length defines the number system
+that is used for converting the (large) digital value. Usually the first 10
+characters will be tt("0123456789"), but LDC doesn't enforce that. Instead,
+any series of characters can be specified, in which case the character at
+index tt(idx) is used to represent value tt(idx) in the converted value
+string. E.g., when specifying tt("abcdefghij") the hexadecimal value
+tt("deadbeef") is converted to tt("dhdfjciffj") instead of tt("3735928559"),
+which is the normally used decimal digit representation. Digit strings must at
+least contain two characters or an exception is thrown.
 
 includefile(include/namespace)
 

@@ -8,7 +8,7 @@ bobcat (5.11.00)
     systems from 2 through 36 or using number characters in a std::string
     using the string's length as number system.
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 21 May 2022 15:37:31 +0200
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 21 May 2022 17:37:31 +0200
 
 bobcat (5.10.01)
 

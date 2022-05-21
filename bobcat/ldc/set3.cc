@@ -1,7 +1,7 @@
 #include "ldc.ih"
 
-void  LDC::set(size_t nBytes, char const *bytes, string const &digits)
+void  LDC::set(string const &hexNr, string const &digits)
 {
-    LDC tmp{ nBytes, bytes, digits };
+    LDC tmp{ hexNr, digits };
     swap(tmp);
 }

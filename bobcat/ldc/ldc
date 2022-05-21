@@ -98,8 +98,8 @@ class LDC
 
         std::string operator()(size_t power, char sep = '\'') const;
 
-        void set(std::string const &hexNr, size_t radix = 10);
-        void set(size_t nBytes, char const *bytes, size_t radix = 10);
+        void set(std::string const &hexNr, size_t radix = 10);          // 1
+        void set(size_t nBytes, char const *bytes, size_t radix = 10);  // 2
 
         void set(std::string const &hexNr, std::string const &digits);  // 3
         void set(size_t nBytes, char const *bytes,                      // 4
