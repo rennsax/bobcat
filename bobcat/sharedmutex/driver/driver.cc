@@ -7,6 +7,7 @@
 #include <bobcat/fork>
 #include <bobcat/semaphore>
 #include <bobcat/sharedsegment>
+#include <bobcat/sharedmutex>
 
 using namespace std;
 using namespace FBB;
@@ -27,7 +28,7 @@ class Wait: public Fork
 Wait::Wait()
 :
     d_shared(SharedSegment::create(&d_id, 1, 100, 0700)),
-    d_mutex(new (d_shared) FBB::SharedMutex)
+    d_mutex(new (d_shared) SharedMutex)
 {
     cout << "shared memory ID = " << d_id << '\n';
 }
@@ -35,8 +36,8 @@ Wait::Wait()
 Wait::~Wait()
 {
     d_mutex->~SharedMutex();
-    SharedSegment::detach(d_shared);
-    cout << "detached the shared memory\n";
+    SharedSegment::deleteSegment(d_id);
+    cout << "deleted the shared memory\n";
 }
 
 void Wait::childProcess()

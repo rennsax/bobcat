@@ -163,6 +163,9 @@ manpagesection(STATIC MEMBER FUNCTIONS)
         octal value representation as used by (bf(chmod)(1)) to define access
         rights for the owner, the group and others).
 
+        To return the shared segment to the operating system tt(deleteSegment)
+        should be used.
+
         An tt(FBB::Exception) is thrown if the shared memory data segment
         could not be created.
 
@@ -184,6 +187,10 @@ manpagesection(STATIC MEMBER FUNCTIONS)
         By default, detaching the memory must succeed or an bf(FBB::Exception)
         is thrown. Throwing an exception on failure can be prevented by
         passing tt(false) as the member's second argument.
+
+        Note that detaching a memory segment does not destroy it. To return a
+        shared segment to the operating system tt(deleteSegment) should be
+        used. 
 
     itb(size_t size(int id))
        The size (in bytes) of shared memory data block having ID tt(id) is
