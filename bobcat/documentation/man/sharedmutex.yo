@@ -93,7 +93,8 @@ manpagesection(PROTECTED MEMBER FUNCTION)
     )
 
 manpagesection(EXAMPLE)
-    See the bf(sharedstream)(3bobcat) man page.
+
+    verbinclude(../../sharedmutex/driver/driver.cc)
 
 manpagefiles()
     em(bobcat/sharedmutex) - defines the class interface

@@ -10,18 +10,9 @@ manpagename(SharedREADME)(Description of Bobcat's shared memory classes)
 
 manpagedescription()
 
+The following shared memory classes are available:
+
 itemization(
-    it() bf(SharedLock)(3bobcat) 
-
-The class bf(SharedLock)(3bobcat) is a wrapper around a
-tt(pthread_mutex). bf(SharedLock) has member functions tt(lock) and
-tt(unlock), with tt(lock) throwing an exception when it fails to obtain the
-lock (i.e., calling tt(pthread_mutex's lock) member fails, otherwise it waits
-until tt(pthread_mutex's lock) succeeds).
-
-bf(SharedLock) is a convenience class for other shared memory
-classes. By itself bf(SharedLock) is unrelated to shared memory.
-
     it() bf(SharedBlock)(3bobcat)
 
 The class bf(SharedBlock)(3bobcat) defines a small object consisting of a
@@ -85,7 +76,7 @@ possible offset.
 
 The class bf(SharedMutex) implements a non-recursive mutex that can be stored
 in shared memory. It merely offers tt(lock) and tt(unlock) members. Within one
-thread tt(lcok) should never be called repeatedly unless tt(unlock) is called
+thread tt(lock) should never be called repeatedly unless tt(unlock) is called
 first. The tt(unlock) member may safely repeatedly be called; once the mutex
 has been unlocked, repeated requests to unlock the mutex are simply
 ignored. When a bf(SharedMutex) is destroyed it calls tt(unlock). Use
