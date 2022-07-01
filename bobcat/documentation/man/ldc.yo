@@ -48,10 +48,10 @@ manpagesection(CONSTRUCTORS)
         of a hexadecimal value, which is converted to its equivalent
         representation using the tt(radix) number system. The string tt(hexNr)
         should not begin with tt(0x), but its first character should be the
-        value's most significant digit. E.g., tt(LDC ldc{ "12345" } is
-        converted to decimal 74565 (in this example tt("12345")) is first
+        value's most significant digit. E.g., tt(LDC ldc{ "12345" }) is
+        converted to decimal 74565 (in this example tt("12345") is first
         converted to a tt(std::string), which is then passed on to tt(ldc's)
-        constructor);
+        constructor). tt(hexNr) may not be empty or an exception is thrown;
 
     itb(LDC(std::string const &hexNr, std::string const &digits))
        Same as the previous constructor, but the number system is inferred
@@ -65,7 +65,8 @@ manpagesection(CONSTRUCTORS)
         equivalent representation using tt(radix). The string tt(bytes) should
         not begin with tt(0x), but its first character should be the value's
         most significant digit. E.g., tt(LDC{ 5, "12345" }) is converted to 
-        decimal 74565;
+        decimal 74565. tt(nBytes) must be at least 1 or an exception is
+        thrown;
 
     itb(LDC(size_t nBytes, char const *bytes, std::string const &digits))
        Same as the previous constructor, but the number system and the digit
@@ -99,6 +100,7 @@ LDC ldc;            // initialized with some value
 ldc = "12345";      // assign a new value
 cout << ldc << '\n' // displays 74655
         )
+       The rhs value may not be empty or an exception is thrown;
 
     itb(std::string operator()(size_t power, char sep = '\'') const)
        The converted value is returned using separator tt(sep) before each
@@ -119,21 +121,21 @@ manpagesection(MEMBER FUNCTIONS)
     itemization(
     itb(void set(std::string const &hexNr, size_t radix = 10))
        The tt(LDC) object's converted value is set to the hexadecimal value 
-        tt(hexNr), converted to number system tt(radix);
+        tt(hexNr), converted to number system tt(radix). tt(hexNr) may not be
+        empty or an exception is thrown ;
 
     itb(void set(std::string const &hexNr, std::string const &digits))
-       The tt(LDC) object's converted value is set to the hexadecimal value
-        tt(hexNr), converted to the number system and number characters
-        defined by tt(digits);
+       Same as the previous member, but converting tt(hexNr) to the number
+        system and number characters defined by tt(digits);
 
     itb(void set(size_t nBytes, char const *bytes, size_t radix = 10))
        The tt(LDC) object's converted value is set to the hexadecimal value
-        stored in the tt(nBytes) bytes of tt(bytes), converted to
-        number system tt(radix);
+        stored in the tt(nBytes) bytes of tt(bytes), converted to number
+        system tt(radix). tt(nBytes) must be at least 1 or an exception is
+        thrown;
 
     itb(void set(size_t nBytes, char const *bytes, std::string const &digits))
-       The tt(LDC) object's converted value is set to the hexadecimal value
-        stored in the tt(nBytes) bytes of tt(bytes), converted to number
+       Same as the previous member, but converting tt(bytes) to the number
         system and number characters defined by tt(digits);
 
     itb(std::string const &str() const)

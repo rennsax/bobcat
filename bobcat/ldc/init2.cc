@@ -4,6 +4,10 @@
 
 void LDC::init(size_t nBytes, char const *bytes)
 {
+    if (nBytes == 0)
+        throw Exception{} << 
+            "'LDC(size_t nBytes, char const *bytes ...': nBytes must be >= 1";
+
     d_size = nBytes + SIZE;         // always at least VALUE bytes
 
     prepareBuffers();

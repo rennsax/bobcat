@@ -8,7 +8,7 @@ void LDC::compressDigits(string const &hexNr)
                                     // 1, 2, 3, 4, ...: 
                                     // 1 in lowest nibble, 2 in highest
     size_t nibble = 0;
-    for (char const &ch: hexNr)
+    for (char const &ch: hexNr)     // ch values are hexNr's characters
     {
         value = (ch << nibble) | value;
         nibble += 4;
@@ -19,6 +19,7 @@ void LDC::compressDigits(string const &hexNr)
             value = 0;
         }
     }
+
     if (value != 0)
         *d_end++ = value;
 }

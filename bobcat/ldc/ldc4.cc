@@ -4,10 +4,9 @@ LDC::LDC(BigInt const &bigInt, size_t radix)
 :
     LDC()
 {
-    char *bytes = bigInt.bigEndian();
-    LDC tmp{ bigInt.sizeInBytes(), bytes, radix };
+    auto [nBytes, bytes] = bigIntBytes(bigInt);
+    LDC tmp{ nBytes, bytes, radix };
     delete[] bytes;
-
     swap(tmp);
 }
 

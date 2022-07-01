@@ -1,3 +1,9 @@
+bobcat (5.11.01)
+
+  * LDC now also accepts 0-values (previously resulting in an exception)
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 01 Jul 2022 21:10:22 +0200
+
 bobcat (5.11.00)
 
   * Added members and constructors to BigInt for processing little-endian

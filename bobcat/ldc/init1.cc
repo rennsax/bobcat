@@ -2,8 +2,12 @@
 
     // called by LDC(string const &hexStr, ...)
 
-void LDC::init(std::string const &hexStr)
+void LDC::init(string const &hexStr)
 {
+    if (hexStr.empty())
+        throw Exception{} << 
+            "'LDC(string const &hexStr ...': hexStr may not be empty";
+
     string hexNr{ String::lc(hexStr) };
 
     bytes2hex(hexNr);           // hexNr's elements now contain hex digit

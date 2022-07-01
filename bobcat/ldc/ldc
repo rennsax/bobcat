@@ -5,7 +5,7 @@
 #include <string>
 
     // in the sources:  MSB means most significant byte
-    //                  LSB: least significant byte. See the README file
+    //                  LSB: least significant byte.
 
 namespace FBB
 {
@@ -105,11 +105,13 @@ class LDC
         void set(size_t nBytes, char const *bytes,                      // 4
                                 std::string const &digits);  
 
-        std::string const &str() const;
+        std::string const &str() const;                                 // .f
 
         void swap(LDC &other);                                          // 1
 
     private:
+        static std::pair<size_t, char *> bigIntBytes(BigInt const &bigInt);
+
         static void bytes2hex(std::string &arg);
 
         void compress(std::string const &hexNr);
