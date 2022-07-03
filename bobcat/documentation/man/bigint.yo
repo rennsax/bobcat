@@ -755,12 +755,6 @@ manpageseealso()
     tt(https://www.openssl.org/docs/man1.0.2/man3/bn_sub_words.html)
 
 manpagebugs()
-
-    Sep/Oct 2013: due to a change in library handling by the linker
-(cf. lurl(http://fedoraproject.org/wiki/UnderstandingDSOLinkChange) and
-lurl(https://wiki.debian.org/ToolChain/DSOLinking)) libraries that are
-indirectly required are no longer automatically linked to your program. With
-bf(BigInt) this is tt(libcrypto), which requires programs to link to both
-tt(bobcat) and tt(crypto).
+    None Reported.
 
 includefile(include/trailer)

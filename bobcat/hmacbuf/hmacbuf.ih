@@ -1,3 +1,5 @@
+#define OPENSSL_API_COMPAT 0x10100000L
+
 #include "hmacbuf"
 
 #include <string>
@@ -8,27 +10,6 @@
 
 #include "../exception/exception"
 #include "../ohexbuf/ohexbuf"
-
-#if  OPENSSL_VERSION_NUMBER < 0x10100000L
-
-inline HMAC_CTX *HMAC_CTX_new()
-{
-    return new HMAC_CTX;
-}
-    
-inline int HMAC_CTX_reset(HMAC_CTX *ctx)
-{
-    HMAC_CTX_init(ctx);
-    return 1;
-}
-
-inline void HMAC_CTX_free(HMAC_CTX *ctx)
-{
-    HMAC_CTX_cleanup(ctx);
-    delete ctx;
-}
-   
-#endif
 
 using namespace std;
 using namespace FBB;

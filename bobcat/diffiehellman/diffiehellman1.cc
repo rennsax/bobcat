@@ -6,6 +6,9 @@ DiffieHellman::DiffieHellman(size_t primeLength, size_t generator,
     d_dh(DH_new()),
     d_otherPubKey(0)
 {
+    if (primeLength < 1024)
+        throw Exception{} << "DiffieHellman key length must be >= 1024";
+
     if (progress)                   // if true, prime generation is shown
         cout << '\n';               // as a series of dots etc, which start
                                     // on a new line

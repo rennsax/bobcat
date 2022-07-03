@@ -1061,13 +1061,10 @@ tt(-lbobcat). E.g.,
     g++ --std=c++2a main.cc -lbobcat
         )
 
-    Due to a change in library handling by the linker
-(cf. lurl(http://fedoraproject.org/wiki/UnderstandingDSOLinkChange) and
-lurl(https://wiki.debian.org/ToolChain/DSOLinking)), implemented in 2013,
-libraries that are indirectly required are no longer automatically linked to
-your program. With some classes (e.g., tt(BigInt)) the tt(libcrypto) library
-must also be specified, and programs using such classes must be linked against
-tt(bobcat) and tt(crypto):
+    Note: libraries that are indirectly required are no longer automatically
+linked to your program. With some classes (e.g., tt(BigInt)) the tt(libcrypto)
+library must also be specified, and programs using such classes must be linked
+against tt(bobcat) and tt(crypto):
         verb(
     g++ --std=c++2a main.cc -lbobcat -lcrypto
         )

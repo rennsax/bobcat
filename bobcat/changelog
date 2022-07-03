@@ -1,8 +1,15 @@
 bobcat (5.11.01)
 
-  * LDC now also accepts 0-values (previously resulting in an exception)
+  * LDC now also accepts 0-values (previously resulting in an exception).
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 01 Jul 2022 21:10:22 +0200
+  * Several man-pages were updated.
+
+  * The BigInt, Diffie-Hellman, and HMacBuf classes specify
+    #define OPENSSL_API_COMPAT 0x10100000L in their .ih files, and local
+    definitions of various openSSL functions in their .ih files were
+    removed.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 03 Jul 2022 16:32:58 +0200
 
 bobcat (5.11.00)
 

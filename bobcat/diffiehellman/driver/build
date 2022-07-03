@@ -10,9 +10,13 @@ GPP="g++ `cat ../../c++std`"
 #   Using the standard bobcat library
 #CMD="$GPP -o driver -Wall *.cc ${LIBS} -s"
 
+#   Using libraries in ../tmp/
+#CMD="$GPP -o driver -Wall *.cc -isystem ../../tmp \
+#           -L../tmp -ldiffiehellman -L../../bigint/tmp -lbigint ${LIBS} -s"
+
 #   Using the library in ../tmp/
 CMD="$GPP -o driver -Wall *.cc -isystem ../../tmp \
-           -L../tmp -ldiffiehellman -L../../bigint/tmp -lbigint ${LIBS} -s"
+           -L../tmp -ldiffiehellman -L../../bigint/tmp ${LIBS} -s"
 
 echo ${CMD}
 ${CMD}

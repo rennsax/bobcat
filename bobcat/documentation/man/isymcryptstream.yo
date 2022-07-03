@@ -87,13 +87,7 @@ manpageseealso()
     bf(bobcat)(7), bf(isymcryptstreambuf)(3bobcat)
 
 manpagebugs()
-
-    Sep/Oct 2013: due to a change in library handling by the linker
-(cf. lurl(http://fedoraproject.org/wiki/UnderstandingDSOLinkChange) and
-lurl(https://wiki.debian.org/ToolChain/DSOLinking)) libraries that are
-indirectly required are no longer automatically linked to your program. With
-bf(BigInt) this is tt(libcrypto), which requires programs to link to both
-tt(bobcat) and tt(crypto).
+    None Reported.
 
 includefile(include/trailer)
 

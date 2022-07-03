@@ -16,12 +16,12 @@ manpagedescription()
 
 The class bf(FBB::DiffieHellman) computes shared keys (shared secrets) using
 the Diffie-Hellman (1976) algorithm. The Diffie-Hellman algorithm uses public
-and private information. The public information consists of a em(prime) (e.g.,
-a prime number consisting of 1024 bits), a em(generator) (for which the value
-5 is commonly used), and (using tt(**) to represent the power operator on
-integral values) the value tt(generator ** private mod prime), where
-tt(private) is a randomly selected large number, which is the private
-information. 
+and private information, providing a public key infrastructure (PKI). The
+public information consists of a em(prime) (e.g., a prime number consisting of
+1024 bits), a em(generator) (for which the value 5 is commonly used), and
+(using tt(**) to represent the power operator on integral values) the value
+tt(generator ** private mod prime), where tt(private) is a randomly selected
+large number, which is the private information.
 
 The Diffie-Hellman algorithm is commonly used to compute a shared key which
 can be used to encrypt information sent between two parties. One party, which
@@ -83,6 +83,14 @@ exchanging encrypted public information.
     it() The shared key can now be used to encrypt a communication session
     )
 
+bf(Document encryption using Diffie Hellman)
+
+As with PKI in general, the Diffie Hellman key exchange method itself is not
+normally used for encrypting documents. Instead, it is usually used to
+exchange the key that is used for symmetric encryption methods like 3DES and
+CBC. These symmetric encryption methods are available through, e.g., Bobcats'
+tt(EncryptBuf, DecryptBuf,) and tt(ISymCryptStream) classes. 
+
 includefile(include/namespace)
 
 manpagesection(INHERITS FROM)
@@ -103,7 +111,8 @@ manpagesection(CONSTRUCTORS)
     itb(DiffieHellman(size_t primeLength = 1024, size_t generator = 5,
                       bool progress = false))
         This constructor computes a prime of the specified length, and
-initializes the public information with the indicated generator. If
+initializes the public information with the indicated generator. The prime
+length must at least be 1024 or an tt(FBB::Exception) is thrown.  If
 tt(progress) is tt(true), the progress of the prime construction process is
 shown to tt(std::cout) by a series of dots, minuses and plusses. Generating a
 suitable prime may fail, resulting in an tt(FBB::Exception) being
@@ -209,7 +218,8 @@ manpagefiles()
     em(bobcat/diffiehellman) - defines the class interface
 
 manpageseealso()
-    bf(bobcat)(7), bf(bigint)(3bobcat)
+    bf(bobcat)(7), bf(bigint)(3bobcat), bf(decryptbuf)(3bobcat), 
+    bf(encryptbuf)(3bobcat), bf(isymcryptstream)(3bobcat)
 
 manpagebugs()
     None Reported.
