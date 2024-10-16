@@ -4,6 +4,10 @@
 #include <vector>
 #include <csignal>
 
+#ifndef __GLIBC__
+typedef void (*sighandler_t)(int);
+#endif
+
 namespace FBB
 {
 
