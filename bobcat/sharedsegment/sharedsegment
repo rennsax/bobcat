@@ -1,6 +1,7 @@
 #ifndef INCLUDED_BOBCAT_SHAREDSEGMENT_
 #define INCLUDED_BOBCAT_SHAREDSEGMENT_
 
+#include <ios>
 #include <iosfwd>
 
 #include <bobcat/sharedblock>
