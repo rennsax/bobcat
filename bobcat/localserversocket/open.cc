@@ -6,7 +6,7 @@ void LocalServerSocket::open(string const &name, Socket action)
     d_unlink = action == UNLINK;
     d_name = name;
 
-    if (bind(socket(), sockaddrPtr(), size()) < 0)
+    if (::bind(socket(), sockaddrPtr(), size()) < 0)
         throw Exception{} << "LocalServerSocket::open(" << name << "): " <<
                                                             errnodescr;
 }

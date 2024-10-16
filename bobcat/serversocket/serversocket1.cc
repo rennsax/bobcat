@@ -13,6 +13,6 @@ ServerSocket::ServerSocket(size_t port)
         return;
     }
 
-    if (bind(socket(), sockaddrPtr(), size()) < 0)
+    if (::bind(socket(), sockaddrPtr(), size()) < 0)
         d_msg = "ServerSocket::ServerSocket(port)";
 }
