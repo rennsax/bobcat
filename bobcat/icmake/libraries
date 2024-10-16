@@ -113,11 +113,14 @@ void static_library(string library)
     }
 }
 
-void _shared_library(string libso, string libsoshared, 
+void _shared_library(string libsoname, string libsoshared,
                     int strip)
 {
     string libsomajor;
     string gxx;
+    string libso;
+
+    libso = libsoname + ".dylib";
 
     gxx = g_cxx + " " + g_copt;
     
@@ -126,12 +129,12 @@ void _shared_library(string libso, string libsoshared,
         printf("\n"
                "Creating shared library ", libso, "\n");
 
-        libsomajor  = libso + "." + element(0, strtok(g_version, "."));
+        libsomajor  = libsoname + "." + element(0, strtok(g_version, ".")) + ".dylib";
 
         run(gxx +  
                     " " + setOpt(LDFLAGS, "LDFLAGS") +
-                    " -pthread -shared -Wl,--as-needed,"
-                    "-z,defs,-soname," + 
+                    " -pthread -shared -Wl,"
+                    "-undefined,error,-install_name," +
                     libsomajor +
                     " -o " + g_tmplibso + "/" + libsoshared +
                     " */os/*.o " +
@@ -161,6 +164,7 @@ void libraries(int keepPch, string libname, int all, int strip, int select,
     string libso;
     string libsoshared;
     string staticLib;
+    string libsoname;
 
     staticLib = g_tmpliba + "/lib" LIBRARY ".a";
 
@@ -183,15 +187,16 @@ void libraries(int keepPch, string libname, int all, int strip, int select,
     static_library(staticLib);              // build static library
 
 #ifdef BUILD_SHARED
-    libso = "lib" LIBRARY ".so";
-    libsoshared = libso + "." + g_version;
+    libsoname = "lib" LIBRARY;
+    libso = libsoname + ".dylib";
+    libsoshared = libsoname + "." + g_version + ".dylib";
 
     g_copt += " -fPIC";
                                           // adds option for shared lib
 
     library("os", g_tmplibso + "/" + libsoshared);  // compile the shared lib
 
-    _shared_library(libso, libsoshared, strip);
+    _shared_library(libsoname, libsoshared, strip);
 #endif
 
     // if (!keepPch)
